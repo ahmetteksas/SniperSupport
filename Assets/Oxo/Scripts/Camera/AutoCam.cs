@@ -147,8 +147,8 @@ public class AutoCam : PivotBasedCameraRig
         }
 
         //Debug.Log(transform.position.z - m_Target.position.z);
-        transform.position = Vector3.Lerp(transform.position, new Vector3(0, 0, m_Target.position.z), deltaTime * m_MoveSpeed);
-
+        transform.position = Vector3.Lerp(transform.position, new Vector3(m_Target.position.x, m_Target.position.y-1.7f, m_Target.position.z+6.1f), deltaTime * m_MoveSpeed);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(m_Target.eulerAngles.x, m_Target.eulerAngles.y, m_Target.eulerAngles.z), deltaTime * m_TurnSpeed);
         // camera's rotation is split into two parts, which can have independend speed settings:
         // rotating towards the target's forward direction (which encompasses its 'yaw' and 'pitch')
         if (!m_FollowTilt)
