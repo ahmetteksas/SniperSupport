@@ -23,6 +23,8 @@ public class SoldierController : MonoBehaviour
 
     private ProgressBarPro health;
 
+    private Animator animBase;
+    private bool animStart;
 
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class SoldierController : MonoBehaviour
             allyCount.Value++;
         }
         health = GetComponentInChildren<ProgressBarPro>();
-        
+        animBase = GetComponent<Animator>();
         //shootDelay = shootTime - Time.deltaTime;
     }
 
@@ -74,21 +76,34 @@ public class SoldierController : MonoBehaviour
         {
             enemyList.Remove(this.gameObject);
             enemyCount.Value--;
-            gameObject.SetActive(false);
+            if (!animStart)
+            {
+                StartCoroutine(DeathEvent());
+                animStart = true;
+            }
+            
         }
         if (health.Value == 0 && this.gameObject.tag == "Ally")
         {
             allyList.Remove(this.gameObject);
             allyCount.Value--;
-            gameObject.SetActive(false);
+            if (!animStart)
+            {
+                StartCoroutine(DeathEvent());
+                animStart = true;
+            }
         }
     }
     public void Shoot()
     {
-        
             GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
             _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
             shootTime = 0f;
-        
+    }
+    IEnumerator DeathEvent()
+    {
+        animBase.SetTrigger("Death");
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
     }
 }

@@ -12,6 +12,7 @@ public class Shooter : MonoBehaviour
     private float shootDelay = 1.5f;
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
+
     void Start()
     {
         
