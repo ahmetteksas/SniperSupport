@@ -17,17 +17,18 @@ public class Shooter : MonoBehaviour
     void Update()
     {
         shootTime += Time.deltaTime;
-        if (shootTime>shootDelay)
+        if (shootTime > shootDelay)
         {
             Shoot();
-        }  
+        }
     }
     public void Shoot()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
-            _smallBullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+           GameObject _smallbullet= ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
+            _smallbullet.transform.rotation = transform.rotation;
+           _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
             shootTime = 0f;
         }
     }

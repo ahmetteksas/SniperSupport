@@ -7,8 +7,10 @@ public class BulletDamage : MonoBehaviour
 {
     [SerializeField] FloatVariable enemyHealth;
     [SerializeField] FloatVariable allyHealth;
+    public float bulletForce;
     void Start()
     {
+        //GetComponent<Rigidbody>().AddForce(gameObject.transform.parent.transform.forward * bulletForce);
         StartCoroutine(DestroyBullet());
     }
 

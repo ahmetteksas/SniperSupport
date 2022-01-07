@@ -134,20 +134,20 @@ public class AutoCam : PivotBasedCameraRig
         }
 
         // camera position moves towards target position:
-        if (leftList.Count > rightList.Count)
-        {
-            mainCam.transform.localPosition = Vector3.Lerp(mainCam.transform.localPosition, new Vector3(0f, 0f, -leftList.Count * .4f), .05f); //= Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y, m_Target.position.z - leftList.Count), (deltaTime * m_MoveSpeed));
+        //if (leftList.Count > rightList.Count)
+        //{
+        //    mainCam.transform.localPosition = Vector3.Lerp(mainCam.transform.localPosition, new Vector3(0f, 0f, -leftList.Count * .4f), .05f); //= Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y, m_Target.position.z - leftList.Count), (deltaTime * m_MoveSpeed));
 
             
-        }
-        else
-        {
+        //}
+        //else
+        //{
            
-            mainCam.transform.localPosition =Vector3.Lerp(mainCam.transform.localPosition, new Vector3(0f, 0f, -rightList.Count * .4f),.05f); //= Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y, m_Target.position.z - leftList.Count), (deltaTime * m_MoveSpeed));
-        }
+        //    mainCam.transform.localPosition =Vector3.Lerp(mainCam.transform.localPosition, new Vector3(0f, 0f, -rightList.Count * .4f),.05f); //= Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y, m_Target.position.z - leftList.Count), (deltaTime * m_MoveSpeed));
+        //}
 
         //Debug.Log(transform.position.z - m_Target.position.z);
-        transform.position = Vector3.Lerp(transform.position, new Vector3(m_Target.position.x, m_Target.position.y-1.7f, m_Target.position.z+6.1f), deltaTime * m_MoveSpeed);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(m_Target.position.x, m_Target.position.y - 2.2f, m_Target.position.z + 5.1f), deltaTime * m_MoveSpeed);
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(m_Target.eulerAngles.x, m_Target.eulerAngles.y, m_Target.eulerAngles.z), deltaTime * m_TurnSpeed);
         // camera's rotation is split into two parts, which can have independend speed settings:
         // rotating towards the target's forward direction (which encompasses its 'yaw' and 'pitch')
