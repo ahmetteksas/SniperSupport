@@ -34,7 +34,7 @@ public class BulletDamage : MonoBehaviour
     }
     IEnumerator DestroyBullet ()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         this.gameObject.SetActive(false);
     }
 }

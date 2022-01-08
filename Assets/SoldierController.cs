@@ -85,13 +85,21 @@ public class SoldierController : MonoBehaviour
         {
             health.Value -= .1f;
         }
+        if (other.gameObject.tag == "BulletHeal")
+        {
+            health.Value += .1f;
+        }
     }
     void Update()
     {
         shootTime += Time.deltaTime;
-        if (shootTime > shootDelay && this.gameObject != null)
+        if (shootTime > shootDelay && this.gameObject != null && this.gameObject.tag == "Ally")
         {
             Shoot();
+        }
+        if (shootTime > shootDelay && this.gameObject != null && this.gameObject.tag == "Enemy")
+        {
+            ShootEnemy();
         }
         if (health.Value ==0 && this.gameObject.tag =="Enemy")
         {
@@ -137,6 +145,12 @@ public class SoldierController : MonoBehaviour
             GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
             _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
             shootTime = 0f;
+    }
+    public void ShootEnemy()
+    {
+        GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, Quaternion.identity);
+        _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+        shootTime = 0f;
     }
     IEnumerator DeathEvent()
     {
