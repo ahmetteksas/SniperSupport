@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ScriptableObjectArchitecture;
 using System.Linq;
+using UnityEngine.UI;
 public class Shooter : MonoBehaviour
 {
     public Transform bulletSpawnPos;
@@ -13,6 +14,7 @@ public class Shooter : MonoBehaviour
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
 
+
     void Start()
     {
         
@@ -22,9 +24,10 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if (this.gameObject.name == "AI")
         {
-            targetAlly = allyList.FirstOrDefault().transform;
+            targetAlly = allyList.LastOrDefault().transform;
         }
         
         shootTime += Time.deltaTime;
