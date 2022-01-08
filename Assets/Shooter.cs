@@ -13,9 +13,7 @@ public class Shooter : MonoBehaviour
     private float shootDelay = 1.5f;
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
-    private bool shoot;
-    int counterBullet;
-    int counterHeal;
+    int selectedBulletIndex;
 
     void Start()
     {
@@ -36,43 +34,36 @@ public class Shooter : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0) /*&& !shoot*/)
             {
-                ShootBullet();
+                Shoot();
             }
-            if (Input.GetMouseButtonUp(0) /*&& shoot*/)
-            {
-                ShootHeal();
-            }
+
         }
         if (shootTime > shootDelayAi && this.gameObject.name == "AI")
         {
             AiShoot();
         }
     }
-    public void ShootBullet()
+    public void SelectBullet(int index)
     {
-        counterBullet++;
-        if (counterBullet ==1)
-        {
-            GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
-            _smallbullet.transform.rotation = transform.rotation;
-            _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-            shootTime = 0f;
-            //shoot = true;
-        }
-        
+        selectedBulletIndex = index;
+
     }
-    public void ShootHeal()
+
+    public void Shoot()
     {
-        counterHeal++;
-        if (counterHeal ==1)
+        GameObject _smallBullet;
+        if (selectedBulletIndex == 0)
         {
-            GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
-            _smallbullet.transform.rotation = transform.rotation;
-            _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-            shootTime = 0f;
-            //shoot = false;
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
         }
-        
+        else
+        {
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
+        }
+
+        _smallBullet.transform.rotation = transform.rotation;
+        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+        shootTime = 0f;
     }
     public void AiShoot()
     {
