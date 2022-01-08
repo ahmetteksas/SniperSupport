@@ -5,15 +5,16 @@ using UnityEngine;
 public class PlayerControllerScript : MonoBehaviour
 {
     public float depth;
-    
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        return;
         if (this.gameObject.name == "Character")
         {
             Vector3 mousePos = Input.mousePosition;
@@ -28,6 +29,5 @@ public class PlayerControllerScript : MonoBehaviour
 
             transform.LookAt(wantedPos);
         }
-        
     }
 }
