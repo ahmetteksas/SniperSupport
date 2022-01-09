@@ -13,6 +13,7 @@ public class TransformRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(rotSpeed, 0, 0);
+        //transform.Rotate(rotSpeed, 0, 0);
+        transform.RotateAround(transform.parent.right, rotSpeed);
     }
 }
