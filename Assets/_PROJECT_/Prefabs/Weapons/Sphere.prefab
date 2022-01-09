@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7566887164041256523}
   - component: {fileID: 4111541986588027738}
   - component: {fileID: 6560768963538867120}
-  - component: {fileID: 2077347619869300099}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: BulletSmallPlayer
@@ -130,19 +129,19 @@ MonoBehaviour:
   enemyHealth: {fileID: 11400000, guid: c6bcf50c2709c564f899db39bb5b2a7d, type: 2}
   allyHealth: {fileID: 11400000, guid: 0639c5f5fb2032d4c89943ea1b2036f0, type: 2}
   bulletForce: 700
---- !u!114 &2077347619869300099
+--- !u!114 &1334796694613894917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613784492385749901}
+  m_GameObject: {fileID: 5145508906609602729}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5babf7666b036cd47a377ac76ff6b8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 20
+  rotSpeed: 2
 --- !u!1001 &6215990635985624628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,6 +211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a3a97484bb22434bb49b6f8e98cb4e8, type: 3}
+--- !u!1 &5145508906609602729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1237126065525173917, guid: 8a3a97484bb22434bb49b6f8e98cb4e8, type: 3}
+  m_PrefabInstance: {fileID: 6215990635985624628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5151533444604036197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1242517215601285713, guid: 8a3a97484bb22434bb49b6f8e98cb4e8, type: 3}
