@@ -50,9 +50,9 @@ public class SoldierController : MonoBehaviour
             {
                 enemyBoss.isTrigger = true;
             }
-            
+
             enemyList.Add(this.gameObject);
-            enemyCount.Value ++;
+            enemyCount.Value++;
         }
         if (this.gameObject.tag == "Ally")
         {
@@ -61,19 +61,19 @@ public class SoldierController : MonoBehaviour
             {
                 allyBoss.isTrigger = true;
             }
-            
+
             allyList.Add(this.gameObject);
             allyCount.Value++;
         }
         health = GetComponentInChildren<ProgressBarPro>();
         animBase = GetComponent<Animator>();
-        
+
         //shootDelay = shootTime - Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if ((other.gameObject.CompareTag("BulletSmall") || other.gameObject.CompareTag("BulletSmallPlayer"))&&this.gameObject.tag =="Ally")
+        if ((other.gameObject.CompareTag("BulletSmall") || other.gameObject.CompareTag("BulletSmallPlayer")) && this.gameObject.tag == "Ally")
         {
             health.Value -= .02f;
         }
@@ -81,7 +81,7 @@ public class SoldierController : MonoBehaviour
         {
             health.Value -= .01f;
         }
-        if (other.gameObject.CompareTag("BulletSmallPlayer") &&this.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("BulletSmallPlayer") && this.gameObject.tag == "Enemy")
         {
             health.Value -= .1f;
         }
@@ -90,6 +90,7 @@ public class SoldierController : MonoBehaviour
             health.Value += .1f;
         }
     }
+
     void Update()
     {
         shootTime += Time.deltaTime;
@@ -101,22 +102,22 @@ public class SoldierController : MonoBehaviour
         {
             ShootEnemy();
         }
-        if (health.Value ==0 && this.gameObject.tag =="Enemy")
+        if (health.Value == 0 && this.gameObject.tag == "Enemy")
         {
             enemyList.Remove(this.gameObject);
-            
+
             if (!animStart)
             {
                 StartCoroutine(DeathEvent());
                 animStart = true;
                 enemyCount.Value--;
             }
-            
+
         }
         if (health.Value == 0 && this.gameObject.tag == "Ally")
         {
             allyList.Remove(this.gameObject);
-            
+
             if (!animStart)
             {
                 StartCoroutine(DeathEvent());
@@ -138,20 +139,22 @@ public class SoldierController : MonoBehaviour
                 enemyBoss.isTrigger = false;
             }
         }
-        
     }
+
     public void Shoot()
     {
-            GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
-            _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-            shootTime = 0f;
+        GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
+        _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+        shootTime = 0f;
     }
+
     public void ShootEnemy()
     {
         GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, Quaternion.identity);
         _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
         shootTime = 0f;
     }
+
     IEnumerator DeathEvent()
     {
         if (animBase)
@@ -160,7 +163,7 @@ public class SoldierController : MonoBehaviour
         }
         explosion.Play();
         yield return new WaitForSeconds(2f);
-            
+
         gameObject.SetActive(false);
         if (enemyCount.Value == 0)
         {
@@ -170,7 +173,5 @@ public class SoldierController : MonoBehaviour
         {
             retryLevel.SetActive(true);
         }
-        //yield return new WaitForSeconds(5f);
-
     }
 }
