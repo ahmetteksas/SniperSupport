@@ -8,6 +8,7 @@ public class Shooter : MonoBehaviour
 {
     public Transform bulletSpawnPos;
     public Transform bulletDir;
+    public Transform character;
     public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
@@ -62,8 +63,9 @@ public class Shooter : MonoBehaviour
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
         }
 
-        _smallBullet.transform.rotation = transform.rotation;
-        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletDir.forward * bulletForce);
+        
+        _smallBullet.transform.rotation = /*character.transform.localRotation*/ Quaternion.identity;
+        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletDir.up * bulletForce);
         shootTime = 0f;
     }
     public void AiShoot()
