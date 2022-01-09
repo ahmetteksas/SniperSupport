@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Shooter : MonoBehaviour
 {
     public Transform bulletSpawnPos;
+    public Transform bulletDir;
     public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
@@ -62,7 +63,7 @@ public class Shooter : MonoBehaviour
         }
 
         _smallBullet.transform.rotation = transform.rotation;
-        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletDir.forward * bulletForce);
         shootTime = 0f;
     }
     public void AiShoot()

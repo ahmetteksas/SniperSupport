@@ -140,38 +140,38 @@ public class Swerve : MonoBehaviour
         StabilizeControlRootRotation(deltaMousePosition.x);
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Finish"))
-        {
-            crashed = true;
-        }
-        if (other.gameObject.CompareTag("CollectablePoints"))
-        {
-            pointCounter += 10;
-            Destroy(other.gameObject);
-            if (points !=null)
-            {
-                points.text = pointCounter.ToString();
-            }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Finish"))
+    //    {
+    //        crashed = true;
+    //    }
+    //    if (other.gameObject.CompareTag("CollectablePoints"))
+    //    {
+    //        pointCounter += 10;
+    //        Destroy(other.gameObject);
+    //        if (points !=null)
+    //        {
+    //            points.text = pointCounter.ToString();
+    //        }
             
-        }
-    }
-    private void FixedUpdate()
-    {
-        return;
-        // If my finger is not on the screen 
-        if (isSwerveStoped)
-        {
-            /* If mySpeed is low than topSpeed*/
-            if (rigidbody.velocity.magnitude < settings.topSpeed)
-            {
-                rigidbody.AddForce(transform.forward * settings.movementSpeed /*(+ movementSpeedSlider.value)*/);
-            }
-            //Calling swerveStop because isSwerveStoped= true, my finger is not on the screen.
-            SwerveStopped();
-        }
-    }
+    //    }
+    //}
+    //private void FixedUpdate()
+    //{
+    //    return;
+    //    // If my finger is not on the screen 
+    //    if (isSwerveStoped)
+    //    {
+    //        /* If mySpeed is low than topSpeed*/
+    //        if (rigidbody.velocity.magnitude < settings.topSpeed)
+    //        {
+    //            rigidbody.AddForce(transform.forward * settings.movementSpeed /*(+ movementSpeedSlider.value)*/);
+    //        }
+    //        //Calling swerveStop because isSwerveStoped= true, my finger is not on the screen.
+    //        SwerveStopped();
+    //    }
+    //}
 
     #region FingerActions
 
@@ -182,7 +182,7 @@ public class Swerve : MonoBehaviour
 
     private void FingerDragAction()
     {
-        return;
+        //return;
         #region DragDefaults
 
         lastMousePosition = Input.mousePosition;
