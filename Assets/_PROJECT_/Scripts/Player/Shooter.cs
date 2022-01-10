@@ -22,8 +22,6 @@ public class Shooter : MonoBehaviour
 
         //shootDelay = shootTime - Time.deltaTime;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (this.gameObject.name == "AI")
@@ -54,19 +52,23 @@ public class Shooter : MonoBehaviour
     public void Shoot()
     {
         GameObject _smallBullet;
-        if (selectedBulletIndex == 0)
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100))
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
+            Debug.DrawLine(character.position, hit.point);
+            if (selectedBulletIndex == 0)
+            {
+                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
+            }
+            else
+            {
+                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
+            }
+            _smallBullet.transform.LookAt(hit.point);
+            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(_smallBullet.transform.forward * bulletForce);
+            shootTime = 0f;
         }
-        else
-        {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
-        }
-
-        
-        _smallBullet.transform.rotation = /*character.transform.localRotation*/ Quaternion.identity;
-        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletDir.up * bulletForce);
-        shootTime = 0f;
     }
     public void AiShoot()
     {

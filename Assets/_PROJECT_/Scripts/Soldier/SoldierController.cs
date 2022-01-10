@@ -41,7 +41,6 @@ public class SoldierController : MonoBehaviour
         allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
         SelectTarget();
-
         explosion = GetComponentInChildren<ParticleSystem>();
         healthBar = GetComponentInChildren<ProgressBarPro>();
         animator = GetComponent<Animator>();
