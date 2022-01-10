@@ -35,7 +35,7 @@ public class SoldierController : MonoBehaviour
 
     private ParticleSystem explosion;
 
-    public Transform targetTransform;
+    private Transform targetTransform;
 
     private void Awake()
     {
@@ -47,6 +47,7 @@ public class SoldierController : MonoBehaviour
     }
     public void AwakeGame ()
     {
+        targetTransform = transform.parent;
         enemyList.Clear();
         allyList.Clear();
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
@@ -99,6 +100,7 @@ public class SoldierController : MonoBehaviour
         yield return new WaitForSeconds(setPositionDelay);
         animator.SetTrigger("Aim");
         GameObject _smallBullet;
+        Vector3 _offset = new Vector3(-.3f, 0, .5f);
         while (!isDead)
         {
             yield return new WaitForSeconds(shootDelay);
@@ -109,11 +111,11 @@ public class SoldierController : MonoBehaviour
             }
             if (teamIndex == 0)
             {
-                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
+                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position+_offset, Quaternion.identity);
             }
             else
             {
-                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, Quaternion.identity);
+                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position-_offset, Quaternion.identity);
             }
             _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
         }
