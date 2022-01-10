@@ -19,7 +19,6 @@ public class Shooter : MonoBehaviour
 
     void Start()
     {
-
         //shootDelay = shootTime - Time.deltaTime;
     }
     void Update()
@@ -65,7 +64,8 @@ public class Shooter : MonoBehaviour
             {
                 _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
             }
-            //_smallBullet.transform.LookAt(hit.point);
+        //_smallBullet.transform.LookAt(hit.point);
+        Debug.Log("asd");
             _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(_smallBullet.transform.forward * bulletForce);
             shootTime = 0f;
         //}
