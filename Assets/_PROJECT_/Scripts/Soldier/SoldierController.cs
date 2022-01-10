@@ -9,11 +9,11 @@ using System.Linq;
 
 public class SoldierController : MonoBehaviour
 {
-    [SerializeField] IntVariable enemyCount;
-    [SerializeField] IntVariable allyCount;
+    private List<SoldierController> allyList = new List<SoldierController>();
+    private List<SoldierController> enemyList = new List<SoldierController>();
 
-    [SerializeField] GameObjectCollection enemyList;
-    [SerializeField] GameObjectCollection allyList;
+
+    public int teamIndex;
 
     public Transform bulletSpawnPos;
 
@@ -21,157 +21,156 @@ public class SoldierController : MonoBehaviour
     private float shootDelay = .5f;
     private float shootTime = 0f;
 
-    private ProgressBarPro health;
+    private ProgressBarPro healthBar;
 
-    private Animator animBase;
+    private Animator animator;
     private bool animStart;
-
-    BoxCollider enemyBoss;
-    BoxCollider allyBoss;
 
     private ParticleSystem explosion;
 
-    public GameObject nextLevel;
-    public GameObject retryLevel;
+
+    bool isDead;
     private void Awake()
     {
-        enemyCount.Value = 0;
-        allyCount.Value = 0;
         enemyList.Clear();
         allyList.Clear();
+        List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
+        allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
+        enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
     }
     void Start()
     {
         explosion = GetComponentInChildren<ParticleSystem>();
-        if (this.gameObject.tag == "Enemy")
+        healthBar = GetComponentInChildren<ProgressBarPro>();
+        animator = GetComponent<Animator>();
+        StartCoroutine(AutoShoot());
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            healthBar.Value -= other.gameObject.GetComponent<BulletController>().damage;
+            TakeHit();
+        }
+        if (other.gameObject.tag == "BulletHeal")
+        {
+            healthBar.Value += .1f;
+        }
+    }
+
+    void TakeHit()
+    {
+        if (healthBar.Value == 0)
+        {
+            isDead = true;
+            if (!animStart)
+            {
+                StartCoroutine(DeathEvent());
+                animStart = true;
+            }
+        }
+    }
+    IEnumerator AutoShoot()
+    {
+        GameObject _smallBullet;
+        while (!isDead)
+        {
+            yield return new WaitForSeconds(shootDelay);
+            if (teamIndex == 0)
+            {
+                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
+            }
+            else
+            {
+                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, Quaternion.identity);
+            }
+            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+        }
+    }
+
+    IEnumerator DeathEvent()
+    {
+        if (animator)
+        {
+            animator.SetTrigger("Death");
+        }
+        explosion.Play();
+        yield return new WaitForSeconds(2f);
+
+        gameObject.SetActive(false);
+        if (enemyList.Where(x => !x.isDead).Count() == 0)
+        {
+            //nextLevel.SetActive(true);
+        }
+        if (allyList.Where(x => !x.isDead).Count() == 0)
+        {
+            //retryLevel.SetActive(true);
+        }
+    }
+}
+/*
+            shootTime = 0f;
+
+
+        shootTime += Time.deltaTime;
+        if (shootTime > shootDelay && gameObject != null && teamIndex ==0)
+        {
+            Shoot();
+        }
+        if (shootTime > shootDelay && gameObject != null && teamIndex == 1)
+        {
+            ShootEnemy();
+        }
+        if (gameObject.tag == "Enemy")
         {
             enemyBoss = GetComponent<BoxCollider>();
             if (enemyBoss)
             {
                 enemyBoss.isTrigger = true;
             }
-
-            enemyList.Add(this.gameObject);
-            enemyCount.Value++;
         }
-        if (this.gameObject.tag == "Ally")
+        if (gameObject.tag == "Ally")
         {
             allyBoss = GetComponent<BoxCollider>();
             if (allyBoss)
             {
                 allyBoss.isTrigger = true;
             }
-
-            allyList.Add(this.gameObject);
-            allyCount.Value++;
+            gameObject.transform.LookAt(enemyList.LastOrDefault().transform.position);
         }
-        health = GetComponentInChildren<ProgressBarPro>();
-        animBase = GetComponent<Animator>();
-
-        //shootDelay = shootTime - Time.deltaTime;
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if ((other.gameObject.CompareTag("BulletSmall") || other.gameObject.CompareTag("BulletSmallPlayer")) && this.gameObject.tag == "Ally")
-        {
-            health.Value -= .02f;
-        }
-        if (other.gameObject.CompareTag("BulletSmall") && this.gameObject.tag == "Enemy")
-        {
-            health.Value -= .01f;
-        }
-        if (other.gameObject.CompareTag("BulletSmallPlayer") && this.gameObject.tag == "Enemy")
-        {
-            health.Value -= .1f;
-        }
-        if (other.gameObject.tag == "BulletHeal")
-        {
-            health.Value += .1f;
-        }
-    }
-
-    void Update()
-    {
-        shootTime += Time.deltaTime;
-        if (shootTime > shootDelay && this.gameObject != null && this.gameObject.tag == "Ally")
-        {
-            Shoot();
-        }
-        if (shootTime > shootDelay && this.gameObject != null && this.gameObject.tag == "Enemy")
-        {
-            ShootEnemy();
-        }
-        if (health.Value == 0 && this.gameObject.tag == "Enemy")
-        {
-            enemyList.Remove(this.gameObject);
-
-            if (!animStart)
-            {
-                StartCoroutine(DeathEvent());
-                animStart = true;
-                enemyCount.Value--;
-            }
-
-        }
-        if (health.Value == 0 && this.gameObject.tag == "Ally")
-        {
-            allyList.Remove(this.gameObject);
-
-            if (!animStart)
-            {
-                StartCoroutine(DeathEvent());
-                animStart = true;
-                allyCount.Value--;
-            }
-        }
-        if (allyCount == 1)
+ 
+        if (allyList.Where(x => !x.isDead).Count() == 1)
         {
             if (allyBoss)
             {
                 allyBoss.isTrigger = false;
             }
         }
-        if (enemyCount == 1)
+        if (enemyList.Where(x => !x.isDead).Count() == 1)
         {
             if (enemyBoss)
             {
                 enemyBoss.isTrigger = false;
             }
         }
-    }
-
-    public void Shoot()
-    {
-        GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);
-        _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-        shootTime = 0f;
-    }
-
-    public void ShootEnemy()
-    {
-        GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, Quaternion.identity);
-        _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-        shootTime = 0f;
-    }
-
-    IEnumerator DeathEvent()
-    {
-        if (animBase)
+ 
+ 
+        if ((other.gameObject.CompareTag("BulletSmall") || other.gameObject.CompareTag("BulletSmallPlayer")) && gameObject.tag == "Ally")
         {
-            animBase.SetTrigger("Death");
+            healthBar.Value -= .02f;
         }
-        explosion.Play();
-        yield return new WaitForSeconds(2f);
-
-        gameObject.SetActive(false);
-        if (enemyCount.Value == 0)
+        if (other.gameObject.CompareTag("BulletSmall") && gameObject.tag == "Enemy")
         {
-            nextLevel.SetActive(true);
+            healthBar.Value -= .01f;
         }
-        if (allyCount.Value == 0)
+        if (other.gameObject.CompareTag("BulletSmallPlayer") && gameObject.tag == "Enemy")
         {
-            retryLevel.SetActive(true);
+            healthBar.Value -= .1f;
         }
-    }
-}
+ 
+ 
+ 
+ 
+ 
+ */
