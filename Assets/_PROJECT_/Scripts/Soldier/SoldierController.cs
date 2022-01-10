@@ -5,21 +5,26 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Linq;
+using DG.Tweening;
 
 
 public class SoldierController : MonoBehaviour
 {
+    public int teamIndex;
+
+    public float lookAtDelay;
+
     private List<SoldierController> allyList = new List<SoldierController>();
     private List<SoldierController> enemyList = new List<SoldierController>();
 
+    SoldierController targetEnemy;
 
-    public int teamIndex;
+    bool isDead;
 
     public Transform bulletSpawnPos;
 
     public float bulletForce;
     private float shootDelay = .5f;
-    private float shootTime = 0f;
 
     private ProgressBarPro healthBar;
 
@@ -28,8 +33,6 @@ public class SoldierController : MonoBehaviour
 
     private ParticleSystem explosion;
 
-
-    bool isDead;
     private void Awake()
     {
         enemyList.Clear();
@@ -37,9 +40,8 @@ public class SoldierController : MonoBehaviour
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
         allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
-    }
-    void Start()
-    {
+        SelectTarget();
+
         explosion = GetComponentInChildren<ParticleSystem>();
         healthBar = GetComponentInChildren<ProgressBarPro>();
         animator = GetComponent<Animator>();
@@ -52,6 +54,7 @@ public class SoldierController : MonoBehaviour
         {
             healthBar.Value -= other.gameObject.GetComponent<BulletController>().damage;
             TakeHit();
+            other.gameObject.SetActive(false);
         }
         if (other.gameObject.tag == "BulletHeal")
         {
@@ -71,12 +74,22 @@ public class SoldierController : MonoBehaviour
             }
         }
     }
+    void SelectTarget()
+    {
+        targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
+        transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+    }
     IEnumerator AutoShoot()
     {
         GameObject _smallBullet;
         while (!isDead)
         {
             yield return new WaitForSeconds(shootDelay);
+            if (targetEnemy.isDead)
+            {
+                SelectTarget();
+                yield return new WaitForSeconds(lookAtDelay);
+            }
             if (teamIndex == 0)
             {
                 _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position, Quaternion.identity);

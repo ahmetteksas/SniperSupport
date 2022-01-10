@@ -14085,9 +14085,10 @@ GameObject:
   - component: {fileID: 1864474566975217230}
   - component: {fileID: -4658463781827565705}
   - component: {fileID: 4837465309075632450}
+  - component: {fileID: 5071064846686485446}
   m_Layer: 6
   m_Name: BulletSmallEnemy
-  m_TagString: BulletSmallEnemy
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19108,6 +19109,19 @@ CapsuleCollider:
   m_Height: 0.55112743
   m_Direction: 2
   m_Center: {x: 0, y: -0.0035834312, z: 0.30261374}
+--- !u!114 &5071064846686485446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751275642385817484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb55a2829de918d4eb91a207357f4c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0.1
 --- !u!1 &1751748224980881176
 GameObject:
   m_ObjectHideFlags: 0
