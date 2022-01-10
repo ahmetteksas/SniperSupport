@@ -10,7 +10,7 @@ public class SwerveMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            transform.localEulerAngles += rotSpeed * new Vector3(Input.GetAxis("Mouse X"), 0f, Input.GetAxis("Mouse Y"));
+            transform.localEulerAngles += rotSpeed * new Vector3(0f, Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         }
     }
 }

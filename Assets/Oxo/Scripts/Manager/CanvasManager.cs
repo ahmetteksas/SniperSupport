@@ -42,7 +42,7 @@ public class CanvasManager : MonoBehaviour
     {
         ObjectPool.instance.isGameRunning = true;
         tutorialRect.SetActive(false);
-
+        inGameRect.SetActive(true);
         //GameManager.instance.StartGame();
     }
     //Calling UI Event (Next Level Button)

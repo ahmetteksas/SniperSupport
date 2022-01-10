@@ -651,8 +651,8 @@ GameObject:
   - component: {fileID: 3823905966965180948}
   - component: {fileID: 3770106914255838286}
   - component: {fileID: 3819090163113890349}
-  - component: {fileID: 3819090163113890347}
   - component: {fileID: 3819090163113890348}
+  - component: {fileID: -7691344989293761456}
   m_Layer: 0
   m_Name: Ally
   m_TagString: Ally
@@ -713,28 +713,6 @@ CapsuleCollider:
   m_Height: 2.2524624
   m_Direction: 1
   m_Center: {x: 0.11699444, y: 0.6262312, z: -0.1320818}
---- !u!195 &3819090163113890347
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820140022210562768}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &3819090163113890348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +729,52 @@ MonoBehaviour:
   lookAtDelay: 0.1
   bulletSpawnPos: {fileID: 3819090163294951268}
   bulletForce: 2000
+  setPositionDelay: 2.2
+  targetTransform: {fileID: 0}
+--- !u!114 &-7691344989293761456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820140022210562768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 677dc384336015144873787facbf147d, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3819090163113890348}
+        m_TargetAssemblyTypeName: SoldierController, Assembly-CSharp
+        m_MethodName: AwakeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3819090163113890348}
+        m_TargetAssemblyTypeName: SoldierController, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3820195798347289980
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,11 +52,11 @@ public class Shooter : MonoBehaviour
     public void Shoot()
     {
         GameObject _smallBullet;
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            Debug.DrawLine(character.position, hit.point);
+        //var ray = /*GetComponentInChildren<Image>().transform.localPosition*/Camera.main.ScreenPointToRay(Input.mousePosition);
+        //RaycastHit hit;
+        //if (Physics.Raycast(ray, out hit, 100))
+        //{
+        //    Debug.DrawLine(character.position, hit.point);
             if (selectedBulletIndex == 0)
             {
                 _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
@@ -65,10 +65,10 @@ public class Shooter : MonoBehaviour
             {
                 _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
             }
-            _smallBullet.transform.LookAt(hit.point);
+            //_smallBullet.transform.LookAt(hit.point);
             _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(_smallBullet.transform.forward * bulletForce);
             shootTime = 0f;
-        }
+        //}
     }
     public void AiShoot()
     {

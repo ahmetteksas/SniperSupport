@@ -26,6 +26,8 @@ public class SoldierController : MonoBehaviour
     public float bulletForce;
     private float shootDelay = .5f;
 
+    public float setPositionDelay = 2.5f;
+
     private ProgressBarPro healthBar;
 
     private Animator animator;
@@ -33,7 +35,17 @@ public class SoldierController : MonoBehaviour
 
     private ParticleSystem explosion;
 
+    public Transform targetTransform;
+
     private void Awake()
+    {
+        
+    }
+    private void Start()
+    {
+        
+    }
+    public void AwakeGame ()
     {
         enemyList.Clear();
         allyList.Clear();
@@ -46,7 +58,11 @@ public class SoldierController : MonoBehaviour
         animator = GetComponent<Animator>();
         StartCoroutine(AutoShoot());
     }
-
+   public void StartGame ()
+    {
+        NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
+        nMesh.destination = targetTransform.position;
+    }
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Bullet"))
@@ -80,11 +96,13 @@ public class SoldierController : MonoBehaviour
     }
     IEnumerator AutoShoot()
     {
+        yield return new WaitForSeconds(setPositionDelay);
+        animator.SetTrigger("Aim");
         GameObject _smallBullet;
         while (!isDead)
         {
             yield return new WaitForSeconds(shootDelay);
-            if (targetEnemy.isDead)
+            if (!targetEnemy.isDead)
             {
                 SelectTarget();
                 yield return new WaitForSeconds(lookAtDelay);
