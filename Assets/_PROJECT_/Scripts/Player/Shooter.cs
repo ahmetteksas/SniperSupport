@@ -25,7 +25,8 @@ public class Shooter : MonoBehaviour
     {
         if (this.gameObject.name == "AI")
         {
-            targetAlly = allyList.LastOrDefault().transform;
+            List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
+            targetAlly = allSoldiers.LastOrDefault().transform;
         }
 
         shootTime += Time.deltaTime;
@@ -39,7 +40,10 @@ public class Shooter : MonoBehaviour
         }
         if (shootTime > shootDelayAi && this.gameObject.name == "AI")
         {
-            AiShoot();
+            if (targetAlly)
+            {
+                AiShoot();
+            }
         }
     }
     public void SelectBullet(int index)

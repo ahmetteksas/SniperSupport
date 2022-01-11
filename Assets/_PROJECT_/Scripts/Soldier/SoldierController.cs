@@ -24,6 +24,7 @@ public class SoldierController : MonoBehaviour
     public Transform bulletSpawnPos;
 
     public float bulletForce;
+    public float deathForce = 5f;
     private float shootDelay = .5f;
 
     public float setPositionDelay = 2.5f;
@@ -123,10 +124,12 @@ public class SoldierController : MonoBehaviour
 
     IEnumerator DeathEvent()
     {
-        if (animator)
-        {
-            animator.SetTrigger("Death");
-        }
+        //if (animator)
+        //{
+        //    animator.SetTrigger("Death");
+        //}
+        animator.enabled = false;
+        GetComponentInChildren<Rigidbody>().AddForce(Vector3.forward * deathForce);
         explosion.Play();
         yield return new WaitForSeconds(2f);
 

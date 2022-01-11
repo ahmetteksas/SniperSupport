@@ -11,7 +11,7 @@ public class DoPath : MonoBehaviour
     {
         nMesh = GetComponent<NavMeshAgent>();
         nMesh.destination = vehicleTarget.position;
-        nMesh.speed = 2f;
+        nMesh.speed = 1f;
     }
 
     // Update is called once per frame
