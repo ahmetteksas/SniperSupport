@@ -10,12 +10,10 @@ namespace Boxophobic.StyledGUI
     {
         public static void DrawWindowCategory(string bannerText)
         {
-            var position = GUILayoutUtility.GetRect(0, 0, 36, 0);
-
-            var categoryFullRect = new Rect(position.position.x, position.position.y + 10, position.width, position.height);
-            var categoryBeginRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, 10, 18);
-            var categoryMiddleRect = new Rect(categoryFullRect.position.x + 10, categoryFullRect.position.y, categoryFullRect.xMax - 41, 18);
-            var categoryEndRect = new Rect(categoryFullRect.xMax - 13, categoryFullRect.position.y, 10, 18);
+            var categoryFullRect = GUILayoutUtility.GetRect(0, 0, 18, 0);
+            var categoryBeginRect = new Rect(categoryFullRect.position.x + 4, categoryFullRect.position.y, 10, 18);
+            var categoryMiddleRect = new Rect(categoryFullRect.position.x + 10, categoryFullRect.position.y, categoryFullRect.xMax - 20, 18);
+            var categoryEndRect = new Rect(categoryFullRect.xMax - 14, categoryFullRect.position.y, 10, 18);
             var titleRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, categoryFullRect.width, 18);
 
             if (EditorGUIUtility.isProSkin)
@@ -27,25 +25,79 @@ namespace Boxophobic.StyledGUI
                 GUI.color = CONSTANT.ColorLightGray;
             }
 
-            //Workaround for flickering images in CustomInspector with Attribute
-            //GUIStyle styleB = new GUIStyle();
-            //styleB.normal.background = CONSTANT.CategoryImageBegin;
-            //EditorGUI.LabelField(categoryBeginRect, GUIContent.none, styleB);
+            GUI.DrawTexture(categoryBeginRect, CONSTANT.CategoryImageBegin, ScaleMode.StretchToFill, true);
+            GUI.DrawTexture(categoryMiddleRect, CONSTANT.CategoryImageMiddle, ScaleMode.StretchToFill, true);
+            GUI.DrawTexture(categoryEndRect, CONSTANT.CategoryImageEnd, ScaleMode.StretchToFill, true);
 
-            //GUIStyle styleM = new GUIStyle();
-            //styleM.normal.background = CONSTANT.CategoryImageMiddle;
-            //EditorGUI.LabelField(categoryMiddleRect, GUIContent.none, styleM);
+            GUI.color = Color.white;
+            GUI.Label(titleRect, bannerText, CONSTANT.TitleStyle);
+        }
 
-            //GUIStyle styleE = new GUIStyle();
-            //styleE.normal.background = CONSTANT.CategoryImageEnd;
-            //EditorGUI.LabelField(categoryEndRect, GUIContent.none, styleE);
+        public static bool DrawWindowCategory(string bannerText, bool enabled, float top, float down, bool colapsable)
+        {
+            if (colapsable)
+            {
+                if (enabled)
+                {
+                    GUILayout.Space(top);
+                }
+                else
+                {
+                    GUILayout.Space(0);
+                }
+            }
+            else
+            {
+                GUILayout.Space(top);
+            }
+
+            var categoryFullRect = GUILayoutUtility.GetRect(0, 0, 18, 0);
+            var categoryBeginRect = new Rect(categoryFullRect.position.x + 4, categoryFullRect.position.y, 10, 18);
+            var categoryMiddleRect = new Rect(categoryFullRect.position.x + 10, categoryFullRect.position.y, categoryFullRect.xMax - 20, 18);
+            var categoryEndRect = new Rect(categoryFullRect.xMax - 14, categoryFullRect.position.y, 10, 18);
+            var titleRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, categoryFullRect.width, 18);
+
+            if (EditorGUIUtility.isProSkin)
+            {
+                GUI.color = CONSTANT.ColorDarkGray;
+            }
+            else
+            {
+                GUI.color = CONSTANT.ColorLightGray;
+            }
+
+            if (colapsable)
+            {
+                if (GUI.Button(categoryFullRect, "", GUIStyle.none))
+                {
+                    enabled = !enabled;
+                }
+            }
 
             GUI.DrawTexture(categoryBeginRect, CONSTANT.CategoryImageBegin, ScaleMode.StretchToFill, true);
             GUI.DrawTexture(categoryMiddleRect, CONSTANT.CategoryImageMiddle, ScaleMode.StretchToFill, true);
             GUI.DrawTexture(categoryEndRect, CONSTANT.CategoryImageEnd, ScaleMode.StretchToFill, true);
 
             GUI.color = Color.white;
-            GUI.Label(titleRect, bannerText, CONSTANT.BoldTextStyle);
+            GUI.Label(titleRect, bannerText, CONSTANT.TitleStyle);
+
+            if (colapsable)
+            {
+                if (enabled)
+                {
+                    GUILayout.Space(down);
+                }
+                else
+                {
+                    GUILayout.Space(0);
+                }
+            }
+            else
+            {
+                GUILayout.Space(down);
+            }
+
+            return enabled;
         }
     }
 }
