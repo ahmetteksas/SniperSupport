@@ -36,12 +36,15 @@ public class Shooter : MonoBehaviour
 
         if (shootTime > shootDelay && gameObject.name == "Character")
         {
-            if (Input.GetMouseButtonDown(0) /*&& !shoot*/)
+            if (Input.GetMouseButton(0) /*&& !shoot*/)
             {
-                cross.SetActive(true);
-                Camera.main.DOPause();
-                Camera.main.DOFieldOfView(70, .2f);
-                Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .2f);
+                if (!cross.activeSelf)
+                {
+                    cross.SetActive(true);
+                    Camera.main.DOPause();
+                    Camera.main.DOFieldOfView(70, .2f);
+                    Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .4f);
+                }
             }
         }
 
@@ -49,13 +52,16 @@ public class Shooter : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0) /*&& !shoot*/)
             {
-                cross.SetActive(false);
-                Camera.main.DOPause();
-                Camera.main.transform.DOLocalMove(Vector3.zero, .1f);
-                Camera.main.DOFieldOfView(80, .1f);
-                Shoot();
-                Animator _anim = GetComponent<Animator>();
-                _anim.SetTrigger("Shoot");
+                if (cross.activeSelf)
+                {
+                    cross.SetActive(false);
+                    Camera.main.DOPause();
+                    Camera.main.transform.DOLocalMove(Vector3.zero, .1f);
+                    Camera.main.DOFieldOfView(80, .1f);
+                    Shoot();
+                    Animator _anim = GetComponent<Animator>();
+                    _anim.SetTrigger("Shoot");
+                }
             }
         }
 
