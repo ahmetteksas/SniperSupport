@@ -126,7 +126,7 @@ public class SoldierController : MonoBehaviour
         //}
         animator.enabled = false;
         GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
-        explosion.Play();
+        //explosion.Play();
         yield return new WaitForSeconds(2f);
 
         gameObject.SetActive(false);
