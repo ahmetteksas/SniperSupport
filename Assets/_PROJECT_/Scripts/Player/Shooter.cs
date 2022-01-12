@@ -35,6 +35,8 @@ public class Shooter : MonoBehaviour
             if (Input.GetMouseButtonUp(0) /*&& !shoot*/)
             {
                 Shoot();
+                Animator _anim = GetComponent<Animator>();
+                _anim.SetTrigger("Shoot");
             }
 
         }

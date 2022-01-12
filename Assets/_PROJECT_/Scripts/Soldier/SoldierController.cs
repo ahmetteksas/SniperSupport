@@ -29,7 +29,7 @@ public class SoldierController : MonoBehaviour
 
     public float setPositionDelay = 2.5f;
 
-    private ProgressBarPro healthBar;
+    public Image healthBar;
 
     private Animator animator;
     private bool animStart;
@@ -38,14 +38,7 @@ public class SoldierController : MonoBehaviour
 
     private Transform targetTransform;
 
-    private void Awake()
-    {
-        
-    }
-    private void Start()
-    {
-        
-    }
+    
     public void AwakeGame ()
     {
         targetTransform = transform.parent;
@@ -56,7 +49,7 @@ public class SoldierController : MonoBehaviour
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
         SelectTarget();
         explosion = GetComponentInChildren<ParticleSystem>();
-        healthBar = GetComponentInChildren<ProgressBarPro>();
+        //healthBar = GetComponentInChildren<Image>();
         animator = GetComponent<Animator>();
         StartCoroutine(AutoShoot());
     }
@@ -67,21 +60,21 @@ public class SoldierController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet") )
         {
-            healthBar.Value -= other.gameObject.GetComponent<BulletController>().damage;
+            healthBar.fillAmount -= other.gameObject.GetComponent<BulletController>().damage;
             TakeHit();
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.tag == "BulletHeal")
         {
-            healthBar.Value += .2f;
+            healthBar.fillAmount += .2f;
         }
     }
 
     void TakeHit()
     {
-        if (healthBar.Value == 0)
+        if (healthBar.fillAmount == 0)
         {
             isDead = true;
             if (!animStart)
@@ -98,27 +91,30 @@ public class SoldierController : MonoBehaviour
     }
     IEnumerator AutoShoot()
     {
-        yield return new WaitForSeconds(setPositionDelay);
-        animator.SetTrigger("Aim");
-        GameObject _smallBullet;
-        Vector3 _offset = new Vector3(-.3f, 0, .5f);
-        while (!isDead)
+        if (enemyList.Count != 0 || allyList.Count != 0)
         {
-            yield return new WaitForSeconds(shootDelay);
-            if (!targetEnemy.isDead)
+            yield return new WaitForSeconds(setPositionDelay);
+            animator.SetTrigger("Aim");
+            GameObject _smallBullet;
+            Vector3 _offset = new Vector3(-.3f, 0, .5f);
+            while (!isDead)
             {
-                SelectTarget();
-                yield return new WaitForSeconds(lookAtDelay);
+                yield return new WaitForSeconds(shootDelay);
+                if (!targetEnemy.isDead)
+                {
+                    SelectTarget();
+                    yield return new WaitForSeconds(lookAtDelay);
+                }
+                if (teamIndex == 0)
+                {
+                    _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position + _offset, Quaternion.identity);
+                }
+                else
+                {
+                    _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position - _offset, Quaternion.identity);
+                }
+                _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
             }
-            if (teamIndex == 0)
-            {
-                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position+_offset, Quaternion.identity);
-            }
-            else
-            {
-                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position-_offset, Quaternion.identity);
-            }
-            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
         }
     }
 
@@ -129,7 +125,7 @@ public class SoldierController : MonoBehaviour
         //    animator.SetTrigger("Death");
         //}
         animator.enabled = false;
-        GetComponentInChildren<Rigidbody>().AddForce(Vector3.forward * deathForce);
+        GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
         explosion.Play();
         yield return new WaitForSeconds(2f);
 
