@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class Shooter : MonoBehaviour
 {
+    public bool isAI;
     public Transform bulletSpawnPos;
     public Transform bulletDir;
     public Transform character;
@@ -24,33 +25,41 @@ public class Shooter : MonoBehaviour
     {
         //shootDelay = shootTime - Time.deltaTime;
     }
+
     void Update()
     {
-        if (gameObject.name == "AI")
+        shootTime += Time.deltaTime;
+
+        if (isAI)
         {
             List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
             targetAlly = allSoldiers.LastOrDefault().transform;
-        }
 
-        shootTime += Time.deltaTime;
-
-        if (shootTime > shootDelay && gameObject.name == "Character")
-        {
-            if (Input.GetMouseButton(0) /*&& !shoot*/)
+            if (shootTime > shootDelayAi)
             {
-                if (!cross.activeSelf)
+                if (targetAlly)
                 {
-                    cross.SetActive(true);
-                    Camera.main.DOPause();
-                    Camera.main.DOFieldOfView(70, .2f);
-                    Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .4f);
+                    AiShoot();
                 }
             }
         }
-
-        if (shootTime > shootDelay && gameObject.name == "Character")
+        else
         {
-            if (Input.GetMouseButtonUp(0) /*&& !shoot*/)
+            if (shootTime > shootDelay)
+            {
+                if (Input.GetMouseButton(0) /*&& !shoot*/)
+                {
+                    if (!cross.activeSelf)
+                    {
+                        cross.SetActive(true);
+                        Camera.main.DOPause();
+                        Camera.main.DOFieldOfView(70, .2f);
+                        Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .4f);
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
             {
                 if (cross.activeSelf)
                 {
@@ -62,14 +71,6 @@ public class Shooter : MonoBehaviour
                     Animator _anim = GetComponent<Animator>();
                     _anim.SetTrigger("Shoot");
                 }
-            }
-        }
-
-        if (shootTime > shootDelayAi && gameObject.name == "AI")
-        {
-            if (targetAlly)
-            {
-                AiShoot();
             }
         }
     }
