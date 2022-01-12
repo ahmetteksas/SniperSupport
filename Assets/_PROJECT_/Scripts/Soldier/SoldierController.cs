@@ -38,8 +38,8 @@ public class SoldierController : MonoBehaviour
 
     private Transform targetTransform;
 
-    
-    public void AwakeGame ()
+
+    public void AwakeGame()
     {
         targetTransform = transform.parent;
         enemyList.Clear();
@@ -53,14 +53,14 @@ public class SoldierController : MonoBehaviour
         animator = GetComponent<Animator>();
         StartCoroutine(AutoShoot());
     }
-   public void StartGame ()
+    public void StartGame()
     {
         NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
         nMesh.destination = targetTransform.position;
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet") )
+        if (other.gameObject.CompareTag("Bullet"))
         {
             healthBar.fillAmount -= other.gameObject.GetComponent<BulletController>().damage;
             TakeHit();
