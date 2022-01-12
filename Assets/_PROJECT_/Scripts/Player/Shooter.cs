@@ -112,7 +112,7 @@ public class Shooter : MonoBehaviour
     public void AiShoot()
     {
         GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
-        if (this.gameObject.name == "AI")
+        if (gameObject.name == "AI")
         {
             _smallbullet.transform.rotation = /*transform.rotation +*/ Quaternion.Euler(0, 0, 0);
         }
