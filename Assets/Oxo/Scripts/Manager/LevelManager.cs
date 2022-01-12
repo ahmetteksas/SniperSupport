@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
     public int level;
+    public bool isGameRunning;
 
     public GameObject currentLevel;
 
@@ -25,11 +26,13 @@ public class LevelManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
         level = PlayerPrefs.GetInt("Level");
+
+        SetLevel();
     }
 
-    private void Start()
+    public void GameStarted()
     {
-        //SetLevel();
+        isGameRunning = true;
     }
 
     public void SetLevel()
@@ -47,7 +50,7 @@ public class LevelManager : MonoBehaviour
 
         CanvasManager.instance.levelText.text = $"LEVEL {level + 1}";
     }
-    //You can use for reset and clear any list.
+
     public void ResetAndClearList(List<GameObject> list)
     {
         list.ForEach(x => Destroy(x));

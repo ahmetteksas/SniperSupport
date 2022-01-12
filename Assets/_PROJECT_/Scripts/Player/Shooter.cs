@@ -28,6 +28,11 @@ public class Shooter : MonoBehaviour
 
     void Update()
     {
+        if (!LevelManager.instance.isGameRunning)
+        {
+            return;
+        }
+
         shootTime += Time.deltaTime;
 
         if (isAI)
@@ -53,7 +58,7 @@ public class Shooter : MonoBehaviour
                     {
                         cross.SetActive(true);
                         Camera.main.DOPause();
-                        Camera.main.DOFieldOfView(70, .2f);
+                        Camera.main.DOFieldOfView(80, .2f);
                         Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .4f);
                     }
                 }
@@ -103,6 +108,7 @@ public class Shooter : MonoBehaviour
         shootTime = 0f;
         //}
     }
+
     public void AiShoot()
     {
         GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
@@ -113,4 +119,5 @@ public class Shooter : MonoBehaviour
         _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce((targetAlly.position - transform.position) * bulletForce / 4);
         shootTime = 0f;
     }
+
 }
