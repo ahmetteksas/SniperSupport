@@ -7,6 +7,9 @@ public class VehicleHit : MonoBehaviour
 {
     public Image healthBar;
     public float health;
+    public GameObject explodeCar;
+    private bool explode;
+
     void Start()
     {
         
@@ -16,6 +19,20 @@ public class VehicleHit : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = health/100;
+        if (health == 0)
+        {
+            if (!explode)
+            {
+                explode = true;
+                StartCoroutine(ExplodeCar());
+            }
+        }
+    }
+    IEnumerator ExplodeCar()
+    {
+        explodeCar.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
     }
     private void OnCollisionEnter(Collision other)
     {
