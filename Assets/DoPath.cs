@@ -7,16 +7,14 @@ public class DoPath : MonoBehaviour
 {
     private NavMeshAgent nMesh;
     public Transform vehicleTarget;
-    void Start()
+    private void Awake()
     {
         nMesh = GetComponent<NavMeshAgent>();
-        nMesh.destination = vehicleTarget.position;
-        nMesh.speed = 1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        nMesh.destination = vehicleTarget.position;
+        nMesh.speed = 1f;
     }
 }

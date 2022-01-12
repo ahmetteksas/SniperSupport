@@ -13,7 +13,7 @@ public class Shooter : MonoBehaviour
     public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
-    private float shootDelay = 1.5f;
+    private float shootDelay = .5f;
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
     int selectedBulletIndex;
@@ -40,7 +40,8 @@ public class Shooter : MonoBehaviour
             {
                 cross.SetActive(true);
                 Camera.main.DOPause();
-                Camera.main.DOFieldOfView(60, 1f);
+                Camera.main.DOFieldOfView(70, .2f);
+                Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .2f);
             }
         }
 
@@ -48,10 +49,10 @@ public class Shooter : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0) /*&& !shoot*/)
             {
-                Camera.main.transform.DOShakePosition(.2f, .2f);
                 cross.SetActive(false);
                 Camera.main.DOPause();
-                Camera.main.DOFieldOfView(80, 1f);
+                Camera.main.transform.DOLocalMove(Vector3.zero, .1f);
+                Camera.main.DOFieldOfView(80, .1f);
                 Shoot();
                 Animator _anim = GetComponent<Animator>();
                 _anim.SetTrigger("Shoot");
