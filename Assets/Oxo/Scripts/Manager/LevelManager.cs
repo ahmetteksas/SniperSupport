@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         level = PlayerPrefs.GetInt("Level");
 
-        SetLevel();
+        //SetLevel();
     }
 
     public void GameStarted()
