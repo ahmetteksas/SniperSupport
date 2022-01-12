@@ -5,6 +5,7 @@ using UnityEngine;
 public class TakeHit : MonoBehaviour
 {
     public GameObject explosionBarrel;
+    public GameObject vehicle;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -16,8 +17,10 @@ public class TakeHit : MonoBehaviour
     IEnumerator ExplosionStart()
     {
         explosionBarrel.SetActive(true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
+        vehicle.SetActive(false);
         gameObject.SetActive(false);
+        
     }
     void Update()
     {
