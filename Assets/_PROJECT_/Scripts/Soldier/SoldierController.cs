@@ -27,7 +27,7 @@ public class SoldierController : MonoBehaviour
     public float deathForce = 1f;
     private float shootDelay = .5f;
 
-    public float setPositionDelay = 2.5f;
+    public float setPositionDelay = 2f;
 
     public Image healthBar;
 
