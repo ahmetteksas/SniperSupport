@@ -24,7 +24,7 @@ public class SoldierController : MonoBehaviour
     public Transform bulletSpawnPos;
 
     public float bulletForce;
-    public float deathForce = 5f;
+    public float deathForce = 1f;
     private float shootDelay = .5f;
 
     public float setPositionDelay = 2.5f;
@@ -75,7 +75,7 @@ public class SoldierController : MonoBehaviour
         }
         if (other.gameObject.tag == "BulletHeal")
         {
-            healthBar.Value += .1f;
+            healthBar.Value += .2f;
         }
     }
 

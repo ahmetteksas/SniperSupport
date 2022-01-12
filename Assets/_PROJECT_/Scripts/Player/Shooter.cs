@@ -70,8 +70,9 @@ public class Shooter : MonoBehaviour
             }
         //_smallBullet.transform.LookAt(hit.point);
         //Debug.Log("asd");
-            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-            shootTime = 0f;
+            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletSpawnPos.transform.forward * bulletForce);
+        shootTime = 0f;
         //}
     }
     public void AiShoot()
