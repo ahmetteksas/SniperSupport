@@ -4,47 +4,73 @@ using UnityEngine;
 using ScriptableObjectArchitecture;
 using System.Linq;
 using UnityEngine.UI;
+using DG.Tweening;
 public class Shooter : MonoBehaviour
 {
+    public bool isAI;
     public Transform bulletSpawnPos;
     public Transform bulletDir;
     public Transform character;
     public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
-    private float shootDelay = 1.5f;
+    private float shootDelay = .5f;
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
     int selectedBulletIndex;
+
+    public GameObject cross;
 
     void Start()
     {
         //shootDelay = shootTime - Time.deltaTime;
     }
+
     void Update()
     {
-        if (this.gameObject.name == "AI")
+        shootTime += Time.deltaTime;
+
+        if (isAI)
         {
             List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
             targetAlly = allSoldiers.LastOrDefault().transform;
-        }
 
-        shootTime += Time.deltaTime;
-        if (shootTime > shootDelay && this.gameObject.name == "Character")
-        {
-            if (Input.GetMouseButtonUp(0) /*&& !shoot*/)
+            if (shootTime > shootDelayAi)
             {
-                Shoot();
-                Animator _anim = GetComponent<Animator>();
-                _anim.SetTrigger("Shoot");
+                if (targetAlly)
+                {
+                    AiShoot();
+                }
+            }
+        }
+        else
+        {
+            if (shootTime > shootDelay)
+            {
+                if (Input.GetMouseButton(0) /*&& !shoot*/)
+                {
+                    if (!cross.activeSelf)
+                    {
+                        cross.SetActive(true);
+                        Camera.main.DOPause();
+                        Camera.main.DOFieldOfView(70, .2f);
+                        Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .4f);
+                    }
+                }
             }
 
-        }
-        if (shootTime > shootDelayAi && this.gameObject.name == "AI")
-        {
-            if (targetAlly)
+            if (Input.GetMouseButtonUp(0))
             {
-                AiShoot();
+                if (cross.activeSelf)
+                {
+                    cross.SetActive(false);
+                    Camera.main.DOPause();
+                    Camera.main.transform.DOLocalMove(Vector3.zero, .1f);
+                    Camera.main.DOFieldOfView(80, .1f);
+                    Shoot();
+                    Animator _anim = GetComponent<Animator>();
+                    _anim.SetTrigger("Shoot");
+                }
             }
         }
     }
@@ -62,17 +88,17 @@ public class Shooter : MonoBehaviour
         //if (Physics.Raycast(ray, out hit, 100))
         //{
         //    Debug.DrawLine(character.position, hit.point);
-            if (selectedBulletIndex == 0)
-            {
-                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
-            }
-            else
-            {
-                _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
-            }
+        if (selectedBulletIndex == 0)
+        {
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
+        }
+        else
+        {
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
+        }
         //_smallBullet.transform.LookAt(hit.point);
         //Debug.Log("asd");
-            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+        //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
         _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletSpawnPos.transform.forward * bulletForce);
         shootTime = 0f;
         //}

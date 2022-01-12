@@ -27,7 +27,7 @@ public class SoldierController : MonoBehaviour
     public float deathForce = 1f;
     private float shootDelay = .5f;
 
-    public float setPositionDelay = 2.5f;
+    public float setPositionDelay = 2f;
 
     public Image healthBar;
 
@@ -38,8 +38,8 @@ public class SoldierController : MonoBehaviour
 
     private Transform targetTransform;
 
-    
-    public void AwakeGame ()
+
+    public void AwakeGame()
     {
         targetTransform = transform.parent;
         enemyList.Clear();
@@ -53,14 +53,14 @@ public class SoldierController : MonoBehaviour
         animator = GetComponent<Animator>();
         StartCoroutine(AutoShoot());
     }
-   public void StartGame ()
+    public void StartGame()
     {
         NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
         nMesh.destination = targetTransform.position;
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet") )
+        if (other.gameObject.CompareTag("Bullet"))
         {
             healthBar.fillAmount -= other.gameObject.GetComponent<BulletController>().damage;
             TakeHit();
@@ -126,7 +126,7 @@ public class SoldierController : MonoBehaviour
         //}
         animator.enabled = false;
         GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
-        explosion.Play();
+        //explosion.Play();
         yield return new WaitForSeconds(2f);
 
         gameObject.SetActive(false);
