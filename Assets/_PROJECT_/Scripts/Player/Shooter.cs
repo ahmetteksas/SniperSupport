@@ -58,7 +58,7 @@ public class Shooter : MonoBehaviour
                     {
                         cross.SetActive(true);
                         Camera.main.DOPause();
-                        Camera.main.DOFieldOfView(95, .2f);
+                        Camera.main.DOFieldOfView(50, .2f);
                         Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .4f);
                     }
                 }
