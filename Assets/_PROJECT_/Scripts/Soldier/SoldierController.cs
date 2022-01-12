@@ -55,8 +55,8 @@ public class SoldierController : MonoBehaviour
     }
     public void StartGame()
     {
-        NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
-        nMesh.destination = targetTransform.position;
+        //NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
+        //nMesh.destination = targetTransform.position;
     }
     private void OnCollisionEnter(Collision other)
     {
