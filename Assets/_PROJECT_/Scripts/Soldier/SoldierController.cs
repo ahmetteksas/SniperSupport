@@ -25,19 +25,21 @@ public class SoldierController : MonoBehaviour
 
     public float bulletForce;
     public float deathForce = 1f;
-    private float shootDelay = .5f;
+    private float shootDelay = 2.5f;
 
     public float setPositionDelay = 2f;
 
     public Image healthBar;
 
     private Animator animator;
+    private bool animWalk;
     private bool animStart;
 
     private ParticleSystem explosion;
 
     private Transform targetTransform;
 
+    public GameObject healField;
 
     public void AwakeGame()
     {
@@ -51,12 +53,17 @@ public class SoldierController : MonoBehaviour
         explosion = GetComponentInChildren<ParticleSystem>();
         //healthBar = GetComponentInChildren<Image>();
         animator = GetComponent<Animator>();
+        if (!animWalk)
+        {
+            animator.SetTrigger("Walk");
+            animWalk = true;
+        }
         StartCoroutine(AutoShoot());
     }
     public void StartGame()
     {
-        //NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
-        //nMesh.destination = targetTransform.position;
+        NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
+        nMesh.destination = targetTransform.position;
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -68,10 +75,19 @@ public class SoldierController : MonoBehaviour
         }
         if (other.gameObject.tag == "BulletHeal")
         {
+            StartCoroutine(HealField());
             healthBar.fillAmount += .2f;
         }
     }
-
+    IEnumerator HealField ()
+    {
+        if (teamIndex == 0)
+        {
+            healField.SetActive(true);
+        }
+        yield return new WaitForSeconds(1f);
+        healField.SetActive(false);
+    }
     void TakeHit()
     {
         if (healthBar.fillAmount == 0)
@@ -125,7 +141,7 @@ public class SoldierController : MonoBehaviour
         //    animator.SetTrigger("Death");
         //}
         animator.enabled = false;
-        GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
+        //GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
         //explosion.Play();
         yield return new WaitForSeconds(2f);
 

@@ -100,10 +100,8 @@ public class Shooter : MonoBehaviour
         else
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
+            
         }
-        //_smallBullet.transform.LookAt(hit.point);
-        //Debug.Log("asd");
-        //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
         _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletSpawnPos.transform.forward * bulletForce);
         shootTime = 0f;
         //}
