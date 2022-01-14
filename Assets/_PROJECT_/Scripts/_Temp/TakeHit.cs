@@ -11,7 +11,10 @@ public class TakeHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            StartCoroutine(ExplosionStart());
+            explosionBarrel.SetActive(true);
+            vehicle.SetActive(false);
+            gameObject.SetActive(false);
+            //StartCoroutine(ExplosionStart());
         }
     }
     IEnumerator ExplosionStart()

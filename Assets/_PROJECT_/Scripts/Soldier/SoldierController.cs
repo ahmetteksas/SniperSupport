@@ -116,10 +116,13 @@ public class SoldierController : MonoBehaviour
             while (!isDead)
             {
                 yield return new WaitForSeconds(shootDelay);
-                if (!targetEnemy.isDead)
+                if (enemyList.Count != 0)
                 {
-                    SelectTarget();
-                    yield return new WaitForSeconds(lookAtDelay);
+                    if (targetEnemy.isDead)
+                    {
+                        SelectTarget();
+                        yield return new WaitForSeconds(lookAtDelay);
+                    }
                 }
                 if (teamIndex == 0)
                 {
@@ -141,10 +144,17 @@ public class SoldierController : MonoBehaviour
         //    animator.SetTrigger("Death");
         //}
         animator.enabled = false;
+        foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+        {
+            _rigidbody.velocity = Vector3.zero;
+        }
+        foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+        {
+            _rigidbody.AddForce(-transform.forward * deathForce);
+        }
         //GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
         //explosion.Play();
         yield return new WaitForSeconds(2f);
-
         gameObject.SetActive(false);
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {

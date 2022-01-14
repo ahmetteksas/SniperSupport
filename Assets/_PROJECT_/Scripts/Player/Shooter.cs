@@ -14,10 +14,12 @@ public class Shooter : MonoBehaviour
     public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
-    private float shootDelay = .5f;
+    private float shootDelay = 1.5f;
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
     int selectedBulletIndex;
+    public float scopeZoom = 35;
+    public float scopeOffset = 3f;
 
     public GameObject cross;
 
@@ -58,8 +60,8 @@ public class Shooter : MonoBehaviour
                     {
                         cross.SetActive(true);
                         Camera.main.DOPause();
-                        Camera.main.DOFieldOfView(50, .2f);
-                        Camera.main.transform.DOLocalMove(Vector3.forward * 2f, .4f);
+                        Camera.main.DOFieldOfView(scopeZoom, .2f);
+                        Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
                     }
                 }
             }
