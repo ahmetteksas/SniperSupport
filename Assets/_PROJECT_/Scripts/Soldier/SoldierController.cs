@@ -17,7 +17,7 @@ public class SoldierController : MonoBehaviour
     private List<SoldierController> allyList = new List<SoldierController>();
     private List<SoldierController> enemyList = new List<SoldierController>();
 
-    SoldierController targetEnemy;
+   [SerializeField] SoldierController targetEnemy;
 
     bool isDead;
 
@@ -25,7 +25,7 @@ public class SoldierController : MonoBehaviour
 
     public float bulletForce;
     public float deathForce = 1f;
-    private float shootDelay = 2.5f;
+    private float shootDelay = 1.05f;
 
     public float setPositionDelay = 2f;
 
@@ -50,7 +50,8 @@ public class SoldierController : MonoBehaviour
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
         allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
-        SelectTarget();
+        StartCoroutine(SelectTargetV2());
+        //SelectTarget();
         explosion = GetComponentInChildren<ParticleSystem>();
         //healthBar = GetComponentInChildren<Image>();
         animator = GetComponent<Animator>();
@@ -101,11 +102,20 @@ public class SoldierController : MonoBehaviour
             }
         }
     }
-    void SelectTarget()
+    IEnumerator SelectTargetV2()
     {
-        targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
-        transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+        while (true)
+        {
+            targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
+            transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+            yield return null;
+        }
     }
+    //void SelectTarget()
+    //{
+    //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
+    //    transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+    //}
     IEnumerator AutoShoot()
     {
         if (enemyList.Count != 0 || allyList.Count != 0)
@@ -117,14 +127,14 @@ public class SoldierController : MonoBehaviour
             while (!isDead)
             {
                 yield return new WaitForSeconds(shootDelay);
-                if (enemyList.Count != 0)
-                {
-                    if (targetEnemy.isDead && targetEnemy == null)
-                    {
-                        SelectTarget();
-                        yield return new WaitForSeconds(lookAtDelay);
-                    }
-                }
+                //if (enemyList.Count != 0)
+                //{
+                //    if (targetEnemy.isDead)
+                //    {
+                //        SelectTarget();
+                //        yield return new WaitForSeconds(lookAtDelay);
+                //    }
+                //}
                 if (teamIndex == 0)
                 {
                     if (!rpgSoldier)
