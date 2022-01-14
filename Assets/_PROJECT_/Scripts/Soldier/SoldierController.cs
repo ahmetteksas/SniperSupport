@@ -40,6 +40,7 @@ public class SoldierController : MonoBehaviour
     private Transform targetTransform;
 
     public GameObject healField;
+    public bool rpgSoldier;
 
     public void AwakeGame()
     {
@@ -79,7 +80,7 @@ public class SoldierController : MonoBehaviour
             healthBar.fillAmount += .2f;
         }
     }
-    IEnumerator HealField ()
+    IEnumerator HealField()
     {
         if (teamIndex == 0)
         {
@@ -118,7 +119,7 @@ public class SoldierController : MonoBehaviour
                 yield return new WaitForSeconds(shootDelay);
                 if (enemyList.Count != 0)
                 {
-                    if (targetEnemy.isDead)
+                    if (targetEnemy.isDead && targetEnemy == null)
                     {
                         SelectTarget();
                         yield return new WaitForSeconds(lookAtDelay);
@@ -126,11 +127,25 @@ public class SoldierController : MonoBehaviour
                 }
                 if (teamIndex == 0)
                 {
-                    _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position + _offset, Quaternion.identity);
+                    if (!rpgSoldier)
+                    {
+                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position + _offset, Quaternion.identity);
+                    }
+                    else
+                    {
+                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position + _offset, Quaternion.identity);
+                    }
                 }
                 else
                 {
+                    if (!rpgSoldier)
+                    {
                     _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position - _offset, Quaternion.identity);
+                    }
+                    else
+                    {
+                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position - _offset, Quaternion.identity);
+                    }
                 }
                 _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
             }
