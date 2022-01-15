@@ -1163,6 +1163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamIndex: 0
   lookAtDelay: 0.1
+  targetEnemy: {fileID: 0}
   bulletSpawnPos: {fileID: 2909909040521421366}
   bulletForce: 2000
   deathForce: 0
@@ -4425,6 +4426,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1471079957792513187, guid: b81d17de4e57abb47b3fbbacea60d17a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647159358179927123, guid: b81d17de4e57abb47b3fbbacea60d17a, type: 3}
+      propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

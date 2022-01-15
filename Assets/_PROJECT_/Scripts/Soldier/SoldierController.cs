@@ -17,7 +17,7 @@ public class SoldierController : MonoBehaviour
     private List<SoldierController> allyList = new List<SoldierController>();
     private List<SoldierController> enemyList = new List<SoldierController>();
 
-   [SerializeField] SoldierController targetEnemy;
+    [SerializeField] SoldierController targetEnemy;
 
     bool isDead;
 
@@ -150,7 +150,7 @@ public class SoldierController : MonoBehaviour
                 {
                     if (!rpgSoldier)
                     {
-                    _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position - _offset, Quaternion.identity);
+                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position - _offset, Quaternion.identity);
                     }
                     else
                     {
