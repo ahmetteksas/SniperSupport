@@ -5,6 +5,7 @@ using ScriptableObjectArchitecture;
 using System.Linq;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 public class Shooter : MonoBehaviour
 {
     public bool isAI;
@@ -54,7 +55,7 @@ public class Shooter : MonoBehaviour
         {
             if (shootTime > shootDelay)
             {
-                if (Input.GetMouseButton(0) /*&& !shoot*/)
+                if (Input.GetMouseButton(0) /*&& IsMouseOverUi()*//*&& !shoot*/)
                 {
                     if (!cross.activeSelf)
                     {
@@ -81,10 +82,13 @@ public class Shooter : MonoBehaviour
             }
         }
     }
+    private bool IsMouseOverUi ()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
     public void SelectBullet(int index)
     {
         selectedBulletIndex = index;
-
     }
 
     public void Shoot()
@@ -102,7 +106,7 @@ public class Shooter : MonoBehaviour
         else
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
-            
+            Debug.Log("HealSeçildi !!");
         }
         _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletSpawnPos.transform.forward * bulletForce);
         shootTime = 0f;
