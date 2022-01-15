@@ -106,9 +106,12 @@ public class SoldierController : MonoBehaviour
     {
         while (true)
         {
-            targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
-            transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
-            yield return null;
+            if (targetEnemy != null)
+            {
+                targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
+                transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+                yield return null;
+            }
         }
     }
     //void SelectTarget()
