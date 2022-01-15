@@ -1303,12 +1303,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamIndex: 1
   lookAtDelay: 0.1
+  targetEnemy: {fileID: 0}
   bulletSpawnPos: {fileID: 9126095013170753420}
   bulletForce: 2000
   deathForce: 0
   setPositionDelay: 1.5
   healthBar: {fileID: 2839608438604400967}
   healField: {fileID: 0}
+  rpgSoldier: 0
 --- !u!114 &7112468985800664436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,8 +1428,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2.3
+  m_Radius: 1
+  m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &9127817602411572652

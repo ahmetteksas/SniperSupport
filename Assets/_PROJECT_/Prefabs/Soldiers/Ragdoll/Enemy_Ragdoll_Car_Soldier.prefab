@@ -1679,6 +1679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamIndex: 1
   lookAtDelay: 0.1
+  targetEnemy: {fileID: 0}
   bulletSpawnPos: {fileID: 449481025249793105}
   bulletForce: 2000
   deathForce: 0
@@ -1803,8 +1804,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2.3
+  m_Radius: 1
+  m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5058077962494638151
