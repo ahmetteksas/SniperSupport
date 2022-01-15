@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4419611435972972254}
   - component: {fileID: 4431221909050452270}
   - component: {fileID: 5922121600478617726}
+  - component: {fileID: 850989095925634707}
   m_Layer: 0
   m_Name: EnemyTurret02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +105,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43588812299311526, guid: 9075359bb44397140b95c6f2bececb28, type: 2}
+--- !u!114 &850989095925634707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407288763950145604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9211dbec6f127d541ba7394a1992b133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  health: 100
+  explodeCar: {fileID: 0}
 --- !u!1 &5965225786864832864
 GameObject:
   m_ObjectHideFlags: 0
