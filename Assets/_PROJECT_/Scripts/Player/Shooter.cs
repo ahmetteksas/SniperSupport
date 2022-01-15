@@ -86,6 +86,7 @@ public class Shooter : MonoBehaviour
     {
         return EventSystem.current.IsPointerOverGameObject();
     }
+
     public void SelectBullet(int index)
     {
         selectedBulletIndex = index;
