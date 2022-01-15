@@ -38,7 +38,7 @@ public class VehicleHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            health -= 5f;
+            health -= 20f;
         }
     }
 }
