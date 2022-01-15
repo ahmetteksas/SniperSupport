@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class VehicleHit : MonoBehaviour
 {
-    public Image healthBar;
+    //public Image healthBar;
     public float health;
     public GameObject explodeCar;
     private bool explode;
@@ -18,7 +18,7 @@ public class VehicleHit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = health/100;
+        //healthBar.fillAmount = health/100;
         if (health == 0)
         {
             if (!explode)
