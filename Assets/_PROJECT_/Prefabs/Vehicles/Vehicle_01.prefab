@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4349029869438640541}
   - component: {fileID: 4332813603475625719}
   - component: {fileID: 4325502986367308639}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_SUV_01_Wheel_fr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4373532283502878261}
   - component: {fileID: -1021119259721683531}
   - component: {fileID: 9189961382652035732}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vehicle_01
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -222,7 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9211dbec6f127d541ba7394a1992b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 107634213644704830}
   health: 100
   explodeCar: {fileID: 4342018361575392373}
 --- !u!1 &4346308453468136003
@@ -236,7 +235,7 @@ GameObject:
   - component: {fileID: 4342604499289092753}
   - component: {fileID: 4333132196102368661}
   - component: {fileID: 4323567118020474781}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_SUV_01_Wheel_rr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +316,7 @@ GameObject:
   - component: {fileID: 4349006710903085963}
   - component: {fileID: 4333444339198017397}
   - component: {fileID: 4325273971819957493}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_SUV_01_Luggage_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +397,7 @@ GameObject:
   - component: {fileID: 4349211116643010793}
   - component: {fileID: 4333179781750944387}
   - component: {fileID: 4325593455736077575}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_SUV_01_Wheel_rl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +478,7 @@ GameObject:
   - component: {fileID: 4349223363759525291}
   - component: {fileID: 4332761250816521415}
   - component: {fileID: 4325687932678969019}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_SUV_01_SteeringW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +559,7 @@ GameObject:
   - component: {fileID: 4343134429288898713}
   - component: {fileID: 4333012959701366223}
   - component: {fileID: 4325630644586104587}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_SUV_01_Wheel_fl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +640,7 @@ GameObject:
   - component: {fileID: 4349351146278223593}
   - component: {fileID: 4333330772031566437}
   - component: {fileID: 4323708246741860801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_SUV_01_Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,9 +761,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2677850786537356845, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678073877917030675, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678837069444447301, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
       propertyPath: m_Name
       value: Car_Explode
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
       propertyPath: m_IsActive
@@ -798,12 +813,24 @@ PrefabInstance:
       value: Canvas_Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3862208059048530036, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862208059048530036, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4147097691615053002, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
       propertyPath: m_FillAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300152391301014075, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481553939389882829, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7686993499529859075, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
       propertyPath: m_Pivot.x
@@ -896,14 +923,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7686993499529859075, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
   m_PrefabInstance: {fileID: 4103649935909869812}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &107634213644704830 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4147097691615053002, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
-  m_PrefabInstance: {fileID: 4103649935909869812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

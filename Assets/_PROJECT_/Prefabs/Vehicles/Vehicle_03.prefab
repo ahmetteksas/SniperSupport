@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6040523650375038923}
   - component: {fileID: 6033711325123506707}
   - component: {fileID: 6023332921452302247}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Car_Medium_01_SteeringW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6023022968490674659}
   - component: {fileID: 5990451054077455797}
   - component: {fileID: 5950958756780619137}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vehicle_03
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -197,7 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9211dbec6f127d541ba7394a1992b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
   health: 100
   explodeCar: {fileID: 1268416041134961283}
 --- !u!1 &6034939216365856047
@@ -211,7 +210,7 @@ GameObject:
   - component: {fileID: 6040859038584029081}
   - component: {fileID: 6030895458529622667}
   - component: {fileID: 6023319836412273025}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Car_Medium_01_Wheel_rl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +291,7 @@ GameObject:
   - component: {fileID: 6040650941308875555}
   - component: {fileID: 6030732741887994275}
   - component: {fileID: 6023280994709255069}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Car_Medium_01_Wheel_fr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +372,7 @@ GameObject:
   - component: {fileID: 6037733723238078401}
   - component: {fileID: 6033801256173483077}
   - component: {fileID: 6023094162213890471}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Car_Medium_01_Wheel_rr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +453,7 @@ GameObject:
   - component: {fileID: 6040607089908225105}
   - component: {fileID: 6033821766675257361}
   - component: {fileID: 6021459988048507779}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Car_Medium_01_Wheel_fl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,7 +534,7 @@ GameObject:
   - component: {fileID: 6040739782014127181}
   - component: {fileID: 6030699289208001365}
   - component: {fileID: 6021578357870431097}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Car_Medium_01_Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,9 +655,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2677850786537356845, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678073877917030675, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678837069444447301, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
       propertyPath: m_Name
       value: Car_Explode
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
       propertyPath: m_IsActive

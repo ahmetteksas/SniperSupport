@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7372317764859851947}
   - component: {fileID: 7365860477246283723}
   - component: {fileID: 7355440216677482723}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_01_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7371945224026636011}
   - component: {fileID: 7364871413952375183}
   - component: {fileID: 7355179323100464083}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_SteeringW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 7372459677024397917}
   - component: {fileID: 7365414557571959255}
   - component: {fileID: 7355001018606868661}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_Wheel_fl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 7372768640707519463}
   - component: {fileID: 7364830845832981099}
   - component: {fileID: 7355561618388420299}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_01_Door_Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 7372786994535749007}
   - component: {fileID: 7365268582216825399}
   - component: {fileID: 7355629835208000467}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_Wheel_rl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 7355459640379175617}
   - component: {fileID: 7396041057589433883}
   - component: {fileID: 5391329793187366838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vehicle_02
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -523,7 +523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9211dbec6f127d541ba7394a1992b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
   health: 100
   explodeCar: {fileID: 3633450682175958488}
 --- !u!1 &7369709017430974433
@@ -537,7 +536,7 @@ GameObject:
   - component: {fileID: 7372893097810169627}
   - component: {fileID: 7365471445780717101}
   - component: {fileID: 7355304850991616447}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_Wheel_fr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +617,7 @@ GameObject:
   - component: {fileID: 7371860294465403147}
   - component: {fileID: 7365327417394050239}
   - component: {fileID: 7355149008521682659}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_01_Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +698,7 @@ GameObject:
   - component: {fileID: 7372496000695723905}
   - component: {fileID: 7364981043290861711}
   - component: {fileID: 7354732419678805247}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Veh_Van_Wheel_rr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,9 +819,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2677850786537356845, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678073877917030675, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678837069444447301, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
       propertyPath: m_Name
       value: Car_Explode
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2678924425313874235, guid: 36802bafda5cb0b4d910285c14a59256, type: 3}
       propertyPath: m_IsActive

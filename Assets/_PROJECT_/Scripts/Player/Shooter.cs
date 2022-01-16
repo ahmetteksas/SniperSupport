@@ -29,6 +29,7 @@ public class Shooter : MonoBehaviour
     //private bool scopeZ
     private Coroutine scopeZoomOut;
 
+
     void Start()
     {
         //shootDelay = shootTime - Time.deltaTime;
@@ -39,7 +40,7 @@ public class Shooter : MonoBehaviour
             yield break;
 
         Transform cam = Camera.main.transform;
-        cam.DOShakePosition(.3f, .6f);
+        //cam.DOShakePosition(.3f, .6f);
         yield return new WaitForSeconds(scopeZoomOutDelay);
         cross.SetActive(false);
         cam.DOPause();
@@ -135,7 +136,16 @@ public class Shooter : MonoBehaviour
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
             Debug.Log("HealSeçildi !!");
         }
-        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
+        //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width/2,Screen.height/2,Camera.main.transform.position.z));
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Transform objectHit = hit.transform;
+            Debug.Log(hit.transform.gameObject.name);
+            _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
+        }
         shootTime = 0f;
         //}
     }
