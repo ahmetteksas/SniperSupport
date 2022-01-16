@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour
 {
     public float damage;
     public GameObject impact;
+    public bool playerBullet;
     void Start()
     {
         StartCoroutine(DestroyObject());
@@ -14,6 +15,10 @@ public class BulletController : MonoBehaviour
     {
         impact.SetActive(true);
         impact.GetComponent<ParticleSystem>().Play();
+        if (playerBullet && other.gameObject.CompareTag("Head"))
+        {
+            damage *= 2;
+        }
     }
     void Update()
     {

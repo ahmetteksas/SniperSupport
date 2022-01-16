@@ -43,6 +43,15 @@ public class SoldierController : MonoBehaviour
     public float healFieldDelay = 2f;
     public bool rpgSoldier;
 
+    private NavMeshAgent nMesh;
+    private Collider colBase;
+
+
+    private void Awake()
+    {
+        explosion = GetComponentInChildren<ParticleSystem>();
+        explosion.Stop();
+    }
     public void AwakeGame()
     {
         targetTransform = transform.parent;
@@ -53,7 +62,7 @@ public class SoldierController : MonoBehaviour
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
         StartCoroutine(SelectTargetV2());
         //SelectTarget();
-        explosion = GetComponentInChildren<ParticleSystem>();
+        
         //healthBar = GetComponentInChildren<Image>();
         animator = GetComponent<Animator>();
         if (!animWalk)
@@ -65,8 +74,12 @@ public class SoldierController : MonoBehaviour
     }
     public void StartGame()
     {
-        NavMeshAgent nMesh = GetComponent<NavMeshAgent>();
-        nMesh.destination = targetTransform.position;
+        nMesh = GetComponent<NavMeshAgent>();
+        if (nMesh)
+        {
+            nMesh.destination = targetTransform.position;
+        }
+        colBase = GetComponent<Collider>();
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -129,6 +142,7 @@ public class SoldierController : MonoBehaviour
         if (enemyList.Count != 0 || allyList.Count != 0)
         {
             yield return new WaitForSeconds(setPositionDelay);
+            explosion.Play();
             animator.SetTrigger("Aim");
             GameObject _smallBullet;
             Vector3 _offset = new Vector3(-.3f, 0, .5f);
@@ -176,12 +190,17 @@ public class SoldierController : MonoBehaviour
         //{
         //    animator.SetTrigger("Death");
         //}
+        colBase.enabled = false;
+        nMesh.enabled = false;
         animator.enabled = false;
+        explosion.Stop();
+        GetComponentInChildren<Canvas>().enabled = false;
         foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
         {
             _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.zero;
         }
+        GetComponent<Rigidbody>().isKinematic = true;
         foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
         {
             _rigidbody.AddForce(-transform.forward * deathForce);
@@ -189,7 +208,7 @@ public class SoldierController : MonoBehaviour
         //GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
         //explosion.Play();
         yield return new WaitForSeconds(2f);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
             //nextLevel.SetActive(true);
