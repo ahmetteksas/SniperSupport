@@ -81,14 +81,18 @@ public class Shooter : MonoBehaviour
             {
                 if (Input.GetMouseButton(0) /*&& IsMouseOverUi()*//*&& !shoot*/)
                 {
-                    if (!cross.activeSelf)
+                    if (!EventSystem.current.IsPointerOverGameObject())
                     {
-                        cross.SetActive(true);
-                        Camera.main.DOPause();
-                        Camera.main.DOFieldOfView(scopeZoom, .2f);
-                        Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
-                        shooted = true;
+                        if (!cross.activeSelf)
+                        {
+                            cross.SetActive(true);
+                            Camera.main.DOPause();
+                            Camera.main.DOFieldOfView(scopeZoom, .2f);
+                            Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
+                            shooted = true;
+                        }
                     }
+
                 }
             }
 
