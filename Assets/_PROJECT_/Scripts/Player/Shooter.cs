@@ -21,6 +21,7 @@ public class Shooter : MonoBehaviour
     int selectedBulletIndex;
     public float scopeZoom = 35;
     public float scopeOffset = 3f;
+    private bool shooted;
 
     public float scopeZoomOutDelay = .7f;
     public GameObject cross;
@@ -85,6 +86,7 @@ public class Shooter : MonoBehaviour
                         Camera.main.DOPause();
                         Camera.main.DOFieldOfView(scopeZoom, .2f);
                         Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
+                        shooted = true;
                     }
                 }
             }
@@ -97,7 +99,10 @@ public class Shooter : MonoBehaviour
                 {
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
-                Shoot();
+                if (shooted)
+                {
+                    Shoot();
+                }
                 //}
             }
         }
@@ -115,6 +120,7 @@ public class Shooter : MonoBehaviour
 
     public void Shoot()
     {
+        
         GameObject _smallBullet;
         //var ray = /*GetComponentInChildren<Image>().transform.localPosition*/Camera.main.ScreenPointToRay(Input.mousePosition);
         //RaycastHit hit;
