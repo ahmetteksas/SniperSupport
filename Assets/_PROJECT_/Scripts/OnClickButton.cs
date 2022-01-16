@@ -14,21 +14,25 @@ public class OnClickButton : MonoBehaviour
     }
     public void BlackClose()
     {
-        clicked++;
+        if (black.gameObject.activeInHierarchy)
+        {
+            black.gameObject.SetActive(false);
+        }
+        //clicked++;
     }
 
     void Update()
     {
-        if (clicked % 2 == 1)
-        {
-            black.fillAmount += .1f;
-            //black.SetActive(true);
-            //black.SetActive(true);
-        }
-        if (clicked % 2 == 0)
-        {
-            black.fillAmount -= .1f;
-            //black.SetActive(false);
-        }
+        //if (clicked % 2 == 1)
+        //{
+        //    black.fillAmount += .1f;
+        //    //black.SetActive(true);
+        //    //black.SetActive(true);
+        //}
+        //if (clicked % 2 == 0)
+        //{
+        //    black.fillAmount -= .1f;
+        //    //black.SetActive(false);
+        //}
     }
 }
