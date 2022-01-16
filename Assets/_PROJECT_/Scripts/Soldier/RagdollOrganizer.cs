@@ -19,4 +19,12 @@ public class RagdollOrganizer : MonoBehaviour
             _rigidbody.gameObject.layer = targetLayerIndex;
         }
     }
+    [Button]
+    public void IsKýnematic()
+    {
+        foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+        {
+            _rigidbody.isKinematic = true;
+        }
+    }
 }
