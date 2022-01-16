@@ -62,7 +62,7 @@ public class SoldierController : MonoBehaviour
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
         StartCoroutine(SelectTargetV2());
         //SelectTarget();
-        
+
         //healthBar = GetComponentInChildren<Image>();
         animator = GetComponent<Animator>();
         if (!animWalk)
@@ -108,6 +108,10 @@ public class SoldierController : MonoBehaviour
             healField.SetActive(false);
         }
     }
+    private void Update()
+    {
+        //Debug.Log(enemyList.Count);
+    }
     void TakeHit()
     {
         if (healthBar.fillAmount == 0)
@@ -120,6 +124,7 @@ public class SoldierController : MonoBehaviour
             }
         }
     }
+    
     IEnumerator SelectTargetV2()
     {
         while (true)
@@ -128,6 +133,7 @@ public class SoldierController : MonoBehaviour
             if (targetEnemy)
             {
                 transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+                bulletSpawnPos.LookAt(targetEnemy.transform);
             }
             yield return null;
         }
@@ -190,6 +196,7 @@ public class SoldierController : MonoBehaviour
         //{
         //    animator.SetTrigger("Death");
         //}
+        isDead = true;
         colBase.enabled = false;
         nMesh.enabled = false;
         animator.enabled = false;
@@ -208,13 +215,23 @@ public class SoldierController : MonoBehaviour
         //GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
         //explosion.Play();
         yield return new WaitForSeconds(2f);
+
         //gameObject.SetActive(false);
+        Debug.Log(enemyList.Where(x => !x.isDead).Count());
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
+            if (CanvasManager.instance.retryLevelButton == null)
+            {
+                CanvasManager.instance.nextLevelButton.SetActive(true);
+            }
             //nextLevel.SetActive(true);
         }
         if (allyList.Where(x => !x.isDead).Count() == 0)
         {
+            if (CanvasManager.instance.nextLevelButton == null)
+            {
+                CanvasManager.instance.retryLevelButton.SetActive(true);
+            }
             //retryLevel.SetActive(true);
         }
     }
