@@ -33,10 +33,12 @@ public class Shooter : MonoBehaviour
     }
     IEnumerator ScopeZoomOut()
     {
+        Transform cam = Camera.main.transform;
+        cam.DOShakePosition(.3f, .2f);
         yield return new WaitForSeconds(scopeZoomOutDelay);
         cross.SetActive(false);
-        Camera.main.DOPause();
-        Camera.main.transform.DOLocalMove(Vector3.zero, .1f);
+        cam.DOPause();
+        cam.transform.DOLocalMove(Vector3.zero, .1f);
         Camera.main.DOFieldOfView(80, .1f);
         Animator _anim = GetComponent<Animator>();
         _anim.SetTrigger("Shoot");
@@ -88,11 +90,11 @@ public class Shooter : MonoBehaviour
             {
                 //if (cross.activeSelf)
                 //{
-                    if (scopeZoomOut == null)
-                    {
-                        scopeZoomOut = StartCoroutine(ScopeZoomOut());
-                    }
-                    Shoot();
+                if (scopeZoomOut == null)
+                {
+                    scopeZoomOut = StartCoroutine(ScopeZoomOut());
+                }
+                Shoot();
                 //}
             }
         }
