@@ -186,7 +186,10 @@ public class SoldierController : MonoBehaviour
                     }
                 }
                 //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
-                _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f);
+                if (targetEnemy)
+                {
+                    _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f);
+                }
             }
         }
     }
