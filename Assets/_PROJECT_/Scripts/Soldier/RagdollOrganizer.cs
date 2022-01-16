@@ -27,4 +27,12 @@ public class RagdollOrganizer : MonoBehaviour
             _rigidbody.isKinematic = true;
         }
     }
+    [Button]
+    public void SetTag(string _tag)
+    {
+        foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+        {
+            _rigidbody.gameObject.tag = _tag;
+        }
+    }
 }

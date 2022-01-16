@@ -7,6 +7,8 @@ public class BulletController : MonoBehaviour
     public float damage;
     public GameObject impactParticle;
     public bool playerBullet;
+    public GameObject headShot;
+    public float hsDelay = 1f;
     void Start()
     {
         StartCoroutine(DestroyObject());
@@ -22,7 +24,19 @@ public class BulletController : MonoBehaviour
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
             damage *= 2;// hard to work.
+            Debug.Log("HeadShot !");
+            if (headShot)
+            {
+                headShot.SetActive(true);
+                StartCoroutine(CloseHs());
+            }
         }
+    }
+    IEnumerator CloseHs()
+    {
+        yield return new WaitForSeconds(hsDelay);
+        headShot.SetActive(false);
+
     }
     void Update()
     {

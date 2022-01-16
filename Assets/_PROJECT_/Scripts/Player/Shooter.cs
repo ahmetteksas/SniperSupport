@@ -25,6 +25,7 @@ public class Shooter : MonoBehaviour
 
     public float scopeZoomOutDelay = .7f;
     public GameObject cross;
+    
     //private bool scopeZ
     private Coroutine scopeZoomOut;
 
@@ -65,7 +66,6 @@ public class Shooter : MonoBehaviour
         {
             List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
             targetAlly = allSoldiers.LastOrDefault().transform;
-
             if (shootTime > shootDelayAi)
             {
                 if (targetAlly)
@@ -120,7 +120,6 @@ public class Shooter : MonoBehaviour
 
     public void Shoot()
     {
-        
         GameObject _smallBullet;
         //var ray = /*GetComponentInChildren<Image>().transform.localPosition*/Camera.main.ScreenPointToRay(Input.mousePosition);
         //RaycastHit hit;
@@ -136,7 +135,7 @@ public class Shooter : MonoBehaviour
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
             Debug.Log("HealSeçildi !!");
         }
-        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(bulletSpawnPos.transform.forward * bulletForce);
+        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
         shootTime = 0f;
         //}
     }
