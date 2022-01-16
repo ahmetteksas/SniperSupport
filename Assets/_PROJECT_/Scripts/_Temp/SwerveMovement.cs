@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class SwerveMovement : MonoBehaviour
 {
-    float rotSpeed = 3f;
+    public float rotSpeed = 3f;
 
     void Update()
     {
         Shoot();
         //float _rotationX = Mathf.Clamp(transform.rotation.eulerAngles.x, -90.0F, 0.0F);
         // transform.rotation = Quaternion.Euler(rotationX, transform.eulerAngles.y, transform.eulerAngles.z);
-        Quaternion rotation = transform.rotation;
-        rotation.y = Mathf.Clamp(transform.eulerAngles.y, 180f, 240f);
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotation.y, transform.rotation.eulerAngles.z);
+        Vector3 rotation = transform.eulerAngles;
+        rotation.y = Mathf.Clamp(transform.eulerAngles.y, 210f, 240f);
+        rotation.z = Mathf.Clamp(transform.eulerAngles.z, 300f, 350f);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotation.y, rotation.z);
     }
     public void Shoot()
     {
