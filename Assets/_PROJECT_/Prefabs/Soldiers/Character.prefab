@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d18f8f0464247d4408700a6b5075c77c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4a3f85413b934b4dad34b197ec27a32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2128,9 +2128,10 @@ MonoBehaviour:
   bulletDir: {fileID: 4676185178956602267}
   character: {fileID: 4676185178956602267}
   allyList: {fileID: 11400000, guid: eeec3af480de5ed40bebe68b5031d06a, type: 2}
-  bulletForce: 4000
-  scopeZoom: 35
-  scopeOffset: 3
+  bulletForce: 1e+9
+  scopeZoom: 25
+  scopeOffset: 10
+  scopeZoomOutDelay: 1
   cross: {fileID: 8453916734817049320}
 --- !u!54 &1874603307
 Rigidbody:
@@ -2356,6 +2357,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4676138786991016767}
     m_Modifications:
+    - target: {fileID: 2649641940389384206, guid: 8e84120bf32354747a34a28e57189a60, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 98c5a304d249a154b832018cd93c0233, type: 2}
+    - target: {fileID: 2649641940389384206, guid: 8e84120bf32354747a34a28e57189a60, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 993b26bdd863aba49a6d5380d36b49df, type: 2}
     - target: {fileID: 4703205318431872016, guid: 8e84120bf32354747a34a28e57189a60, type: 3}
       propertyPath: m_Name
       value: Sniper

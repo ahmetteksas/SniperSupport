@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4968407713518099092}
   - component: {fileID: 4960460816813168464}
   - component: {fileID: 4927065137582652760}
+  - component: {fileID: -2329678766389694631}
   m_Layer: 0
   m_Name: RocketLauncher_MIssile
   m_TagString: Bullet
@@ -97,6 +98,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43207494157004992, guid: 539d4cfbaedfae247824bddcc5825d15, type: 2}
+--- !u!114 &-2329678766389694631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936442642250779496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb55a2829de918d4eb91a207357f4c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0.5
 --- !u!1001 &3938440826948311457
 PrefabInstance:
   m_ObjectHideFlags: 0

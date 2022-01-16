@@ -22,13 +22,30 @@ public class Shooter : MonoBehaviour
     public float scopeZoom = 35;
     public float scopeOffset = 3f;
 
+    public float scopeZoomOutDelay = .7f;
     public GameObject cross;
+    //private bool scopeZ
+    private Coroutine scopeZoomOut;
 
     void Start()
     {
         //shootDelay = shootTime - Time.deltaTime;
     }
-
+    IEnumerator ScopeZoomOut()
+    {
+        yield return new WaitForSeconds(scopeZoomOutDelay);
+        cross.SetActive(false);
+        Camera.main.DOPause();
+        Camera.main.transform.DOLocalMove(Vector3.zero, .1f);
+        Camera.main.DOFieldOfView(80, .1f);
+        Animator _anim = GetComponent<Animator>();
+        _anim.SetTrigger("Shoot");
+        scopeZoomOut = null;
+    }
+    //public bool Delay()
+    //{
+    //    return true;
+    //}
     void Update()
     {
         if (!LevelManager.instance.isGameRunning)
@@ -69,20 +86,18 @@ public class Shooter : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-                if (cross.activeSelf)
-                {
-                    cross.SetActive(false);
-                    Camera.main.DOPause();
-                    Camera.main.transform.DOLocalMove(Vector3.zero, .1f);
-                    Camera.main.DOFieldOfView(80, .1f);
+                //if (cross.activeSelf)
+                //{
+                    if (scopeZoomOut == null)
+                    {
+                        scopeZoomOut = StartCoroutine(ScopeZoomOut());
+                    }
                     Shoot();
-                    Animator _anim = GetComponent<Animator>();
-                    _anim.SetTrigger("Shoot");
-                }
+                //}
             }
         }
     }
-    private bool IsMouseOverUi ()
+    private bool IsMouseOverUi()
     {
         return EventSystem.current.IsPointerOverGameObject();
     }

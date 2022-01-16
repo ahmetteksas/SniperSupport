@@ -40,6 +40,7 @@ public class SoldierController : MonoBehaviour
     private Transform targetTransform;
 
     public GameObject healField;
+    public float healFieldDelay = 2f;
     public bool rpgSoldier;
 
     public void AwakeGame()
@@ -86,8 +87,9 @@ public class SoldierController : MonoBehaviour
         if (teamIndex == 0)
         {
             healField.SetActive(true);
+            healField.GetComponent<ParticleSystem>().Play();
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(healFieldDelay);
         if (teamIndex == 0)
         {
             healField.SetActive(false);
@@ -110,7 +112,10 @@ public class SoldierController : MonoBehaviour
         while (true)
         {
             targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
-            transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+            if (targetEnemy)
+            {
+                transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+            }
             yield return null;
         }
     }
