@@ -807,7 +807,6 @@ GameObject:
   - component: {fileID: 388147362194740825}
   - component: {fileID: -6156693500448909832}
   - component: {fileID: -7193882601662027477}
-  - component: {fileID: 2747370305640688015}
   m_Layer: 8
   m_Name: Enemy_Ragdoll_Rpg_Soldier
   m_TagString: Enemy
@@ -997,20 +996,6 @@ CapsuleCollider:
   m_Height: 1.56
   m_Direction: 1
   m_Center: {x: 0, y: 0.71, z: 0}
---- !u!136 &2747370305640688015
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265717459677900807}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.23
-  m_Height: 0.67
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.19, z: 0}
 --- !u!1 &3265766318806082925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,6 +2219,7 @@ GameObject:
   - component: {fileID: 1618179538119306644}
   - component: {fileID: 1675507468595947411}
   - component: {fileID: 7891609420191839325}
+  - component: {fileID: 379552694160028243}
   m_Layer: 7
   m_Name: Head
   m_TagString: Head
@@ -2266,7 +2252,7 @@ SphereCollider:
   m_GameObject: {fileID: 3266157003290081757}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 14.922046
   m_Center: {x: -0.39, y: 4.15, z: 0.0000000042689203}
@@ -2332,6 +2318,20 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &379552694160028243
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266157003290081757}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 15.8
+  m_Height: 45.84
+  m_Direction: 0
+  m_Center: {x: 0, y: 8.05, z: 0}
 --- !u!1 &3266157780037605413
 GameObject:
   m_ObjectHideFlags: 0
