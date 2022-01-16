@@ -19,12 +19,25 @@ public class LevelManager : MonoBehaviour
 
     public GameObject finishPlatform;
 
+    public GameObject blueFog;
+    public GameObject yellowFog;
+    private int index;
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+        index = Random.Range(0, 2);
+        if (index == 0)
+        {
+            blueFog.SetActive(true);
+        }
+        else
+        {
+            yellowFog.SetActive(true);
+        }
         level = PlayerPrefs.GetInt("Level");
         SetLevel();
     }

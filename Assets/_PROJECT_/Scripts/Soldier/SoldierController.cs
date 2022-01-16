@@ -221,6 +221,7 @@ public class SoldierController : MonoBehaviour
         Debug.Log(enemyList.Where(x => !x.isDead).Count());
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
+            LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.retryLevelButton != null)
             {
                 CanvasManager.instance.nextLevelButton.SetActive(true);
@@ -229,6 +230,7 @@ public class SoldierController : MonoBehaviour
         }
         if (allyList.Where(x => !x.isDead).Count() == 0)
         {
+            LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.nextLevelButton != null)
             {
                 CanvasManager.instance.retryLevelButton.SetActive(true);
