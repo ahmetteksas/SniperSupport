@@ -179,6 +179,7 @@ public class SoldierController : MonoBehaviour
         animator.enabled = false;
         foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
         {
+            _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.zero;
         }
         foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
