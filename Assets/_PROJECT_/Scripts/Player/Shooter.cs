@@ -103,11 +103,11 @@ public class Shooter : MonoBehaviour
             {
                 if (scopeZoomOut == null)
                 {
-                    Shoot();
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
                 if (shooted)
                 {
+                    Shoot();
                 }
             }
         }
