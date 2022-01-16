@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OnClickButton : MonoBehaviour
 {
-    public GameObject black;
+    public Image black;
     private float clicked = 0;
     public bool shoot;
     void Start()
@@ -21,12 +21,14 @@ public class OnClickButton : MonoBehaviour
     {
         if (clicked % 2 == 1)
         {
-            black.SetActive(true);
+            black.fillAmount += .1f;
+            //black.SetActive(true);
             //black.SetActive(true);
         }
         if (clicked % 2 == 0)
         {
-            black.SetActive(false);
+            black.fillAmount -= .1f;
+            //black.SetActive(false);
         }
     }
 }
