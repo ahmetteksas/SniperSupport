@@ -33,8 +33,11 @@ public class Shooter : MonoBehaviour
     }
     IEnumerator ScopeZoomOut()
     {
+        if (!cross.activeInHierarchy)
+            yield break;
+
         Transform cam = Camera.main.transform;
-        cam.DOShakePosition(.3f, .2f);
+        cam.DOShakePosition(.3f, .6f);
         yield return new WaitForSeconds(scopeZoomOutDelay);
         cross.SetActive(false);
         cam.DOPause();
@@ -99,6 +102,7 @@ public class Shooter : MonoBehaviour
             }
         }
     }
+
     private bool IsMouseOverUi()
     {
         return EventSystem.current.IsPointerOverGameObject();
