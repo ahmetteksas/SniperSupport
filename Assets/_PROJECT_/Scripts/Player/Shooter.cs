@@ -25,7 +25,7 @@ public class Shooter : MonoBehaviour
 
     public float scopeZoomOutDelay = .7f;
     public GameObject cross;
-    
+
     //private bool scopeZ
     private Coroutine scopeZoomOut;
 
@@ -85,11 +85,14 @@ public class Shooter : MonoBehaviour
                     {
                         if (!cross.activeSelf)
                         {
-                            cross.SetActive(true);
-                            Camera.main.DOPause();
-                            Camera.main.DOFieldOfView(scopeZoom, .2f);
-                            Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
-                            shooted = true;
+                            if (LevelManager.instance.isGameRunning)
+                            {
+                                cross.SetActive(true);
+                                Camera.main.DOPause();
+                                Camera.main.DOFieldOfView(scopeZoom, .2f);
+                                Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
+                                shooted = true;
+                            }
                         }
                     }
 
@@ -135,7 +138,7 @@ public class Shooter : MonoBehaviour
         }
         //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width/2,Screen.height/2,Camera.main.transform.position.z));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.transform.position.z));
 
         if (Physics.Raycast(ray, out hit))
         {
