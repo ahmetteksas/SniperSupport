@@ -36,11 +36,6 @@ public class BulletController : MonoBehaviour
     {
         yield return new WaitForSeconds(hsDelay);
         headShot.SetActive(false);
-
-    }
-    void Update()
-    {
-
     }
 
     IEnumerator DestroyObject()

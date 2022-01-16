@@ -807,6 +807,7 @@ GameObject:
   - component: {fileID: 388147362194740825}
   - component: {fileID: -6156693500448909832}
   - component: {fileID: -7193882601662027477}
+  - component: {fileID: 2747370305640688015}
   m_Layer: 8
   m_Name: Enemy_Ragdoll_Rpg_Soldier
   m_TagString: Enemy
@@ -996,6 +997,20 @@ CapsuleCollider:
   m_Height: 1.56
   m_Direction: 1
   m_Center: {x: 0, y: 0.71, z: 0}
+--- !u!136 &2747370305640688015
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265717459677900807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23
+  m_Height: 0.67
+  m_Direction: 0
+  m_Center: {x: 0, y: 0.19, z: 0}
 --- !u!1 &3265766318806082925
 GameObject:
   m_ObjectHideFlags: 0
