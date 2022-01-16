@@ -54,7 +54,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613784492385749901}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -132,6 +132,8 @@ MonoBehaviour:
   damage: 0.05
   impactParticle: {fileID: 4288253338528879179}
   playerBullet: 0
+  headShot: {fileID: 0}
+  hsDelay: 1
 --- !u!114 &1334796694613894917
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class Shooter : MonoBehaviour
 
     public float scopeZoomOutDelay = .7f;
     public GameObject cross;
-    
+
     //private bool scopeZ
     private Coroutine scopeZoomOut;
 
@@ -95,13 +95,13 @@ public class Shooter : MonoBehaviour
             {
                 //if (cross.activeSelf)
                 //{
-                if (scopeZoomOut == null)
-                {
-                    scopeZoomOut = StartCoroutine(ScopeZoomOut());
-                }
                 if (shooted)
                 {
                     Shoot();
+                }
+                if (scopeZoomOut == null)
+                {
+                    scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
                 //}
             }
@@ -128,14 +128,15 @@ public class Shooter : MonoBehaviour
         //    Debug.DrawLine(character.position, hit.point);
         if (selectedBulletIndex == 0)
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", Camera.main.transform.forward, Quaternion.identity);
         }
         else
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", Camera.main.transform.forward, Quaternion.identity);
             Debug.Log("HealSeçildi !!");
         }
-        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
+        _smallBullet.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce / 4000f);
         shootTime = 0f;
         //}
     }
