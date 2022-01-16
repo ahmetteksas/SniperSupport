@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float damage;
-    public GameObject impact;
+    public GameObject impactParticle;
     public bool playerBullet;
     void Start()
     {
@@ -13,18 +13,22 @@ public class BulletController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        impact.SetActive(true);
-        impact.GetComponent<ParticleSystem>().Play();
+        if (impactParticle)
+        {
+            impactParticle.SetActive(true);
+            impactParticle.GetComponent<ParticleSystem>().Play();
+        }
+
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
-            damage *= 2;
+            damage *= 2;// hard to work.
         }
     }
     void Update()
     {
-        
+
     }
-    
+
     IEnumerator DestroyObject()
     {
         yield return new WaitForSeconds(1f);

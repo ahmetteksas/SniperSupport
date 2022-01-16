@@ -124,7 +124,7 @@ public class SoldierController : MonoBehaviour
             }
         }
     }
-    
+
     IEnumerator SelectTargetV2()
     {
         while (true)
@@ -220,7 +220,7 @@ public class SoldierController : MonoBehaviour
         Debug.Log(enemyList.Where(x => !x.isDead).Count());
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
-            if (CanvasManager.instance.retryLevelButton == null)
+            if (CanvasManager.instance.retryLevelButton != null)
             {
                 CanvasManager.instance.nextLevelButton.SetActive(true);
             }
@@ -228,7 +228,7 @@ public class SoldierController : MonoBehaviour
         }
         if (allyList.Where(x => !x.isDead).Count() == 0)
         {
-            if (CanvasManager.instance.nextLevelButton == null)
+            if (CanvasManager.instance.nextLevelButton != null)
             {
                 CanvasManager.instance.retryLevelButton.SetActive(true);
             }
