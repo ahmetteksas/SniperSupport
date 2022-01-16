@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
-    private float shootDelay = 1.5f;
+    [SerializeField] float shootDelay = 1f;
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
     int selectedBulletIndex;
@@ -105,7 +105,7 @@ public class Shooter : MonoBehaviour
                 {
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
-                if (shooted)
+                if (cross.activeSelf)
                 {
                     Shoot();
                 }
