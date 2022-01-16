@@ -98,25 +98,18 @@ public class Shooter : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-                //if (cross.activeSelf)
-                //{
                 if (scopeZoomOut == null)
                 {
+                    Shoot();
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
                 if (shooted)
                 {
-                    Shoot();
                 }
-                //}
             }
         }
     }
 
-    private bool IsMouseOverUi()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
-    }
 
     public void SelectBullet(int index)
     {
