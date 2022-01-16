@@ -11,10 +11,19 @@ public class TakeHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            explosionBarrel.SetActive(true);
-            vehicle.SetActive(false);
-            gameObject.SetActive(false);
+            ExplosionDamage(Vector3.forward*5f,.5f);
+            //explosionBarrel.SetActive(true);
+            //vehicle.SetActive(false);
+            //gameObject.SetActive(false);
             //StartCoroutine(ExplosionStart());
+        }
+    }
+    void ExplosionDamage(Vector3 center, float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            StartCoroutine(ExplosionStart());
         }
     }
     IEnumerator ExplosionStart()

@@ -88,7 +88,10 @@ public class SoldierController : MonoBehaviour
             healField.SetActive(true);
         }
         yield return new WaitForSeconds(1f);
-        healField.SetActive(false);
+        if (teamIndex == 0)
+        {
+            healField.SetActive(false);
+        }
     }
     void TakeHit()
     {
