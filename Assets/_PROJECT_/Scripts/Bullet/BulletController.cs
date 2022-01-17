@@ -28,19 +28,19 @@ public class BulletController : MonoBehaviour
             if (headShot)
             {
                 headShot.SetActive(true);
-                StartCoroutine(CloseHs());
+                //StartCoroutine(CloseHs());
             }
         }
     }
-    IEnumerator CloseHs()
-    {
-        yield return new WaitForSeconds(hsDelay);
-        headShot.SetActive(false);
-    }
+    //IEnumerator CloseHs()
+    //{
+    //    yield return new WaitForSeconds(hsDelay);
+    //    headShot.SetActive(false);
+    //}
 
     IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }
 }

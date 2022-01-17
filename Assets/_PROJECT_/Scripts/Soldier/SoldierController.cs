@@ -138,6 +138,10 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
+    public void OpenShoot ()
+    {
+        explosion.Play();
+    }
     //void SelectTarget()
     //{
     //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
@@ -148,7 +152,6 @@ public class SoldierController : MonoBehaviour
         if (enemyList.Count != 0 || allyList.Count != 0)
         {
             yield return new WaitForSeconds(setPositionDelay);
-            explosion.Play();
             animator.SetTrigger("Aim");
             GameObject _smallBullet;
             Vector3 _offset = new Vector3(-.3f, 0, .5f);
@@ -216,8 +219,7 @@ public class SoldierController : MonoBehaviour
         {
             _rigidbody.AddForce(-transform.forward * deathForce);
         }
-        //GetComponentInChildren<Rigidbody>().AddForce(-transform.forward * deathForce);
-        //explosion.Play();
+       
         yield return new WaitForSeconds(2f);
 
         //gameObject.SetActive(false);

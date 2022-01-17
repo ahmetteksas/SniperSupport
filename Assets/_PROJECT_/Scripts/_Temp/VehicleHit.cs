@@ -9,7 +9,7 @@ public class VehicleHit : MonoBehaviour
     public float health;
     public GameObject explodeCar;
     private bool explode;
-
+    public GameObject destroyedState;
     void Start()
     {
         
@@ -31,6 +31,8 @@ public class VehicleHit : MonoBehaviour
     IEnumerator ExplodeCar()
     {
         explodeCar.SetActive(true);
+        destroyedState.SetActive(true);
+        destroyedState.transform.parent = null;
         yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }

@@ -11,7 +11,7 @@ public class TakeHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            ExplosionDamage(Vector3.forward*5f,.5f);
+            ExplosionDamage(transform.position,2f);
             //explosionBarrel.SetActive(true);
             //vehicle.SetActive(false);
             //gameObject.SetActive(false);
@@ -23,8 +23,17 @@ public class TakeHit : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
+            if (hitCollider.TryGetComponent(out SoldierController soldierController)) 
+            {
+                soldierController.healthBar.fillAmount -= .6f; 
+            }
+            //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
             StartCoroutine(ExplosionStart());
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, 2f);
     }
     IEnumerator ExplosionStart()
     {
