@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
         }
         level = PlayerPrefs.GetInt("Level");
         SetLevel();
-        isGameRunning = true;
+        //isGameRunning = true;
     }
 
     public void GameStarted()

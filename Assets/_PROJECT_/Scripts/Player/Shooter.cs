@@ -25,6 +25,7 @@ public class Shooter : MonoBehaviour
 
     public float scopeZoomOutDelay = .7f;
     public GameObject cross;
+    public GameObject headShot;
 
     //private bool scopeZ
     private Coroutine scopeZoomOut;
@@ -40,9 +41,10 @@ public class Shooter : MonoBehaviour
             yield break;
 
         Transform cam = Camera.main.transform;
-        //cam.DOShakePosition(.3f, .6f);
+        cam.DOShakePosition(.3f, .6f);
         yield return new WaitForSeconds(scopeZoomOutDelay);
         cross.SetActive(false);
+        //headShot.SetActive(true);
         cam.DOPause();
         cam.transform.DOLocalMove(Vector3.zero, .1f);
         Camera.main.DOFieldOfView(80, .1f);
