@@ -71,7 +71,7 @@ public class SoldierController : MonoBehaviour
         }
         StartCoroutine(AutoShoot());
     }
-    
+
     public void StartGame()
     {
         nMesh = GetComponent<NavMeshAgent>();
@@ -138,7 +138,7 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
-    public void OpenShoot ()
+    public void OpenShoot()
     {
         explosion.Play();
     }
@@ -176,6 +176,7 @@ public class SoldierController : MonoBehaviour
                     {
                         _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position + _offset, Quaternion.identity);
                     }
+
                 }
                 else
                 {
@@ -191,8 +192,9 @@ public class SoldierController : MonoBehaviour
                 //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
                 if (targetEnemy)
                 {
-                    _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f*Time.deltaTime);
+                    _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
                 }
+                //_smallBullet.transform.LookAt(targetTransform);
             }
         }
     }
@@ -219,7 +221,7 @@ public class SoldierController : MonoBehaviour
         {
             _rigidbody.AddForce(-transform.forward * deathForce);
         }
-       
+
         yield return new WaitForSeconds(2f);
 
         //gameObject.SetActive(false);
