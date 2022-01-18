@@ -3671,10 +3671,10 @@ MonoBehaviour:
   deathForce: 0
   setPositionDelay: 1.5
   healthBar: {fileID: 1799516889962003253}
+  explosion: {fileID: 5573049096797352081}
   healField: {fileID: 3487859693488075638}
   healFieldDelay: 2
   rpgSoldier: 0
-  smoke: {fileID: 5573049096811718713}
 --- !u!114 &4278551127461996575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4018,16 +4018,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662938393, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662972281, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
---- !u!1 &5573049096811718713 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5494691474644357679, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
-  m_PrefabInstance: {fileID: 78358246297795094}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5573049096811477153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+  m_PrefabInstance: {fileID: 78358246297795094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5573049096797352081 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
   m_PrefabInstance: {fileID: 78358246297795094}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2595653889988524941

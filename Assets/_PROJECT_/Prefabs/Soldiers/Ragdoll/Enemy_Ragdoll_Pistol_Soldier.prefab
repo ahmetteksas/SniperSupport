@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &946726407141639543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5072072047936320158}
+  m_Layer: 8
+  m_Name: GunTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5072072047936320158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946726407141639543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.178}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000602172976502555}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7415178681760811526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,15 +1072,15 @@ MonoBehaviour:
   teamIndex: 1
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
-  bulletSpawnPos: {fileID: 7413796336127119728}
+  bulletSpawnPos: {fileID: 5072072047936320158}
   bulletForce: 2000
   deathForce: 0
   setPositionDelay: 1.5
   healthBar: {fileID: 8526161744892764155}
+  explosion: {fileID: 8706765475854239697}
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 0
-  smoke: {fileID: 8706765475868155769}
 --- !u!114 &4952003292055125348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3419,7 +3449,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7413562231559205996}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: -4.984, y: 199.29399, z: 0.397}
+  m_LocalEulerAnglesHint: {x: 66.45288, y: 325.48062, z: 55.260136}
 --- !u!33 &7393217041839675410
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3766,7 +3796,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7413562231559205996}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 278.59283, y: 90, z: 0}
 --- !u!33 &7393379726097386984
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4138,16 +4168,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662938393, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662972281, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
---- !u!1 &8706765475868155769 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5494691474644357679, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
-  m_PrefabInstance: {fileID: 3789134606646299990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8706765475868430305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+  m_PrefabInstance: {fileID: 3789134606646299990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8706765475854239697 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
   m_PrefabInstance: {fileID: 3789134606646299990}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5755162229067832113
@@ -4263,6 +4309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
+--- !u!224 &2698745047144434482 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7686993499529859075, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
+  m_PrefabInstance: {fileID: 5755162229067832113}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8526161744892764155 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4147097691615053002, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
@@ -4274,8 +4325,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2698745047144434482 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7686993499529859075, guid: b6981d9cc89308a4da413f62efbc1ceb, type: 3}
-  m_PrefabInstance: {fileID: 5755162229067832113}
-  m_PrefabAsset: {fileID: 0}
