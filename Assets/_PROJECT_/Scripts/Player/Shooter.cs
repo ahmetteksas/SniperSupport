@@ -30,24 +30,75 @@ public class Shooter : MonoBehaviour
     //private bool scopeZ
     private Coroutine scopeZoomOut;
 
+    public GameObject sniper;
+    public Transform firstSniperPos;
+    public Transform secondSniperPos;
+
 
     void Start()
     {
         //shootDelay = shootTime - Time.deltaTime;
     }
+
+    IEnumerator ScopeZoomIn()
+    {
+        if (shooted)
+            yield break;
+
+        Debug.Log("Zoom In");
+
+        shooted = true;
+
+        Camera.main.DOPause();
+        Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset / 5f, .2f);
+
+        sniper.transform.DOPause();
+        sniper.transform.SetParent(secondSniperPos);
+        sniper.transform.DOLocalRotate(Vector3.zero, .2f);
+        yield return sniper.transform.DOLocalMove(Vector3.zero, .2f).WaitForCompletion();
+
+        sniper.transform.DOPause();
+        sniper.transform.SetParent(firstSniperPos);
+        sniper.transform.DOLocalRotate(Vector3.zero, .3f);
+
+        sniper.transform.DOLocalMove(Vector3.zero, .3f);
+
+        cross.SetActive(true);
+
+        //yield return new WaitForSeconds(.2f);
+
+        Camera.main.DOPause();
+        Camera.main.DOFieldOfView(scopeZoom, .2f);
+        Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
+
+    }
+
     IEnumerator ScopeZoomOut()
     {
         if (!cross.activeInHierarchy)
             yield break;
+        Debug.Log("Zoom Out");
+
+        shooted = false;
 
         Transform cam = Camera.main.transform;
         cam.DOShakePosition(.3f, .6f);
-        yield return new WaitForSeconds(scopeZoomOutDelay);
+
+
+        sniper.transform.DOPause();
+        sniper.transform.SetParent(firstSniperPos);
+        sniper.transform.DOLocalRotate(Vector3.zero, scopeZoomOutDelay);
+
+        yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
+
+        //yield return new WaitForSeconds(scopeZoomOutDelay);
+
         cross.SetActive(false);
         //headShot.SetActive(true);
         cam.DOPause();
         cam.transform.DOLocalMove(Vector3.zero, .1f);
         Camera.main.DOFieldOfView(80, .1f);
+
         Animator _anim = GetComponent<Animator>();
         _anim.SetTrigger("Shoot");
         scopeZoomOut = null;
@@ -89,11 +140,7 @@ public class Shooter : MonoBehaviour
                         {
                             if (LevelManager.instance.isGameRunning)
                             {
-                                cross.SetActive(true);
-                                Camera.main.DOPause();
-                                Camera.main.DOFieldOfView(scopeZoom, .2f);
-                                Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
-                                shooted = true;
+                                StartCoroutine(ScopeZoomIn());
                             }
                         }
                     }
