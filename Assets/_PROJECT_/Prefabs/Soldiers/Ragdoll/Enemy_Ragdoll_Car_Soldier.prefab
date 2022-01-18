@@ -1684,6 +1684,7 @@ MonoBehaviour:
   deathForce: 0
   setPositionDelay: 1.5
   healthBar: {fileID: 6971858785812335255}
+  explosion: {fileID: 876689432149341974}
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 0
@@ -4309,10 +4310,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7137923154967461522, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137923154967491314, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137923154967503628, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137923154967503628, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
 --- !u!4 &876689432134106918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7137923154952268604, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
+  m_PrefabInstance: {fileID: 8008630689623053338}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &876689432149341974 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7137923154967503628, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
   m_PrefabInstance: {fileID: 8008630689623053338}
   m_PrefabAsset: {fileID: 0}

@@ -35,8 +35,8 @@ public class SoldierController : MonoBehaviour
     private bool animWalk;
     private bool animStart;
 
-    private ParticleSystem explosion;
-
+    public ParticleSystem explosion;
+    
     private Transform targetTransform;
 
     public GameObject healField;
@@ -48,7 +48,7 @@ public class SoldierController : MonoBehaviour
 
     private void Awake()
     {
-        explosion = GetComponentInChildren<ParticleSystem>();
+        //explosion = GetComponentInChildren<ParticleSystem>();
         explosion.Stop();
     }
     public void AwakeGame()
@@ -152,12 +152,13 @@ public class SoldierController : MonoBehaviour
         if (enemyList.Count != 0 || allyList.Count != 0)
         {
             yield return new WaitForSeconds(setPositionDelay);
-            animator.SetTrigger("Aim");
+            
             GameObject _smallBullet;
             Vector3 _offset = new Vector3(-.3f, 0, .5f);
             while (!isDead)
             {
                 yield return new WaitForSeconds(shootDelay);
+                animator.SetTrigger("Aim");
                 //if (enemyList.Count != 0)
                 //{
                 //    if (targetEnemy.isDead)
