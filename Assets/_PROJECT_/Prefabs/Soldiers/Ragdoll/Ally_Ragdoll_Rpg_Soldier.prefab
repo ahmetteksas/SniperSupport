@@ -2051,7 +2051,7 @@ MonoBehaviour:
   teamIndex: 0
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
-  bulletSpawnPos: {fileID: 0}
+  bulletSpawnPos: {fileID: 593379317696935253}
   bulletForce: 2000
   deathForce: 0
   setPositionDelay: 1.5
@@ -2059,6 +2059,7 @@ MonoBehaviour:
   healField: {fileID: 5068706072690064567}
   healFieldDelay: 2
   rpgSoldier: 1
+  smoke: {fileID: 8924499965677621548}
 --- !u!195 &1269930038897582089
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2177,7 +2178,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 593525404615665055}
-  - component: {fileID: 6934340857152956174}
   - component: {fileID: 6898183054119145869}
   - component: {fileID: 3832698894348273385}
   - component: {fileID: 4144168632119101323}
@@ -2207,19 +2207,6 @@ Transform:
   m_Father: {fileID: 586565526061021379}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 80.8598, y: 270, z: 0}
---- !u!135 &6934340857152956174
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588761263214369365}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.1537969
-  m_Center: {x: -7.143297e-16, y: 0.15379691, z: 0.0000000045835056}
 --- !u!54 &6898183054119145869
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2292,10 +2279,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.23
+  m_Radius: 0.5
   m_Height: 0.67
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.19, z: 0}
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.47, z: 0}
 --- !u!1 &588826482566456837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,6 +4195,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+--- !u!1 &8924499965677621548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5494691474644357679, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+  m_PrefabInstance: {fileID: 4006833298725143299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8924499965677863348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}

@@ -132,6 +132,9 @@ MonoBehaviour:
   damage: 0.05
   impactParticle: {fileID: 3338130866805764321}
   playerBullet: 0
+  headShot: {fileID: 0}
+  hsDelay: 1
+  trail: {fileID: 7383793995168117673}
 --- !u!114 &1334796694613894917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,8 +340,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun_Trail
       objectReference: {fileID: 0}
+    - target: {fileID: 4737467341440430879, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+--- !u!1 &7383793995168117673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4737467341440430879, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+  m_PrefabInstance: {fileID: 2866080428345409718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7381740969788532531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4735370887497983877, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}

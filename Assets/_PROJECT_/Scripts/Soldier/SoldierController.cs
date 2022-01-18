@@ -25,7 +25,7 @@ public class SoldierController : MonoBehaviour
 
     public float bulletForce;
     public float deathForce = 1f;
-    private float shootDelay = 1.05f;
+    private float shootDelay = 1.5f;
 
     public float setPositionDelay = 2f;
 
@@ -45,7 +45,6 @@ public class SoldierController : MonoBehaviour
 
     private NavMeshAgent nMesh;
     private Collider colBase;
-
 
     private void Awake()
     {
@@ -72,6 +71,7 @@ public class SoldierController : MonoBehaviour
         }
         StartCoroutine(AutoShoot());
     }
+    
     public void StartGame()
     {
         nMesh = GetComponent<NavMeshAgent>();
@@ -191,7 +191,7 @@ public class SoldierController : MonoBehaviour
                 //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
                 if (targetEnemy)
                 {
-                    _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f);
+                    _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f*Time.deltaTime);
                 }
             }
         }

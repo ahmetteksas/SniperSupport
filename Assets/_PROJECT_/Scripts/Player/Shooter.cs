@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
-    [SerializeField] float shootDelay = 1f;
+    [SerializeField] float shootDelay = 2f;
     private float shootDelayAi = 1f;
     private float shootTime = 0f;
     int selectedBulletIndex;

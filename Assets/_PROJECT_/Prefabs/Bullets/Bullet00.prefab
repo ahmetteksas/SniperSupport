@@ -134,6 +134,7 @@ MonoBehaviour:
   playerBullet: 0
   headShot: {fileID: 0}
   hsDelay: 1
+  trail: {fileID: 7755148130624501948}
 --- !u!114 &1334796694613894917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,10 +280,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4737467341440430879, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4861756617416387053, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4861763960839940265, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4861763960839940265, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4861847462759640767, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862044777467848519, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+      propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+--- !u!1 &7755148130624501948 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4737467341440430879, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+  m_PrefabInstance: {fileID: 3035724462377552803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7752495869277072422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4735370887497983877, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}

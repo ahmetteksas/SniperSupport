@@ -1050,6 +1050,7 @@ MonoBehaviour:
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 0
+  smoke: {fileID: 8706765475868155769}
 --- !u!114 &4952003292055125348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,7 +1169,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 1.56
+  m_Height: 1.4
   m_Direction: 1
   m_Center: {x: 0, y: 0.71, z: 0}
 --- !u!1 &7415492921160617122
@@ -2265,9 +2266,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 50
-  m_Height: 58.75
+  m_Height: 75.15
   m_Direction: 0
-  m_Center: {x: 0, y: 14, z: 0}
+  m_Center: {x: 0, y: 35.2, z: 8.64}
 --- !u!1 &7415788627010775118
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4090,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletExplosionFire (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494691474644357679, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4135,6 +4140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+--- !u!1 &8706765475868155769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5494691474644357679, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+  m_PrefabInstance: {fileID: 3789134606646299990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8706765475868430305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}

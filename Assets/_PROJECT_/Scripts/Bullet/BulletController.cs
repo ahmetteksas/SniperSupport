@@ -9,9 +9,26 @@ public class BulletController : MonoBehaviour
     public bool playerBullet;
     public GameObject headShot;
     public float hsDelay = 1f;
+    public GameObject trail;
+
     void Start()
     {
         StartCoroutine(DestroyObject());
+    }
+    private void OnEnable()
+    {
+        if (trail)
+        {
+            TrailOpen();
+        }
+    }
+
+    public void TrailOpen()
+    {
+        if (trail)
+        {
+            trail.SetActive(true);
+        }
     }
     private void OnCollisionEnter(Collision other)
     {
