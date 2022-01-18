@@ -119,7 +119,7 @@ public class SoldierController : MonoBehaviour
             isDead = true;
             if (!animStart)
             {
-                StartCoroutine(DeathEvent());
+                DeathEvent();
                 animStart = true;
             }
         }
@@ -158,14 +158,7 @@ public class SoldierController : MonoBehaviour
             while (!isDead)
             {
                 yield return new WaitForSeconds(shootDelay);
-                //if (enemyList.Count != 0)
-                //{
-                //    if (targetEnemy.isDead)
-                //    {
-                //        SelectTarget();
-                //        yield return new WaitForSeconds(lookAtDelay);
-                //    }
-                //}
+
                 if (teamIndex == 0)
                 {
                     if (!rpgSoldier)
@@ -199,13 +192,8 @@ public class SoldierController : MonoBehaviour
         }
     }
 
-    IEnumerator DeathEvent()
+    void DeathEvent()
     {
-        //if (animator)
-        //{
-        //    animator.SetTrigger("Death");
-        //}
-        //isDead = true;
         colBase.enabled = false;
         nMesh.enabled = false;
         animator.enabled = false;
@@ -216,21 +204,29 @@ public class SoldierController : MonoBehaviour
             _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.zero;
         }
+
         GetComponent<Rigidbody>().isKinematic = true;
+
         foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
         {
             _rigidbody.AddForce(-transform.forward * deathForce);
         }
 
-        yield return new WaitForSeconds(2f);
-
+        StartCoroutine(FinishGameEnum());
         //gameObject.SetActive(false);
-        Debug.Log(enemyList.Where(x => !x.isDead).Count());
+
+    }
+
+    IEnumerator FinishGameEnum()
+    {
+        Debug.Log(allyList.Where(x => !x.isDead).Count());
+        yield return new WaitForSeconds(2f);
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
             LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.retryLevelButton != null)
             {
+                Debug.Log("win the game");
                 CanvasManager.instance.nextLevelButton.SetActive(true);
             }
             //nextLevel.SetActive(true);
@@ -240,6 +236,7 @@ public class SoldierController : MonoBehaviour
             LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.nextLevelButton != null)
             {
+                Debug.Log("lost the game");
                 CanvasManager.instance.retryLevelButton.SetActive(true);
             }
             //retryLevel.SetActive(true);
