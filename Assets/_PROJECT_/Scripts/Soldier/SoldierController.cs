@@ -189,12 +189,12 @@ public class SoldierController : MonoBehaviour
                         _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position - _offset, Quaternion.identity);
                     }
                 }
-                //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
                 if (targetEnemy)
                 {
-                    _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
+                    _smallBullet.transform.LookAt(targetTransform);
+                    _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+                    //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
                 }
-                //_smallBullet.transform.LookAt(targetTransform);
             }
         }
     }
