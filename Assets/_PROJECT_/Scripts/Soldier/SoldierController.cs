@@ -127,7 +127,7 @@ public class SoldierController : MonoBehaviour
 
     IEnumerator SelectTargetV2()
     {
-        while (true)
+        while (!isDead)
         {
             targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
             if (targetEnemy)
@@ -205,7 +205,7 @@ public class SoldierController : MonoBehaviour
         //{
         //    animator.SetTrigger("Death");
         //}
-        isDead = true;
+        //isDead = true;
         colBase.enabled = false;
         nMesh.enabled = false;
         animator.enabled = false;
