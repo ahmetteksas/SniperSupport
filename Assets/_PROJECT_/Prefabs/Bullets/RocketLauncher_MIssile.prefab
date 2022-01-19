@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4960460816813168464}
   - component: {fileID: 4927065137582652760}
   - component: {fileID: -2329678766389694631}
+  - component: {fileID: 3647575109372550}
   m_Layer: 0
   m_Name: RocketLauncher_MIssile
   m_TagString: Bullet
@@ -112,7 +113,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.5
-  impact: {fileID: 2111895709273610040}
+  impactParticle: {fileID: 0}
+  playerBullet: 0
+  headShot: {fileID: 0}
+  hsDelay: 1
+  trail: {fileID: 0}
+--- !u!54 &3647575109372550
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936442642250779496}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &3643704339510423998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,11 +195,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
---- !u!1 &2111895709273610040 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3449753191246046854, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
-  m_PrefabInstance: {fileID: 3643704339510423998}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2115496551374097126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3443786060510198616, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
@@ -191,9 +207,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4942039226129949646}
     m_Modifications:
+    - target: {fileID: 962816370351343908, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: lengthInSec
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 962816370351343908, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 962816370351343908, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 962816370351343908, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962816370351343908, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 962816370351343908, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1120683997840255420, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120683997840255420, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120683997840255420, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120683997840255420, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1120683997840255420, guid: f99d9de6dbc72e54c8dc7286132df146, type: 3}
       propertyPath: m_LocalPosition.x
