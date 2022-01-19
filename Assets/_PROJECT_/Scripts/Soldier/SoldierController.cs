@@ -154,7 +154,17 @@ public class SoldierController : MonoBehaviour
             yield return new WaitForSeconds(setPositionDelay);
             animator.SetTrigger("Aim");
             GameObject _smallBullet;
-            Vector3 _offset = new Vector3(-.3f, 0, .5f);
+            //Vector3 _offset = new Vector3(-.3f, 0, .5f);
+            //Vector3 _offset = new Vector3(0f, 0f, 0f);
+            Vector3 _offset = new Vector3();
+            if (teamIndex == 0)
+            {
+                _offset = transform.forward;
+            }
+            if (teamIndex == 1)
+            {
+                _offset = new Vector3(-3f,0f,2f);
+            }
             while (!isDead)
             {
                 yield return new WaitForSeconds(shootDelay);
@@ -191,8 +201,9 @@ public class SoldierController : MonoBehaviour
                 }
                 if (targetEnemy)
                 {
-                    _smallBullet.transform.LookAt(targetTransform);
+                    _smallBullet.transform.LookAt(targetEnemy.transform.position);
                     _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * bulletForce);
+                    //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((/*transform.forward-*/Vector3.one+ targetEnemy.transform.forward) * bulletForce);
                     //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
                 }
             }
@@ -231,7 +242,7 @@ public class SoldierController : MonoBehaviour
             LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.retryLevelButton != null)
             {
-                CanvasManager.instance.nextLevelButton.SetActive(true);
+                CanvasManager.instance.retryLevelButton.SetActive(true);
             }
             //nextLevel.SetActive(true);
         }
@@ -240,7 +251,7 @@ public class SoldierController : MonoBehaviour
             LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.nextLevelButton != null)
             {
-                CanvasManager.instance.retryLevelButton.SetActive(true);
+                CanvasManager.instance.nextLevelButton.SetActive(true);
             }
             //retryLevel.SetActive(true);
         }

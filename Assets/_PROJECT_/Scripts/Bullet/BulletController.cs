@@ -13,7 +13,7 @@ public class BulletController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DestroyObject());
+        //StartCoroutine(DestroyObject());
     }
     private void OnEnable()
     {
@@ -40,7 +40,7 @@ public class BulletController : MonoBehaviour
 
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
-            damage *= 2;// hard to work.
+            damage = 2;// hard to work.
             Debug.Log("HeadShot !");
             if (headShot)
             {
@@ -48,6 +48,7 @@ public class BulletController : MonoBehaviour
                 //StartCoroutine(CloseHs());
             }
         }
+        gameObject.SetActive(false);
     }
     //IEnumerator CloseHs()
     //{
@@ -55,9 +56,9 @@ public class BulletController : MonoBehaviour
     //    headShot.SetActive(false);
     //}
 
-    IEnumerator DestroyObject()
-    {
-        yield return new WaitForSeconds(1.5f);
-        gameObject.SetActive(false);
-    }
+    //IEnumerator DestroyObject()
+    //{
+    //    yield return new WaitForSeconds(1.5f);
+    //    gameObject.SetActive(false);
+    //}
 }

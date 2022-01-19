@@ -10,9 +10,10 @@ public class VehicleHit : MonoBehaviour
     public GameObject explodeCar;
     private bool explode;
     public GameObject destroyedState;
+    public GameObject childSoldier;
     void Start()
     {
-        
+        //childSoldier = GameObject.GetComponentInChildren<SoldierController>();
     }
 
     // Update is called once per frame
@@ -24,12 +25,29 @@ public class VehicleHit : MonoBehaviour
             if (!explode)
             {
                 explode = true;
-                StartCoroutine(ExplodeCar());
+                //StartCoroutine(ExplodeCar());
             }
+        }
+    }
+    void ExplosionDamage(Vector3 center, float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.TryGetComponent(out SoldierController soldierController))
+            {
+                soldierController.healthBar.fillAmount -= .2f;
+            }
+            //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
+            StartCoroutine(ExplodeCar());
         }
     }
     IEnumerator ExplodeCar()
     {
+        if (childSoldier)
+        {
+            childSoldier.transform.parent = null;
+        }
         explodeCar.SetActive(true);
         destroyedState.SetActive(true);
         destroyedState.transform.parent = null;
@@ -40,6 +58,7 @@ public class VehicleHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            ExplosionDamage(transform.position, 20f);
             health -= 50f;
         }
     }
