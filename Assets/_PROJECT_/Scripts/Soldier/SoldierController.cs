@@ -227,7 +227,7 @@ public class SoldierController : MonoBehaviour
             if (CanvasManager.instance.retryLevelButton != null)
             {
                 Debug.Log("win the game");
-                CanvasManager.instance.nextLevelButton.SetActive(true);
+                CanvasManager.instance.retryLevelButton.SetActive(true);
             }
             //nextLevel.SetActive(true);
         }
@@ -237,7 +237,7 @@ public class SoldierController : MonoBehaviour
             if (CanvasManager.instance.nextLevelButton != null)
             {
                 Debug.Log("lost the game");
-                CanvasManager.instance.retryLevelButton.SetActive(true);
+                CanvasManager.instance.nextLevelButton.SetActive(true);
             }
             //retryLevel.SetActive(true);
         }
