@@ -19,17 +19,20 @@ public class BulletController : MonoBehaviour
     {
         if (trail)
         {
-            TrailOpen();
-        }
-    }
-
-    public void TrailOpen()
-    {
-        if (trail)
-        {
             trail.SetActive(true);
         }
     }
+    private void OnDisable()
+    {
+        trail.SetActive(false);
+    }
+    //public void TrailOpen()
+    //{
+    //    if (trail)
+    //    {
+    //        trail.SetActive(true);
+    //    }
+    //}
     private void OnCollisionEnter(Collision other)
     {
         if (impactParticle)
