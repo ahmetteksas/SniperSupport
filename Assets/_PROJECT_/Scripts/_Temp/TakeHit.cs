@@ -9,7 +9,7 @@ public class TakeHit : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("BulletPlayer"))
         {
             ExplosionDamage(transform.position,2f);
             //explosionBarrel.SetActive(true);

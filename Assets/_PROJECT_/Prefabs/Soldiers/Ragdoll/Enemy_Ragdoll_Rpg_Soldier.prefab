@@ -833,10 +833,10 @@ GameObject:
   - component: {fileID: 7287796310100348586}
   - component: {fileID: 502287278128699290}
   - component: {fileID: 1830481057062356032}
-  - component: {fileID: 1586095552480633117}
   - component: {fileID: 388147362194740825}
   - component: {fileID: -6156693500448909832}
   - component: {fileID: -7193882601662027477}
+  - component: {fileID: 7384823042198539878}
   m_Layer: 8
   m_Name: Enemy_Ragdoll_Rpg_Soldier
   m_TagString: Enemy
@@ -897,7 +897,7 @@ MonoBehaviour:
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
   bulletSpawnPos: {fileID: 2115466161886786906}
-  bulletForce: 2000
+  bulletForce: 2500
   deathForce: 0
   setPositionDelay: 1.5
   healthBar: {fileID: 6646204510557122039}
@@ -960,28 +960,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!195 &1586095552480633117
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265717459677900807}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!54 &388147362194740825
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1022,9 +1000,31 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 1.4
+  m_Height: 1.1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.71, z: 0}
+  m_Center: {x: 0, y: 0.54, z: 0}
+--- !u!195 &7384823042198539878
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265717459677900807}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &3265766318806082925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,10 +2344,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 50
+  m_Radius: 55
   m_Height: 75.15
   m_Direction: 0
-  m_Center: {x: 0, y: 38.4, z: 8.64}
+  m_Center: {x: 0, y: 20.86, z: 8.64}
 --- !u!1 &3266157780037605413
 GameObject:
   m_ObjectHideFlags: 0

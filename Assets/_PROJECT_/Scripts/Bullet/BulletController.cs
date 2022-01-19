@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletController : MonoBehaviour
 {
@@ -24,7 +25,10 @@ public class BulletController : MonoBehaviour
     }
     private void OnDisable()
     {
-        trail.SetActive(false);
+        if (trail)
+        {
+            trail.SetActive(false);
+        }
     }
     //public void TrailOpen()
     //{
@@ -43,7 +47,8 @@ public class BulletController : MonoBehaviour
 
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
-            damage = 2;// hard to work.
+            damage= 2f;
+            //damage = 1;// hard to work.
             Debug.Log("HeadShot !");
             if (headShot)
             {

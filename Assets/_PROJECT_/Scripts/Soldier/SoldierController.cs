@@ -74,8 +74,11 @@ public class SoldierController : MonoBehaviour
 
     public void StartGame()
     {
-        nMesh = GetComponent<NavMeshAgent>();
-        if (nMesh)
+        if (nMesh != null)
+        {
+            nMesh = GetComponent<NavMeshAgent>();
+        }
+        if (nMesh != null)
         {
             nMesh.destination = targetTransform.position;
         }
@@ -83,7 +86,7 @@ public class SoldierController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletPlayer"))
         {
             healthBar.fillAmount -= other.gameObject.GetComponent<BulletController>().damage;
             TakeHit();
@@ -114,7 +117,7 @@ public class SoldierController : MonoBehaviour
     }
     void TakeHit()
     {
-        if (healthBar.fillAmount == 0)
+        if (healthBar.fillAmount == 0 || healthBar.fillAmount < 0)
         {
             isDead = true;
             if (!animStart)
@@ -195,7 +198,10 @@ public class SoldierController : MonoBehaviour
     void DeathEvent()
     {
         colBase.enabled = false;
-        nMesh.enabled = false;
+        if (nMesh != null)
+        {
+            nMesh.enabled = false;
+        }
         animator.enabled = false;
         explosion.Stop();
         GetComponentInChildren<Canvas>().enabled = false;
@@ -214,13 +220,13 @@ public class SoldierController : MonoBehaviour
 
         StartCoroutine(FinishGameEnum());
         //gameObject.SetActive(false);
-
     }
 
     IEnumerator FinishGameEnum()
     {
         Debug.Log(allyList.Where(x => !x.isDead).Count());
         yield return new WaitForSeconds(2f);
+        //gameObject.SetActive(false);
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
             LevelManager.instance.isGameRunning = false;

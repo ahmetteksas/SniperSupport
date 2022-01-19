@@ -1101,12 +1101,12 @@ GameObject:
   - component: {fileID: 2910368391536393580}
   - component: {fileID: 2971857355263720220}
   - component: {fileID: 8892656088284818610}
-  - component: {fileID: 1509445165285477997}
   - component: {fileID: 1804103856335175931}
   - component: {fileID: 38592248296252183}
   - component: {fileID: -6358481395805050699}
   - component: {fileID: -3240937981483206833}
   - component: {fileID: -8087222157009426021}
+  - component: {fileID: 3559374120860314261}
   m_Layer: 8
   m_Name: Ally_Ragdoll_MachineGun_Soldier
   m_TagString: Ally
@@ -1167,35 +1167,13 @@ MonoBehaviour:
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
   bulletSpawnPos: {fileID: 2909909040521421366}
-  bulletForce: 2000
+  bulletForce: 2500
   deathForce: 0
   setPositionDelay: 1.5
   healthBar: {fileID: 5576825634892066742}
   healField: {fileID: 6715876854242296578}
   healFieldDelay: 2
   rpgSoldier: 0
---- !u!195 &1509445165285477997
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2912197830642062966}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &1804103856335175931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,6 +1275,28 @@ CapsuleCollider:
   m_Height: 0.67
   m_Direction: 0
   m_Center: {x: 0, y: 0.19, z: 0}
+--- !u!195 &3559374120860314261
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2912197830642062966}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2912221929992643114
 GameObject:
   m_ObjectHideFlags: 0

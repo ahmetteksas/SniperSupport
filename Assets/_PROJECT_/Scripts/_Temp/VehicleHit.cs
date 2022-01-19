@@ -36,7 +36,8 @@ public class VehicleHit : MonoBehaviour
         {
             if (hitCollider.TryGetComponent(out SoldierController soldierController))
             {
-                soldierController.healthBar.fillAmount -= .2f;
+                soldierController.healthBar.fillAmount -= 1f;
+                soldierController.gameObject.SetActive(false);
             }
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
             StartCoroutine(ExplodeCar());
@@ -56,9 +57,9 @@ public class VehicleHit : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("BulletPlayer"))
         {
-            ExplosionDamage(transform.position, 20f);
+            ExplosionDamage(transform.position, 5f);
             health -= 50f;
         }
     }

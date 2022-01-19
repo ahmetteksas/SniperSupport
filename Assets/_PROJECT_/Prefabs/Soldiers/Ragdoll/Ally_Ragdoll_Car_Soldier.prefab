@@ -3600,10 +3600,10 @@ GameObject:
   - component: {fileID: 9154848930034852173}
   - component: {fileID: 1752854228135432224}
   - component: {fileID: 4278551127461996575}
-  - component: {fileID: 3757555439028156371}
   - component: {fileID: -6159383418022635657}
   - component: {fileID: 2758383971058986107}
   - component: {fileID: -2317024679096961660}
+  - component: {fileID: -6939336883280578559}
   m_Layer: 8
   m_Name: Ally_Ragdoll_Car_Soldier
   m_TagString: Ally
@@ -3667,7 +3667,7 @@ MonoBehaviour:
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
   bulletSpawnPos: {fileID: 347433866619541923}
-  bulletForce: 2000
+  bulletForce: 2500
   deathForce: 0
   setPositionDelay: 1.5
   healthBar: {fileID: 1799516889962003253}
@@ -3718,28 +3718,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!195 &3757555439028156371
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9105917760759666869}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!54 &-6159383418022635657
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3783,6 +3761,28 @@ CapsuleCollider:
   m_Height: 1.56
   m_Direction: 1
   m_Center: {x: 0, y: 0.71, z: 0}
+--- !u!195 &-6939336883280578559
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105917760759666869}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &9105996337634802743
 GameObject:
   m_ObjectHideFlags: 0
