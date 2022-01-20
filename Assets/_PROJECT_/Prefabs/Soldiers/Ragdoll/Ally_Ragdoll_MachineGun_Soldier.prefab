@@ -619,10 +619,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Height: 0.67
   m_Direction: 1
-  m_Center: {x: 0, y: 0.38, z: 0}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1 &2911976481672778498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1105,6 @@ GameObject:
   - component: {fileID: 38592248296252183}
   - component: {fileID: -6358481395805050699}
   - component: {fileID: -3240937981483206833}
-  - component: {fileID: -8087222157009426021}
   - component: {fileID: 3559374120860314261}
   m_Layer: 8
   m_Name: Ally_Ragdoll_MachineGun_Soldier
@@ -1166,6 +1165,7 @@ MonoBehaviour:
   teamIndex: 0
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
+  isDead: 0
   bulletSpawnPos: {fileID: 2909909040521421366}
   bulletForce: 2500
   deathForce: 0
@@ -1174,6 +1174,7 @@ MonoBehaviour:
   healField: {fileID: 6715876854242296578}
   healFieldDelay: 2
   rpgSoldier: 0
+  shootEffect: {fileID: 613416958447162990}
 --- !u!114 &1804103856335175931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,24 +1258,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Height: 1.56
   m_Direction: 1
   m_Center: {x: 0, y: 0.71, z: 0}
---- !u!136 &-8087222157009426021
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2912197830642062966}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.23
-  m_Height: 0.67
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.19, z: 0}
 --- !u!195 &3559374120860314261
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4218,11 +4205,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
---- !u!224 &2180870192038460287 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1311710655311513606, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
-  m_PrefabInstance: {fileID: 896251538677216121}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5576825634892066742 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4689651669590875343, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
@@ -4234,6 +4216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2180870192038460287 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1311710655311513606, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
+  m_PrefabInstance: {fileID: 896251538677216121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3432382660784931239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4394,6 +4381,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
   m_PrefabInstance: {fileID: 4954623360036642025}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &613416958447162990 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+  m_PrefabInstance: {fileID: 4954623360036642025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5283099453182659577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4471,13 +4463,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81d17de4e57abb47b3fbbacea60d17a, type: 3}
---- !u!1 &6715876854242296578 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1468948206877542651, guid: b81d17de4e57abb47b3fbbacea60d17a, type: 3}
-  m_PrefabInstance: {fileID: 5283099453182659577}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6717969433981622106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1471079957792513187, guid: b81d17de4e57abb47b3fbbacea60d17a, type: 3}
+  m_PrefabInstance: {fileID: 5283099453182659577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6715876854242296578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1468948206877542651, guid: b81d17de4e57abb47b3fbbacea60d17a, type: 3}
   m_PrefabInstance: {fileID: 5283099453182659577}
   m_PrefabAsset: {fileID: 0}

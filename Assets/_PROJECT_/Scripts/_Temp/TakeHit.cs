@@ -6,6 +6,8 @@ public class TakeHit : MonoBehaviour
 {
     public GameObject explosionBarrel;
     public GameObject vehicle;
+    public GameObject explosionOtherBarrel;
+    public GameObject otherBarrel;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -38,10 +40,11 @@ public class TakeHit : MonoBehaviour
     IEnumerator ExplosionStart()
     {
         explosionBarrel.SetActive(true);
+        explosionOtherBarrel.SetActive(true);
         yield return new WaitForSeconds(2f);
-        vehicle.SetActive(false);
+        //vehicle.SetActive(false);
         gameObject.SetActive(false);
-        
+        otherBarrel.SetActive(false);
     }
     void Update()
     {

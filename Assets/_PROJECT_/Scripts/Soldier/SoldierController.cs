@@ -19,7 +19,7 @@ public class SoldierController : MonoBehaviour
 
     [SerializeField] SoldierController targetEnemy;
 
-    bool isDead;
+    public bool isDead;
 
     public Transform bulletSpawnPos;
 
@@ -30,6 +30,7 @@ public class SoldierController : MonoBehaviour
     public float setPositionDelay = 2f;
 
     public Image healthBar;
+    private Canvas canvas;
 
     private Animator animator;
     private bool animWalk;
@@ -46,10 +47,12 @@ public class SoldierController : MonoBehaviour
     private NavMeshAgent nMesh;
     private Collider colBase;
 
+    public ParticleSystem shootEffect;
+
     private void Awake()
     {
-        explosion = GetComponentInChildren<ParticleSystem>();
-        explosion.Stop();
+        //explosion = GetComponentInChildren<ParticleSystem>();
+        //explosion.Stop();
     }
     public void AwakeGame()
     {
@@ -70,19 +73,24 @@ public class SoldierController : MonoBehaviour
             animWalk = true;
         }
         StartCoroutine(AutoShoot());
+        canvas = GetComponentInChildren<Canvas>();
     }
 
     public void StartGame()
     {
-        if (nMesh != null)
-        {
-            nMesh = GetComponent<NavMeshAgent>();
-        }
-        if (nMesh != null)
-        {
-            nMesh.destination = targetTransform.position;
-        }
+        nMesh = GetComponent<NavMeshAgent>();
+        nMesh.destination = targetTransform.position;
         colBase = GetComponent<Collider>();
+        StartCoroutine(CanvasInd());
+    }
+    IEnumerator CanvasInd()
+    {
+        yield return new WaitForSeconds(3f);
+        while (true)
+        {
+            canvas.transform.LookAt(Camera.main.transform);
+            yield return null;
+        }
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -96,6 +104,10 @@ public class SoldierController : MonoBehaviour
         {
             StartCoroutine(HealField());
             healthBar.fillAmount += .2f;
+        }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            TakeHit();
         }
     }
     IEnumerator HealField()
@@ -115,7 +127,7 @@ public class SoldierController : MonoBehaviour
     {
         //Debug.Log(enemyList.Count);
     }
-    void TakeHit()
+    public void TakeHit()
     {
         if (healthBar.fillAmount == 0 || healthBar.fillAmount < 0)
         {
@@ -138,12 +150,16 @@ public class SoldierController : MonoBehaviour
                 transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
                 bulletSpawnPos.LookAt(targetEnemy.transform);
             }
+            else
+            {
+                LevelManager.instance.isGameRunning = false;
+            }
             yield return null;
         }
     }
     public void OpenShoot()
     {
-        explosion.Play();
+        //explosion.Play();
     }
     //void SelectTarget()
     //{
@@ -155,13 +171,15 @@ public class SoldierController : MonoBehaviour
         if (enemyList.Count != 0 || allyList.Count != 0)
         {
             yield return new WaitForSeconds(setPositionDelay);
-            animator.SetTrigger("Aim");
+            
             GameObject _smallBullet;
             Vector3 _offset = new Vector3(-.3f, 0, .5f);
             while (!isDead)
             {
+                shootEffect.Play();
+                animator.SetTrigger("Aim");
                 yield return new WaitForSeconds(shootDelay);
-
+                shootEffect.Stop();
                 if (teamIndex == 0)
                 {
                     if (!rpgSoldier)
@@ -203,7 +221,7 @@ public class SoldierController : MonoBehaviour
             nMesh.enabled = false;
         }
         animator.enabled = false;
-        explosion.Stop();
+        //explosion.Stop();
         GetComponentInChildren<Canvas>().enabled = false;
         foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
         {
@@ -225,25 +243,28 @@ public class SoldierController : MonoBehaviour
     IEnumerator FinishGameEnum()
     {
         Debug.Log(allyList.Where(x => !x.isDead).Count());
+
         yield return new WaitForSeconds(2f);
         //gameObject.SetActive(false);
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
-            LevelManager.instance.isGameRunning = false;
+            //LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.retryLevelButton != null)
             {
                 Debug.Log("win the game");
                 CanvasManager.instance.retryLevelButton.SetActive(true);
+                Time.timeScale = 0;
             }
             //nextLevel.SetActive(true);
         }
         if (allyList.Where(x => !x.isDead).Count() == 0)
         {
-            LevelManager.instance.isGameRunning = false;
+            //LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.nextLevelButton != null)
             {
                 Debug.Log("lost the game");
                 CanvasManager.instance.nextLevelButton.SetActive(true);
+                Time.timeScale = 0;
             }
             //retryLevel.SetActive(true);
         }

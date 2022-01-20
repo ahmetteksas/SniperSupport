@@ -896,6 +896,7 @@ MonoBehaviour:
   teamIndex: 1
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
+  isDead: 0
   bulletSpawnPos: {fileID: 2115466161886786906}
   bulletForce: 2500
   deathForce: 0
@@ -904,6 +905,7 @@ MonoBehaviour:
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 1
+  shootEffect: {fileID: 4728342601684496538}
 --- !u!114 &502287278128699290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,9 +1002,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 1.1
+  m_Height: 1.4
   m_Direction: 1
-  m_Center: {x: 0, y: 0.54, z: 0}
+  m_Center: {x: 0, y: 0.66, z: 0}
 --- !u!195 &7384823042198539878
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2287,7 +2289,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!144 &7891609420191839325
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2344,10 +2346,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 55
-  m_Height: 75.15
-  m_Direction: 0
-  m_Center: {x: 0, y: 20.86, z: 8.64}
+  m_Radius: 70
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 50, z: 0}
 --- !u!1 &3266157780037605413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2786,6 +2788,11 @@ PrefabInstance:
 --- !u!4 &4728342601670375594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+  m_PrefabInstance: {fileID: 999625686033873437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4728342601684496538 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
   m_PrefabInstance: {fileID: 999625686033873437}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1718051933339053100

@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
         {
             yellowFog.SetActive(true);
         }
-        level = PlayerPrefs.GetInt("Level");
+        level = PlayerPrefs.GetInt("LEVEL");
         SetLevel();
         //isGameRunning = true;
     }
@@ -46,6 +46,7 @@ public class LevelManager : MonoBehaviour
     public void GameStarted()
     {
         isGameRunning = true;
+        Time.timeScale = 1;
     }
 
     public void SetLevel()

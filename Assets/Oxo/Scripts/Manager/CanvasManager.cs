@@ -50,9 +50,10 @@ public class CanvasManager : MonoBehaviour
     public void NextLevel()
     {
         LevelManager.instance.level++;
-        PlayerPrefs.SetInt("Level", LevelManager.instance.level);
+        PlayerPrefs.SetInt("LEVEL", LevelManager.instance.level);
 
         SceneManager.LoadScene(0);
+        
         //LevelManager.instance.SetLevel();
     }
     //Calling UI Event (Restart Level Button (Opening Level Fail))

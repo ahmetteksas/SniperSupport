@@ -33,10 +33,12 @@ public class Shooter : MonoBehaviour
     public GameObject sniper;
     public Transform firstSniperPos;
     public Transform secondSniperPos;
+    //private Animator animBase;
 
 
     void Start()
     {
+        //animBase = GetComponent<Animator>();
         //shootDelay = shootTime - Time.deltaTime;
     }
 
@@ -100,7 +102,7 @@ public class Shooter : MonoBehaviour
         Camera.main.DOFieldOfView(80, .1f);
 
         Animator _anim = GetComponent<Animator>();
-        _anim.SetTrigger("Shoot");
+        _anim.SetTrigger("Reload");
         scopeZoomOut = null;
     }
     //public bool Delay()

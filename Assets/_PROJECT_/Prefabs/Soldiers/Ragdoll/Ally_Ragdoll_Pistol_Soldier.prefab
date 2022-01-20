@@ -888,6 +888,7 @@ MonoBehaviour:
   teamIndex: 0
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
+  isDead: 0
   bulletSpawnPos: {fileID: 1217397698238662833}
   bulletForce: 2500
   deathForce: 0
@@ -896,6 +897,7 @@ MonoBehaviour:
   healField: {fileID: 3048256206166064517}
   healFieldDelay: 2
   rpgSoldier: 0
+  shootEffect: {fileID: 7684816725487819403}
 --- !u!114 &8499998402091560734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +981,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Height: 1.56
   m_Direction: 1
   m_Center: {x: 0, y: 0.71, z: 0}
@@ -1802,10 +1804,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Height: 0.67
   m_Direction: 1
-  m_Center: {x: 0, y: 0.44, z: 0}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1 &1220028228664244613
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,6 +4088,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5494691474644599479, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
   m_PrefabInstance: {fileID: 2802616451058962444}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &7684816725487819403 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5494691474662984327, guid: 63388377743d9574cb57ded49fc1c1e8, type: 3}
+  m_PrefabInstance: {fileID: 2802616451058962444}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4480892796710581630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4282,11 +4289,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
---- !u!224 &7218882465070831048 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1311710655311513606, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
-  m_PrefabInstance: {fileID: 8510324172950855118}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3967182978398798081 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4689651669590875343, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
@@ -4298,3 +4300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &7218882465070831048 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1311710655311513606, guid: 7058e81f12c58bb429f3afb702c2e1b1, type: 3}
+  m_PrefabInstance: {fileID: 8510324172950855118}
+  m_PrefabAsset: {fileID: 0}

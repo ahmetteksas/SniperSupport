@@ -10,7 +10,8 @@ public class VehicleHit : MonoBehaviour
     public GameObject explodeCar;
     private bool explode;
     public GameObject destroyedState;
-    public GameObject childSoldier;
+    private GameObject childSoldier;
+    public float radius;
     void Start()
     {
         //childSoldier = GameObject.GetComponentInChildren<SoldierController>();
@@ -29,30 +30,42 @@ public class VehicleHit : MonoBehaviour
             }
         }
     }
-    void ExplosionDamage(Vector3 center, float radius)
+    void ExplosionDamage(Vector3 center,float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.TryGetComponent(out SoldierController soldierController))
             {
-                soldierController.healthBar.fillAmount -= 1f;
-                soldierController.gameObject.SetActive(false);
+                childSoldier = soldierController.gameObject;
+                soldierController.TakeHit();
+                //soldierController.isDead = true;
+                soldierController.healthBar.fillAmount -= 1.0f;
+                //soldierController.healthBar.fillAmount -= .5f;
+                //soldierController.gameObject.SetActive(false);
+                StartCoroutine(DecreaseHealth(soldierController.healthBar));
+                StartCoroutine(ExplodeCar(soldierController.gameObject));
             }
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
-            StartCoroutine(ExplodeCar());
         }
     }
-    IEnumerator ExplodeCar()
+    IEnumerator DecreaseHealth(Image _im)
     {
-        if (childSoldier)
+        yield return new WaitForSeconds(.2f);
+        _im.fillAmount -= .4f;
+    }
+    IEnumerator ExplodeCar(GameObject _go)
+    {
+        yield return new WaitForSeconds(.4f);
+        if (_go)
         {
-            childSoldier.transform.parent = null;
+            _go.transform.parent = null;
         }
+        yield return new WaitForSeconds(.1f);
         explodeCar.SetActive(true);
         destroyedState.SetActive(true);
         destroyedState.transform.parent = null;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         gameObject.SetActive(false);
     }
     private void OnCollisionEnter(Collision other)

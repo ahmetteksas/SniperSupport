@@ -1679,6 +1679,7 @@ MonoBehaviour:
   teamIndex: 1
   lookAtDelay: 0.1
   targetEnemy: {fileID: 0}
+  isDead: 0
   bulletSpawnPos: {fileID: 449481025249793105}
   bulletForce: 2500
   deathForce: 0
@@ -1687,6 +1688,7 @@ MonoBehaviour:
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 0
+  shootEffect: {fileID: 876689432149341974}
 --- !u!114 &3503911396977324240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,9 +1785,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 1.1
+  m_Height: 1.4
   m_Direction: 1
-  m_Center: {x: 0, y: 0.54, z: 0}
+  m_Center: {x: 0, y: 0.66, z: 0}
 --- !u!195 &-7745803120974932052
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1793,7 +1795,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5058034611727487511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -2731,7 +2733,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!144 &7881679862562865414
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2788,10 +2790,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 55
-  m_Height: 75.15
-  m_Direction: 0
-  m_Center: {x: 0, y: 20.86, z: 8.64}
+  m_Radius: 70
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 50, z: 0}
 --- !u!1 &5058267034768293627
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,6 +4027,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5614337436282273088, guid: ab739b2be24e330429640812cb6b89f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5614337867717173694, guid: ab739b2be24e330429640812cb6b89f0, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -4330,5 +4336,10 @@ PrefabInstance:
 --- !u!4 &876689432134106918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7137923154952268604, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
+  m_PrefabInstance: {fileID: 8008630689623053338}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &876689432149341974 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7137923154967503628, guid: f2c145969a7540c4a8cff6c9b7f728b6, type: 3}
   m_PrefabInstance: {fileID: 8008630689623053338}
   m_PrefabAsset: {fileID: 0}

@@ -47,9 +47,10 @@ public class BulletController : MonoBehaviour
 
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
-            damage= 2f;
+            damage = 1f;
             //damage = 1;// hard to work.
             Debug.Log("HeadShot !");
+            Debug.Log(damage);
             if (headShot)
             {
                 headShot.SetActive(true);
