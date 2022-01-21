@@ -26,6 +26,7 @@ public class Shooter : MonoBehaviour
     public float scopeZoomOutDelay = .7f;
     public GameObject cross;
     public GameObject headShot;
+    
 
     //private bool scopeZ
     private Coroutine scopeZoomOut;

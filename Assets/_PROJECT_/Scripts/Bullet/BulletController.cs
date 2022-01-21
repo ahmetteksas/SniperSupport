@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
     public GameObject impactParticle;
     public bool playerBullet;
     public GameObject headShot;
+    public GameObject headShotImage;
     public float hsDelay = 1f;
     public GameObject trail;
 
@@ -54,7 +55,9 @@ public class BulletController : MonoBehaviour
             if (headShot)
             {
                 headShot.SetActive(true);
+                headShotImage.SetActive(true);
                 //StartCoroutine(CloseHs());
+                //StartCoroutine(DestroyObject());
             }
         }
         gameObject.SetActive(false);
@@ -62,6 +65,7 @@ public class BulletController : MonoBehaviour
     //IEnumerator CloseHs()
     //{
     //    yield return new WaitForSeconds(hsDelay);
+    //    headShotImage.SetActive(false);
     //    headShot.SetActive(false);
     //}
 
