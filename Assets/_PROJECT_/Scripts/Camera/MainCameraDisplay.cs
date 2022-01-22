@@ -12,7 +12,7 @@ public class MainCameraDisplay : MonoBehaviour
 
     private void Awake()
     {
-        defaultParent = transform.parent;
+        //defaultParent = transform.parent;
     }
     void Start()
     {
@@ -20,17 +20,17 @@ public class MainCameraDisplay : MonoBehaviour
         //transform.DOLocalRotate(Vector3.zero, movementTime);
     }
 
-    public void SetParentDefault()
-    {
-        transform.SetParent(null);
-        transform.SetParent(defaultParent);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
-    }
-    public void SetParentNull()
-    {
-        transform.SetParent(transform.parent.parent);
-        //transform.localPosition = Vector3.zero;
-        //transform.localRotation = Quaternion.identity;
-    }
+    //public void SetParentDefault()
+    //{
+    //    transform.SetParent(null);
+    //    transform.SetParent(defaultParent);
+    //    transform.localPosition = Vector3.zero;
+    //    transform.localRotation = Quaternion.identity;
+    //}
+    //public void SetParentNull()
+    //{
+    //    transform.SetParent(transform.parent.parent);
+    //    //transform.localPosition = Vector3.zero;
+    //    //transform.localRotation = Quaternion.identity;
+    //}
 }

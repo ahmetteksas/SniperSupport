@@ -114,11 +114,11 @@ public class Shooter : MonoBehaviour
 
         MainCameraDisplay mainCameraDislay = mainCamera.GetComponent<MainCameraDisplay>();
 
-        mainCameraDislay.SetParentNull();
+        //mainCameraDislay.SetParentNull();
 
         yield return new WaitForSeconds(2f);
 
-        mainCameraDislay.SetParentDefault();
+        //mainCameraDislay.SetParentDefault();
 
     }
     //public bool Delay()
