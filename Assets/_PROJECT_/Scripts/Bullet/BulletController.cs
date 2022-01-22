@@ -55,11 +55,13 @@ public class BulletController : MonoBehaviour
             if (headShotImage)
             {
                 headShotImage.SetActive(true);
+                Debug.Log("Image açýldý !!");
             }
             if (headShot)
             {
                 headShot.SetActive(true);
-              
+               
+
                 //StartCoroutine(CloseHs());
                 //StartCoroutine(DestroyObject());
             }
