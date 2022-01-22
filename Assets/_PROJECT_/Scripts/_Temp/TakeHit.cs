@@ -6,14 +6,14 @@ public class TakeHit : MonoBehaviour
 {
     public GameObject explosionBarrel;
     public GameObject vehicle;
-    public GameObject explosionOtherBarrel;
-    public GameObject otherBarrel;
+    //public GameObject explosionOtherBarrel;
+    //public GameObject otherBarrel;
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
-            ExplosionDamage(transform.position,2f);
+            ExplosionDamage(transform.position, 2f);
             //explosionBarrel.SetActive(true);
             //vehicle.SetActive(false);
             //gameObject.SetActive(false);
@@ -25,9 +25,9 @@ public class TakeHit : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.TryGetComponent(out SoldierController soldierController)) 
+            if (hitCollider.TryGetComponent(out SoldierController soldierController))
             {
-                soldierController.healthBar.fillAmount -= .6f; 
+                soldierController.healthBar.fillAmount -= .6f;
             }
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
             StartCoroutine(ExplosionStart());
@@ -39,15 +39,16 @@ public class TakeHit : MonoBehaviour
     }
     IEnumerator ExplosionStart()
     {
+        ObjectPool.instance.SpawnFromPool("CarExplode", transform.position, Quaternion.identity);
         explosionBarrel.SetActive(true);
-        explosionOtherBarrel.SetActive(true);
+        //explosionOtherBarrel.SetActive(true);
         yield return new WaitForSeconds(2f);
         //vehicle.SetActive(false);
         gameObject.SetActive(false);
-        otherBarrel.SetActive(false);
+        //otherBarrel.SetActive(false);
     }
     void Update()
     {
-        
+
     }
 }

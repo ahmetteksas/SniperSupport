@@ -15,7 +15,7 @@ public class PlayerControllerScript : MonoBehaviour
     void Update()
     {
         return;
-        if (this.gameObject.name == "Character")
+        if (gameObject.name == "Character")
         {
             Vector3 mousePos = Input.mousePosition;
             Vector3 wantedPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, depth));
