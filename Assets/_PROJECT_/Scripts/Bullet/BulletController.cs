@@ -12,9 +12,9 @@ public class BulletController : MonoBehaviour
     public GameObject headShotImage;
     public float hsDelay = 1f;
     public GameObject trail;
-
     void Start()
     {
+        headShotImage = GameObject.FindGameObjectWithTag("Hs");
         //StartCoroutine(DestroyObject());
     }
     private void OnEnable()
@@ -52,10 +52,14 @@ public class BulletController : MonoBehaviour
             //damage = 1;// hard to work.
             Debug.Log("HeadShot !");
             Debug.Log(damage);
+            if (headShotImage)
+            {
+                headShotImage.SetActive(true);
+            }
             if (headShot)
             {
                 headShot.SetActive(true);
-                headShotImage.SetActive(true);
+              
                 //StartCoroutine(CloseHs());
                 //StartCoroutine(DestroyObject());
             }

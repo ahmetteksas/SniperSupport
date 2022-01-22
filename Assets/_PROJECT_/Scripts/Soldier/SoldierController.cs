@@ -79,7 +79,10 @@ public class SoldierController : MonoBehaviour
     public void StartGame()
     {
         nMesh = GetComponent<NavMeshAgent>();
-        nMesh.destination = targetTransform.position;
+        if (nMesh)
+        {
+            nMesh.destination = targetTransform.position;
+        }
         colBase = GetComponent<Collider>();
         StartCoroutine(CanvasInd());
     }
@@ -171,7 +174,7 @@ public class SoldierController : MonoBehaviour
         if (enemyList.Count != 0 || allyList.Count != 0)
         {
             yield return new WaitForSeconds(setPositionDelay);
-            
+
             GameObject _smallBullet;
             Vector3 _offset = new Vector3(-.3f, 0, .5f);
             while (!isDead)
