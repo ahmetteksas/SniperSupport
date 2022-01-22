@@ -8,6 +8,9 @@ using DG.Tweening;
 using UnityEngine.EventSystems;
 public class Shooter : MonoBehaviour
 {
+    Camera mainCamera;
+    Animator animator;
+
     public bool isAI;
     public Transform bulletSpawnPos;
     public Transform bulletDir;
@@ -26,7 +29,7 @@ public class Shooter : MonoBehaviour
     public float scopeZoomOutDelay = .7f;
     public GameObject cross;
     public GameObject headShot;
-    
+
 
     //private bool scopeZ
     private Coroutine scopeZoomOut;
@@ -35,7 +38,11 @@ public class Shooter : MonoBehaviour
     public Transform firstSniperPos;
     public Transform secondSniperPos;
     //private Animator animBase;
-
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+        animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -102,9 +109,17 @@ public class Shooter : MonoBehaviour
         cam.transform.DOLocalMove(Vector3.zero, .1f);
         Camera.main.DOFieldOfView(80, .1f);
 
-        Animator _anim = GetComponent<Animator>();
-        _anim.SetTrigger("Reload");
+        animator.SetTrigger("Reload");
         scopeZoomOut = null;
+
+        MainCameraDisplay mainCameraDislay = mainCamera.GetComponent<MainCameraDisplay>();
+
+        mainCameraDislay.SetParentNull();
+
+        yield return new WaitForSeconds(2f);
+
+        mainCameraDislay.SetParentDefault();
+
     }
     //public bool Delay()
     //{
@@ -190,7 +205,7 @@ public class Shooter : MonoBehaviour
         }
         //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) +2f, Camera.main.transform.position.z));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + 2f, Camera.main.transform.position.z));
 
         if (Physics.Raycast(ray, out hit))
         {
