@@ -127,7 +127,7 @@ public class Shooter : MonoBehaviour
             {
                 if (targetAlly)
                 {
-                    AiShoot();
+                    //AiShoot();
                 }
             }
         }
@@ -190,7 +190,7 @@ public class Shooter : MonoBehaviour
         }
         //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.transform.position.z));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) +2f, Camera.main.transform.position.z));
 
         if (Physics.Raycast(ray, out hit))
         {
@@ -202,15 +202,15 @@ public class Shooter : MonoBehaviour
         //}
     }
 
-    public void AiShoot()
-    {
-        GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
-        if (gameObject.name == "AI")
-        {
-            _smallbullet.transform.rotation = /*transform.rotation +*/ Quaternion.Euler(0, 0, 0);
-        }
-        _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce((targetAlly.position - transform.position) * bulletForce / 4);
-        shootTime = 0f;
-    }
+    //public void AiShoot()
+    //{
+    //    GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
+    //    if (gameObject.name == "AI")
+    //    {
+    //        _smallbullet.transform.rotation = /*transform.rotation +*/ Quaternion.Euler(0, 0, 0);
+    //    }
+    //    _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce((targetAlly.position - transform.position) * bulletForce / 4);
+    //    shootTime = 0f;
+    //}
 
 }

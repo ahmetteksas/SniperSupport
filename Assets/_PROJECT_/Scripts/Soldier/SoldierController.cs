@@ -203,7 +203,7 @@ public class SoldierController : MonoBehaviour
                     }
                     else
                     {
-                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position - _offset, Quaternion.identity);
+                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position - _offset, Quaternion.Euler(90,90,90));
                     }
                 }
                 if (targetEnemy)
@@ -257,6 +257,8 @@ public class SoldierController : MonoBehaviour
                 Debug.Log("win the game");
                 CanvasManager.instance.retryLevelButton.SetActive(true);
                 Time.timeScale = 0;
+                enemyList.Clear();
+                allyList.Clear();
             }
             //nextLevel.SetActive(true);
         }
@@ -268,6 +270,8 @@ public class SoldierController : MonoBehaviour
                 Debug.Log("lost the game");
                 CanvasManager.instance.nextLevelButton.SetActive(true);
                 Time.timeScale = 0;
+                enemyList.Clear();
+                allyList.Clear();
             }
             //retryLevel.SetActive(true);
         }

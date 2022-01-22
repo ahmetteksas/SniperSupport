@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4936442642250779496}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.70710677, z: 0.70710677, w: 0}
   m_LocalPosition: {x: -0, y: 0.105, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 2115496551374097126}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 90}
 --- !u!33 &4968407713518099092
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -116,6 +116,7 @@ MonoBehaviour:
   impactParticle: {fileID: 0}
   playerBullet: 0
   headShot: {fileID: 0}
+  headShotImage: {fileID: 0}
   hsDelay: 1
   trail: {fileID: 4121274646327662981}
 --- !u!54 &3647575109372550
