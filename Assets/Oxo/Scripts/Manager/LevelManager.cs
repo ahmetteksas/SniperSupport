@@ -9,7 +9,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public int level=1;
+    public int level = 1;
     public bool isGameRunning;
 
     public GameObject currentLevel;
@@ -39,10 +39,13 @@ public class LevelManager : MonoBehaviour
             yellowFog.SetActive(true);
         }
         level = PlayerPrefs.GetInt("LEVEL");
-        SetLevel();
+     
         //isGameRunning = true;
     }
-
+    private void Start()
+    {
+        SetLevel();
+    }
     public void GameStarted()
     {
         isGameRunning = true;
@@ -52,7 +55,6 @@ public class LevelManager : MonoBehaviour
     public void SetLevel()
     {
         ResetLevel();
-
         currentLevel = Instantiate(levelPrefabsList[level % levelPrefabsList.Count], new Vector3(-37.58931f, -4.614986f, 52.85594f) /*Vector3.zero*/, Quaternion.identity);
         //currentLevel.transform.position = new Vector3(-37.58931f, -4.614986f, 52.85594f);
         currentLevelObjectsList.Add(currentLevel);
@@ -63,7 +65,8 @@ public class LevelManager : MonoBehaviour
         //We are deleting the objects at the current level.
         ResetAndClearList(currentLevelObjectsList);
 
-        CanvasManager.instance.levelText.text = $"LEVEL {level + 1}";
+        if (CanvasManager.instance.levelText)
+            CanvasManager.instance.levelText.text = $"LEVEL {level + 1}";
     }
 
     public void ResetAndClearList(List<GameObject> list)
