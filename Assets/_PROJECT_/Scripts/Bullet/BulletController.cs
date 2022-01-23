@@ -43,18 +43,27 @@ public class BulletController : MonoBehaviour
             impactParticle.SetActive(true);
             impactParticle.GetComponent<ParticleSystem>().Play();
         }
-
+        if (other.gameObject.CompareTag("Enemy") && playerBullet)
+        {
+            SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
+            if (_soldierController)
+            {
+                _soldierController.TakeHit(damage);
+            }
+        }
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
-            damage = 1f;
+            //damage = 1f;
+            if (other.gameObject.TryGetComponent(out SoldierController _soldierController))
+            {
+                _soldierController.TakeHit(1f);
+            }
             //damage = 1;// hard to work.
             Debug.Log("HeadShot !");
             Debug.Log(damage);
             if (headShot)
             {
                 headShot.SetActive(true);
-               
-
                 //StartCoroutine(CloseHs());
                 //StartCoroutine(DestroyObject());
             }

@@ -6,6 +6,7 @@ public class TakeHit : MonoBehaviour
 {
     public GameObject explosionBarrel;
     public GameObject vehicle;
+    public float damage = .6f;
     //public GameObject explosionOtherBarrel;
     //public GameObject otherBarrel;
 
@@ -13,6 +14,7 @@ public class TakeHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
+            other.gameObject.SetActive(false);
             ExplosionDamage(transform.position, 2f);
             //explosionBarrel.SetActive(true);
             //vehicle.SetActive(false);
@@ -25,9 +27,10 @@ public class TakeHit : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.TryGetComponent(out SoldierController soldierController))
+            SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
+            if (_soldierController)
             {
-                soldierController.healthBar.fillAmount -= .6f;
+                _soldierController.TakeHit(damage);
             }
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
             StartCoroutine(ExplosionStart());

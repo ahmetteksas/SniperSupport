@@ -12,6 +12,7 @@ public class VehicleHit : MonoBehaviour
     public GameObject destroyedState;
     private GameObject childSoldier;
     public float radius;
+    public float damage = .4f;
     void Start()
     {
         //childSoldier = GameObject.GetComponentInChildren<SoldierController>();
@@ -38,12 +39,12 @@ public class VehicleHit : MonoBehaviour
             if (hitCollider.TryGetComponent(out SoldierController soldierController))
             {
                 childSoldier = soldierController.gameObject;
-                soldierController.TakeHit();
+                soldierController.TakeHit(damage);
                 //soldierController.isDead = true;
-                soldierController.healthBar.fillAmount -= 1.0f;
+                //soldierController.healthBar.fillAmount -= 1.0f;
                 //soldierController.healthBar.fillAmount -= .5f;
                 //soldierController.gameObject.SetActive(false);
-                StartCoroutine(DecreaseHealth(soldierController.healthBar));
+                //StartCoroutine(DecreaseHealth(soldierController.healthBar));
                 StartCoroutine(ExplodeCar(soldierController.gameObject));
             }
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
@@ -52,7 +53,7 @@ public class VehicleHit : MonoBehaviour
     IEnumerator DecreaseHealth(Image _im)
     {
         yield return new WaitForSeconds(.2f);
-        _im.fillAmount -= .4f;
+        _im.fillAmount -= damage;
     }
     IEnumerator ExplodeCar(GameObject _go)
     {

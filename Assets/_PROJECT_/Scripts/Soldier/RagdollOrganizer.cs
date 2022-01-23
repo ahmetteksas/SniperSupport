@@ -35,4 +35,12 @@ public class RagdollOrganizer : MonoBehaviour
             _rigidbody.gameObject.tag = _tag;
         }
     }
+    [Button]
+    public void SetCollisionType()
+    {
+        foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+        {
+            _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        }
+    }
 }

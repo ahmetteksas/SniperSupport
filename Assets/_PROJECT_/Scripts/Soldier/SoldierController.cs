@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Linq;
 using DG.Tweening;
-
+using RootMotion.Dynamics;
 
 public class SoldierController : MonoBehaviour
 {
@@ -49,6 +49,8 @@ public class SoldierController : MonoBehaviour
 
     public ParticleSystem shootEffect;
 
+    public float health;
+
     private void Awake()
     {
         //explosion = GetComponentInChildren<ParticleSystem>();
@@ -64,7 +66,6 @@ public class SoldierController : MonoBehaviour
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
         StartCoroutine(SelectTargetV2());
         //SelectTarget();
-
         //healthBar = GetComponentInChildren<Image>();
         animator = GetComponentInChildren<Animator>();
         if (!animWalk)
@@ -99,9 +100,8 @@ public class SoldierController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletPlayer"))
         {
-            healthBar.fillAmount -= other.gameObject.GetComponent<BulletController>().damage;
-            TakeHit();
-            other.gameObject.SetActive(false);
+            TakeHit(0);
+            //other.gameObject.SetActive(false);
         }
         if (other.gameObject.tag == "BulletHeal")
         {
@@ -110,7 +110,7 @@ public class SoldierController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
-            TakeHit();
+            TakeHit(0);
         }
     }
     IEnumerator HealField()
@@ -130,9 +130,11 @@ public class SoldierController : MonoBehaviour
     {
         //Debug.Log(enemyList.Count);
     }
-    public void TakeHit()
+    public void TakeHit(float _damage)
     {
-        if (healthBar.fillAmount == 0 || healthBar.fillAmount < 0)
+        health -= _damage;
+        healthBar.fillAmount = health;
+        if (health <= 0 /*|| healthBar.fillAmount < 0*/)
         {
             isDead = true;
             if (!animStart)
@@ -219,7 +221,7 @@ public class SoldierController : MonoBehaviour
 
     void DeathEvent()
     {
-        colBase.enabled = false;
+        //colBase.enabled = false;
         if (nMesh != null)
         {
             nMesh.enabled = false;
@@ -227,18 +229,20 @@ public class SoldierController : MonoBehaviour
         animator.enabled = false;
         //explosion.Stop();
         GetComponentInChildren<Canvas>().enabled = false;
-        foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
-        {
-            _rigidbody.isKinematic = false;
-            _rigidbody.velocity = Vector3.zero;
-        }
+        PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
+        _puppetMaster.state = PuppetMaster.State.Dead;
+        //foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+        //{
+        //    _rigidbody.isKinematic = false;
+        //    _rigidbody.velocity = Vector3.zero;
+        //}
 
-        GetComponent<Rigidbody>().isKinematic = true;
+        //GetComponent<Rigidbody>().isKinematic = true;
 
-        foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
-        {
-            _rigidbody.AddForce(-transform.forward * deathForce);
-        }
+        //foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+        //{
+        //    _rigidbody.AddForce(-transform.forward * deathForce);
+        //}
 
         StartCoroutine(FinishGameEnum());
         //gameObject.SetActive(false);
