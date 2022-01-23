@@ -44,12 +44,15 @@ public class SoldierController : MonoBehaviour
     public float healFieldDelay = 2f;
     public bool rpgSoldier;
 
+    public float healBullet = .2f;
+
     private NavMeshAgent nMesh;
     private Collider colBase;
 
     //public ParticleSystem shootEffect;
 
-    public float health;
+    public float health = 1f;
+    public float maxHealth = 1f;
 
 
     private void Awake()
@@ -107,8 +110,10 @@ public class SoldierController : MonoBehaviour
         }
         if (other.gameObject.tag == "BulletHeal")
         {
+            Debug.Log("HealBulletHitted");
             StartCoroutine(HealField());
-            healthBar.fillAmount += .2f;
+            HealHit(0);
+            //healthBar.fillAmount += .2f;
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -131,6 +136,18 @@ public class SoldierController : MonoBehaviour
     private void Update()
     {
         //Debug.Log(enemyList.Count);
+    }
+    public void HealHit(float _heal)
+    {
+        if (health + _heal > maxHealth)
+        {
+            health = maxHealth;
+        }
+        else
+        {
+            health += _heal;
+        }
+        healthBar.fillAmount = health / maxHealth;
     }
     public void TakeHit(float _damage)
     {
@@ -214,7 +231,7 @@ public class SoldierController : MonoBehaviour
                 if (targetEnemy)
                 {
                     _smallBullet.transform.LookAt(targetTransform);
-                    _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position-transform.position).normalized * bulletForce);
+                    _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position - transform.position).normalized * bulletForce);
                     //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
                 }
             }
