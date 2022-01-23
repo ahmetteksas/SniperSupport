@@ -10027,6 +10027,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7030557169633819032}
   - component: {fileID: 3814382710740738463}
+  - component: {fileID: -969003071393553155}
+  - component: {fileID: -3824843902842182560}
   m_Layer: 0
   m_Name: PuppetAlly08
   m_TagString: Untagged
@@ -10075,7 +10077,75 @@ MonoBehaviour:
   healField: {fileID: 5408713001972439455, guid: 8c491a163aa3bf84e9f1f813d3af0ac2, type: 3}
   healFieldDelay: 2
   rpgSoldier: 1
+  healBullet: 0.2
   health: 1
+  maxHealth: 1
+--- !u!195 &-969003071393553155
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410666497087833923}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &-3824843902842182560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410666497087833923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 677dc384336015144873787facbf147d, type: 2}
+  _event: {fileID: 11400000, guid: 677dc384336015144873787facbf147d, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1558885361805243048, guid: 3cb8ab10809a4a446adc9cdb4f785be1, type: 3}
+        m_TargetAssemblyTypeName: SoldierController, Assembly-CSharp
+        m_MethodName: AwakeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1558885361805243048, guid: 3cb8ab10809a4a446adc9cdb4f785be1, type: 3}
+        m_TargetAssemblyTypeName: SoldierController, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7422678550698337676
 GameObject:
   m_ObjectHideFlags: 0
