@@ -181,6 +181,7 @@ public class SoldierController : MonoBehaviour
             {
                 shootEffect.Play();
                 animator.SetTrigger("Aim");
+
                 yield return new WaitForSeconds(shootDelay);
                 shootEffect.Stop();
                 if (teamIndex == 0)
