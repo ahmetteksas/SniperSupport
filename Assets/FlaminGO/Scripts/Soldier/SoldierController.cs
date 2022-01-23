@@ -88,6 +88,7 @@ public class SoldierController : MonoBehaviour
         colBase = GetComponent<Collider>();
         StartCoroutine(CanvasInd());
     }
+
     IEnumerator CanvasInd()
     {
         yield return new WaitForSeconds(3f);

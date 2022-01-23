@@ -12606,6 +12606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2149022088307043105}
+  - component: {fileID: -8858923347233104337}
   m_Layer: 0
   m_Name: PuppetAlly07
   m_TagString: Untagged
@@ -12630,6 +12631,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8858923347233104337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229662380553762196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d2063e72579dc469473d76c9244a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamIndex: 0
+  lookAtDelay: 0
+  targetEnemy: {fileID: 0}
+  isDead: 0
+  bulletSpawnPos: {fileID: 705061624565763514, guid: 5b5a3c18c7ab1864da44fbb384accde3, type: 3}
+  bulletForce: 6000
+  deathForce: 1
+  setPositionDelay: 2
+  healthBar: {fileID: 6944170992172791562, guid: 5b5a3c18c7ab1864da44fbb384accde3, type: 3}
+  healField: {fileID: 7366855039018789155, guid: 5b5a3c18c7ab1864da44fbb384accde3, type: 3}
+  healFieldDelay: 2
+  rpgSoldier: 0
+  health: 1
 --- !u!1 &6321773093386844015
 GameObject:
   m_ObjectHideFlags: 0

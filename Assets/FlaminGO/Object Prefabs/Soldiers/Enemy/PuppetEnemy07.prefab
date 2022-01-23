@@ -395,6 +395,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7105010012981301152}
+  - component: {fileID: 5993997262244870537}
+  - component: {fileID: -627254828910153666}
+  - component: {fileID: -5126303372763131129}
   m_Layer: 0
   m_Name: PuppetEnemy07
   m_TagString: Untagged
@@ -419,6 +422,97 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5993997262244870537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327128560345636162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d2063e72579dc469473d76c9244a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamIndex: 1
+  lookAtDelay: 0
+  targetEnemy: {fileID: 0}
+  isDead: 0
+  bulletSpawnPos: {fileID: 5709736213309292874, guid: 7162b92483c188d4babb5fd554fdf57b, type: 3}
+  bulletForce: 6000
+  deathForce: 1
+  setPositionDelay: 2
+  healthBar: {fileID: 3271705279481061732, guid: 7162b92483c188d4babb5fd554fdf57b, type: 3}
+  healField: {fileID: 0}
+  healFieldDelay: 2
+  rpgSoldier: 1
+  health: 1
+--- !u!195 &-627254828910153666
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327128560345636162}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &-5126303372763131129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327128560345636162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 677dc384336015144873787facbf147d, type: 2}
+  _event: {fileID: 11400000, guid: 677dc384336015144873787facbf147d, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1114341510114529033, guid: 1a1c7eefacb62934e9782fcfa03db941, type: 3}
+        m_TargetAssemblyTypeName: SoldierController, Assembly-CSharp
+        m_MethodName: AwakeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1114341510114529033, guid: 1a1c7eefacb62934e9782fcfa03db941, type: 3}
+        m_TargetAssemblyTypeName: SoldierController, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2417659008242771205
 GameObject:
   m_ObjectHideFlags: 0
