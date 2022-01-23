@@ -36,7 +36,7 @@ public class SoldierController : MonoBehaviour
     private bool animWalk;
     private bool animStart;
 
-    private ParticleSystem explosion;
+    //public ParticleSystem explosion;
 
     private Transform targetTransform;
 
@@ -160,10 +160,10 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
-    public void OpenShoot()
-    {
-        //explosion.Play();
-    }
+    //public void OpenShoot()
+    //{
+    //    explosion.Play();
+    //}
     //void SelectTarget()
     //{
     //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
