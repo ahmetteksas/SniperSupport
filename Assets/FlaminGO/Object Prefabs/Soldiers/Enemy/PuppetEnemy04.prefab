@@ -2513,7 +2513,7 @@ MonoBehaviour:
   targetEnemy: {fileID: 0}
   isDead: 0
   bulletSpawnPos: {fileID: 6096038548271310055}
-  bulletForce: 2000
+  bulletForce: 6000
   deathForce: 1
   setPositionDelay: 2
   healthBar: {fileID: 7786671418981840715}
@@ -4819,7 +4819,7 @@ Transform:
   - {fileID: 6721857237095849896}
   m_Father: {fileID: 4817264034828007018}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 278.59283, y: 90.00001, z: 268.18103}
+  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!114 &6094344224981281842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,7 +4848,7 @@ MonoBehaviour:
   fixTargetTransforms: 1
   solverIterationCount: 6
   visualizeTargetPose: 1
-  mappingWeight: 1
+  mappingWeight: 0.7
   pinWeight: 1
   muscleWeight: 1
   muscleSpring: 100

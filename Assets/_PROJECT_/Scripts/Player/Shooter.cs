@@ -211,7 +211,8 @@ public class Shooter : MonoBehaviour
         {
             Transform objectHit = hit.transform;
             Debug.Log(hit.transform.gameObject.name);
-            _smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
+            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position-_smallBullet.transform.position).normalized * bulletForce);
+            //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
         }
         shootTime = 0f;
         //}

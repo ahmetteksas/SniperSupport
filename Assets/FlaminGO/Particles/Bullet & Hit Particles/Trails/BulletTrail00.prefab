@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4111541986588027738}
   - component: {fileID: 6885651332287948833}
   m_Layer: 6
-  m_Name: Bullet00
+  m_Name: BulletTrail00
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -208,10 +208,10 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.5
+  m_Time: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.61218345
+    widthMultiplier: 0.28525645
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -226,7 +226,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.36373448
-        value: 0.27605382
+        value: 0.24748173
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -234,8 +234,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.67414963
-        value: 0
+        time: 0.6852428
+        value: 0.24285889
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -243,8 +243,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.89120877
-        value: 0
+        time: 0.94664395
+        value: 0.22856903
         inSlope: 0
         outSlope: 0
         tangentMode: 0

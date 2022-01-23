@@ -15,6 +15,6 @@ public class HeadShootDisabler : MonoBehaviour
     IEnumerator DestroyObject()
     {
         yield return new WaitForSeconds(destroyDelay);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

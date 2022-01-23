@@ -43,6 +43,15 @@ public class BulletController : MonoBehaviour
             impactParticle.SetActive(true);
             impactParticle.GetComponent<ParticleSystem>().Play();
         }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
+            if (_soldierController)
+            {
+                _soldierController.TakeHit(damage);
+            }
+            gameObject.SetActive(false);
+        }
         if (other.gameObject.CompareTag("Enemy") && playerBullet)
         {
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
@@ -54,10 +63,16 @@ public class BulletController : MonoBehaviour
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
             //damage = 1f;
-            if (other.gameObject.TryGetComponent(out SoldierController _soldierController))
+            SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
+            if (_soldierController)
             {
-                _soldierController.TakeHit(1f);
+                _soldierController.TakeHit(damage*2);
             }
+            //if (other.gameObject.TryGetComponent(out SoldierController _soldierController))
+            //{
+            //    //_soldierController.TakeHit(1f);
+            //    _soldierController.TakeHit(damage);
+            //}
             //damage = 1;// hard to work.
             Debug.Log("HeadShot !");
             Debug.Log(damage);
@@ -68,7 +83,7 @@ public class BulletController : MonoBehaviour
                 //StartCoroutine(DestroyObject());
             }
         }
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     //IEnumerator CloseHs()
     //{
