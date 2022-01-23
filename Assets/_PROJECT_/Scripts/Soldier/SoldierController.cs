@@ -66,7 +66,7 @@ public class SoldierController : MonoBehaviour
         //SelectTarget();
 
         //healthBar = GetComponentInChildren<Image>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         if (!animWalk)
         {
             animator.SetTrigger("Walk");
