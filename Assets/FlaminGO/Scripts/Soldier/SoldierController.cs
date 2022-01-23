@@ -162,10 +162,10 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
-    //public void OpenShoot()
-    //{
-    //    explosion.Play();
-    //}
+    public void OpenShoot()
+    {
+        shootEffect.Play();
+    }
     //void SelectTarget()
     //{
     //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
