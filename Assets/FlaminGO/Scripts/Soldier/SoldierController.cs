@@ -153,11 +153,9 @@ public class SoldierController : MonoBehaviour
         healthBar.fillAmount = health;
         if (health <= 0 /*|| healthBar.fillAmount < 0*/)
         {
-            isDead = true;
-            if (!animStart)
+            if (!isDead)
             {
                 DeathEvent();
-                animStart = true;
             }
         }
     }
@@ -179,10 +177,10 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
-    //public void OpenShoot()
-    //{
-    //    //shootParticle.SetActive(true);
-    //}
+    public void Shoot()
+    {
+        //shootParticle.SetActive(true);
+    }
     //void SelectTarget()
     //{
     //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
@@ -238,6 +236,7 @@ public class SoldierController : MonoBehaviour
 
     void DeathEvent()
     {
+        isDead = true;
         //colBase.enabled = false;
         if (nMesh != null)
         {
