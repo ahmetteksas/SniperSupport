@@ -4637,6 +4637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664038972921290828}
   - component: {fileID: 5581343327758010096}
+  - component: {fileID: 6321019446176615379}
   m_Layer: 12
   m_Name: Enemy03
   m_TagString: Untagged
@@ -4679,6 +4680,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6321019446176615379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8284609714173684618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e293d917fdf7e45acd63e0d8d8dc2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootParticleSpawnPos: {fileID: 0}
+  particleTag: 
 --- !u!1 &8547650351709735698
 GameObject:
   m_ObjectHideFlags: 0
