@@ -12,7 +12,7 @@ public class SwerveMovement : MonoBehaviour
         //float _rotationX = Mathf.Clamp(transform.rotation.eulerAngles.x, -90.0F, 0.0F);
         // transform.rotation = Quaternion.Euler(rotationX, transform.eulerAngles.y, transform.eulerAngles.z);
         Vector3 rotation = transform.eulerAngles;
-        //rotation.y = Mathf.Clamp(transform.eulerAngles.y, 185f, 340f);
+        rotation.y = Mathf.Clamp(transform.eulerAngles.y, 185f, 340f);
         //rotation.z = Mathf.Clamp(transform.eulerAngles.z, 300f, 350f);
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotation.y, rotation.z);
     }

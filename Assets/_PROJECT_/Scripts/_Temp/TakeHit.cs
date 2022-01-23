@@ -45,6 +45,7 @@ public class TakeHit : MonoBehaviour
         ObjectPool.instance.SpawnFromPool("CarExplode", transform.position, Quaternion.identity);
         explosionBarrel.SetActive(true);
         //explosionOtherBarrel.SetActive(true);
+        yield return new WaitForFixedUpdate();
         gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
         //vehicle.SetActive(false);
