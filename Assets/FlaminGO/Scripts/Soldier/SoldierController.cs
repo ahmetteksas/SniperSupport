@@ -57,40 +57,35 @@ public class SoldierController : MonoBehaviour
 
     private void Awake()
     {
-        //explosion = GetComponentInChildren<ParticleSystem>();
-        //explosion.Stop();
-    }
-    public void AwakeGame()
-    {
+        nMesh = GetComponent<NavMeshAgent>();
+        colBase = GetComponent<Collider>();
         targetTransform = transform.parent;
         enemyList.Clear();
         allyList.Clear();
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
         allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
         enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
+        animator = GetComponentInChildren<Animator>();
+        canvas = GetComponentInChildren<Canvas>();
+    }
+    public void StartGame()
+    {
         StartCoroutine(SelectTargetV2());
         //SelectTarget();
         //healthBar = GetComponentInChildren<Image>();
-        animator = GetComponentInChildren<Animator>();
         if (!animWalk)
         {
             animator.SetTrigger("Walk");
             animWalk = true;
         }
-        StartCoroutine(AutoShoot());
-        canvas = GetComponentInChildren<Canvas>();
-    }
-
-    public void StartGame()
-    {
-        nMesh = GetComponent<NavMeshAgent>();
         if (nMesh.enabled)
         {
             nMesh.destination = targetTransform.position;
         }
-        colBase = GetComponent<Collider>();
         StartCoroutine(CanvasInd());
+        StartCoroutine(AutoShoot());
     }
+
 
     IEnumerator CanvasInd()
     {
@@ -108,13 +103,13 @@ public class SoldierController : MonoBehaviour
             TakeHit(0);
             //other.gameObject.SetActive(false);
         }
-        if (other.gameObject.tag == "BulletHeal")
-        {
-            Debug.Log("HealBulletHitted");
-            StartCoroutine(HealField());
-            HealHit(0);
-            //healthBar.fillAmount += .2f;
-        }
+        //if (other.gameObject.tag == "BulletHeal")
+        //{
+        //    Debug.Log("HealBulletHitted");
+        //    StartCoroutine(HealField());
+        //    HealHit(0);
+        //    //healthBar.fillAmount += .2f;
+        //}
         if (other.gameObject.CompareTag("Enemy"))
         {
             TakeHit(0);
@@ -147,6 +142,9 @@ public class SoldierController : MonoBehaviour
         {
             health += _heal;
         }
+        Debug.Log(health);
+        Debug.Log(maxHealth);
+        Debug.Log(health / maxHealth);
         healthBar.fillAmount = health / maxHealth;
     }
     public void TakeHit(float _damage)
