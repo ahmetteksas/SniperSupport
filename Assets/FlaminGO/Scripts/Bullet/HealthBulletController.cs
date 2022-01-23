@@ -16,6 +16,8 @@ public class HealthBulletController : MonoBehaviour
         if (_soldierController)
         {
             _soldierController.HealHit(healValue);
+            GameObject shootParticle = ObjectPool.instance.SpawnFromPool("HealField", _soldierController.gameObject.transform.position, _soldierController.transform.rotation);
+            shootParticle.SetActive(true);
             Debug.Log("BulletHealHitted");
         }
         gameObject.SetActive(false);

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5482187205686178073}
   - component: {fileID: 166116314949298604}
   - component: {fileID: 7295453507005819667}
-  - component: {fileID: 6608161009573965308}
+  - component: {fileID: -2816365655832622709}
   m_Layer: 1
   m_Name: BulletHeal
   m_TagString: Bullet
@@ -4848,7 +4848,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6608161009573965308
+--- !u!114 &-2816365655832622709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4857,11 +4857,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5679370018933946413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb55a2829de918d4eb91a207357f4c4e, type: 3}
+  m_Script: {fileID: 11500000, guid: aa5fa7e452f75024896837875b9ad2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0.05
-  impact: {fileID: 1382110604698839690}
+  healValue: 0.2
 --- !u!1 &5679464967724118423
 GameObject:
   m_ObjectHideFlags: 0
@@ -19545,11 +19544,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
---- !u!1 &1382110604698839690 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3449753191246046854, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
-  m_PrefabInstance: {fileID: 4391504942106561548}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1385713780054603604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3443786060510198616, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
