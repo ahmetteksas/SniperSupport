@@ -7,17 +7,18 @@ public class HealthBulletController : MonoBehaviour
     public float healValue = .2f;
     void Start()
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision other)
     {
-            SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
-            if (_soldierController)
-            {
-                _soldierController.HealHit(healValue);
-            }
-            gameObject.SetActive(false);
+        SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
+        if (_soldierController)
+        {
+            _soldierController.HealHit(healValue);
+            Debug.Log("BulletHealHitted");
+        }
+        gameObject.SetActive(false);
     }
 
 }
