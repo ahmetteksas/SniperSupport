@@ -6,7 +6,7 @@ public class ShootParticleOpen : MonoBehaviour
 {
     public Transform shootParticleSpawnPos;
 
-    public void OpenShoot()
+    public void Shoot()
     {
         GameObject shootParticle = ObjectPool.instance.SpawnFromPool("BulletShootParticle", shootParticleSpawnPos.position, shootParticleSpawnPos.rotation);
     }

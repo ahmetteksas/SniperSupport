@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5584894947533526592}
   m_Layer: 7
   m_Name: Elbow_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5584894947533526599
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 5584935492931074213}
   m_Layer: 7
   m_Name: Hand_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +289,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5584935492931074212
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1052,7 +1052,7 @@ GameObject:
   - component: {fileID: 5585770938574998460}
   m_Layer: 7
   m_Name: Elbow_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1087,7 +1087,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5585770938574998451
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 5585843721590223058}
   m_Layer: 7
   m_Name: Hips
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1233,7 +1233,7 @@ Transform:
   - {fileID: 5587879222163393200}
   m_Father: {fileID: 5589699662763982796}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 270, z: 278.59283}
 --- !u!54 &5585843721590223059
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1249,7 +1249,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &5585843721590223057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1373,7 +1373,7 @@ GameObject:
   - component: {fileID: 5585852504182537427}
   m_Layer: 7
   m_Name: Hand_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1407,7 +1407,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5585852504182537426
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1532,7 +1532,7 @@ GameObject:
   - component: {fileID: 5585977795935799196}
   m_Layer: 7
   m_Name: Shoulder_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1567,7 +1567,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5585977795935799187
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1692,7 +1692,7 @@ GameObject:
   - component: {fileID: 5585978429075133293}
   m_Layer: 7
   m_Name: Ankle_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1726,7 +1726,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &5585978429075133292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1850,7 +1850,7 @@ GameObject:
   - component: {fileID: 5586281194345215724}
   m_Layer: 7
   m_Name: UpperLeg_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1869,7 +1869,7 @@ Transform:
   - {fileID: 5588006862276257318}
   m_Father: {fileID: 5587987615554399254}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 81.407166, y: 270, z: 88.181046}
 --- !u!54 &5586281194345215725
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1885,7 +1885,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5586281194345215715
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2010,7 +2010,7 @@ GameObject:
   - component: {fileID: 5586405344869894060}
   m_Layer: 7
   m_Name: Spine_02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2031,7 +2031,7 @@ Transform:
   - {fileID: 5588214470218913984}
   m_Father: {fileID: 5587987615554399254}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 359.80698}
 --- !u!54 &5586405344869894061
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2047,7 +2047,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &5586405344869894051
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 5586463273530911752}
   m_Layer: 7
   m_Name: Shoulder_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2368,7 +2368,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5586463273530911759
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2493,7 +2493,7 @@ GameObject:
   - component: {fileID: 5586519154569887358}
   m_Layer: 7
   m_Name: UpperLeg_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2512,7 +2512,7 @@ Transform:
   - {fileID: 5589870939455221394}
   m_Father: {fileID: 5587987615554399254}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 278.59283, y: 90.00001, z: 268.18103}
 --- !u!54 &5586519154569887359
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2528,7 +2528,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5586519154569887357
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2653,7 +2653,7 @@ GameObject:
   - component: {fileID: 5586530641808264690}
   m_Layer: 7
   m_Name: LowerLeg_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2688,7 +2688,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5586530641808264689
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2813,7 +2813,7 @@ GameObject:
   - component: {fileID: 5586540961597925142}
   m_Layer: 7
   m_Name: LowerLeg_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2848,7 +2848,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5586540961597925141
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2973,7 +2973,7 @@ GameObject:
   - component: {fileID: 5586618273895849575}
   m_Layer: 7
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2997,7 +2997,7 @@ Transform:
   - {fileID: 5588088940576726336}
   m_Father: {fileID: 5587879222163393200}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 278.39984, y: 90, z: 0}
 --- !u!54 &5586618273895849573
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3013,7 +3013,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5586618273895849574
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3138,7 +3138,7 @@ GameObject:
   - component: {fileID: 5586624382180942291}
   m_Layer: 7
   m_Name: Ankle_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3172,7 +3172,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &5586624382180942290
 BoxCollider:
   m_ObjectHideFlags: 0

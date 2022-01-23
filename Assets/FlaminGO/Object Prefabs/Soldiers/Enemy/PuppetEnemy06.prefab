@@ -2701,7 +2701,7 @@ GameObject:
   - component: {fileID: 9049092029392882245}
   m_Layer: 7
   m_Name: LowerLeg_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2736,7 +2736,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &816111591235856782
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3023,7 +3023,7 @@ GameObject:
   - component: {fileID: 5550934488271330137}
   m_Layer: 7
   m_Name: Elbow_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3058,7 +3058,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &7873253670852292005
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3183,7 +3183,7 @@ GameObject:
   - component: {fileID: 6111357145621580665}
   m_Layer: 7
   m_Name: Hand_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3217,7 +3217,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &1888929733379995254
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3342,7 +3342,7 @@ GameObject:
   - component: {fileID: 992256586309306501}
   m_Layer: 7
   m_Name: Elbow_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3377,7 +3377,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &7996554718551872287
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3502,7 +3502,7 @@ GameObject:
   - component: {fileID: 7201117829233362919}
   m_Layer: 7
   m_Name: LowerLeg_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3537,7 +3537,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &7947996514680109611
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3662,7 +3662,7 @@ GameObject:
   - component: {fileID: 7805704422546431092}
   m_Layer: 7
   m_Name: Hips
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3683,7 +3683,7 @@ Transform:
   - {fileID: 7307983053647553583}
   m_Father: {fileID: 7310746685592301649}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 270, z: 278.59283}
 --- !u!54 &7717624924148616434
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3699,7 +3699,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &8804061869420653332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4461,7 +4461,7 @@ GameObject:
   - component: {fileID: 3612018790719431795}
   m_Layer: 7
   m_Name: UpperLeg_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4496,7 +4496,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &1768936285275769964
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4621,7 +4621,7 @@ GameObject:
   - component: {fileID: 2669308576466102306}
   m_Layer: 7
   m_Name: UpperLeg_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4656,7 +4656,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &8825014933609333652
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5024,7 +5024,7 @@ GameObject:
   - component: {fileID: 6227362949993758421}
   m_Layer: 7
   m_Name: Spine_02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5062,7 +5062,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &3312344698843063425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5267,7 +5267,7 @@ GameObject:
   - component: {fileID: 7520149534066706269}
   m_Layer: 7
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5291,7 +5291,7 @@ Transform:
   - {fileID: 7308080811721371767}
   m_Father: {fileID: 7307983053647553583}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 278.39984, y: 90, z: 0}
 --- !u!54 &6451522836192198798
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5307,7 +5307,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &4455383117384970599
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5432,7 +5432,7 @@ GameObject:
   - component: {fileID: 1072601905712969302}
   m_Layer: 7
   m_Name: Ankle_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5466,7 +5466,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &131877700071553331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5590,7 +5590,7 @@ GameObject:
   - component: {fileID: 4105917724382978227}
   m_Layer: 7
   m_Name: Ankle_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5624,7 +5624,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &8739059434597304078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5748,7 +5748,7 @@ GameObject:
   - component: {fileID: 4569514494987352551}
   m_Layer: 7
   m_Name: Shoulder_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5784,7 +5784,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &8351954259088702043
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5909,7 +5909,7 @@ GameObject:
   - component: {fileID: 2545464410806307107}
   m_Layer: 7
   m_Name: Shoulder_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5944,7 +5944,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &4148087525116017128
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6150,7 +6150,7 @@ GameObject:
   - component: {fileID: 2665229985470080581}
   m_Layer: 7
   m_Name: Hand_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6184,7 +6184,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &7352126327978297915
 CapsuleCollider:
   m_ObjectHideFlags: 0
