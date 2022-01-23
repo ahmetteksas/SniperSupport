@@ -47,9 +47,10 @@ public class SoldierController : MonoBehaviour
     private NavMeshAgent nMesh;
     private Collider colBase;
 
-    public ParticleSystem shootEffect;
+    //public ParticleSystem shootEffect;
 
     public float health;
+
 
     private void Awake()
     {
@@ -162,10 +163,10 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
-    public void OpenShoot()
-    {
-        shootEffect.Play();
-    }
+    //public void OpenShoot()
+    //{
+    //    //shootParticle.SetActive(true);
+    //}
     //void SelectTarget()
     //{
     //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
@@ -181,11 +182,11 @@ public class SoldierController : MonoBehaviour
             Vector3 _offset = new Vector3(-.3f, 0, .5f);
             while (!isDead)
             {
-                shootEffect.Play();
+                //shootEffect.Play();
                 animator.SetTrigger("Aim");
 
                 yield return new WaitForSeconds(shootDelay);
-                shootEffect.Stop();
+                //shootEffect.Stop();
                 if (teamIndex == 0)
                 {
                     if (!rpgSoldier)
