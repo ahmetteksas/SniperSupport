@@ -79,7 +79,7 @@ public class SoldierController : MonoBehaviour
     public void StartGame()
     {
         nMesh = GetComponent<NavMeshAgent>();
-        if (nMesh)
+        if (nMesh.enabled)
         {
             nMesh.destination = targetTransform.position;
         }
@@ -203,7 +203,7 @@ public class SoldierController : MonoBehaviour
                     }
                     else
                     {
-                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position - _offset, Quaternion.Euler(90,90,90));
+                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position - _offset, Quaternion.Euler(90, 90, 90));
                     }
                 }
                 if (targetEnemy)
