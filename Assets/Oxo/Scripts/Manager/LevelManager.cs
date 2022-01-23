@@ -58,6 +58,8 @@ public class LevelManager : MonoBehaviour
         currentLevel = Instantiate(levelPrefabsList[level % levelPrefabsList.Count], new Vector3(-37.58931f, -4.614986f, 52.85594f) /*Vector3.zero*/, Quaternion.identity);
         //currentLevel.transform.position = new Vector3(-37.58931f, -4.614986f, 52.85594f);
         currentLevelObjectsList.Add(currentLevel);
+
+        currentLevel.SetActive(true);
     }
 
     public void ResetLevel()
