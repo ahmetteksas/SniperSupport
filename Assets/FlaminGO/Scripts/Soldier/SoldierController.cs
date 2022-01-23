@@ -11,7 +11,8 @@ using RootMotion.Dynamics;
 public class SoldierController : MonoBehaviour
 {
     public int teamIndex;
-
+    private int shootCount;
+    public int magSize;
     public float lookAtDelay;
 
     private List<SoldierController> allyList = new List<SoldierController>();
@@ -180,6 +181,12 @@ public class SoldierController : MonoBehaviour
     public void Shoot()
     {
         //shootParticle.SetActive(true);
+        shootCount++;
+        if (shootCount == magSize)
+        {
+            animator.SetTrigger("Reload");
+            shootCount = 0;
+        }
     }
     //void SelectTarget()
     //{

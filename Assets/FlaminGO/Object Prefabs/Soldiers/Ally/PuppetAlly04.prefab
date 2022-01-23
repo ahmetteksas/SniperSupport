@@ -283,7 +283,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609362708650423861}
-  m_LocalRotation: {x: -9.685131e-17, y: -0.035830766, z: -1.0612489e-15, w: 0.9993579}
+  m_LocalRotation: {x: -0.9536699, y: 0.0043988796, z: 0.30049863, w: 0.01395999}
   m_LocalPosition: {x: 0.27114484, y: -0.000000024396286, z: 0.00038187308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3357,6 +3357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamIndex: 0
+  magSize: 0
   lookAtDelay: 0
   targetEnemy: {fileID: 0}
   isDead: 0
@@ -3368,7 +3369,9 @@ MonoBehaviour:
   healField: {fileID: 5408713001972439455}
   healFieldDelay: 2
   rpgSoldier: 1
+  healBullet: 0.2
   health: 1
+  maxHealth: 1
 --- !u!195 &2177907229200263968
 NavMeshAgent:
   m_ObjectHideFlags: 0

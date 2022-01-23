@@ -10114,6 +10114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamIndex: 0
+  magSize: 0
   lookAtDelay: 0
   targetEnemy: {fileID: 0}
   isDead: 0
@@ -10125,7 +10126,9 @@ MonoBehaviour:
   healField: {fileID: 2771372386391049159}
   healFieldDelay: 2
   rpgSoldier: 0
+  healBullet: 0.2
   health: 1
+  maxHealth: 1
 --- !u!195 &1419027908391362025
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13602,7 +13605,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9211566115552902093}
-  m_LocalRotation: {x: -9.685131e-17, y: -0.035830766, z: -1.0612489e-15, w: 0.9993579}
+  m_LocalRotation: {x: -0.9475847, y: 0.0045733927, z: 0.31918353, w: 0.013576956}
   m_LocalPosition: {x: 0.27114472, y: -0.00000002629531, z: 0.0003818637}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
