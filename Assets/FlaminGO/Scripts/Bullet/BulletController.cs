@@ -66,7 +66,7 @@ public class BulletController : MonoBehaviour
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)
             {
-                _soldierController.TakeHit(damage*2);
+                _soldierController.TakeHit(damage * 2f);
             }
             //if (other.gameObject.TryGetComponent(out SoldierController _soldierController))
             //{
