@@ -84,7 +84,8 @@ public class SoldierController : MonoBehaviour
             nMesh.destination = targetTransform.position;
         }
         StartCoroutine(CanvasInd());
-        StartCoroutine(AutoShoot());
+        Shoot();
+        //StartCoroutine(AutoShoot());
     }
 
 
@@ -181,11 +182,20 @@ public class SoldierController : MonoBehaviour
     }
     public void Shoot()
     {
+        if (enemyList.Count != 0 || allyList.Count != 0)
+        {
+            if (!isDead)
+            {
+                //shootEffect.Play();
+                animator.SetTrigger("Aim");
+                SendBullet();
+            }
+        }
         //shootParticle.SetActive(true);
         shootCount++;
         if (shootCount == magSize)
         {
-            animator.SetTrigger("Reload");
+            //animator.SetTrigger("Reload");
             shootCount = 0;
         }
     }
@@ -194,25 +204,23 @@ public class SoldierController : MonoBehaviour
     //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
     //    transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
     //}
-    IEnumerator AutoShoot()
-    {
-        if (enemyList.Count != 0 || allyList.Count != 0)
-        {
-            yield return new WaitForSeconds(setPositionDelay);
+    //IEnumerator AutoShoot()
+    //{
+    //    if (enemyList.Count != 0 || allyList.Count != 0)
+    //    {
+    //        yield return new WaitForSeconds(setPositionDelay);
+    //        while (!isDead)
+    //        {
+    //            //shootEffect.Play();
+    //            animator.SetTrigger("Aim");
 
-            Vector3 _offset = new Vector3(-.3f, 0, .5f);
-            while (!isDead)
-            {
-                //shootEffect.Play();
-                animator.SetTrigger("Aim");
-
-                yield return new WaitForSeconds(shootDelay);
-                Shoot();
-                //shootEffect.Stop();
-                SendBullet();
-            }
-        }
-    }
+    //            yield return new WaitForSeconds(shootDelay);
+    //            Shoot();
+    //            //shootEffect.Stop();
+    //            SendBullet();
+    //        }
+    //    }
+    //}
 
     void SendBullet()
     {

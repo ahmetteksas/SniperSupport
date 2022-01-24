@@ -180,7 +180,6 @@ public class Shooter : MonoBehaviour
         }
     }
 
-
     public void SelectBullet(int index)
     {
         selectedBulletIndex = index;
