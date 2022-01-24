@@ -87,7 +87,7 @@ public class BulletController : MonoBehaviour
         //{
         //    StartCoroutine(DestroyObject());
         //}
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
     //IEnumerator CloseHs()
     //{

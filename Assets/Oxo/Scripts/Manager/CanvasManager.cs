@@ -38,6 +38,14 @@ public class CanvasManager : MonoBehaviour
         mainMenuRect.SetActive(true);
     }
 
+    private void Update()
+    {
+        if (LevelManager.instance.isGameRunning == false)
+        {
+            inGameRect.SetActive(false);
+        }
+    }
+
     public void TapToPlayButtonClick()
     {
         ObjectPool.instance.isGameRunning = true;

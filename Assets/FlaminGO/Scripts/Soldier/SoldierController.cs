@@ -84,7 +84,8 @@ public class SoldierController : MonoBehaviour
             nMesh.destination = targetTransform.position;
         }
         StartCoroutine(CanvasInd());
-        Shoot();
+        ShootBullet();
+        animator.SetTrigger("Aim");
         //StartCoroutine(AutoShoot());
     }
 
@@ -96,6 +97,10 @@ public class SoldierController : MonoBehaviour
         {
             if (canvas)
                 canvas.transform.LookAt(Camera.main.transform);
+            if (isDead)
+            {
+                canvas.enabled = false;
+            }
             yield return null;
         }
     }
@@ -180,7 +185,7 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
-    public void Shoot()
+    public void ShootBullet()
     {
         if (enemyList.Count != 0 || allyList.Count != 0)
         {
@@ -192,10 +197,14 @@ public class SoldierController : MonoBehaviour
             }
         }
         //shootParticle.SetActive(true);
+       
+    }
+    public void ReloadBullet ()
+    {
         shootCount++;
         if (shootCount == magSize)
         {
-            //animator.SetTrigger("Reload");
+            animator.SetTrigger("Reload");
             shootCount = 0;
         }
     }

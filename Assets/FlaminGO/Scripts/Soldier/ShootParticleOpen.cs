@@ -9,7 +9,11 @@ public class ShootParticleOpen : MonoBehaviour
 
     public void Shoot()
     {
-        return;
-        GameObject shootParticle = ObjectPool.instance.SpawnFromPool(particleTag, shootParticleSpawnPos.position, shootParticleSpawnPos.rotation);
+        GetComponentInParent<SoldierController>().ShootBullet();
+        //GameObject shootParticle = ObjectPool.instance.SpawnFromPool(particleTag, shootParticleSpawnPos.position, shootParticleSpawnPos.rotation);
+    }
+    public void Reload()
+    {
+        GetComponentInParent<SoldierController>().ReloadBullet();
     }
 }
