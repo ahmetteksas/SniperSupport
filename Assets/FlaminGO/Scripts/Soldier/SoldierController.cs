@@ -26,7 +26,7 @@ public class SoldierController : MonoBehaviour
 
     public float bulletForce;
     public float deathForce = 1f;
-    private float shootDelay = 1.5f;
+    public float shootDelay = 2f;
 
     public float setPositionDelay = 2f;
 
@@ -207,6 +207,7 @@ public class SoldierController : MonoBehaviour
                 animator.SetTrigger("Aim");
 
                 yield return new WaitForSeconds(shootDelay);
+                Shoot();
                 //shootEffect.Stop();
                 SendBullet();
             }

@@ -83,6 +83,10 @@ public class BulletController : MonoBehaviour
                 //StartCoroutine(DestroyObject());
             }
         }
+        //if (gameObject)
+        //{
+        //    StartCoroutine(DestroyObject());
+        //}
         //gameObject.SetActive(false);
     }
     //IEnumerator CloseHs()
@@ -92,9 +96,9 @@ public class BulletController : MonoBehaviour
     //    headShot.SetActive(false);
     //}
 
-    //IEnumerator DestroyObject()
-    //{
-    //    yield return new WaitForSeconds(1.5f);
-    //    gameObject.SetActive(false);
-    //}
+    IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
+    }
 }
