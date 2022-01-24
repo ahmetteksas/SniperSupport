@@ -13,6 +13,7 @@ public class HealthBulletController : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
+        //Debug.Log(other.gameObject.name);
         if (_soldierController)
         {
             _soldierController.HealHit(healValue);
@@ -20,7 +21,7 @@ public class HealthBulletController : MonoBehaviour
             shootParticle.SetActive(true);
             Debug.Log("BulletHealHitted");
         }
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
 }

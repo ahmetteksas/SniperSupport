@@ -9,6 +9,7 @@ public class ShootParticleOpen : MonoBehaviour
 
     public void Shoot()
     {
+        return;
         GameObject shootParticle = ObjectPool.instance.SpawnFromPool(particleTag, shootParticleSpawnPos.position, shootParticleSpawnPos.rotation);
     }
 }

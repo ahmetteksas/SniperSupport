@@ -93,7 +93,8 @@ public class SoldierController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         while (true)
         {
-            canvas.transform.LookAt(Camera.main.transform);
+            if (canvas)
+                canvas.transform.LookAt(Camera.main.transform);
             yield return null;
         }
     }
@@ -167,7 +168,9 @@ public class SoldierController : MonoBehaviour
             if (targetEnemy)
             {
                 transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
-                bulletSpawnPos.LookAt(targetEnemy.transform);
+
+                if (bulletSpawnPos)
+                    bulletSpawnPos.LookAt(targetEnemy.transform);
             }
             else
             {
@@ -241,7 +244,7 @@ public class SoldierController : MonoBehaviour
         }
         animator.enabled = false;
         //explosion.Stop();
-        GetComponentInChildren<Canvas>().enabled = false;
+        //GetComponentInChildren<Canvas>().enabled = false;
         PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
         _puppetMaster.state = PuppetMaster.State.Dead;
         //foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
