@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootParticleSpawnPos: {fileID: 8120521419399197113}
+  particleTag: 
 --- !u!1 &466697772822276165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,6 +1911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamIndex: 1
+  magSize: 0
   lookAtDelay: 0
   targetEnemy: {fileID: 0}
   isDead: 0
@@ -1921,7 +1923,9 @@ MonoBehaviour:
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 0
+  healBullet: 0.2
   health: 1
+  maxHealth: 1
 --- !u!195 &3672719320216020623
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5526,7 +5530,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7767527797946924935}
-  m_LocalRotation: {x: 1.8042495e-16, y: -0.035830766, z: -1.2222875e-15, w: 0.9993579}
+  m_LocalRotation: {x: -0.88094515, y: 0.0070302654, z: 0.47298497, w: 0.013094232}
   m_LocalPosition: {x: 27.114624, y: -0.000023441855, z: 0.038206153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

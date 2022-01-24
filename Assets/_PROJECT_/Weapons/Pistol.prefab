@@ -92,9 +92,8 @@ GameObject:
   - component: {fileID: 1952464657655943768}
   - component: {fileID: 1977551055626506118}
   - component: {fileID: 1971116103839031894}
-  - component: {fileID: 2012132950977794728}
   m_Layer: 0
-  m_Name: SM_Wep_Pistol_Metal_01
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,9 +106,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948958226177027508}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 110, y: 110, z: 110}
   m_Children:
   - {fileID: 1952598333256658418}
   - {fileID: 1947411790249803238}
@@ -166,20 +165,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2012132950977794728
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948958226177027508}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43260915479693258, guid: dfc537ca394c7ed45992e70cb94a9445, type: 2}
 --- !u!1 &1949325133633534986
 GameObject:
   m_ObjectHideFlags: 0
