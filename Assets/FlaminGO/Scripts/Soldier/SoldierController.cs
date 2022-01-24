@@ -143,9 +143,7 @@ public class SoldierController : MonoBehaviour
         {
             health += _heal;
         }
-        Debug.Log(health);
-        Debug.Log(maxHealth);
-        Debug.Log(health / maxHealth);
+
         healthBar.fillAmount = health / maxHealth;
     }
     public void TakeHit(float _damage)
@@ -199,7 +197,6 @@ public class SoldierController : MonoBehaviour
         {
             yield return new WaitForSeconds(setPositionDelay);
 
-            GameObject _smallBullet;
             Vector3 _offset = new Vector3(-.3f, 0, .5f);
             while (!isDead)
             {
@@ -208,36 +205,29 @@ public class SoldierController : MonoBehaviour
 
                 yield return new WaitForSeconds(shootDelay);
                 //shootEffect.Stop();
-                if (teamIndex == 0)
-                {
-                    if (!rpgSoldier)
-                    {
-                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmall", bulletSpawnPos.position + _offset, Quaternion.identity);
-                    }
-                    else
-                    {
-                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position + _offset, Quaternion.identity);
-                    }
-
-                }
-                else
-                {
-                    if (!rpgSoldier)
-                    {
-                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position - _offset, Quaternion.identity);
-                    }
-                    else
-                    {
-                        _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position - _offset, Quaternion.Euler(90, 90, 90));
-                    }
-                }
-                if (targetEnemy)
-                {
-                    _smallBullet.transform.LookAt(targetTransform);
-                    _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position - transform.position).normalized * bulletForce);
-                    //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
-                }
+                SendBullet();
             }
+        }
+    }
+
+    void SendBullet()
+    {
+        GameObject _smallBullet;
+
+        if (!rpgSoldier)
+        {
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, bulletSpawnPos.rotation);
+        }
+        else
+        {
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position, bulletSpawnPos.rotation);
+        }
+
+        if (targetEnemy)
+        {
+            _smallBullet.transform.LookAt(targetTransform);
+            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position - transform.position).normalized * bulletForce);
+            //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
         }
     }
 
