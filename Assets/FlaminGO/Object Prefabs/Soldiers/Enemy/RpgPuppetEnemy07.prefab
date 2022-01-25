@@ -1198,8 +1198,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 28.80501, y: 22.918623, z: 38.197704}
-  m_Center: {x: -15.946779, y: 1.3376946, z: 1.19239e-13}
+  m_Size: {x: 20.451557, y: 16.272223, z: 27.12037}
+  m_Center: {x: -11.738568, y: 1.3377333, z: 0}
 --- !u!153 &886631223103205998
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2154,10 +2154,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 21.107262
-  m_Height: 31.66089
+  m_Radius: 23.217989
+  m_Height: 34.82698
   m_Direction: 1
-  m_Center: {x: -3.597835e-13, y: 13.594485, z: -2.1791794}
+  m_Center: {x: 0, y: 6.6545353, z: -2.1791472}
 --- !u!153 &6912829612045062319
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2584,7 +2584,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5062585874078818467}
   - component: {fileID: 7429555859946874685}
-  - component: {fileID: 1098587116136589803}
   m_Layer: 7
   m_Name: PuppetMaster
   m_TagString: Untagged
@@ -3132,19 +3131,6 @@ MonoBehaviour:
   solvers: []
   mapDisconnectedMuscles: 1
   storeTargetMappedState: 1
---- !u!114 &1098587116136589803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5065206679339668715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2be09f97181f1444a4c45ab756a24fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetLayerIndex: 0
 --- !u!1 &5065254816953495045
 GameObject:
   m_ObjectHideFlags: 0

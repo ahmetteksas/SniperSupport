@@ -98,7 +98,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4111541986588027738
 Rigidbody:
@@ -134,6 +134,7 @@ MonoBehaviour:
   headShot: {fileID: 0}
   hsDelay: 1
   trail: {fileID: 3220311029224039927}
+  target: {fileID: 0}
 --- !u!114 &1334796694613894917
 MonoBehaviour:
   m_ObjectHideFlags: 0

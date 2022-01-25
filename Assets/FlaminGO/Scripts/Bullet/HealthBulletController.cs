@@ -31,7 +31,7 @@ public class HealthBulletController : MonoBehaviour
     public void GoToTarget()
     {
         Debug.Log("go to target");
-        transform.DOMove(target.position, 1f);// = target.position;
+        transform.DOMove(target.position, .7f);// = target.position;
     }
 
     private void OnCollisionEnter(Collision other)

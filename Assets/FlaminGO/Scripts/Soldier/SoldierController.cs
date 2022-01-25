@@ -70,6 +70,7 @@ public class SoldierController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         canvas = GetComponentInChildren<Canvas>();
     }
+
     public void StartGame()
     {
         StartCoroutine(SelectTargetV2());

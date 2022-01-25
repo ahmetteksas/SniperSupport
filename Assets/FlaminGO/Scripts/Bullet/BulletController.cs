@@ -39,7 +39,7 @@ public class BulletController : MonoBehaviour
     {
         if (target != null)
         {
-            transform.DOMove(target.position, 1f);// = target.transform.position;
+            transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
         }
     }
     //public void TrailOpen()
@@ -51,6 +51,7 @@ public class BulletController : MonoBehaviour
     //}
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log(other.gameObject.name);
         if (impactParticle)
         {
             impactParticle.SetActive(true);
