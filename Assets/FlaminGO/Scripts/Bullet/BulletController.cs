@@ -74,8 +74,8 @@ public class BulletController : MonoBehaviour
             //    _soldierController.TakeHit(damage);
             //}
             //damage = 1;// hard to work.
-            Debug.Log("HeadShot !");
-            Debug.Log(damage);
+           // Debug.Log("HeadShot !");
+           // Debug.Log(damage);
             if (headShot)
             {
                 headShot.SetActive(true);

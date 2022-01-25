@@ -36,6 +36,7 @@ public class SoldierController : MonoBehaviour
     private Animator animator;
     private bool animWalk;
     private bool animStart;
+    bool isGameFinished;
 
     //public ParticleSystem explosion;
 
@@ -104,6 +105,7 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletPlayer"))
@@ -123,6 +125,7 @@ public class SoldierController : MonoBehaviour
             TakeHit(0);
         }
     }
+
     IEnumerator HealField()
     {
         if (teamIndex == 0)
@@ -136,10 +139,7 @@ public class SoldierController : MonoBehaviour
             healField.SetActive(false);
         }
     }
-    private void Update()
-    {
-        //Debug.Log(enemyList.Count);
-    }
+
     public void HealHit(float _heal)
     {
         if (health + _heal > maxHealth)
@@ -153,6 +153,7 @@ public class SoldierController : MonoBehaviour
 
         healthBar.fillAmount = health / maxHealth;
     }
+
     public void TakeHit(float _damage)
     {
         health -= _damage;
@@ -185,6 +186,7 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
+
     public void ShootBullet()
     {
         if (enemyList.Count != 0 || allyList.Count != 0)
@@ -197,9 +199,10 @@ public class SoldierController : MonoBehaviour
             }
         }
         //shootParticle.SetActive(true);
-       
+
     }
-    public void ReloadBullet ()
+
+    public void ReloadBullet()
     {
         shootCount++;
         if (shootCount == magSize)
@@ -284,38 +287,49 @@ public class SoldierController : MonoBehaviour
 
     IEnumerator FinishGameEnum()
     {
-        Debug.Log(allyList.Where(x => !x.isDead).Count());
+        //Debug.Log(allyList.Where(x => !x.isDead).Count());
 
         yield return new WaitForSeconds(2f);
         //gameObject.SetActive(false);
         if (enemyList.Where(x => !x.isDead).Count() == 0)
         {
+
             //LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.retryLevelButton != null)
             {
+                if (CanvasManager.instance.nextLevelButton.activeInHierarchy)
+                    yield break;
+
                 Debug.Log("win the game");
                 CanvasManager.instance.retryLevelButton.SetActive(true);
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
                 enemyList.Clear();
                 allyList.Clear();
+                //yield break;
             }
-            //nextLevel.SetActive(true);
         }
+
         if (allyList.Where(x => !x.isDead).Count() == 0)
         {
             //LevelManager.instance.isGameRunning = false;
             if (CanvasManager.instance.nextLevelButton != null)
             {
+                if (CanvasManager.instance.retryLevelButton.activeInHierarchy)
+                    yield break;
+
                 Debug.Log("lost the game");
+
                 CanvasManager.instance.nextLevelButton.SetActive(true);
                 Time.timeScale = 0;
                 enemyList.Clear();
                 allyList.Clear();
+                //yield break;
             }
             //retryLevel.SetActive(true);
         }
     }
 }
+
 /*
             shootTime = 0f;
 

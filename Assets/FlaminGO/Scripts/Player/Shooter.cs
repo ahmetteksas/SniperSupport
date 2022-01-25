@@ -55,7 +55,7 @@ public class Shooter : MonoBehaviour
         if (shooted)
             yield break;
 
-        Debug.Log("Zoom In");
+        //  Debug.Log("Zoom In");
 
         shooted = true;
 
@@ -87,7 +87,7 @@ public class Shooter : MonoBehaviour
     {
         if (!cross.activeInHierarchy)
             yield break;
-        Debug.Log("Zoom Out");
+        // Debug.Log("Zoom Out");
 
         shooted = false;
 
@@ -200,6 +200,7 @@ public class Shooter : MonoBehaviour
         else
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
+
             Debug.Log("HealSeçildi !!");
         }
         //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
@@ -210,11 +211,27 @@ public class Shooter : MonoBehaviour
         {
             Transform objectHit = hit.transform;
             Debug.Log(hit.transform.gameObject.name);
-            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position-_smallBullet.transform.position).normalized * bulletForce);
+
+            if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))
+            {
+                healBullet.target = hit.transform;
+            }
+
+            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position - _smallBullet.transform.position).normalized * bulletForce);
             //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
+
         }
-        shootTime = 0f;
+
+
+
+        //shootTime = 0f;
         //}
+    }
+
+    public void FinishGame()
+    {
+        Debug.Log("CrossClosed");
+        cross.SetActive(false);
     }
 
     //public void AiShoot()
