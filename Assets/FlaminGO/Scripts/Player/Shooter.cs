@@ -104,7 +104,7 @@ public class Shooter : MonoBehaviour
         //yield return new WaitForSeconds(scopeZoomOutDelay);
 
         cross.SetActive(false);
-        //headShot.SetActive(true);
+        headShot.SetActive(true);
         cam.DOPause();
         cam.transform.DOLocalMove(Vector3.zero, .1f);
         Camera.main.DOFieldOfView(80, .1f);
