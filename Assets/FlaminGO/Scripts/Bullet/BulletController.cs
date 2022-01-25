@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BulletController : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class BulletController : MonoBehaviour
     public GameObject headShot;
     public float hsDelay = 1f;
     public GameObject trail;
+
+    public Transform target;
+
     void Start()
     {
         //StartCoroutine(DestroyObject());
     }
     private void OnEnable()
     {
+        //target.transform
         if (trail)
         {
             trail.SetActive(true);
@@ -27,6 +32,14 @@ public class BulletController : MonoBehaviour
         if (trail)
         {
             trail.SetActive(false);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (target != null)
+        {
+            transform.DOMove(target.position, 1f);// = target.transform.position;
         }
     }
     //public void TrailOpen()
@@ -75,7 +88,7 @@ public class BulletController : MonoBehaviour
             //}
             //damage = 1;// hard to work.
             Debug.Log("HeadShot !");
-            Debug.Log(damage);
+            // Debug.Log(damage);
             if (headShot)
             {
                 headShot.SetActive(true);
