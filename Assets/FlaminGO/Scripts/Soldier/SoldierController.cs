@@ -89,6 +89,7 @@ public class SoldierController : MonoBehaviour
         //ShootBullet();
         //StartCoroutine(AutoShoot());
     }
+
     public void AimStart ()
     {
         animator.SetTrigger("Aim");

@@ -57,6 +57,12 @@ public class Shooter : MonoBehaviour
 
         //  Debug.Log("Zoom In");
 
+        foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
+        {
+            soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .4f);
+        }
+
+
         shooted = true;
 
         Camera.main.DOPause();
@@ -89,11 +95,16 @@ public class Shooter : MonoBehaviour
             yield break;
         // Debug.Log("Zoom Out");
 
+        foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
+        {
+            soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
+        }
+
+
         shooted = false;
 
         Transform cam = Camera.main.transform;
         cam.DOShakePosition(.3f, .6f);
-
 
         sniper.transform.DOPause();
         sniper.transform.SetParent(firstSniperPos);
@@ -119,8 +130,8 @@ public class Shooter : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         //mainCameraDislay.SetParentDefault();
-
     }
+
     //public bool Delay()
     //{
     //    return true;
@@ -229,6 +240,7 @@ public class Shooter : MonoBehaviour
         //shootTime = 0f;
         //}
     }
+    
 
     public void FinishGame()
     {
