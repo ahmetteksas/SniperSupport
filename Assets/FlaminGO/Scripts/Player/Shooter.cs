@@ -196,6 +196,7 @@ public class Shooter : MonoBehaviour
         if (selectedBulletIndex == 0)
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
+            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
         }
         else
         {
@@ -203,20 +204,21 @@ public class Shooter : MonoBehaviour
 
             Debug.Log("HealSeçildi !!");
         }
-        //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + 2f, Camera.main.transform.position.z));
 
         if (Physics.Raycast(ray, out hit))
         {
             Transform objectHit = hit.transform;
-            Debug.Log(hit.transform.gameObject.name);
 
             if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))
             {
                 healBullet.target = hit.transform;
             }
-
+            if (_smallBullet.TryGetComponent(out BulletController bullet))
+            {
+                bullet.target = hit.transform;
+            }
             //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position - _smallBullet.transform.position).normalized * bulletForce);
             //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class HealthBulletController : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class HealthBulletController : MonoBehaviour
     public void GoToTarget()
     {
         Debug.Log("go to target");
-        transform.position = target.position;
+        transform.DOMove(target.position, 1f);// = target.position;
     }
 
     private void OnCollisionEnter(Collision other)
