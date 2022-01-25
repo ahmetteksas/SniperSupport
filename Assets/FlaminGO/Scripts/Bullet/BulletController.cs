@@ -57,7 +57,7 @@ public class BulletController : MonoBehaviour
             impactParticle.SetActive(true);
             impactParticle.GetComponent<ParticleSystem>().Play();
         }
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && !playerBullet)
         {
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)

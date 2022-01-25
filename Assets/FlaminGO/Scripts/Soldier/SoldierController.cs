@@ -252,7 +252,7 @@ public class SoldierController : MonoBehaviour
 
         if (targetEnemy)
         {
-            _smallBullet.transform.LookAt(targetTransform);
+            _smallBullet.transform.LookAt(targetTransform.localPosition);
             _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position - transform.position).normalized * bulletForce);
             //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
         }
