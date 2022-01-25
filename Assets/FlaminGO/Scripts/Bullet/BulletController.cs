@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class BulletController : MonoBehaviour
 {
@@ -73,6 +74,9 @@ public class BulletController : MonoBehaviour
             {
                 _soldierController.TakeHit(damage);
             }
+            Shooter _shooter = FindObjectOfType<Shooter>();
+            _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+            _shooter.headShot.SetActive(true);
         }
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
@@ -82,20 +86,23 @@ public class BulletController : MonoBehaviour
             {
                 _soldierController.TakeHit(damage * 20000f);
             }
+            Shooter _shooter = FindObjectOfType<Shooter>();
+            _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            _shooter.headShot.SetActive(true);
             //if (other.gameObject.TryGetComponent(out SoldierController _soldierController))
             //{
             //    //_soldierController.TakeHit(1f);
             //    _soldierController.TakeHit(damage);
             //}
             //damage = 1;// hard to work.
-            Debug.Log("HeadShot !");
+            //Debug.Log("HeadShot !");
             // Debug.Log(damage);
-            if (headShot)
-            {
-                headShot.SetActive(true);
-                //StartCoroutine(CloseHs());
-                //StartCoroutine(DestroyObject());
-            }
+            //if (headShot)
+            //{
+            //    headShot.SetActive(true);
+            //    //StartCoroutine(CloseHs());
+            //    //StartCoroutine(DestroyObject());
+            //}
         }
         //if (gameObject)
         //{
