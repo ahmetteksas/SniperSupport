@@ -16,4 +16,8 @@ public class ShootParticleOpen : MonoBehaviour
     {
         GetComponentInParent<SoldierController>().ReloadBullet();
     }
+    public void Aim()
+    {
+        GetComponentInParent<SoldierController>().AimStart();
+    }
 }

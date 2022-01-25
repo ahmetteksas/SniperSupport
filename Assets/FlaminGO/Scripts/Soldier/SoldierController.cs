@@ -84,11 +84,13 @@ public class SoldierController : MonoBehaviour
             nMesh.destination = targetTransform.position;
         }
         StartCoroutine(CanvasInd());
-        ShootBullet();
-        animator.SetTrigger("Aim");
+        //ShootBullet();
         //StartCoroutine(AutoShoot());
     }
-
+    public void AimStart ()
+    {
+        animator.SetTrigger("Aim");
+    }
 
     IEnumerator CanvasInd()
     {
