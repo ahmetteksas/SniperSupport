@@ -324,7 +324,7 @@ public class SoldierController : MonoBehaviour
                 Debug.Log("lost the game");
 
                 CanvasManager.instance.nextLevelButton.SetActive(true);
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
                 enemyList.Clear();
                 allyList.Clear();
                 //yield break;
