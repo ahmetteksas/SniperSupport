@@ -50,6 +50,25 @@ public class Shooter : MonoBehaviour
         //shootDelay = shootTime - Time.deltaTime;
     }
 
+    public Coroutine swayingCoroutine;
+    public float swayingDelay;
+    
+    IEnumerator Swaying()
+    {
+        while (true)
+        {
+            yield return mainCamera.transform.DOLocalRotate(Vector3.up * Random.Range(-.7f, .7f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay)
+                /*.SetLoops(0, LoopType.Yoyo)*/.SetEase(Ease.Linear).WaitForCompletion();
+            //yield return mainCamera.transform.DOShakeRotation(.4f, .03f).WaitForCompletion();
+            //(Vector3.up * Random.Range(-.7f, 7f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay)
+            // /*.SetLoops(0, LoopType.Yoyo)*/.SetEase(Ease.Linear).WaitForCompletion();
+            //yield return mainCamera.transform.DOLocalRotate(Vector3.up * Random.Range(-.7f, 0f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay * .9f)
+            //    .SetLoops(0, LoopType.Yoyo)/*SetEase(Ease.Linear)*/.WaitForCompletion();
+            //yield return mainCamera.transform.DOLocalRotate(Vector3.up * Random.Range(0f, .7f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay * .95f)
+            //    .SetEase(Ease.Linear).WaitForCompletion();
+        }
+    }
+
     IEnumerator ScopeZoomIn()
     {
         if (shooted)
@@ -62,30 +81,41 @@ public class Shooter : MonoBehaviour
             soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .4f);
         }
 
-
         shooted = true;
 
-        Camera.main.DOPause();
-        Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset / 5f, .2f);
 
         sniper.transform.DOPause();
         sniper.transform.SetParent(secondSniperPos);
-        sniper.transform.DOLocalRotate(Vector3.zero, .2f);
-        yield return sniper.transform.DOLocalMove(Vector3.zero, .2f).WaitForCompletion();
+        sniper.transform.DOLocalRotate(Vector3.zero, 0.2f);
 
-        sniper.transform.DOPause();
-        sniper.transform.SetParent(firstSniperPos);
-        sniper.transform.DOLocalRotate(Vector3.zero, .3f);
+        //mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, .7f);
 
-        sniper.transform.DOLocalMove(Vector3.zero, .3f);
+        //mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, .5f).SetEase(Ease.Linear).SetDelay(.1f);
+
+        yield return sniper.transform.DOLocalMove(Vector3.zero, 0.3f).WaitForCompletion();
+
+        mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, 0.1f)/*.SetEase(Ease.Linear)*/;
+        mainCamera.DOPause();
+        //mainCamera.DOFieldOfView(scopeZoom * 1.1f, 0.1f);
+        //mainCamera.DOFieldOfView(scopeZoom * 1.4f, .5f);
+        //yield return new WaitForSeconds(1f);
+        mainCamera.DOFieldOfView(scopeZoom, 0.3f);
+
+        //sniper.transform.DOPause();
+        //sniper.transform.SetParent(firstSniperPos);
+        //sniper.transform.DOLocalRotate(Vector3.zero, .5f);
+
+        //sniper.transform.DOLocalMove(Vector3.zero, .5f);
 
         cross.SetActive(true);
 
         //yield return new WaitForSeconds(.2f);
 
-        Camera.main.DOPause();
-        Camera.main.DOFieldOfView(scopeZoom, .2f);
-        Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .4f);
+        //Camera.main.DOPause();
+        //Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .7f);
+
+        if (swayingCoroutine == null)
+            swayingCoroutine = StartCoroutine(Swaying());
 
     }
 
@@ -95,20 +125,35 @@ public class Shooter : MonoBehaviour
             yield break;
         // Debug.Log("Zoom Out");
 
+        sniper.transform.DOPause();
+        sniper.transform.SetParent(firstSniperPos);
+        sniper.transform.DOLocalRotate(Vector3.zero, 0f);
+        sniper.transform.DOLocalMove(Vector3.zero, 0f);
+
+
+        StopCoroutine(swayingCoroutine);
+        mainCamera.transform.DOPause();
+
+        mainCamera.transform.DOLocalMove(Vector3.zero, .5f);
+        yield return mainCamera.transform.DOLocalRotate(Vector3.left * 2.4f, .21f).WaitForCompletion();
+        mainCamera.transform.DOLocalRotate(Vector3.zero, 2f).WaitForCompletion();
+
+        swayingCoroutine = null;
+        //mainCamera.transform.localRotation = Quaternion.identity;
+
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
         {
             soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
         }
 
-
         shooted = false;
 
-        Transform cam = Camera.main.transform;
-        cam.DOShakePosition(.3f, .6f);
+        //mainCamera.DOPause();
+        //mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
 
         sniper.transform.DOPause();
         sniper.transform.SetParent(firstSniperPos);
-        sniper.transform.DOLocalRotate(Vector3.zero, scopeZoomOutDelay);
+        //sniper.transform.DOLocalRotate(Vector3.zero, scopeZoomOutDelay);
 
         yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
 
@@ -116,14 +161,14 @@ public class Shooter : MonoBehaviour
 
         cross.SetActive(false);
         //headShot.SetActive(true);
-        cam.DOPause();
-        cam.transform.DOLocalMove(Vector3.zero, .1f);
-        Camera.main.DOFieldOfView(80, .1f);
+        //mainCamera.DOPause();
+        mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
+        mainCamera.DOFieldOfView(80, .1f);
 
         animator.SetTrigger("Reload");
         scopeZoomOut = null;
 
-        MainCameraDisplay mainCameraDislay = mainCamera.GetComponent<MainCameraDisplay>();
+        //MainCameraDisplay mainCameraDislay = mainCamera.GetComponent<MainCameraDisplay>();
 
         //mainCameraDislay.SetParentNull();
 
@@ -131,6 +176,7 @@ public class Shooter : MonoBehaviour
 
         //mainCameraDislay.SetParentDefault();
     }
+
 
     //public bool Delay()
     //{

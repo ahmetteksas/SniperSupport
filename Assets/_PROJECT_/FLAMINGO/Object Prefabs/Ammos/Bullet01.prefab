@@ -114,10 +114,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!114 &6885651332287948833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   playerBullet: 0
   headShot: {fileID: 0}
   hsDelay: 1
-  trail: {fileID: 7383793995168117673}
+  target: {fileID: 0}
 --- !u!1 &2177488219904066379
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +216,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.22112846
+        time: 0.007727975
+        value: 0.10186612
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -225,8 +225,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.3252747
-        value: 0.21971837
+        time: 0.33300328
+        value: 0.13715306
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -243,8 +243,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.9133798
-        value: 0.18571472
+        time: 0.92110074
+        value: 0.22241211
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -256,40 +256,40 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8679245, g: 0.75877535, b: 0.7483802, a: 1}
-      key1: {r: 0.8962264, g: 0.845238, b: 0.84042364, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0, g: 0.0013723373, b: 1, a: 0}
+      key1: {r: 0, g: 0.0013723373, b: 1, a: 0.5254902}
+      key2: {r: 0.082352936, g: 0.20317733, b: 1, a: 0.58431375}
+      key3: {r: 0.26647246, g: 0.082352936, b: 1, a: 0.9019608}
+      key4: {r: 0, g: 0.0013723373, b: 1, a: 0}
+      key5: {r: 0, g: 0.0013723373, b: 1, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 22745
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
+      ctime0: 0
+      ctime1: 16383
+      ctime2: 32768
+      ctime3: 34695
+      ctime4: 49151
+      ctime5: 65535
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
+      atime1: 16383
+      atime2: 32767
+      atime3: 42405
+      atime4: 65535
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumColorKeys: 6
+      m_NumAlphaKeys: 5
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 1
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!114 &1334796694613894917
@@ -503,11 +503,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
---- !u!1 &7383793995168117673 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4737467341440430879, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
-  m_PrefabInstance: {fileID: 2866080428345409718}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7381740969788532531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4735370887497983877, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}

@@ -16,6 +16,8 @@ public class BulletController : MonoBehaviour
 
     public Transform target;
 
+    bool isFirstPositionSetted;
+
     void Start()
     {
         //StartCoroutine(DestroyObject());
@@ -38,9 +40,19 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target != null)
+        //if (target != null)
+        //{
+        //    transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
+        //}
+        if (!isFirstPositionSetted)
         {
-            transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
+            if (transform.parent != null)
+            {
+                transform.localPosition = Vector3.zero;
+                transform.localRotation = Quaternion.identity;
+                isFirstPositionSetted = true;
+                ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+            }
         }
     }
     //private void OnTriggerEnter(Collider other)
@@ -84,7 +96,6 @@ public class BulletController : MonoBehaviour
         }
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
-            //damage = 1f;
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)
             {
@@ -93,28 +104,10 @@ public class BulletController : MonoBehaviour
             Shooter _shooter = FindObjectOfType<Shooter>();
             _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
             _shooter.headShot.SetActive(true);
-            //if (other.gameObject.TryGetComponent(out SoldierController _soldierController))
-            //{
-            //    //_soldierController.TakeHit(1f);
-            //    _soldierController.TakeHit(damage);
-            //}
-            //damage = 1;// hard to work.
-            //Debug.Log("HeadShot !");
-            // Debug.Log(damage);
-            //if (headShot)
-            //{
-            //    headShot.SetActive(true);
-            //    //StartCoroutine(CloseHs());
-            //    //StartCoroutine(DestroyObject());
-            //}
         }
-        //if (gameObject)
-        //{
-        //    StartCoroutine(DestroyObject());
-        //}
         gameObject.SetActive(false);
     }
-    
+
     //IEnumerator CloseHs()
     //{
     //    yield return new WaitForSeconds(hsDelay);

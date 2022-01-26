@@ -17,6 +17,7 @@ public class ObjectPool : MonoBehaviour
             Destroy(gameObject);
     }
 
+
     void Start()
     {
         foreach (Pool pool in pools)
@@ -52,7 +53,16 @@ public class ObjectPool : MonoBehaviour
         go.SetActive(true);
 
         poolDictionary[tag].Enqueue(go);
+        StartCoroutine(PositionFixEnum(go, position, rotation));
         return go;
+    }
+
+    IEnumerator PositionFixEnum(GameObject go, Vector3 position, Quaternion rotation)
+    {
+        yield return new WaitForEndOfFrame();
+        go.transform.position = position;
+        go.transform.rotation = rotation;
+
     }
 
     [System.Serializable]

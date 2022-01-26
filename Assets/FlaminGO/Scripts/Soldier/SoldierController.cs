@@ -90,8 +90,6 @@ public class SoldierController : MonoBehaviour
         //StartCoroutine(AutoShoot());
     }
 
-    
-
     IEnumerator CanvasInd()
     {
         yield return new WaitForSeconds(3f);
@@ -192,20 +190,22 @@ public class SoldierController : MonoBehaviour
     {
         if (enemyList.Count != 0 || allyList.Count != 0)
         {
-            if (!isDead)
+            if (!isDead) // look here
             {
                 //shootEffect.Play();
-                animator.SetTrigger("Aim");
+                //animator.SetTrigger("Aim");
                 SendBullet();
             }
         }
         //shootParticle.SetActive(true);
 
     }
+
     public void AimStart()
     {
         animator.SetTrigger("Aim");
     }
+
     public void ReloadBullet()
     {
         shootCount++;
@@ -215,6 +215,7 @@ public class SoldierController : MonoBehaviour
             shootCount = 0;
         }
     }
+
     //void SelectTarget()
     //{
     //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
@@ -245,12 +246,18 @@ public class SoldierController : MonoBehaviour
         if (!rpgSoldier)
         {
             //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.up, bulletSpawnPos.rotation);
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, bulletSpawnPos.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.position, transform.rotation);
+            _smallBullet.transform.SetParent(bulletSpawnPos);
+            _smallBullet.transform.localPosition = Vector3.zero;
+            _smallBullet.transform.localRotation = Quaternion.identity;
         }
         else
         {
             //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.up, bulletSpawnPos.rotation);
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position, bulletSpawnPos.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.position, transform.rotation);
+            _smallBullet.transform.SetParent(bulletSpawnPos);
+            _smallBullet.transform.localPosition = Vector3.zero;
+            _smallBullet.transform.localRotation = Quaternion.identity;
         }
 
         if (targetEnemy)
@@ -258,10 +265,10 @@ public class SoldierController : MonoBehaviour
             //Transform _targetEnemy = targetEnemy.transform;
             //_targetEnemy = _smallBullet.GetComponent<BulletController>().target;
             _smallBullet.transform.LookAt(targetEnemy.transform.position + Vector3.up);
-            _smallBullet.transform.DOMove(targetEnemy.transform.position + Vector3.up, 1f);
+            _smallBullet.transform.DOMove(targetEnemy.transform.position + Vector3.up, .1f).SetEase(Ease.Linear);
             //_smallBullet.transform.LookAt(_targetEnemy.position + Vector3.up);
             //_smallBullet.transform.DOMove(_targetEnemy.position + Vector3.up, 1f);
-            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position - transform.position).normalized * bulletForce);
+            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.trEansform.position - transform.position).normalized * bulletForce);
             //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
         }
     }
