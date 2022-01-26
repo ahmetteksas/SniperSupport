@@ -90,10 +90,7 @@ public class SoldierController : MonoBehaviour
         //StartCoroutine(AutoShoot());
     }
 
-    public void AimStart()
-    {
-        animator.SetTrigger("Aim");
-    }
+    
 
     IEnumerator CanvasInd()
     {
@@ -205,7 +202,10 @@ public class SoldierController : MonoBehaviour
         //shootParticle.SetActive(true);
 
     }
-
+    public void AimStart()
+    {
+        animator.SetTrigger("Aim");
+    }
     public void ReloadBullet()
     {
         shootCount++;
