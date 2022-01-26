@@ -5,6 +5,7 @@ using UnityEngine;
 public class TakeHit : MonoBehaviour
 {
     public GameObject explosionBarrel;
+    public float effectRadius;
     //public GameObject vehicle;
     public float damage = .6f;
     //public GameObject explosionOtherBarrel;
@@ -27,7 +28,7 @@ public class TakeHit : MonoBehaviour
     {
         StartCoroutine(ExplosionStart());
 
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(center, effectRadius);
         foreach (var hitCollider in hitColliders)
         {
             SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
@@ -46,10 +47,12 @@ public class TakeHit : MonoBehaviour
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
         }
     }
+
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, 2f);
+        Gizmos.DrawSphere(transform.position, effectRadius);
     }
+
     IEnumerator ExplosionStart()
     {
         ObjectPool.instance.SpawnFromPool("CarExplode", transform.position, Quaternion.identity);

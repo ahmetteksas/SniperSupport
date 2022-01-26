@@ -90,7 +90,7 @@ public class SoldierController : MonoBehaviour
         //StartCoroutine(AutoShoot());
     }
 
-    public void AimStart ()
+    public void AimStart()
     {
         animator.SetTrigger("Aim");
     }
@@ -244,17 +244,18 @@ public class SoldierController : MonoBehaviour
 
         if (!rpgSoldier)
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, bulletSpawnPos.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.up, bulletSpawnPos.rotation);
         }
         else
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position, bulletSpawnPos.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.up, bulletSpawnPos.rotation);
         }
 
         if (targetEnemy)
         {
-            _smallBullet.transform.LookAt(targetTransform.localPosition);
-            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position - transform.position).normalized * bulletForce);
+            _smallBullet.transform.LookAt(targetEnemy.transform.position + Vector3.up);
+            _smallBullet.transform.DOMove(targetEnemy.transform.position + Vector3.up, 1f);
+            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.transform.position - transform.position).normalized * bulletForce);
             //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
         }
     }
