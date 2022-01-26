@@ -7,6 +7,8 @@ using TMPro;
 
 public class BulletController : MonoBehaviour
 {
+    public bool isRpg;
+
     public float damage;
     public GameObject impactParticle;
     public bool playerBullet;
@@ -40,10 +42,10 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (target != null)
-        //{
-        //    transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
-        //}
+        if (target != null)
+        {
+            transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
+        }
         if (!isFirstPositionSetted)
         {
             if (transform.parent != null)
@@ -51,7 +53,14 @@ public class BulletController : MonoBehaviour
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
                 isFirstPositionSetted = true;
-                ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+                //if (isRpg)
+                //{
+                //    ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+                //}
+                if (!isRpg)
+                {
+                    ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+                }
             }
         }
     }
