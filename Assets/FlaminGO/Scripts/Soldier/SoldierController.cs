@@ -244,11 +244,13 @@ public class SoldierController : MonoBehaviour
 
         if (!rpgSoldier)
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.up, bulletSpawnPos.rotation);
+            //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.up, bulletSpawnPos.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", bulletSpawnPos.position, bulletSpawnPos.rotation);
         }
         else
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.up, bulletSpawnPos.rotation);
+            //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.up, bulletSpawnPos.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", bulletSpawnPos.position, bulletSpawnPos.rotation);
         }
 
         if (targetEnemy)

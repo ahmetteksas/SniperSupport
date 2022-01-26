@@ -43,6 +43,10 @@ public class BulletController : MonoBehaviour
             transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        gameObject.SetActive(false);
+    }
     //public void TrailOpen()
     //{
     //    if (trail)
@@ -110,6 +114,7 @@ public class BulletController : MonoBehaviour
         //}
         gameObject.SetActive(false);
     }
+    
     //IEnumerator CloseHs()
     //{
     //    yield return new WaitForSeconds(hsDelay);
