@@ -207,7 +207,7 @@ public class Shooter : MonoBehaviour
         if (selectedBulletIndex == 0)
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
-            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
+            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
         }
         else
         {
@@ -237,10 +237,10 @@ public class Shooter : MonoBehaviour
 
 
 
-        //shootTime = 0f;
+        shootTime = 0f;
         //}
     }
-    
+
 
     public void FinishGame()
     {

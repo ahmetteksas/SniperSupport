@@ -31,21 +31,21 @@ public class VehicleHit : MonoBehaviour
             }
         }
     }
-    void ExplosionDamage(Vector3 center,float radius)
+    void ExplosionDamage(Vector3 center, float radius)
     {
+        StartCoroutine(ExplodeCar());
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.TryGetComponent(out SoldierController soldierController))
             {
                 childSoldier = soldierController.gameObject;
-                soldierController.TakeHit(damage);
+                soldierController.TakeHit(damage * 200f);
                 //soldierController.isDead = true;
                 //soldierController.healthBar.fillAmount -= 1.0f;
                 //soldierController.healthBar.fillAmount -= .5f;
                 //soldierController.gameObject.SetActive(false);
                 //StartCoroutine(DecreaseHealth(soldierController.healthBar));
-                StartCoroutine(ExplodeCar(soldierController.gameObject));
             }
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
         }
@@ -55,13 +55,13 @@ public class VehicleHit : MonoBehaviour
         yield return new WaitForSeconds(.2f);
         _im.fillAmount -= damage;
     }
-    IEnumerator ExplodeCar(GameObject _go)
+    public IEnumerator ExplodeCar()
     {
         yield return new WaitForSeconds(.4f);
-        if (_go)
-        {
-            _go.transform.parent = null;
-        }
+        //if (_go)
+        //{
+        //    _go.transform.parent = null;
+        //}
         yield return new WaitForSeconds(.1f);
         explodeCar.SetActive(true);
         destroyedState.SetActive(true);
@@ -73,6 +73,7 @@ public class VehicleHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
+            Debug.Log("Vechile Hitted");
             ExplosionDamage(transform.position, 5f);
             health -= 50f;
         }
