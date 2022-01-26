@@ -12,7 +12,7 @@ public class BulletController : MonoBehaviour
     public bool playerBullet;
     public GameObject headShot;
     public float hsDelay = 1f;
-    public GameObject trail;
+    //public GameObject trail;
 
     public Transform target;
 
@@ -20,21 +20,21 @@ public class BulletController : MonoBehaviour
     {
         //StartCoroutine(DestroyObject());
     }
-    private void OnEnable()
-    {
-        //target.transform
-        if (trail)
-        {
-            trail.SetActive(true);
-        }
-    }
-    private void OnDisable()
-    {
-        if (trail)
-        {
-            trail.SetActive(false);
-        }
-    }
+    //private void OnEnable()
+    //{
+    //    //target.transform
+    //    if (trail)
+    //    {
+    //        trail.SetActive(true);
+    //    }
+    //}
+    //private void OnDisable()
+    //{
+    //    if (trail)
+    //    {
+    //        trail.SetActive(false);
+    //    }
+    //}
 
     private void FixedUpdate()
     {
