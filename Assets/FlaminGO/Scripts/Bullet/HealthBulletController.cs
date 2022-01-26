@@ -25,7 +25,6 @@ public class HealthBulletController : MonoBehaviour
 
             GoToTarget();
         }
-
     }
 
     public void GoToTarget()
