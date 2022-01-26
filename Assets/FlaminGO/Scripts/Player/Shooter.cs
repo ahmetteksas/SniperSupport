@@ -224,19 +224,16 @@ public class Shooter : MonoBehaviour
 
             if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))
             {
-                healBullet.target = hit.transform;
+                healBullet.target = objectHit;
             }
             if (_smallBullet.TryGetComponent(out BulletController bullet))
             {
-                bullet.target = hit.transform;
+                bullet.target = objectHit;
             }
             //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position - _smallBullet.transform.position).normalized * bulletForce);
             //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
 
         }
-
-
-
         shootTime = 0f;
         //}
     }

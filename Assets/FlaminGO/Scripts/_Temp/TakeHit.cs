@@ -14,6 +14,7 @@ public class TakeHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
+            Debug.Log("Barrel Hitted");
             other.gameObject.SetActive(false);
             ExplosionDamage(transform.position, 2f);
             //explosionBarrel.SetActive(true);
@@ -39,7 +40,7 @@ public class TakeHit : MonoBehaviour
 
             if (_vehicleHit)
             {
-                //_vehicleHit.
+                _vehicleHit.Explode();
             }
 
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;

@@ -55,21 +55,35 @@ public class VehicleHit : MonoBehaviour
         yield return new WaitForSeconds(.2f);
         _im.fillAmount -= damage;
     }
+
+    public void Explode()
+    {
+        StartCoroutine(ExplodeCar());
+    }
     public IEnumerator ExplodeCar()
     {
         yield return new WaitForSeconds(.4f);
+        explodeCar.SetActive(true);
+        gameObject.SetActive(false);
         //if (_go)
         //{
         //    _go.transform.parent = null;
         //}
-        yield return new WaitForSeconds(.1f);
-        explodeCar.SetActive(true);
+        //yield return new WaitForSeconds(.1f);
         destroyedState.SetActive(true);
         destroyedState.transform.parent = null;
         yield return new WaitForSeconds(2.5f);
-        gameObject.SetActive(false);
     }
     private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("BulletPlayer"))
+        {
+            Debug.Log("Vechile Hitted");
+            ExplosionDamage(transform.position, 5f);
+            health -= 50f;
+        }
+    }
+    private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
