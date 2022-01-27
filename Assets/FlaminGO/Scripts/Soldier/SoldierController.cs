@@ -105,6 +105,8 @@ public class SoldierController : MonoBehaviour
         }
     }
 
+   
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletPlayer"))
@@ -124,6 +126,7 @@ public class SoldierController : MonoBehaviour
             TakeHit(0);
         }
     }
+    
 
     IEnumerator HealField()
     {
@@ -175,8 +178,8 @@ public class SoldierController : MonoBehaviour
             {
                 transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
 
-                if (bulletSpawnPos)
-                    bulletSpawnPos.LookAt(targetEnemy.transform);
+                //if (bulletSpawnPos)
+                //    bulletSpawnPos.LookAt(targetEnemy.transform);
             }
             else
             {
@@ -188,22 +191,25 @@ public class SoldierController : MonoBehaviour
 
     public void ShootBullet()
     {
-        if (enemyList.Count != 0 || allyList.Count != 0)
+        //if (enemyList.Count != 0 || allyList.Count != 0)
+        //{
+        if (!isDead) // look here
         {
-            if (!isDead) // look here
-            {
-                //shootEffect.Play();
-                //animator.SetTrigger("Aim");
-                SendBullet();
-            }
+            //shootEffect.Play();
+            //animator.SetTrigger("Aim");
+            SendBullet();
         }
+        //}
         //shootParticle.SetActive(true);
 
     }
 
     public void AimStart()
     {
-        animator.SetTrigger("Aim");
+        if (!isDead)
+        {
+            animator.SetTrigger("Aim");
+        }
     }
 
     public void ReloadBullet()
@@ -211,8 +217,11 @@ public class SoldierController : MonoBehaviour
         shootCount++;
         if (shootCount == magSize)
         {
-            animator.SetTrigger("Reload");
-            shootCount = 0;
+            if (!isDead)
+            {
+                animator.SetTrigger("Reload");
+                shootCount = 0;
+            }
         }
     }
 
@@ -241,20 +250,25 @@ public class SoldierController : MonoBehaviour
 
     void SendBullet()
     {
+        if (isDead)
+        {
+            return;
+        }
         GameObject _smallBullet;
 
         if (!rpgSoldier)
         {
-            //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.up, bulletSpawnPos.rotation);
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.position, transform.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
             _smallBullet.transform.SetParent(bulletSpawnPos);
             _smallBullet.transform.localPosition = Vector3.zero;
             _smallBullet.transform.localRotation = Quaternion.identity;
+            //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.up, bulletSpawnPos.rotation);
         }
         else
         {
+            //_smallBullet = null;
             //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.up, bulletSpawnPos.rotation);
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.position, transform.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", transform.position, transform.rotation);
             _smallBullet.transform.SetParent(bulletSpawnPos);
             _smallBullet.transform.localPosition = Vector3.zero;
             _smallBullet.transform.localRotation = Quaternion.identity;
@@ -262,10 +276,19 @@ public class SoldierController : MonoBehaviour
 
         if (targetEnemy)
         {
+            //_smallBullet.transform.LookAt(targetEnemy.transform.position /*+ Vector3.up*/);
             //Transform _targetEnemy = targetEnemy.transform;
             //_targetEnemy = _smallBullet.GetComponent<BulletController>().target;
-            _smallBullet.transform.LookAt(targetEnemy.transform.position + Vector3.up);
-            _smallBullet.transform.DOMove(targetEnemy.transform.position + Vector3.up, .1f).SetEase(Ease.Linear);
+            //if (!rpgSoldier)
+            //{
+            //    _smallBullet.transform.LookAt(targetEnemy.transform.position + Vector3.up);
+            //}
+            //else
+            //{
+            //    _smallBullet.transform.LookAt(targetEnemy.transform.position + Vector3.up);
+            //}
+            //_smallBullet.transform.DOMove(targetEnemy.transform.position + Vector3.up, .1f).SetEase(Ease.Linear);
+
             //_smallBullet.transform.LookAt(_targetEnemy.position + Vector3.up);
             //_smallBullet.transform.DOMove(_targetEnemy.position + Vector3.up, 1f);
             //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.trEansform.position - transform.position).normalized * bulletForce);

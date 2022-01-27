@@ -441,7 +441,7 @@ MonoBehaviour:
   targetEnemy: {fileID: 0}
   isDead: 0
   bulletSpawnPos: {fileID: 6568885953230554494}
-  bulletForce: 3000
+  bulletForce: 1500
   deathForce: 1
   shootDelay: 2.5
   setPositionDelay: 2
@@ -4959,8 +4959,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 7044464505330298917}
     m_Modifications:
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.951
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2326400882840121048, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_RootOrder

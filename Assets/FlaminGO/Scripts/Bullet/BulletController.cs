@@ -50,6 +50,7 @@ public class BulletController : MonoBehaviour
         {
             if (transform.parent != null)
             {
+                //return;
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
                 isFirstPositionSetted = true;
@@ -59,7 +60,13 @@ public class BulletController : MonoBehaviour
                 //}
                 if (!isRpg)
                 {
-                    ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+                    //GameObject _ammoTrail = ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+                    //_ammoTrail.transform.parent = gameObject.transform;
+                }
+                else
+                {
+                    //GameObject _ammoTrailRocket = ObjectPool.instance.SpawnFromPool("RocketTrail", transform.position, transform.rotation);
+                    //_ammoTrailRocket.transform.parent = gameObject.transform;
                 }
             }
         }
