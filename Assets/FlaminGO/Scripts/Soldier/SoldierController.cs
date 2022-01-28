@@ -105,7 +105,7 @@ public class SoldierController : MonoBehaviour
         }
     }
 
-   
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -126,7 +126,7 @@ public class SoldierController : MonoBehaviour
             TakeHit(0);
         }
     }
-    
+
 
     IEnumerator HealField()
     {
@@ -197,7 +197,10 @@ public class SoldierController : MonoBehaviour
         {
             //shootEffect.Play();
             //animator.SetTrigger("Aim");
-            SendBullet();
+            if (LevelManager.instance.isGameRunning)
+            {
+                SendBullet();
+            }
         }
         //}
         //shootParticle.SetActive(true);

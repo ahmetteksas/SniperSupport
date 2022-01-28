@@ -27,12 +27,11 @@ public class TakeHit : MonoBehaviour
     void ExplosionDamage(Vector3 center, float radius)
     {
         StartCoroutine(ExplosionStart());
-
         Collider[] hitColliders = Physics.OverlapSphere(center, effectRadius);
         foreach (var hitCollider in hitColliders)
         {
             SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
-            if (_soldierController)
+            if (_soldierController && hitCollider.gameObject.tag == "Head")
             {
                 _soldierController.TakeHit(damage);
             }
@@ -46,6 +45,28 @@ public class TakeHit : MonoBehaviour
 
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
         }
+
+
+        //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
+
+        //Collider[] hitColliders = Physics.OverlapSphere(center, effectRadius);
+        //foreach (var hitCollider in hitColliders)
+        //{
+        //    SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
+        //    if (_soldierController)
+        //    {
+        //        _soldierController.TakeHit(damage);
+        //    }
+
+        //    VehicleHit _vehicleHit = hitCollider.gameObject.GetComponent<VehicleHit>();
+
+        //    if (_vehicleHit)
+        //    {
+        //        _vehicleHit.Explode();
+        //    }
+
+        //    //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
+        //}
     }
 
     private void OnDrawGizmos()

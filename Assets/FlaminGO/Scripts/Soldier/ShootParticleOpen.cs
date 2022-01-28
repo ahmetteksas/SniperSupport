@@ -9,15 +9,24 @@ public class ShootParticleOpen : MonoBehaviour
 
     public void Shoot()
     {
-        GetComponentInParent<SoldierController>().ShootBullet();
+        if (LevelManager.instance.isGameRunning)
+        {
+            GetComponentInParent<SoldierController>().ShootBullet();
+        }
         //GameObject shootParticle = ObjectPool.instance.SpawnFromPool(particleTag, shootParticleSpawnPos.position, shootParticleSpawnPos.rotation);
     }
     public void Reload()
     {
-        GetComponentInParent<SoldierController>().ReloadBullet();
+        if (LevelManager.instance.isGameRunning)
+        {
+            GetComponentInParent<SoldierController>().ReloadBullet();
+        }
     }
     public void Aim()
     {
-        GetComponentInParent<SoldierController>().AimStart();
+        if (LevelManager.instance.isGameRunning)
+        {
+            GetComponentInParent<SoldierController>().AimStart();
+        }
     }
 }
