@@ -21,7 +21,7 @@ public class TrailBulletController : MonoBehaviour
                 _soldierController.TakeHit(damage);
                
             }
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("Enemy") && rocketParticle)
         {
