@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 9189961382652035732}
   m_Layer: 9
   m_Name: Vehicle_01
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4346149634866893729}
-  m_LocalRotation: {x: -0, y: 0.9503864, z: -0, w: -0.3110718}
+  m_LocalRotation: {x: 0, y: 0.95038646, z: -0, w: -0.3110717}
   m_LocalPosition: {x: 7.9, y: 1.73, z: 2.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -227,6 +227,7 @@ MonoBehaviour:
   explodeCar: {fileID: 4342018361575392373}
   destroyedState: {fileID: 5330578924808067393}
   radius: 5
+  damage: 0.4
 --- !u!1 &4346308453468136003
 GameObject:
   m_ObjectHideFlags: 0

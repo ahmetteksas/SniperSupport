@@ -12,7 +12,7 @@ public class BulletController : MonoBehaviour
     public float damage;
     public GameObject impactParticle;
     public bool playerBullet;
-    public GameObject headShot;
+    //public GameObject headShot;
     public float hsDelay = 1f;
     //public GameObject trail;
 
@@ -107,8 +107,11 @@ public class BulletController : MonoBehaviour
                 _soldierController.TakeHit(damage);
             }
             Shooter _shooter = FindObjectOfType<Shooter>();
-            _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-            _shooter.headShot.SetActive(true);
+            if (_shooter.headShot)
+            {
+                _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+                _shooter.headShot.SetActive(true);
+            }
         }
         if (playerBullet && other.gameObject.CompareTag("Head"))
         {
@@ -118,8 +121,11 @@ public class BulletController : MonoBehaviour
                 _soldierController.TakeHit(damage * 20000f);
             }
             Shooter _shooter = FindObjectOfType<Shooter>();
-            _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-            _shooter.headShot.SetActive(true);
+            if (_shooter.headShot)
+            {
+                _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+                _shooter.headShot.SetActive(true);
+            }
         }
         gameObject.SetActive(false);
     }
