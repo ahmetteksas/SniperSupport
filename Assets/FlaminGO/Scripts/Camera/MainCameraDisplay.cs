@@ -16,8 +16,8 @@ public class MainCameraDisplay : MonoBehaviour
     }
     void Start()
     {
-        //transform.DOLocalMove(Vector3.zero, movementTime);
-        //transform.DOLocalRotate(Vector3.zero, movementTime);
+        transform.DOLocalMove(Vector3.zero, 0f);
+        transform.DOLocalRotate(Vector3.zero, 0f);
     }
 
     //public void SetParentDefault()

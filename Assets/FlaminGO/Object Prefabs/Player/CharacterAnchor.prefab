@@ -2446,10 +2446,9 @@ MonoBehaviour:
   bulletSpawnPos: {fileID: 5971096018137123851}
   bulletDir: {fileID: 5824237862209145061}
   character: {fileID: 5824237862209145061}
-  allyList: {fileID: 11400000, guid: eeec3af480de5ed40bebe68b5031d06a, type: 2}
   bulletForce: 45000
-  shootDelay: 1.8
-  scopeZoom: 20
+  shootDelay: 1.7
+  scopeZoom: 17
   scopeOffset: 2
   scopeZoomOutDelay: 0.75
   cross: {fileID: 2706603564311628523}
@@ -2457,6 +2456,11 @@ MonoBehaviour:
   sniper: {fileID: 4030265033392185698}
   firstSniperPos: {fileID: 6366394572868548269}
   secondSniperPos: {fileID: 2493798395692403703}
+  allyList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyList: []
   swayingDelay: 1
 --- !u!54 &1168399188598259285
 Rigidbody:
@@ -2473,7 +2477,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &833146935
 MonoBehaviour:
   m_ObjectHideFlags: 0

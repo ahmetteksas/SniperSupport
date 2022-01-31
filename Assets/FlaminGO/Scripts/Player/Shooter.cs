@@ -221,7 +221,7 @@ public class Shooter : MonoBehaviour
 
             if (enemyList.Count != 0)
             {
-                Debug.Log(enemyList.Where(x => !x.isDead).Count());
+                //Debug.Log(enemyList.Where(x => !x.isDead).Count());
                 if (enemyList.Where(x => !x.isDead).Count() == 0)
                 {
                     //LevelManager.instance.isGameRunning = false;
@@ -240,7 +240,7 @@ public class Shooter : MonoBehaviour
                     }
                 }
 
-                Debug.Log(allyList.Where(x => !x.isDead).Count());
+                //Debug.Log(allyList.Where(x => !x.isDead).Count());
                 if (allyList.Where(x => !x.isDead).Count() == 0)
                 {
                     //LevelManager.instance.isGameRunning = false;

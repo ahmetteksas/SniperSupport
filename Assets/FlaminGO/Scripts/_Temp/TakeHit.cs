@@ -71,7 +71,8 @@ public class TakeHit : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, effectRadius);
+        Gizmos.DrawWireSphere(transform.position, effectRadius);
+        //Gizmos.color = Color.white;
     }
 
     IEnumerator ExplosionStart()
