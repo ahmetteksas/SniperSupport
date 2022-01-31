@@ -120,12 +120,12 @@ public class BulletController : MonoBehaviour
             {
                 _soldierController.TakeHit(damage * 20000f);
             }
-            Shooter _shooter = FindObjectOfType<Shooter>();
-            if (_shooter.headShot)
-            {
-                _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-                _shooter.headShot.SetActive(true);
-            }
+            //Shooter _shooter = FindObjectOfType<Shooter>();
+            //if (_shooter.headShot)
+            //{
+            //    _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            //    _shooter.headShot.SetActive(true);
+            //}
         }
         gameObject.SetActive(false);
     }

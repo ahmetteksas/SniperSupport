@@ -6,6 +6,8 @@ using System.Linq;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using TMPro;
+
 public class Shooter : MonoBehaviour
 {
     Camera mainCamera;
@@ -15,7 +17,7 @@ public class Shooter : MonoBehaviour
     public Transform bulletSpawnPos;
     public Transform bulletDir;
     public Transform character;
-    public GameObjectCollection allyList;
+    //public GameObjectCollection allyList;
     private Transform targetAlly;
     public float bulletForce;
     [SerializeField] float shootDelay = 2f;
@@ -37,22 +39,32 @@ public class Shooter : MonoBehaviour
     public GameObject sniper;
     public Transform firstSniperPos;
     public Transform secondSniperPos;
+
+
+    public List<SoldierController> allyList = new List<SoldierController>();
+    public List<SoldierController> enemyList = new List<SoldierController>();
+
     //private Animator animBase;
     private void Awake()
     {
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
+
+
     }
 
     void Start()
     {
+
+        allyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 0).ToList();
+        enemyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 1).ToList();
         //animBase = GetComponent<Animator>();
         //shootDelay = shootTime - Time.deltaTime;
     }
 
     public Coroutine swayingCoroutine;
     public float swayingDelay;
-    
+
     IEnumerator Swaying()
     {
         while (true)
@@ -205,6 +217,54 @@ public class Shooter : MonoBehaviour
         }
         else
         {
+            #region GameEndCheck
+
+            if (enemyList.Count != 0)
+            {
+                Debug.Log(enemyList.Where(x => !x.isDead).Count());
+                if (enemyList.Where(x => !x.isDead).Count() == 0)
+                {
+                    //LevelManager.instance.isGameRunning = false;
+                    if (CanvasManager.instance.retryLevelButton != null)
+                    {
+                        //if (CanvasManager.instance.nextLevelButton.activeInHierarchy)
+                        //    yield break;
+
+                        Debug.Log("win the game");
+                        GameEventManager.Instance.complateGame.Raise();
+                        //CanvasManager.instance.retryLevelButton.SetActive(true);
+                        //Time.timeScale = 0;
+                        //enemyList.Clear();
+                        //allyList.Clear();
+                        //yield break;
+                    }
+                }
+
+                Debug.Log(allyList.Where(x => !x.isDead).Count());
+                if (allyList.Where(x => !x.isDead).Count() == 0)
+                {
+                    //LevelManager.instance.isGameRunning = false;
+                    if (CanvasManager.instance.nextLevelButton != null)
+                    {
+                        //if (CanvasManager.instance.retryLevelButton.activeInHierarchy)
+                        //    yield break;
+
+                        Debug.Log("lost the game");
+
+                        GameEventManager.Instance.failGame.Raise();
+
+                        //CanvasManager.instance.nextLevelButton.SetActive(true);
+                        //Time.timeScale = 0;
+                        //enemyList.Clear();
+                        //allyList.Clear();
+                        //yield break;
+                    }
+                    //retryLevel.SetActive(true);
+                }
+            }
+            #endregion
+
+
             if (shootTime > shootDelay)
             {
                 if (Input.GetMouseButton(0) /*&& IsMouseOverUi()*//*&& !shoot*/)
@@ -267,6 +327,19 @@ public class Shooter : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Transform objectHit = hit.transform;
+
+            if (hit.collider.CompareTag("Head"))
+            {
+                headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+                headShot.SetActive(true);
+            }
+            else if (hit.collider.name != "Ground")
+            {
+                Debug.Log(hit.collider.name);
+                headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+                headShot.SetActive(true);
+            }
+
 
             if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))
             {

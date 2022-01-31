@@ -15,8 +15,7 @@ public class SoldierController : MonoBehaviour
     public int magSize;
     public float lookAtDelay;
 
-    private List<SoldierController> allyList = new List<SoldierController>();
-    private List<SoldierController> enemyList = new List<SoldierController>();
+    Shooter shooter;
 
     [SerializeField] SoldierController targetEnemy;
 
@@ -62,17 +61,18 @@ public class SoldierController : MonoBehaviour
         nMesh = GetComponent<NavMeshAgent>();
         colBase = GetComponent<Collider>();
         targetTransform = transform.parent;
-        enemyList.Clear();
-        allyList.Clear();
+        //enemyList.Clear();
+        //allyList.Clear();
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
-        allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
-        enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
+        //allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
+        //enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
         animator = GetComponentInChildren<Animator>();
         canvas = GetComponentInChildren<Canvas>();
     }
 
     public void StartGame()
     {
+        shooter = FindObjectOfType<Shooter>();
         StartCoroutine(SelectTargetV2());
         //SelectTarget();
         //healthBar = GetComponentInChildren<Image>();
@@ -173,7 +173,14 @@ public class SoldierController : MonoBehaviour
     {
         while (!isDead)
         {
-            targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
+            if (teamIndex == 0)
+            {
+                targetEnemy = shooter.enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
+            }
+            else
+            {
+                targetEnemy = shooter.allyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
+            }
             if (targetEnemy)
             {
                 transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
@@ -307,7 +314,7 @@ public class SoldierController : MonoBehaviour
         {
             nMesh.enabled = false;
         }
-        animator.enabled = false;
+        //animator.enabled = false;
         //explosion.Stop();
         //GetComponentInChildren<Canvas>().enabled = false;
         PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
@@ -333,44 +340,13 @@ public class SoldierController : MonoBehaviour
     {
         //Debug.Log(allyList.Where(x => !x.isDead).Count());
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+
+        //if (teamIndex != 0)
+        //{
+        //    yield break;
+        //}
         //gameObject.SetActive(false);
-        if (enemyList.Where(x => !x.isDead).Count() == 0)
-        {
-
-            //LevelManager.instance.isGameRunning = false;
-            if (CanvasManager.instance.retryLevelButton != null)
-            {
-                if (CanvasManager.instance.nextLevelButton.activeInHierarchy)
-                    yield break;
-
-                Debug.Log("win the game");
-                CanvasManager.instance.retryLevelButton.SetActive(true);
-                //Time.timeScale = 0;
-                enemyList.Clear();
-                allyList.Clear();
-                //yield break;
-            }
-        }
-
-        if (allyList.Where(x => !x.isDead).Count() == 0)
-        {
-            //LevelManager.instance.isGameRunning = false;
-            if (CanvasManager.instance.nextLevelButton != null)
-            {
-                if (CanvasManager.instance.retryLevelButton.activeInHierarchy)
-                    yield break;
-
-                Debug.Log("lost the game");
-
-                CanvasManager.instance.nextLevelButton.SetActive(true);
-                //Time.timeScale = 0;
-                enemyList.Clear();
-                allyList.Clear();
-                //yield break;
-            }
-            //retryLevel.SetActive(true);
-        }
     }
 }
 
