@@ -85,7 +85,7 @@
 
             // Ensure that root object cannot be destroyed on scene loads
             var srDebuggerParent = Hierarchy.Get("SRDebugger");
-            Object.DontDestroyOnLoad(srDebuggerParent.gameObject);
+            //Object.DontDestroyOnLoad(srDebuggerParent.gameObject);
 
             // Add any options containers that were created on init
             var internalRegistry = SRServiceManager.GetService<InternalOptionsRegistry>();
