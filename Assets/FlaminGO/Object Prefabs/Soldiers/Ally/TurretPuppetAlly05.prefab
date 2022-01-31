@@ -5473,7 +5473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamIndex: 0
   magSize: 4
-  lookAtDelay: 0
+  lookAtDelay: 0.8
   targetEnemy: {fileID: 0}
   isDead: 0
   bulletSpawnPos: {fileID: 4195231814111913690}
@@ -5502,7 +5502,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.2
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -8794,7 +8794,7 @@ MonoBehaviour:
   mappingWeight: 1
   pinWeight: 1
   muscleWeight: 1
-  muscleSpring: 5
+  muscleSpring: 50
   muscleDamper: 0
   pinPow: 4
   pinDistanceFalloff: 5

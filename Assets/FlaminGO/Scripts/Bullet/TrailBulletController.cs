@@ -12,7 +12,7 @@ public class TrailBulletController : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("DamageHitted");
+        //Debug.Log("DamageHitted");
         if (other.gameObject.CompareTag("Enemy") && !rocketParticle)
         {
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();

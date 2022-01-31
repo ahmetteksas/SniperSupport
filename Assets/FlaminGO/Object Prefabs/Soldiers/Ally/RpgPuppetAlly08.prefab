@@ -9331,6 +9331,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6146410637637997074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5984782313038282136}
+  m_Layer: 0
+  m_Name: ParticleSpawnPosSpine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5984782313038282136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6146410637637997074}
+  m_LocalRotation: {x: -0.017574934, y: -0.017575232, z: 0.7068883, w: -0.70688844}
+  m_LocalPosition: {x: 0.09000003, y: 1.3786936, z: 0.6050987}
+  m_LocalScale: {x: 1.1000001, y: 1.1000001, z: 1.1000009}
+  m_Children: []
+  m_Father: {fileID: 8140929085132885228}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: 2.8484578, y: 0.000024469502, z: 270}
 --- !u!1 &6357869804929075306
 GameObject:
   m_ObjectHideFlags: 0
@@ -10084,7 +10114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamIndex: 0
   magSize: 2
-  lookAtDelay: 0
+  lookAtDelay: 0.8
   targetEnemy: {fileID: 0}
   isDead: 0
   bulletSpawnPos: {fileID: 8670831900866174954}
@@ -10113,7 +10143,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.2
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -10991,6 +11021,7 @@ Transform:
   - {fileID: 5741595262503132404}
   - {fileID: 5742594956646903546}
   - {fileID: 8135117993405640300}
+  - {fileID: 5984782313038282136}
   m_Father: {fileID: 7030557169633819032}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11025,7 +11056,7 @@ MonoBehaviour:
   mappingWeight: 1
   pinWeight: 1
   muscleWeight: 1
-  muscleSpring: 5
+  muscleSpring: 50
   muscleDamper: 0
   pinPow: 4
   pinDistanceFalloff: 5
@@ -14883,28 +14914,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.943
+      value: -0.52
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000014901156
+      value: 0.030701863
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1
+      value: -0.7761888
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000019371502
+      value: 0.6288939
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000035762775
+      value: -0.032876387
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -180
+      value: -179.638
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -365.14398
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -281.953
       objectReference: {fileID: 0}
     - target: {fileID: 2326391968677381572, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_RootOrder

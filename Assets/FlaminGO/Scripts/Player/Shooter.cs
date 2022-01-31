@@ -335,7 +335,7 @@ public class Shooter : MonoBehaviour
             }
             else if (hit.collider.name != "Ground")
             {
-                Debug.Log(hit.collider.name);
+                Debug.Log(hit.transform.GetComponentInParent<SoldierController>().gameObject.name);
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
                 headShot.SetActive(true);
             }
@@ -349,7 +349,7 @@ public class Shooter : MonoBehaviour
             {
                 bullet.target = objectHit;
             }
-            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position - _smallBullet.transform.position).normalized * bulletForce);
+            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position - _smallBullet.transform.position).normalized * bulletForce);
             //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
 
         }

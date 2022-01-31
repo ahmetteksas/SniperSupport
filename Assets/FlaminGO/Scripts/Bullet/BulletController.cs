@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
 {
     public bool isRpg;
 
+    private ParticleSystem trail;
     public float damage;
     public GameObject impactParticle;
     public bool playerBullet;
@@ -19,10 +20,18 @@ public class BulletController : MonoBehaviour
     public Transform target;
 
     bool isFirstPositionSetted;
+    private void Awake()
+    {
 
+    }
     void Start()
     {
         //StartCoroutine(DestroyObject());
+        //if (TryGetComponent(out ParticleSystem particleSystem))
+        //{
+        //    trail = particleSystem;
+        //    trail.Stop();
+        //}
     }
     //private void OnEnable()
     //{
@@ -42,18 +51,47 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target != null)
-        {
-            transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
-        }
+        //if (target != null)
+        //{
+        //    transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
+        //}
         if (!isFirstPositionSetted)
         {
             if (transform.parent != null)
             {
+                isFirstPositionSetted = true;
                 //return;
+                //if (isRpg)
+                //{
+                //    //transform.localPosition = Vector3.forward * 2f;
+                //}
+                //else
+                //{
+
+                //    transform.localPosition = Vector3.zero;
+                //}
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
-                isFirstPositionSetted = true;
+
+                if (isRpg)
+                {
+                    Debug.Log("bullet first position setted");
+                }
+
+                //trail.Play();
+
+                if (isRpg)
+                {
+                    //target.position += Vector3.up * 4f;
+                }
+                else
+                {
+                    //target.position += Vector3.up * 1.12f;
+                }
+
+                transform.SetParent(null);
+                transform.LookAt(target);
+
                 //if (isRpg)
                 //{
                 //    ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
@@ -97,7 +135,6 @@ public class BulletController : MonoBehaviour
             {
                 _soldierController.TakeHit(damage);
             }
-            gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("Enemy") && playerBullet)
         {

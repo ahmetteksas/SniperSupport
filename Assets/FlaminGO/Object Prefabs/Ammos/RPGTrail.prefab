@@ -462,7 +462,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5019,7 +5019,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9642,7 +9642,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -18369,13 +18369,14 @@ GameObject:
   - component: {fileID: 6931831244246412084}
   - component: {fileID: 6932894787784021546}
   - component: {fileID: -7223722085855129193}
+  - component: {fileID: 5796581130523904337}
   m_Layer: 0
   m_Name: RPGTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7125586872679549868
 Transform:
   m_ObjectHideFlags: 0
@@ -18966,7 +18967,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -23261,13 +23262,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7131381622685999668}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5c3056cc845f146af54e55aecc2231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.1
   rocketParticle: 1
+--- !u!114 &5796581130523904337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131381622685999668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb55a2829de918d4eb91a207357f4c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRpg: 1
+  damage: 0.3
+  impactParticle: {fileID: 0}
+  playerBullet: 0
+  hsDelay: 1
+  target: {fileID: 0}
 --- !u!1 &7131447159699460030
 GameObject:
   m_ObjectHideFlags: 0
@@ -23730,7 +23749,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

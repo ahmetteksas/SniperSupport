@@ -437,7 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamIndex: 1
   magSize: 2
-  lookAtDelay: 0
+  lookAtDelay: 0.5
   targetEnemy: {fileID: 0}
   isDead: 0
   bulletSpawnPos: {fileID: 6568885953230554494}
@@ -466,7 +466,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.2
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -4968,27 +4968,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071082
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071054
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.0000037122527
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.000008016823
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 25786946145463537, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 2326400882840121048, guid: f43f42264017e9846b252423be82edbe, type: 3}
       propertyPath: m_RootOrder

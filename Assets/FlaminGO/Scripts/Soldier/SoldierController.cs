@@ -47,7 +47,7 @@ public class SoldierController : MonoBehaviour
 
     public float healBullet = .2f;
 
-    private NavMeshAgent nMesh;
+    private NavMeshAgent navMeshAgent;
     private Collider colBase;
 
     //public ParticleSystem shootEffect;
@@ -58,14 +58,10 @@ public class SoldierController : MonoBehaviour
 
     private void Awake()
     {
-        nMesh = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         colBase = GetComponent<Collider>();
         targetTransform = transform.parent;
-        //enemyList.Clear();
-        //allyList.Clear();
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
-        //allyList = allSoldiers.Where(x => x.teamIndex == teamIndex).ToList();
-        //enemyList = allSoldiers.Where(x => x.teamIndex != teamIndex).ToList();
         animator = GetComponentInChildren<Animator>();
         canvas = GetComponentInChildren<Canvas>();
     }
@@ -74,20 +70,16 @@ public class SoldierController : MonoBehaviour
     {
         shooter = FindObjectOfType<Shooter>();
         StartCoroutine(SelectTargetV2());
-        //SelectTarget();
-        //healthBar = GetComponentInChildren<Image>();
         if (!animWalk)
         {
             animator.SetTrigger("Walk");
             animWalk = true;
         }
-        if (nMesh.enabled)
+        if (navMeshAgent.enabled)
         {
-            nMesh.destination = targetTransform.position;
+            navMeshAgent.destination = targetTransform.position;
         }
         StartCoroutine(CanvasInd());
-        //ShootBullet();
-        //StartCoroutine(AutoShoot());
     }
 
     IEnumerator CanvasInd()
@@ -105,22 +97,12 @@ public class SoldierController : MonoBehaviour
         }
     }
 
-
-
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletPlayer"))
         {
             TakeHit(0);
-            //other.gameObject.SetActive(false);
         }
-        //if (other.gameObject.tag == "BulletHeal")
-        //{
-        //    Debug.Log("HealBulletHitted");
-        //    StartCoroutine(HealField());
-        //    HealHit(0);
-        //    //healthBar.fillAmount += .2f;
-        //}
         if (other.gameObject.CompareTag("Enemy"))
         {
             TakeHit(0);
@@ -169,10 +151,12 @@ public class SoldierController : MonoBehaviour
         }
     }
 
+    SoldierController tempEnemySoldier;
     IEnumerator SelectTargetV2()
     {
         while (!isDead)
         {
+            tempEnemySoldier = targetEnemy;
             if (teamIndex == 0)
             {
                 targetEnemy = shooter.enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
@@ -181,36 +165,37 @@ public class SoldierController : MonoBehaviour
             {
                 targetEnemy = shooter.allyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
             }
-            if (targetEnemy)
-            {
-                transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
 
-                //if (bulletSpawnPos)
-                //    bulletSpawnPos.LookAt(targetEnemy.transform);
-            }
-            else
+
+            if (tempEnemySoldier != targetEnemy)
             {
-                LevelManager.instance.isGameRunning = false;
+                shootCount = magSize - 1;
+                ReloadBullet();
+                transform.DOPause();
+
+                if (targetEnemy)
+                    yield return transform.DOLookAt(targetEnemy.transform.position, lookAtDelay).WaitForCompletion();
             }
-            yield return null;
+            yield return new WaitForSeconds(1f);
+
+            //if (targetEnemy)
+            //{
+            //    transform.DOPause();
+            //    transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
+
+            //}
         }
     }
 
     public void ShootBullet()
     {
-        //if (enemyList.Count != 0 || allyList.Count != 0)
-        //{
-        if (!isDead) // look here
+        if (!LevelManager.instance.isGameRunning)
+            return;
+
+        if (!isDead)
         {
-            //shootEffect.Play();
-            //animator.SetTrigger("Aim");
-            if (LevelManager.instance.isGameRunning)
-            {
-                SendBullet();
-            }
+            SendBullet();
         }
-        //}
-        //shootParticle.SetActive(true);
 
     }
 
@@ -218,6 +203,7 @@ public class SoldierController : MonoBehaviour
     {
         if (!isDead)
         {
+            //navMeshAgent.enabled = false;
             animator.SetTrigger("Aim");
         }
     }
@@ -235,74 +221,27 @@ public class SoldierController : MonoBehaviour
         }
     }
 
-    //void SelectTarget()
-    //{
-    //    targetEnemy = enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
-    //    transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
-    //}
-    //IEnumerator AutoShoot()
-    //{
-    //    if (enemyList.Count != 0 || allyList.Count != 0)
-    //    {
-    //        yield return new WaitForSeconds(setPositionDelay);
-    //        while (!isDead)
-    //        {
-    //            //shootEffect.Play();
-    //            animator.SetTrigger("Aim");
-
-    //            yield return new WaitForSeconds(shootDelay);
-    //            Shoot();
-    //            //shootEffect.Stop();
-    //            SendBullet();
-    //        }
-    //    }
-    //}
-
     void SendBullet()
     {
-        if (isDead)
-        {
-            return;
-        }
         GameObject _smallBullet;
 
         if (!rpgSoldier)
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+
+            if (_smallBullet.TryGetComponent(out BulletController bulletController))
+                bulletController.target = targetEnemy.transform;
+
             _smallBullet.transform.SetParent(bulletSpawnPos);
-            _smallBullet.transform.localPosition = Vector3.zero;
-            _smallBullet.transform.localRotation = Quaternion.identity;
-            //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallEnemy", transform.up, bulletSpawnPos.rotation);
         }
         else
         {
-            //_smallBullet = null;
-            //_smallBullet = ObjectPool.instance.SpawnFromPool("BulletRocket", transform.up, bulletSpawnPos.rotation);
             _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", transform.position, transform.rotation);
+
+            if (_smallBullet.TryGetComponent(out BulletController bulletController))
+                bulletController.target = targetEnemy.transform;
+
             _smallBullet.transform.SetParent(bulletSpawnPos);
-            _smallBullet.transform.localPosition = Vector3.zero;
-            _smallBullet.transform.localRotation = Quaternion.identity;
-        }
-
-        if (targetEnemy)
-        {
-            //_smallBullet.transform.LookAt(targetEnemy.transform.position /*+ Vector3.up*/);
-            //Transform _targetEnemy = targetEnemy.transform;
-            //_targetEnemy = _smallBullet.GetComponent<BulletController>().target;
-            //if (!rpgSoldier)
-            //{
-            //    _smallBullet.transform.LookAt(targetEnemy.transform.position + Vector3.up);
-            //}
-            //else
-            //{
-            //    _smallBullet.transform.LookAt(targetEnemy.transform.position + Vector3.up);
-            //}
-            //_smallBullet.transform.DOMove(targetEnemy.transform.position + Vector3.up, .1f).SetEase(Ease.Linear);
-
-            //_smallBullet.transform.LookAt(_targetEnemy.position + Vector3.up);
-            //_smallBullet.transform.DOMove(_targetEnemy.position + Vector3.up, 1f);
-            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((targetEnemy.trEansform.position - transform.position).normalized * bulletForce);
-            //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.position, 40f * Time.deltaTime);
         }
     }
 
@@ -310,108 +249,11 @@ public class SoldierController : MonoBehaviour
     {
         isDead = true;
         //colBase.enabled = false;
-        if (nMesh != null)
+        if (navMeshAgent != null)
         {
-            nMesh.enabled = false;
+            navMeshAgent.enabled = false;
         }
-        //animator.enabled = false;
-        //explosion.Stop();
-        //GetComponentInChildren<Canvas>().enabled = false;
         PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
         _puppetMaster.state = PuppetMaster.State.Dead;
-        //foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
-        //{
-        //    _rigidbody.isKinematic = false;
-        //    _rigidbody.velocity = Vector3.zero;
-        //}
-
-        //GetComponent<Rigidbody>().isKinematic = true;
-
-        //foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
-        //{
-        //    _rigidbody.AddForce(-transform.forward * deathForce);
-        //}
-
-        StartCoroutine(FinishGameEnum());
-        //gameObject.SetActive(false);
-    }
-
-    IEnumerator FinishGameEnum()
-    {
-        //Debug.Log(allyList.Where(x => !x.isDead).Count());
-
-        yield return new WaitForSeconds(1f);
-
-        //if (teamIndex != 0)
-        //{
-        //    yield break;
-        //}
-        //gameObject.SetActive(false);
     }
 }
-
-/*
-            shootTime = 0f;
-
-
-        shootTime += Time.deltaTime;
-        if (shootTime > shootDelay && gameObject != null && teamIndex ==0)
-        {
-            Shoot();
-        }
-        if (shootTime > shootDelay && gameObject != null && teamIndex == 1)
-        {
-            ShootEnemy();
-        }
-        if (gameObject.tag == "Enemy")
-        {
-            enemyBoss = GetComponent<BoxCollider>();
-            if (enemyBoss)
-            {
-                enemyBoss.isTrigger = true;
-            }
-        }
-        if (gameObject.tag == "Ally")
-        {
-            allyBoss = GetComponent<BoxCollider>();
-            if (allyBoss)
-            {
-                allyBoss.isTrigger = true;
-            }
-            gameObject.transform.LookAt(enemyList.LastOrDefault().transform.position);
-        }
- 
-        if (allyList.Where(x => !x.isDead).Count() == 1)
-        {
-            if (allyBoss)
-            {
-                allyBoss.isTrigger = false;
-            }
-        }
-        if (enemyList.Where(x => !x.isDead).Count() == 1)
-        {
-            if (enemyBoss)
-            {
-                enemyBoss.isTrigger = false;
-            }
-        }
- 
- 
-        if ((other.gameObject.CompareTag("BulletSmall") || other.gameObject.CompareTag("BulletSmallPlayer")) && gameObject.tag == "Ally")
-        {
-            healthBar.Value -= .02f;
-        }
-        if (other.gameObject.CompareTag("BulletSmall") && gameObject.tag == "Enemy")
-        {
-            healthBar.Value -= .01f;
-        }
-        if (other.gameObject.CompareTag("BulletSmallPlayer") && gameObject.tag == "Enemy")
-        {
-            healthBar.Value -= .1f;
-        }
- 
- 
- 
- 
- 
- */
