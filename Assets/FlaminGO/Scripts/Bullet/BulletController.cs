@@ -84,13 +84,15 @@ public class BulletController : MonoBehaviour
                 {
                     //target.position += Vector3.up * 4f;
                 }
-                else
+                else if (target)
                 {
                     target.position += Vector3.up * 1.12f;
                 }
 
                 transform.SetParent(null);
-                transform.LookAt(target);
+                //transform.Translate(Vector3.right * 13f);
+                //transform.Rotate(Vector3.up * 20f);
+                //transform.LookAt(target);
 
                 //if (isRpg)
                 //{

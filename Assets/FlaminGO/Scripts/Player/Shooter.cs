@@ -335,7 +335,7 @@ public class Shooter : MonoBehaviour
             }
             else if (hit.collider.name != "Ground")
             {
-                Debug.Log(hit.transform.GetComponentInParent<SoldierController>().gameObject.name);
+                //Debug.Log(hit.transform.GetComponentInParent<SoldierController>().gameObject.name);
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
                 headShot.SetActive(true);
             }

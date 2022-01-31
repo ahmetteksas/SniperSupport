@@ -33,7 +33,7 @@ public class TakeHit : MonoBehaviour
             SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController && hitCollider.gameObject.tag == "Head")
             {
-                _soldierController.TakeHit(damage);
+                _soldierController.TakeHit(damage * 999f);
             }
 
             VehicleHit _vehicleHit = hitCollider.gameObject.GetComponent<VehicleHit>();
