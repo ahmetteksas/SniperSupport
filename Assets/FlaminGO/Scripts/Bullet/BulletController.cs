@@ -86,7 +86,7 @@ public class BulletController : MonoBehaviour
                 }
                 else
                 {
-                    //target.position += Vector3.up * 1.12f;
+                    target.position += Vector3.up * 1.12f;
                 }
 
                 transform.SetParent(null);

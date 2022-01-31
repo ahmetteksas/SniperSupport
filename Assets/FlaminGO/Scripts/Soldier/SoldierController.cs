@@ -174,7 +174,7 @@ public class SoldierController : MonoBehaviour
                 transform.DOPause();
 
                 if (targetEnemy)
-                    yield return transform.DOLookAt(targetEnemy.transform.position, lookAtDelay).WaitForCompletion();
+                    yield return transform.DOLookAt(targetEnemy.transform.parent.position, lookAtDelay).WaitForCompletion();
             }
             yield return new WaitForSeconds(1f);
 
