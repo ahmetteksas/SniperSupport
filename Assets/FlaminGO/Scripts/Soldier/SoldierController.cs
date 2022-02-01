@@ -44,6 +44,7 @@ public class SoldierController : MonoBehaviour
     public GameObject healField;
     public float healFieldDelay = 2f;
     public bool rpgSoldier;
+    public bool turretSoldier;
 
     public float healBullet = .2f;
 
@@ -57,7 +58,10 @@ public class SoldierController : MonoBehaviour
 
     private void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        if (!turretSoldier)
+        {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+        }
         colBase = GetComponent<Collider>();
         targetTransform = transform.parent;
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
@@ -75,9 +79,12 @@ public class SoldierController : MonoBehaviour
             animator.SetLayerWeight(1, 1);
             animWalk = true;
         }
-        if (navMeshAgent.enabled)
+        if (!turretSoldier)
         {
-            navMeshAgent.destination = targetTransform.position;
+            if (navMeshAgent.enabled)
+            {
+                navMeshAgent.destination = targetTransform.position;
+            }
         }
         StartCoroutine(CanvasInd());
         StartCoroutine(GoToNewPosition());
@@ -277,7 +284,10 @@ public class SoldierController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            navMeshAgent.SetDestination(transform.position + (transform.position - targetEnemy.transform.position) / 10f);
+            if (!turretSoldier)
+            {
+                navMeshAgent.SetDestination(transform.position + (transform.position - targetEnemy.transform.position) / 10f);
+            }
         }
     }
 }
