@@ -194,6 +194,7 @@ public class Shooter : MonoBehaviour
     //{
     //    return true;
     //}
+    bool stopped;
     void Update()
     {
         if (!LevelManager.instance.isGameRunning)
@@ -243,7 +244,6 @@ public class Shooter : MonoBehaviour
                 }
             }
             #endregion
-
 
             if (shootTime > shootDelay)
             {

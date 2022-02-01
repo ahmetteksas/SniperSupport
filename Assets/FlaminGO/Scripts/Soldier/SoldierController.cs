@@ -111,6 +111,34 @@ public class SoldierController : MonoBehaviour
         //}
     }
 
+    private void Update()
+    {
+        if (!LevelManager.instance.isGameRunning)
+        {
+            return;
+        }
+
+        if (navMeshAgent.enabled == true)
+            if (navMeshAgent.isStopped)
+            {
+                animator.SetLayerWeight(1, 0);
+                return;
+            }
+
+        if (navMeshAgent.enabled == true)
+        {
+            if (Vector3.Distance(navMeshAgent.destination, transform.position) < .2f)
+            {
+                Debug.Log("Stopped");
+                navMeshAgent.isStopped = true;
+            }
+            else
+            {
+                Debug.Log(Vector3.Distance(navMeshAgent.destination, transform.position));
+            }
+        }
+    }
+
     IEnumerator HealField()
     {
         if (teamIndex == 0)
@@ -279,18 +307,17 @@ public class SoldierController : MonoBehaviour
             yield return new WaitForSeconds(10f);
             Debug.Log("goNextPosition");
 
+            animator.SetTrigger("Walk");
+
             Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 5f;
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(nextPosition);
 
-
-
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.CompareTag("Ground"))
                 {
-
                     if (navMeshAgent.enabled == true)
                     {
                         NavMeshHit objectHit;
@@ -303,6 +330,8 @@ public class SoldierController : MonoBehaviour
                     }
                 }
             }
+            if (navMeshAgent.enabled == true)
+                navMeshAgent.isStopped = false;
         }
     }
 }
