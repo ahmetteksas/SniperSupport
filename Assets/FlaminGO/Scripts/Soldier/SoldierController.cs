@@ -276,8 +276,33 @@ public class SoldierController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
-            navMeshAgent.SetDestination(transform.position + (transform.position - targetEnemy.transform.position) / 10f);
+            yield return new WaitForSeconds(10f);
+            Debug.Log("goNextPosition");
+
+            Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 5f;
+
+            //RaycastHit hit;
+            //Ray ray = Camera.main.ScreenPointToRay(nextPosition);
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(nextPosition, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                navMeshAgent.SetDestination(hit.position);
+            }
+
+            //if (Physics.Raycast(ray, out hit))
+            //{
+            //    if (hit.transform.CompareTag("Ground"))
+            //    {
+            //        Transform objectHit = hit.transform;
+
+            //        if (navMeshAgent.enabled == true)
+            //        {
+
+            //            navMeshAgent.SetDestination(objectHit.position);
+            //        }
+            //    }
+            //}
         }
     }
 }
