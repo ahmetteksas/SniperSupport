@@ -1517,6 +1517,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4608667792382792, guid: da29ba09b0ae85b44a5c25f14124dc88, type: 3}
   m_PrefabInstance: {fileID: 1536701970}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1589336216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6920847750678643467, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+  m_PrefabInstance: {fileID: 3811572391169372804}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1589336221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589336216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49576e60b79a9774e93939f3e21c4327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1617478178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,6 +2501,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6d5b98d4a0c264cc2a7595953427e0d2, type: 2}
+    - target: {fileID: 7263794295162922239, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
 --- !u!1001 &5117805278279141858

@@ -79,7 +79,7 @@ public class SoldierController : MonoBehaviour
             navMeshAgent.destination = targetTransform.position;
         }
         StartCoroutine(CanvasInd());
-        //StartCoroutine(GoToNewPosition());
+        StartCoroutine(GoToNewPosition());
     }
 
     IEnumerator CanvasInd()
@@ -276,7 +276,7 @@ public class SoldierController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            navMeshAgent.SetDestination((targetEnemy.transform.position - transform.position) / 10f);
+            navMeshAgent.SetDestination(transform.position + (transform.position - targetEnemy.transform.position) / 10f);
         }
     }
 }
