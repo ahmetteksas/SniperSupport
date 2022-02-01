@@ -33,23 +33,47 @@ public class VehicleHit : MonoBehaviour
     }
     void ExplosionDamage(Vector3 center, float radius)
     {
-        StartCoroutine(ExplodeCar());
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.TryGetComponent(out SoldierController soldierController))
+            SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
+            if (_soldierController && hitCollider.gameObject.tag == "Head")
             {
-                childSoldier = soldierController.gameObject;
-                soldierController.TakeHit(damage * 200f);
-                //soldierController.isDead = true;
-                //soldierController.healthBar.fillAmount -= 1.0f;
-                //soldierController.healthBar.fillAmount -= .5f;
-                //soldierController.gameObject.SetActive(false);
-                //StartCoroutine(DecreaseHealth(soldierController.healthBar));
+                _soldierController.TakeHit(damage * 999f);
             }
+
+            //VehicleHit _vehicleHit = hitCollider.gameObject.GetComponent<VehicleHit>();
+
+            //if (_vehicleHit)
+            //{
+            //    _vehicleHit.Explode();
+            //}
+
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
         }
+        StartCoroutine(ExplodeCar());
+        //Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        //foreach (var hitCollider in hitColliders)
+        //{
+        //    if (hitCollider.TryGetComponent(out SoldierController soldierController))
+        //    {
+        //        childSoldier = soldierController.gameObject;
+        //        soldierController.TakeHit(damage * 999f);
+        //        //soldierController.isDead = true;
+        //        //soldierController.healthBar.fillAmount -= 1.0f;
+        //        //soldierController.healthBar.fillAmount -= .5f;
+        //        //soldierController.gameObject.SetActive(false);
+        //        //StartCoroutine(DecreaseHealth(soldierController.healthBar));
+        //    }
+        //    //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
+        //}
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+        //Gizmos.color = Color.white;
+    }
+
     IEnumerator DecreaseHealth(Image _im)
     {
         yield return new WaitForSeconds(.2f);
@@ -63,7 +87,9 @@ public class VehicleHit : MonoBehaviour
     public IEnumerator ExplodeCar()
     {
         yield return new WaitForSeconds(.4f);
+        ObjectPool.instance.SpawnFromPool("CarExplode", transform.position, Quaternion.identity);
         explodeCar.SetActive(true);
+        yield return new WaitForFixedUpdate();
         gameObject.SetActive(false);
         //if (_go)
         //{
@@ -79,7 +105,7 @@ public class VehicleHit : MonoBehaviour
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
             Debug.Log("Vechile Hitted");
-            ExplosionDamage(transform.position, 5f);
+            ExplosionDamage(transform.position, radius);
             health -= 50f;
         }
     }
