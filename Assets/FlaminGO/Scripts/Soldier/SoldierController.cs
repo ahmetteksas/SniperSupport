@@ -72,6 +72,7 @@ public class SoldierController : MonoBehaviour
         if (!animWalk)
         {
             animator.SetTrigger("Walk");
+            animator.SetLayerWeight(1, 1);
             animWalk = true;
         }
         if (navMeshAgent.enabled)
