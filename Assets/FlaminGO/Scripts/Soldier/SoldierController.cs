@@ -55,7 +55,6 @@ public class SoldierController : MonoBehaviour
     public float health = 1f;
     public float maxHealth = 1f;
 
-
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -80,6 +79,7 @@ public class SoldierController : MonoBehaviour
             navMeshAgent.destination = targetTransform.position;
         }
         StartCoroutine(CanvasInd());
+        //StartCoroutine(GoToNewPosition());
     }
 
     IEnumerator CanvasInd()
@@ -97,18 +97,18 @@ public class SoldierController : MonoBehaviour
         }
     }
 
+    public GameObject lastHittedBullet;
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletPlayer"))
-        {
-            TakeHit(0);
-        }
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            TakeHit(0);
-        }
+        //if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("BulletPlayer"))
+        //{
+        //    TakeHit(0);
+        //}
+        //if (other.gameObject.CompareTag("Enemy"))
+        //{
+        //    TakeHit(0);
+        //}
     }
-
 
     IEnumerator HealField()
     {
@@ -156,7 +156,6 @@ public class SoldierController : MonoBehaviour
     {
         while (!isDead)
         {
-            tempEnemySoldier = targetEnemy;
             if (teamIndex == 0)
             {
                 targetEnemy = shooter.enemyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
@@ -176,14 +175,10 @@ public class SoldierController : MonoBehaviour
                 if (targetEnemy)
                     yield return transform.DOLookAt(targetEnemy.transform.parent.position, lookAtDelay).WaitForCompletion();
             }
+
+            tempEnemySoldier = targetEnemy;
+
             yield return new WaitForSeconds(1f);
-
-            //if (targetEnemy)
-            //{
-            //    transform.DOPause();
-            //    transform.DOLookAt(targetEnemy.transform.position, lookAtDelay);
-
-            //}
         }
     }
 
@@ -196,7 +191,6 @@ public class SoldierController : MonoBehaviour
         {
             SendBullet();
         }
-
     }
 
     public void AimStart()
@@ -230,7 +224,8 @@ public class SoldierController : MonoBehaviour
             _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
 
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
-                bulletController.target = targetEnemy.transform;
+                if (targetEnemy)
+                    bulletController.target = targetEnemy.transform;
 
             _smallBullet.transform.SetParent(bulletSpawnPos);
         }
@@ -239,12 +234,15 @@ public class SoldierController : MonoBehaviour
             _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", transform.position, transform.rotation);
 
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
-                bulletController.target = targetEnemy.transform;
+                if (targetEnemy)
+                    bulletController.target = targetEnemy.transform;
 
             _smallBullet.transform.SetParent(bulletSpawnPos);
         }
+        Debug.Log(targetEnemy);
     }
 
+    [SerializeField] float deadForce;
     void DeathEvent()
     {
         isDead = true;
@@ -255,5 +253,30 @@ public class SoldierController : MonoBehaviour
         }
         PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
         _puppetMaster.state = PuppetMaster.State.Dead;
+
+
+        if (lastHittedBullet != null)
+        {
+            Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
+            Vector3 forceVector = (new Vector3((transform.position - lastHittedBullet.transform.position).x,
+                (transform.position - lastHittedBullet.transform.position).y * .2f,
+                (transform.position - lastHittedBullet.transform.position).z) * 10f/* + Vector3.up * 4.5f*/);
+
+            foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
+            {
+                _rigidbody.AddForce(forceVector * deadForce / 5f);
+            }
+            GetComponentInChildren<Rigidbody>().AddForce(forceVector * deadForce);
+        }
+    }
+
+    bool isWalk;
+    IEnumerator GoToNewPosition()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+            navMeshAgent.SetDestination((targetEnemy.transform.position - transform.position) / 10f);
+        }
     }
 }

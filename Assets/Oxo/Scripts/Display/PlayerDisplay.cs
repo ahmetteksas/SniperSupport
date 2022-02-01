@@ -55,8 +55,8 @@ public class PlayerDisplay : MonoBehaviour
 
     void Update()
     {
-        //if (!GameManager.instance.isGameRunning)
-        //    return;
+        if (!LevelManager.instance.isGameRunning)
+            return;
 
         #region MobileInputCheck
         if (Input.GetMouseButtonDown(0)) FingerDown();

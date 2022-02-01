@@ -2884,7 +2884,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4034658880666457636}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 85.30431, y: 264.46066, z: 354.13626}
 --- !u!33 &4901166236711644109
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5488,6 +5488,8 @@ MonoBehaviour:
   healBullet: 0.2
   health: 1
   maxHealth: 1
+  lastHittedBullet: {fileID: 0}
+  deadForce: 900
 --- !u!195 &-4832348160186263581
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6975,7 +6977,7 @@ Transform:
   - {fileID: 8141208105199583056}
   m_Father: {fileID: 8134911801078299744}
   m_RootOrder: 32
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 270, z: 278.59283}
 --- !u!54 &647709562886821708
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8572,7 +8574,7 @@ Transform:
   - {fileID: 8134844639142083546}
   m_Father: {fileID: 8141063672820571872}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 278.59283, y: 90.00001, z: 268.18103}
 --- !u!54 &9003430629605840138
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -67,11 +67,14 @@ public class BulletController : MonoBehaviour
                 //}
                 //else
                 //{
-
                 //    transform.localPosition = Vector3.zero;
                 //}
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.identity;
+                if (target != null)
+                {
+                    transform.DOMove(target.position + Vector3.up, .2f).SetEase(Ease.Linear);
+                }
 
                 if (isRpg)
                 {
@@ -93,35 +96,11 @@ public class BulletController : MonoBehaviour
                 //transform.Translate(Vector3.right * 13f);
                 //transform.Rotate(Vector3.up * 20f);
                 //transform.LookAt(target);
-
-                //if (isRpg)
-                //{
-                //    ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
-                //}
-                if (!isRpg)
-                {
-                    //GameObject _ammoTrail = ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
-                    //_ammoTrail.transform.parent = gameObject.transform;
-                }
-                else
-                {
-                    //GameObject _ammoTrailRocket = ObjectPool.instance.SpawnFromPool("RocketTrail", transform.position, transform.rotation);
-                    //_ammoTrailRocket.transform.parent = gameObject.transform;
-                }
             }
         }
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    gameObject.SetActive(false);
-    //}
-    //public void TrailOpen()
-    //{
-    //    if (trail)
-    //    {
-    //        trail.SetActive(true);
-    //    }
-    //}
+
+
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log(other.gameObject.name);
@@ -135,6 +114,7 @@ public class BulletController : MonoBehaviour
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)
             {
+                _soldierController.lastHittedBullet = gameObject;
                 _soldierController.TakeHit(damage);
             }
         }
@@ -143,6 +123,7 @@ public class BulletController : MonoBehaviour
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)
             {
+                _soldierController.lastHittedBullet = gameObject;
                 _soldierController.TakeHit(damage);
             }
             Shooter _shooter = FindObjectOfType<Shooter>();
@@ -157,24 +138,12 @@ public class BulletController : MonoBehaviour
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)
             {
+                _soldierController.lastHittedBullet = gameObject;
                 _soldierController.TakeHit(damage * 20000f);
             }
-            //Shooter _shooter = FindObjectOfType<Shooter>();
-            //if (_shooter.headShot)
-            //{
-            //    _shooter.headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-            //    _shooter.headShot.SetActive(true);
-            //}
         }
         gameObject.SetActive(false);
     }
-
-    //IEnumerator CloseHs()
-    //{
-    //    yield return new WaitForSeconds(hsDelay);
-    //    headShotImage.SetActive(false);
-    //    headShot.SetActive(false);
-    //}
 
     IEnumerator DestroyObject()
     {

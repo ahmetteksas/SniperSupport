@@ -221,45 +221,25 @@ public class Shooter : MonoBehaviour
 
             if (enemyList.Count != 0)
             {
-                //Debug.Log(enemyList.Where(x => !x.isDead).Count());
                 if (enemyList.Where(x => !x.isDead).Count() == 0)
                 {
-                    //LevelManager.instance.isGameRunning = false;
                     if (CanvasManager.instance.retryLevelButton != null)
                     {
-                        //if (CanvasManager.instance.nextLevelButton.activeInHierarchy)
-                        //    yield break;
 
                         Debug.Log("win the game");
                         GameEventManager.Instance.complateGame.Raise();
-                        //CanvasManager.instance.retryLevelButton.SetActive(true);
-                        //Time.timeScale = 0;
-                        //enemyList.Clear();
-                        //allyList.Clear();
-                        //yield break;
                     }
                 }
 
-                //Debug.Log(allyList.Where(x => !x.isDead).Count());
                 if (allyList.Where(x => !x.isDead).Count() == 0)
                 {
-                    //LevelManager.instance.isGameRunning = false;
                     if (CanvasManager.instance.nextLevelButton != null)
                     {
-                        //if (CanvasManager.instance.retryLevelButton.activeInHierarchy)
-                        //    yield break;
-
                         Debug.Log("lost the game");
 
                         GameEventManager.Instance.failGame.Raise();
 
-                        //CanvasManager.instance.nextLevelButton.SetActive(true);
-                        //Time.timeScale = 0;
-                        //enemyList.Clear();
-                        //allyList.Clear();
-                        //yield break;
                     }
-                    //retryLevel.SetActive(true);
                 }
             }
             #endregion
@@ -305,22 +285,15 @@ public class Shooter : MonoBehaviour
     public void Shoot()
     {
         GameObject _smallBullet;
-        //var ray = /*GetComponentInChildren<Image>().transform.localPosition*/Camera.main.ScreenPointToRay(Input.mousePosition);
-        //RaycastHit hit;
-        //if (Physics.Raycast(ray, out hit, 100))
-        //{
-        //    Debug.DrawLine(character.position, hit.point);
         if (selectedBulletIndex == 0)
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
-            //_smallBullet.gameObject.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * bulletForce);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("PlayerBullet", bulletSpawnPos.position, Quaternion.identity);
         }
         else
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
-
-            Debug.Log("HealSeçildi !!");
         }
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + 2f, Camera.main.transform.position.z));
 
@@ -335,7 +308,6 @@ public class Shooter : MonoBehaviour
             }
             else if (hit.collider.name != "Ground")
             {
-                //Debug.Log(hit.transform.GetComponentInParent<SoldierController>().gameObject.name);
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
                 headShot.SetActive(true);
             }
@@ -350,11 +322,9 @@ public class Shooter : MonoBehaviour
                 bullet.target = objectHit;
             }
             _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position - _smallBullet.transform.position).normalized * bulletForce);
-            //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, objectHit.position, 400f);
 
         }
         shootTime = 0f;
-        //}
     }
 
 
@@ -364,15 +334,5 @@ public class Shooter : MonoBehaviour
         cross.SetActive(false);
     }
 
-    //public void AiShoot()
-    //{
-    //    GameObject _smallbullet = ObjectPool.instance.SpawnFromPool("BulletSmallPlayer", bulletSpawnPos.position, Quaternion.identity);
-    //    if (gameObject.name == "AI")
-    //    {
-    //        _smallbullet.transform.rotation = /*transform.rotation +*/ Quaternion.Euler(0, 0, 0);
-    //    }
-    //    _smallbullet.gameObject.GetComponent<Rigidbody>().AddForce((targetAlly.position - transform.position) * bulletForce / 4);
-    //    shootTime = 0f;
-    //}
 
 }
