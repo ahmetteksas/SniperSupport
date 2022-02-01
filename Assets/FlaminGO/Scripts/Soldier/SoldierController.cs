@@ -221,7 +221,7 @@ public class SoldierController : MonoBehaviour
 
         if (!rpgSoldier)
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", transform.position, transform.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
 
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
                 if (targetEnemy)
@@ -231,7 +231,7 @@ public class SoldierController : MonoBehaviour
         }
         else
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", transform.position, transform.rotation);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
 
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
                 if (targetEnemy)
