@@ -137,8 +137,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3567908, y: 1.6274295, z: 3.1027362}
-  m_Center: {x: -0.0000018861463, y: 1.1037145, z: 1.2042707}
+  m_Size: {x: 2.8069224, y: 2.4099534, z: 6.1596346}
+  m_Center: {x: 0.22506379, y: 1.4949764, z: -0.3241773}
 --- !u!54 &7648937197366837067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1598,6 +1598,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3327664738858330475, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327664738858330475, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3379297051305126496, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1945,6 +1953,18 @@ PrefabInstance:
     - target: {fileID: 7134757493105504945, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.46113667
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134757493105504945, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.0000017075473
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134757493105504945, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134757493105504945, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 278.59283
       objectReference: {fileID: 0}
     - target: {fileID: 7135978005099979795, guid: 81973aeb61a07f643a98fb15669f9d80, type: 3}
       propertyPath: m_Layer
