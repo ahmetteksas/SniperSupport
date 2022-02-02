@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4373532283502878261}
   - component: {fileID: -1021119259721683531}
   - component: {fileID: 9189961382652035732}
+  - component: {fileID: 82885379022346903}
   m_Layer: 9
   m_Name: Vehicle_01
   m_TagString: Enemy
@@ -184,7 +185,7 @@ MeshCollider:
   m_GameObject: {fileID: 4346149634866893729}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -196,7 +197,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4346149634866893729}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 2.4326568
   m_Speed: 1
@@ -228,6 +229,19 @@ MonoBehaviour:
   destroyedState: {fileID: 5330578924808067393}
   radius: 5
   damage: 0.4
+--- !u!65 &82885379022346903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346149634866893729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.197493, y: 3.2595816, z: 5.963564}
+  m_Center: {x: -0.28220436, y: 1.9264464, z: -0.5491252}
 --- !u!1 &4346308453468136003
 GameObject:
   m_ObjectHideFlags: 0

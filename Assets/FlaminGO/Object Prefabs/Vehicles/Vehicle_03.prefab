@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 6023022968490674659}
   - component: {fileID: 5990451054077455797}
   - component: {fileID: 5950958756780619137}
+  - component: {fileID: 2796047592658908574}
   m_Layer: 9
   m_Name: Vehicle_03
   m_TagString: Enemy
@@ -181,7 +182,7 @@ MeshCollider:
   m_GameObject: {fileID: 6034863375628706873}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -203,6 +204,19 @@ MonoBehaviour:
   destroyedState: {fileID: 7590396928509185577}
   radius: 5
   damage: 0.4
+--- !u!65 &2796047592658908574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6034863375628706873}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.8190846, y: 3.4123948, z: 6.8751273}
+  m_Center: {x: -0.1881684, y: 1.9098942, z: -0.24353218}
 --- !u!1 &6034939216365856047
 GameObject:
   m_ObjectHideFlags: 0
