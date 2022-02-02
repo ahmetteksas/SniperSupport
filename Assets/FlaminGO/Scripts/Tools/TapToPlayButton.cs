@@ -7,17 +7,21 @@ public class TapToPlayButton : MonoBehaviour
 {
     Image image;
 
-    void OnEnable()
+    private void Awake()
     {
         image = GetComponent<Image>();
 
         image.raycastTarget = false;
         StartCoroutine(OpenInteraction());
     }
+    //void OnEnable()
+    //{
+       
+    //}
 
     IEnumerator OpenInteraction()
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.7f);
         image.raycastTarget = true;
     }
 }
