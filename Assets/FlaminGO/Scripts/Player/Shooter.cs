@@ -53,11 +53,8 @@ public class Shooter : MonoBehaviour
 
     void Start()
     {
-
         allyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 0).ToList();
         enemyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 1).ToList();
-        //animBase = GetComponent<Animator>();
-        //shootDelay = shootTime - Time.deltaTime;
     }
 
     public Coroutine swayingCoroutine;
@@ -69,13 +66,6 @@ public class Shooter : MonoBehaviour
         {
             yield return mainCamera.transform.DOLocalRotate(Vector3.up * Random.Range(-.7f, .7f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay)
                 /*.SetLoops(0, LoopType.Yoyo)*/.SetEase(Ease.Linear).WaitForCompletion();
-            //yield return mainCamera.transform.DOShakeRotation(.4f, .03f).WaitForCompletion();
-            //(Vector3.up * Random.Range(-.7f, 7f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay)
-            // /*.SetLoops(0, LoopType.Yoyo)*/.SetEase(Ease.Linear).WaitForCompletion();
-            //yield return mainCamera.transform.DOLocalRotate(Vector3.up * Random.Range(-.7f, 0f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay * .9f)
-            //    .SetLoops(0, LoopType.Yoyo)/*SetEase(Ease.Linear)*/.WaitForCompletion();
-            //yield return mainCamera.transform.DOLocalRotate(Vector3.up * Random.Range(0f, .7f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay * .95f)
-            //    .SetEase(Ease.Linear).WaitForCompletion();
         }
     }
 
@@ -83,115 +73,54 @@ public class Shooter : MonoBehaviour
     {
         if (shooted)
             yield break;
-
-        //  Debug.Log("Zoom In");
-
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
         {
             soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .4f);
         }
 
         shooted = true;
-
-
         sniper.transform.DOPause();
         sniper.transform.SetParent(secondSniperPos);
         sniper.transform.DOLocalRotate(Vector3.zero, 0.2f);
-
-        //mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, .7f);
-
-        //mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, .5f).SetEase(Ease.Linear).SetDelay(.1f);
-
         yield return sniper.transform.DOLocalMove(Vector3.zero, 0.3f).WaitForCompletion();
-
         mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, 0.1f)/*.SetEase(Ease.Linear)*/;
         mainCamera.DOPause();
-        //mainCamera.DOFieldOfView(scopeZoom * 1.1f, 0.1f);
-        //mainCamera.DOFieldOfView(scopeZoom * 1.4f, .5f);
-        //yield return new WaitForSeconds(1f);
         mainCamera.DOFieldOfView(scopeZoom, 0.3f);
-
-        //sniper.transform.DOPause();
-        //sniper.transform.SetParent(firstSniperPos);
-        //sniper.transform.DOLocalRotate(Vector3.zero, .5f);
-
-        //sniper.transform.DOLocalMove(Vector3.zero, .5f);
-
         cross.SetActive(true);
-
-        //yield return new WaitForSeconds(.2f);
-
-        //Camera.main.DOPause();
-        //Camera.main.transform.DOLocalMove(Vector3.forward * scopeOffset, .7f);
-
         if (swayingCoroutine == null)
             swayingCoroutine = StartCoroutine(Swaying());
-
     }
 
     IEnumerator ScopeZoomOut()
     {
         if (!cross.activeInHierarchy)
             yield break;
-        // Debug.Log("Zoom Out");
-
         sniper.transform.DOPause();
         sniper.transform.SetParent(firstSniperPos);
         sniper.transform.DOLocalRotate(Vector3.zero, 0f);
         sniper.transform.DOLocalMove(Vector3.zero, 0f);
-
-
         StopCoroutine(swayingCoroutine);
         mainCamera.transform.DOPause();
-
         mainCamera.transform.DOLocalMove(Vector3.zero, .5f);
         yield return mainCamera.transform.DOLocalRotate(Vector3.left * 2.4f, .21f).WaitForCompletion();
         mainCamera.transform.DOLocalRotate(Vector3.zero, 2f).WaitForCompletion();
-
         swayingCoroutine = null;
-        //mainCamera.transform.localRotation = Quaternion.identity;
-
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
         {
             soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
         }
-
         shooted = false;
-
-        //mainCamera.DOPause();
-        //mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
-
         sniper.transform.DOPause();
         sniper.transform.SetParent(firstSniperPos);
-        //sniper.transform.DOLocalRotate(Vector3.zero, scopeZoomOutDelay);
-
         yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
-
-        //yield return new WaitForSeconds(scopeZoomOutDelay);
-
         cross.SetActive(false);
-        //headShot.SetActive(true);
-        //mainCamera.DOPause();
         mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
         mainCamera.DOFieldOfView(80, .1f);
 
         animator.SetTrigger("Reload");
         scopeZoomOut = null;
-
-        //MainCameraDisplay mainCameraDislay = mainCamera.GetComponent<MainCameraDisplay>();
-
-        //mainCameraDislay.SetParentNull();
-
         yield return new WaitForSeconds(2f);
-
-        //mainCameraDislay.SetParentDefault();
     }
-
-
-    //public bool Delay()
-    //{
-    //    return true;
-    //}
     bool stopped;
     void Update()
     {
@@ -199,9 +128,7 @@ public class Shooter : MonoBehaviour
         {
             return;
         }
-
         shootTime += Time.deltaTime;
-
         if (isAI)
         {
             List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
@@ -260,7 +187,6 @@ public class Shooter : MonoBehaviour
 
                 }
             }
-
             if (Input.GetMouseButtonUp(0))
             {
                 if (scopeZoomOut == null)
@@ -291,7 +217,6 @@ public class Shooter : MonoBehaviour
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
         }
-
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + 2f, Mathf.Infinity));
 
@@ -309,8 +234,6 @@ public class Shooter : MonoBehaviour
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
                 headShot.SetActive(true);
             }
-
-
             if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))
             {
                 healBullet.target = objectHit;
@@ -328,7 +251,6 @@ public class Shooter : MonoBehaviour
 
     public void FinishGame()
     {
-        //Debug.Log("CrossClosed");
         cross.SetActive(false);
     }
 

@@ -5431,7 +5431,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7085743951206843963}
   - component: {fileID: -1238939755274997902}
-  - component: {fileID: -4832348160186263581}
   - component: {fileID: 4119275118580800103}
   m_Layer: 0
   m_Name: TurretPuppetAlly05
@@ -5485,33 +5484,12 @@ MonoBehaviour:
   healField: {fileID: 7162839771917962729, guid: 3cb8ab10809a4a446adc9cdb4f785be1, type: 3}
   healFieldDelay: 2
   rpgSoldier: 0
+  turretSoldier: 1
   healBullet: 0.2
   health: 1
   maxHealth: 1
   lastHittedBullet: {fileID: 0}
   deadForce: 900
---- !u!195 &-4832348160186263581
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6256936022778482805}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &4119275118580800103
 MonoBehaviour:
   m_ObjectHideFlags: 0

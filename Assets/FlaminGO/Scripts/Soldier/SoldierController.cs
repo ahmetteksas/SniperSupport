@@ -34,8 +34,6 @@ public class SoldierController : MonoBehaviour
 
     private Animator animator;
     private bool animWalk;
-    private bool animStart;
-    bool isGameFinished;
 
     //public ParticleSystem explosion;
 
@@ -44,6 +42,8 @@ public class SoldierController : MonoBehaviour
     public GameObject healField;
     public float healFieldDelay = 2f;
     public bool rpgSoldier;
+    public bool turretSoldier;
+
 
     public float healBullet = .2f;
 
@@ -57,7 +57,10 @@ public class SoldierController : MonoBehaviour
 
     private void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        if (!turretSoldier)
+        {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+        }
         colBase = GetComponent<Collider>();
         targetTransform = transform.parent;
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
@@ -75,12 +78,18 @@ public class SoldierController : MonoBehaviour
             animator.SetLayerWeight(1, 1);
             animWalk = true;
         }
-        if (navMeshAgent.enabled)
+        if (!turretSoldier)
         {
-            navMeshAgent.destination = targetTransform.position;
+            if (navMeshAgent.enabled)
+            {
+                navMeshAgent.destination = targetTransform.position;
+            }
         }
         StartCoroutine(CanvasInd());
-        StartCoroutine(GoToNewPosition());
+        if (!turretSoldier)
+        {
+            StartCoroutine(GoToNewPosition());
+        }
     }
 
     IEnumerator CanvasInd()
@@ -97,7 +106,6 @@ public class SoldierController : MonoBehaviour
             yield return null;
         }
     }
-
     public GameObject lastHittedBullet;
     private void OnCollisionEnter(Collision other)
     {
@@ -117,24 +125,26 @@ public class SoldierController : MonoBehaviour
         {
             return;
         }
-
-        if (navMeshAgent.enabled == true)
-            if (navMeshAgent.isStopped)
-            {
-                animator.SetLayerWeight(1, 0);
-                return;
-            }
-
-        if (navMeshAgent.enabled == true)
+        if (!turretSoldier)
         {
-            if (Vector3.Distance(navMeshAgent.destination, transform.position) < .2f)
+            if (navMeshAgent.enabled == true)
+                if (navMeshAgent.isStopped)
+                {
+                    animator.SetLayerWeight(1, 0);
+                    return;
+                }
+
+            if (navMeshAgent.enabled == true)
             {
-                //Debug.Log("Stopped");
-                navMeshAgent.isStopped = true;
-            }
-            else
-            {
-                //Debug.Log(Vector3.Distance(navMeshAgent.destination, transform.position));
+                if (Vector3.Distance(navMeshAgent.destination, transform.position) < .2f)
+                {
+                    //Debug.Log("Stopped");
+                    navMeshAgent.isStopped = true;
+                }
+                else
+                {
+                    //Debug.Log(Vector3.Distance(navMeshAgent.destination, transform.position));
+                }
             }
         }
     }
@@ -193,8 +203,6 @@ public class SoldierController : MonoBehaviour
             {
                 targetEnemy = shooter.allyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
             }
-
-
             if (tempEnemySoldier != targetEnemy)
             {
                 shootCount = magSize - 1;
@@ -207,9 +215,7 @@ public class SoldierController : MonoBehaviour
                     yield return transform.DOLookAt(targetEnemy.transform.parent.position, lookAtDelay).WaitForCompletion();
                 }
             }
-
             tempEnemySoldier = targetEnemy;
-
             yield return new WaitForSeconds(1f);
         }
     }
@@ -279,14 +285,15 @@ public class SoldierController : MonoBehaviour
     {
         isDead = true;
         //colBase.enabled = false;
-        if (navMeshAgent != null)
+        if (!turretSoldier)
         {
-            navMeshAgent.enabled = false;
+            if (navMeshAgent != null)
+            {
+                navMeshAgent.enabled = false;
+            }
         }
         PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
         _puppetMaster.state = PuppetMaster.State.Dead;
-
-
         if (lastHittedBullet != null)
         {
             //Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
@@ -296,9 +303,15 @@ public class SoldierController : MonoBehaviour
 
             foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
             {
-                _rigidbody.AddForce(forceVector * deadForce / 5f);
+                if (!turretSoldier)
+                {
+                    _rigidbody.AddForce(forceVector * deadForce / 5f);
+                }
             }
-            GetComponentInChildren<Rigidbody>().AddForce(forceVector * deadForce);
+            if (!turretSoldier)
+            {
+                GetComponentInChildren<Rigidbody>().AddForce(forceVector * deadForce);
+            }
         }
     }
 
@@ -306,39 +319,38 @@ public class SoldierController : MonoBehaviour
     IEnumerator GoToNewPosition()
     {
         yield break;
-        while (true)
+        if (turretSoldier)
         {
-            yield return new WaitForSeconds(10f);
-            //Debug.Log("goNextPosition");
-
-            animator.SetTrigger("Walk");
-            if (targetEnemy)
+            while (true)
             {
-                Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 2f;
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(nextPosition);
+                yield return new WaitForSeconds(10f);
+                //Debug.Log("goNextPosition");
 
-                if (Physics.Raycast(ray, out hit))
+                animator.SetTrigger("Walk");
+                if (targetEnemy)
                 {
-                    if (hit.transform.CompareTag("Ground"))
-                    {
-                        if (navMeshAgent.enabled == true)
-                        {
-                            NavMeshHit objectHit;
-                            if (NavMesh.SamplePosition(nextPosition, out objectHit, Mathf.Infinity, NavMesh.AllAreas))
-                            {
-                                navMeshAgent.SetDestination(objectHit.position);
-                            }
+                    Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 2f;
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(nextPosition);
 
-                            //navMeshAgent.SetDestination(objectHit.position);
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.transform.CompareTag("Ground"))
+                        {
+                            if (navMeshAgent.enabled == true)
+                            {
+                                NavMeshHit objectHit;
+                                if (NavMesh.SamplePosition(nextPosition, out objectHit, Mathf.Infinity, NavMesh.AllAreas))
+                                {
+                                    navMeshAgent.SetDestination(objectHit.position);
+                                }
+                            }
                         }
                     }
                 }
+                if (navMeshAgent.enabled == true)
+                    navMeshAgent.isStopped = false;
             }
-
-
-            if (navMeshAgent.enabled == true)
-                navMeshAgent.isStopped = false;
         }
     }
 }
