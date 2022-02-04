@@ -298,7 +298,7 @@ public class Shooter : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             Transform objectHit = hit.transform;
-
+            Debug.Log(objectHit.name);
             if (hit.collider.CompareTag("Head"))
             {
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
