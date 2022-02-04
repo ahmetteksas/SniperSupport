@@ -49,8 +49,6 @@ public class Shooter : MonoBehaviour
     {
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
-
-
     }
 
     void Start()
@@ -295,9 +293,9 @@ public class Shooter : MonoBehaviour
         }
 
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + 2f, Camera.main.transform.position.z));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + 2f, Mathf.Infinity));
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             Transform objectHit = hit.transform;
 
@@ -330,7 +328,7 @@ public class Shooter : MonoBehaviour
 
     public void FinishGame()
     {
-        Debug.Log("CrossClosed");
+        //Debug.Log("CrossClosed");
         cross.SetActive(false);
     }
 

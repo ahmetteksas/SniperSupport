@@ -35,7 +35,7 @@ public class SwerveMovement : MonoBehaviour
         rotation.z = Mathf.Clamp(transform.eulerAngles.z, zClampMin, zClampMax);
 
         transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
-        float distance = zClampMax - transform.eulerAngles.z;
+        //float distance = zClampMax - transform.eulerAngles.z;
 
         //shooter.scopeZoom = defaultScopeZoom * (distance) / (zClampMax - zClampMin);
     }

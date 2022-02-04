@@ -129,12 +129,12 @@ public class SoldierController : MonoBehaviour
         {
             if (Vector3.Distance(navMeshAgent.destination, transform.position) < .2f)
             {
-                Debug.Log("Stopped");
+                //Debug.Log("Stopped");
                 navMeshAgent.isStopped = true;
             }
             else
             {
-                Debug.Log(Vector3.Distance(navMeshAgent.destination, transform.position));
+                //Debug.Log(Vector3.Distance(navMeshAgent.destination, transform.position));
             }
         }
     }
@@ -268,7 +268,7 @@ public class SoldierController : MonoBehaviour
 
             _smallBullet.transform.SetParent(bulletSpawnPos);
         }
-        Debug.Log(targetEnemy);
+        //Debug.Log(targetEnemy);
     }
 
     [SerializeField] float deadForce;
@@ -286,7 +286,7 @@ public class SoldierController : MonoBehaviour
 
         if (lastHittedBullet != null)
         {
-            Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
+            //Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
             Vector3 forceVector = (new Vector3((transform.position - lastHittedBullet.transform.position).x,
                 (transform.position - lastHittedBullet.transform.position).y * .2f,
                 (transform.position - lastHittedBullet.transform.position).z) * 10f/* + Vector3.up * 4.5f*/);
@@ -305,31 +305,34 @@ public class SoldierController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(10f);
-            Debug.Log("goNextPosition");
+            //Debug.Log("goNextPosition");
 
             animator.SetTrigger("Walk");
-
-            Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 5f;
-
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(nextPosition);
-
-            if (Physics.Raycast(ray, out hit))
+            if (targetEnemy)
             {
-                if (hit.transform.CompareTag("Ground"))
-                {
-                    if (navMeshAgent.enabled == true)
-                    {
-                        NavMeshHit objectHit;
-                        if (NavMesh.SamplePosition(nextPosition, out objectHit, 1.0f, NavMesh.AllAreas))
-                        {
-                            navMeshAgent.SetDestination(objectHit.position);
-                        }
+                Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 5f;
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(nextPosition);
 
-                        //navMeshAgent.SetDestination(objectHit.position);
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.CompareTag("Ground"))
+                    {
+                        if (navMeshAgent.enabled == true)
+                        {
+                            NavMeshHit objectHit;
+                            if (NavMesh.SamplePosition(nextPosition, out objectHit, 1.0f, NavMesh.AllAreas))
+                            {
+                                navMeshAgent.SetDestination(objectHit.position);
+                            }
+
+                            //navMeshAgent.SetDestination(objectHit.position);
+                        }
                     }
                 }
             }
+
+
             if (navMeshAgent.enabled == true)
                 navMeshAgent.isStopped = false;
         }

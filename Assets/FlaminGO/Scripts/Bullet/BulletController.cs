@@ -78,7 +78,7 @@ public class BulletController : MonoBehaviour
 
                 if (isRpg)
                 {
-                    Debug.Log("bullet first position setted");
+                    //Debug.Log("bullet first position setted");
                 }
 
                 //trail.Play();
@@ -103,7 +103,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if (impactParticle)
         {
             impactParticle.SetActive(true);
