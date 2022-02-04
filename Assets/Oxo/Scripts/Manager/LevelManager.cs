@@ -48,6 +48,14 @@ public class LevelManager : MonoBehaviour
     }
     public void GameStarted()
     {
+        //yield return new WaitForSeconds(.2f);
+        //isGameRunning = true;
+        StartCoroutine(StartGameTrue());
+    }
+
+    IEnumerator StartGameTrue ()
+    {
+        yield return new WaitForSeconds(.2f);
         isGameRunning = true;
         Time.timeScale = 1;
     }
