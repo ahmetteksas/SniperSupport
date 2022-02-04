@@ -82,6 +82,7 @@ public class VehicleHit : MonoBehaviour
 
     public void Explode()
     {
+        ExplosionDamage(transform.position, radius);
         StartCoroutine(ExplodeCar());
     }
     public IEnumerator ExplodeCar()

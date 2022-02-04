@@ -202,7 +202,10 @@ public class SoldierController : MonoBehaviour
                 transform.DOPause();
 
                 if (targetEnemy)
+                {
+                    transform.DOPause();
                     yield return transform.DOLookAt(targetEnemy.transform.parent.position, lookAtDelay).WaitForCompletion();
+                }
             }
 
             tempEnemySoldier = targetEnemy;
@@ -302,6 +305,7 @@ public class SoldierController : MonoBehaviour
     bool isWalk;
     IEnumerator GoToNewPosition()
     {
+        yield break;
         while (true)
         {
             yield return new WaitForSeconds(10f);
@@ -310,7 +314,7 @@ public class SoldierController : MonoBehaviour
             animator.SetTrigger("Walk");
             if (targetEnemy)
             {
-                Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 5f;
+                Vector3 nextPosition = transform.position - (transform.position - targetEnemy.transform.position) / 2f;
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(nextPosition);
 
@@ -321,7 +325,7 @@ public class SoldierController : MonoBehaviour
                         if (navMeshAgent.enabled == true)
                         {
                             NavMeshHit objectHit;
-                            if (NavMesh.SamplePosition(nextPosition, out objectHit, 1.0f, NavMesh.AllAreas))
+                            if (NavMesh.SamplePosition(nextPosition, out objectHit, Mathf.Infinity, NavMesh.AllAreas))
                             {
                                 navMeshAgent.SetDestination(objectHit.position);
                             }

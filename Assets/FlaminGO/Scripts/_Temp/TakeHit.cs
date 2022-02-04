@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TakeHit : MonoBehaviour
 {
-    public GameObject explosionBarrel;
+    //public GameObject explosionBarrel;
     public float effectRadius;
     //public GameObject vehicle;
     public float damage = .6f;
@@ -42,6 +42,7 @@ public class TakeHit : MonoBehaviour
             {
                 _vehicleHit.Explode();
             }
+            
 
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
         }
@@ -78,7 +79,10 @@ public class TakeHit : MonoBehaviour
     IEnumerator ExplosionStart()
     {
         ObjectPool.instance.SpawnFromPool("CarExplode", transform.position, Quaternion.identity);
-        explosionBarrel.SetActive(true);
+        //if (explosionBarrel)
+        //{
+        //    explosionBarrel.SetActive(true);
+        //}
         //explosionOtherBarrel.SetActive(true);
         yield return new WaitForFixedUpdate();
         gameObject.SetActive(false);
