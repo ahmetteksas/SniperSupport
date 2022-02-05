@@ -69,28 +69,32 @@ public class BulletController : MonoBehaviour
                 //{
                 //    transform.localPosition = Vector3.zero;
                 //}
-                transform.localPosition = Vector3.zero;
-                transform.localRotation = Quaternion.identity;
-                if (target != null)
+                if (!isRpg)
+                {
+                    transform.localPosition = Vector3.zero;
+                    transform.localRotation = Quaternion.identity;
+                }
+                if (target != null && !isRpg)
                 {
                     transform.DOMove(target.position + Vector3.up, .2f).SetEase(Ease.Linear);
                 }
 
-                if (isRpg)
-                {
-                    //Debug.Log("bullet first position setted");
-                }
+                //if (target != null && isRpg)
+                //{
+                //    transform.SetParent(null, true);
+                //    transform.position = Vector3.Lerp(transform.position, target.position, 5f);
+                //}
 
                 //trail.Play();
 
-                if (isRpg)
-                {
-                    //target.position += Vector3.up * 4f;
-                }
-                else if (target)
-                {
-                    target.position += Vector3.up * 1.12f;
-                }
+                //if (isRpg)
+                //{
+                //    //target.position += Vector3.up * 4f;
+                //}
+                //else if (target && !isRpg)
+                //{
+                //    target.position += Vector3.up * 1.12f;
+                //}
 
                 transform.SetParent(null);
                 //transform.Translate(Vector3.right * 13f);

@@ -274,8 +274,8 @@ public class SoldierController : MonoBehaviour
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
                 if (targetEnemy)
                     bulletController.target = targetEnemy.transform;
-
-            _smallBullet.transform.SetParent(bulletSpawnPos);
+            //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.parent.position, 20f*Time.deltaTime);
+            //_smallBullet.transform.SetParent(bulletSpawnPos);
         }
         //Debug.Log(targetEnemy);
     }
