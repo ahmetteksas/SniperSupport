@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using Dreamteck.Splines;
+
 
 public class BulletController : MonoBehaviour
 {
@@ -63,7 +65,7 @@ public class BulletController : MonoBehaviour
                 //return;
                 //if (isRpg)
                 //{
-                //    //transform.localPosition = Vector3.forward * 2f;
+                //    transform.localPosition = Vector3.forward * 2f;
                 //}
                 //else
                 //{

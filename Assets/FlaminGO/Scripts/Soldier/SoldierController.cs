@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Linq;
 using DG.Tweening;
 using RootMotion.Dynamics;
+using Dreamteck.Splines;
 
 public class SoldierController : MonoBehaviour
 {
@@ -272,9 +273,12 @@ public class SoldierController : MonoBehaviour
             _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
 
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
-                if (targetEnemy)
-                    bulletController.target = targetEnemy.transform;
-            //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.parent.position, 20f*Time.deltaTime);
+                if (targetEnemy && rpgSoldier)
+                {
+                    //bulletController.target = targetEnemy.transform;
+                    _smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
+                    //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.parent.position, 20f * Time.deltaTime);
+                }
             //_smallBullet.transform.SetParent(bulletSpawnPos);
         }
         //Debug.Log(targetEnemy);
