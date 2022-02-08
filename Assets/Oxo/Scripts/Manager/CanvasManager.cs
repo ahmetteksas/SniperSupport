@@ -40,10 +40,10 @@ public class CanvasManager : MonoBehaviour
 
     private void Update()
     {
-        if (LevelManager.instance.isGameRunning == false)
-        {
-            inGameRect.SetActive(false);
-        }
+        //if (LevelManager.instance.isGameRunning == false)
+        //{
+        //    inGameRect.SetActive(false);
+        //}
     }
 
     public void TapToPlayButtonClick()

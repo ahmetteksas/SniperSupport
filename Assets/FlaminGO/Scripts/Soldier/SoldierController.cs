@@ -275,11 +275,15 @@ public class SoldierController : MonoBehaviour
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
                 if (targetEnemy && rpgSoldier)
                 {
-                    //bulletController.target = targetEnemy.transform;
-                    _smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
+                    //GetComponent<SplineComputer>().GetPoint(2).SetPosition(targetEnemy.transform.position);
+                    //= targetEnemy.transform.position;
+                    bulletController.target = targetEnemy.transform;
+                    //_smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
+                    //_smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
+                    //_smallBullet.GetComponent<SplineFollower>().followSpeed = 1f;
                     //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.parent.position, 20f * Time.deltaTime);
                 }
-            //_smallBullet.transform.SetParent(bulletSpawnPos);
+            _smallBullet.transform.SetParent(bulletSpawnPos);
         }
         //Debug.Log(targetEnemy);
     }
