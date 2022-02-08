@@ -71,14 +71,18 @@ public class BulletController : MonoBehaviour
                 //{
                 //    transform.localPosition = Vector3.zero;
                 //}
-                if (!isRpg)
-                {
-                    transform.localPosition = Vector3.zero;
-                    transform.localRotation = Quaternion.identity;
-                }
+                //if (!isRpg)
+                //{
+                //    transform.localPosition = Vector3.zero;
+                //    transform.localRotation = Quaternion.identity;
+                //}
                 if (target != null && !isRpg)
                 {
                     transform.DOMove(target.position + Vector3.up, .2f).SetEase(Ease.Linear);
+                }
+                if (target != null && isRpg)
+                {
+                    transform.DOMove(target.transform.parent.transform.position + Vector3.up, .2f).SetEase(Ease.Linear);
                 }
 
                 //if (target != null && isRpg)

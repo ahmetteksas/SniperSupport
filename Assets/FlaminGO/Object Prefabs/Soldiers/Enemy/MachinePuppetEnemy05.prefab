@@ -1210,6 +1210,7 @@ GameObject:
   - component: {fileID: 5585843721590223059}
   - component: {fileID: 5585843721590223057}
   - component: {fileID: 5585843721590223058}
+  - component: {fileID: 7860130167397458636}
   m_Layer: 7
   m_Name: Hips
   m_TagString: Enemy
@@ -1359,6 +1360,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7860130167397458636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585843721590223068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2be09f97181f1444a4c45ab756a24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerIndex: 0
 --- !u!1 &5585852504182537436
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,6 +4644,7 @@ MonoBehaviour:
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 0
+  turretSoldier: 0
   healBullet: 0.2
   health: 1
   maxHealth: 1

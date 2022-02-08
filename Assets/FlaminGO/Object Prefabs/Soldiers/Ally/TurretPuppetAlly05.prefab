@@ -6491,7 +6491,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &4977747994144032122
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6651,7 +6651,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &9162771132087250276
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6810,7 +6810,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &7685947334000763033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6932,6 +6932,7 @@ GameObject:
   - component: {fileID: 647709562886821708}
   - component: {fileID: 5268049290438105706}
   - component: {fileID: 8561438039846026088}
+  - component: {fileID: 8058004617973802547}
   m_Layer: 7
   m_Name: Hips
   m_TagString: Enemy
@@ -6971,7 +6972,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &5268049290438105706
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7081,6 +7082,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8058004617973802547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138142041165620360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2be09f97181f1444a4c45ab756a24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerIndex: 0
 --- !u!1 &8138201408103283592
 GameObject:
   m_ObjectHideFlags: 0
@@ -7130,7 +7144,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &1192205204439261958
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7290,7 +7304,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &567240455363215675
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7450,7 +7464,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &8883899690854318844
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7609,7 +7623,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &8983993322066875192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7767,7 +7781,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &3606403289874282085
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7927,7 +7941,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &4988242477327884562
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8089,7 +8103,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &260100342553818331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8248,7 +8262,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &1895578973487182878
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8408,7 +8422,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &1677679506868746198
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8568,7 +8582,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &7032226978709211340
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9318,7 +9332,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &4068528259726958433
 CapsuleCollider:
   m_ObjectHideFlags: 0

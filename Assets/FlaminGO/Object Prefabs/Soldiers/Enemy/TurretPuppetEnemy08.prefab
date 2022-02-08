@@ -3700,6 +3700,7 @@ GameObject:
   - component: {fileID: 3327664738858330475}
   - component: {fileID: 2274079665221882626}
   - component: {fileID: 8351703800656067709}
+  - component: {fileID: 7291618440286658818}
   m_Layer: 7
   m_Name: Hips
   m_TagString: Enemy
@@ -3723,7 +3724,7 @@ Transform:
   - {fileID: 7134400149579843577}
   m_Father: {fileID: 7142055472786838407}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 270, z: 278.59283}
 --- !u!54 &3327664738858330475
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3849,6 +3850,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7291618440286658818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136197990700394079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2be09f97181f1444a4c45ab756a24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerIndex: 0
 --- !u!1 &7136258648847614293
 GameObject:
   m_ObjectHideFlags: 0

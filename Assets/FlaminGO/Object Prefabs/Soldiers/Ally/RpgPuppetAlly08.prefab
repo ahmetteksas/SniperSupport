@@ -11854,7 +11854,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &7905502208017191769
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12014,7 +12014,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &6129124884713201270
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12174,7 +12174,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &2551477635200173476
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12333,7 +12333,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &1743869411834408273
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12492,7 +12492,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &6009905076534707933
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12651,7 +12651,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &6459642623729671454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12810,7 +12810,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5689387422524997068
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12972,7 +12972,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &4448313170857613315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13131,7 +13131,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5256365339547953042
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13290,7 +13290,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &1070001954238340454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13412,6 +13412,7 @@ GameObject:
   - component: {fileID: 8502311300143294204}
   - component: {fileID: 3710720069665235906}
   - component: {fileID: 4219316051575744371}
+  - component: {fileID: 5899059148712298699}
   m_Layer: 7
   m_Name: Hips
   m_TagString: Enemy
@@ -13451,7 +13452,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &3710720069665235906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13561,6 +13562,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5899059148712298699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137755908009825284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2be09f97181f1444a4c45ab756a24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerIndex: 0
 --- !u!1 &8137811044216799206
 GameObject:
   m_ObjectHideFlags: 0
@@ -13610,7 +13624,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &8595361340384740382
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13770,7 +13784,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &6406624181218070153
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13930,7 +13944,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &8120037946667603121
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14090,7 +14104,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &5414255493625628800
 CapsuleCollider:
   m_ObjectHideFlags: 0

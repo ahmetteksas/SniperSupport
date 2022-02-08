@@ -1820,6 +1820,7 @@ MonoBehaviour:
   healField: {fileID: 0}
   healFieldDelay: 2
   rpgSoldier: 0
+  turretSoldier: 0
   healBullet: 0.2
   health: 1
   maxHealth: 1
@@ -3665,6 +3666,7 @@ GameObject:
   - component: {fileID: 7717624924148616434}
   - component: {fileID: 8804061869420653332}
   - component: {fileID: 7805704422546431092}
+  - component: {fileID: 6827137666228381457}
   m_Layer: 7
   m_Name: Hips
   m_TagString: Enemy
@@ -3814,6 +3816,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &6827137666228381457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305277024556434825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2be09f97181f1444a4c45ab756a24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerIndex: 0
 --- !u!1 &7305285267223276095
 GameObject:
   m_ObjectHideFlags: 0
@@ -6995,14 +7010,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c845ddc819947ac44b72dc9eea168747, type: 3}
---- !u!4 &4431082569686431879 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1624417775654095584, guid: c845ddc819947ac44b72dc9eea168747, type: 3}
-  m_PrefabInstance: {fileID: 3167518463092912743}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3525690689108222015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1952464657655943768, guid: c845ddc819947ac44b72dc9eea168747, type: 3}
+  m_PrefabInstance: {fileID: 3167518463092912743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4431082569686431879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1624417775654095584, guid: c845ddc819947ac44b72dc9eea168747, type: 3}
   m_PrefabInstance: {fileID: 3167518463092912743}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4512459045810140191

@@ -263,8 +263,8 @@ public class SoldierController : MonoBehaviour
             _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
 
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
-                if (targetEnemy)
-                    bulletController.target = targetEnemy.transform.parent.transform; 
+                if (targetEnemy && !rpgSoldier)
+                    bulletController.target = targetEnemy.transform;
 
             _smallBullet.transform.SetParent(bulletSpawnPos);
         }
@@ -277,7 +277,7 @@ public class SoldierController : MonoBehaviour
                 {
                     //GetComponent<SplineComputer>().GetPoint(2).SetPosition(targetEnemy.transform.position);
                     //= targetEnemy.transform.position;
-                    bulletController.target = targetEnemy.transform.parent.transform;
+                    bulletController.target = targetEnemy.transform;
                     //_smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
                     //_smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
                     //_smallBullet.GetComponent<SplineFollower>().followSpeed = 1f;
