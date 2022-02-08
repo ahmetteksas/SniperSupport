@@ -53,6 +53,8 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.localRotation = Quaternion.Euler(0, 320, 270);
+
         //if (target != null)
         //{
         //    transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
