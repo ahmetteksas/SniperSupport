@@ -10,6 +10,7 @@ public class OnClickButton : MonoBehaviour
     public Image black;
     private float clicked = 0;
     public bool shoot;
+    public static bool isMouseOver;
     void Start()
     {
 
@@ -25,7 +26,16 @@ public class OnClickButton : MonoBehaviour
 
     void Update()
     {
-     
+
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() /*EventSystem.current.IsPointerOverGameObject()*/)
+        {
+            isMouseOver = true;
+        }
+        else
+        {
+            Debug.Log(isMouseOver);
+            isMouseOver = false;
+        }
         //if (clicked % 2 == 1)
         //{
         //    black.fillAmount += .1f;

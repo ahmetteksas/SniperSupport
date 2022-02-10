@@ -24,9 +24,16 @@ public class TakeHit : MonoBehaviour
             //StartCoroutine(ExplosionStart());
         }
     }
-    void ExplosionDamage(Vector3 center, float radius)
+
+    public void StartExplosion ()
     {
         StartCoroutine(ExplosionStart());
+    }
+
+    void ExplosionDamage(Vector3 center, float radius)
+    {
+        StartExplosion();
+        //StartCoroutine(ExplosionStart());
         Collider[] hitColliders = Physics.OverlapSphere(center, effectRadius);
         foreach (var hitCollider in hitColliders)
         {
@@ -42,7 +49,13 @@ public class TakeHit : MonoBehaviour
             {
                 _vehicleHit.Explode();
             }
-            
+            TakeHit _takeHit = hitCollider.gameObject.GetComponent<TakeHit>();
+
+            if (_takeHit)
+            {
+                _takeHit.StartExplosion();
+            }
+
 
             //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
         }

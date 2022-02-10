@@ -115,7 +115,6 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        //Debug.Log(other.gameObject.name);
         if (impactParticle)
         {
             impactParticle.SetActive(true);

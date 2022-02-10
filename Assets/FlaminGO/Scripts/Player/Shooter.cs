@@ -57,6 +57,30 @@ public class Shooter : MonoBehaviour
         enemyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 1).ToList();
     }
 
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private bool IsMouseOverUIWithIgnores()
+    {
+        PointerEventData _pointerEventData = new PointerEventData(EventSystem.current);
+        _pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(_pointerEventData, raycastResults);
+        for (int i = 0; i < raycastResults.Count; i++)
+        {
+            if (raycastResults[i].gameObject.GetComponent<OnClickButton>() != null) 
+            {
+                raycastResults.RemoveAt(i);
+                i--;
+            }
+        }
+
+        return raycastResults.Count > 0;
+    }
+
     public Coroutine swayingCoroutine;
     public float swayingDelay;
 
@@ -172,7 +196,7 @@ public class Shooter : MonoBehaviour
 
             if (shootTime > shootDelay)
             {
-                if (Input.GetMouseButton(0) /*&& IsMouseOverUi()*//*&& !shoot*/)
+                if (Input.GetMouseButton(0) && !IsMouseOverUIWithIgnores() /*&& IsMouseOverUi()*//*&& !shoot*/)
                 {
                     if (!EventSystem.current.IsPointerOverGameObject())
                     {
@@ -209,6 +233,8 @@ public class Shooter : MonoBehaviour
     public void Shoot()
     {
         GameObject _smallBullet;
+        GameObject _hsImpact;
+        GameObject _groundImpact;
         if (selectedBulletIndex == 0)
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("PlayerBullet", bulletSpawnPos.position, Quaternion.identity);
@@ -226,6 +252,8 @@ public class Shooter : MonoBehaviour
             Debug.Log(objectHit.name);
             if (hit.collider.CompareTag("Head"))
             {
+                _hsImpact = ObjectPool.instance.SpawnFromPool("HSImpact", hit.collider.gameObject.transform.position, Quaternion.identity);
+                _hsImpact.SetActive(true);
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
                 headShot.SetActive(true);
             }
@@ -233,6 +261,11 @@ public class Shooter : MonoBehaviour
             {
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
                 headShot.SetActive(true);
+            }
+            else if (hit.collider.name == "Ground")
+            {
+                _groundImpact = ObjectPool.instance.SpawnFromPool("GroundImpact", /*hit.collider*/hit.transform.position, Quaternion.identity);
+                _groundImpact.SetActive(true);
             }
             if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))
             {
