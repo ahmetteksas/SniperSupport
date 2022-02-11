@@ -40,6 +40,8 @@ public class Shooter : MonoBehaviour
     public GameObject sniper;
     public Transform firstSniperPos;
     public Transform secondSniperPos;
+    bool isShooted;
+    bool canShoot;
 
 
     public List<SoldierController> allyList = new List<SoldierController>();
@@ -107,23 +109,26 @@ public class Shooter : MonoBehaviour
         {
             Debug.Log(hit.point);
             mainCamera.transform.parent.DOPause();
-            mainCamera.transform.parent.DOLookAt(hit.point, .4f);
+            mainCamera.transform.parent.DOLookAt(hit.point, .3f);
         }
 
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
         {
-            soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .4f);
+            soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .3f);
         }
 
         shooted = true;
         sniper.transform.DOPause();
         sniper.transform.SetParent(secondSniperPos);
-        sniper.transform.DOLocalRotate(Vector3.zero, 0.2f);
-        yield return sniper.transform.DOLocalMove(Vector3.zero, 0.3f).WaitForCompletion();
+        sniper.transform.DOLocalRotate(Vector3.zero, 0.1f);
+        yield return sniper.transform.DOLocalMove(Vector3.zero, 0.2f).WaitForCompletion();
         mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, 0.1f)/*.SetEase(Ease.Linear)*/;
         mainCamera.DOPause();
         mainCamera.DOFieldOfView(scopeZoom, 0.3f);
         cross.SetActive(true);
+
+        canShoot = true;
+
         if (swayingCoroutine == null)
             swayingCoroutine = StartCoroutine(Swaying());
     }
@@ -170,6 +175,7 @@ public class Shooter : MonoBehaviour
         {
             soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
         }
+
         shooted = false;
         sniper.transform.DOPause();
         sniper.transform.SetParent(firstSniperPos);
@@ -179,7 +185,10 @@ public class Shooter : MonoBehaviour
         mainCamera.DOFieldOfView(80, .1f);
 
         mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
-        animator.SetTrigger("Reload");
+
+        if (isShooted)
+            animator.SetTrigger("Reload");
+
         scopeZoomOut = null;
     }
     bool stopped;
@@ -264,21 +273,19 @@ public class Shooter : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
 
-                if (cross.activeSelf && shootTime > shootDelay)
+                if (canShoot)
                 {
                     Shoot();
                 }
 
                 if (scopeZoomOut == null)
                 {
-
                     shootTime = 0f;
                     Debug.Log("out");
                     if (scopeZoomIn != null)
                         StopCoroutine(scopeZoomIn);
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
-
             }
         }
     }
@@ -290,6 +297,9 @@ public class Shooter : MonoBehaviour
 
     public void Shoot()
     {
+        isShooted = true;
+        canShoot = false;
+
         GameObject _smallBullet;
         GameObject _hsImpact;
         GameObject _groundImpact;
@@ -301,6 +311,7 @@ public class Shooter : MonoBehaviour
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("BulletHeal", bulletSpawnPos.position, Quaternion.identity);
         }
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, (Screen.height / 2) + 2f, Mathf.Infinity));
 
