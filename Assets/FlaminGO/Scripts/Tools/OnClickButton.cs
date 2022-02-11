@@ -33,7 +33,7 @@ public class OnClickButton : MonoBehaviour
         }
         else
         {
-            Debug.Log(isMouseOver);
+            //Debug.Log(isMouseOver);
             isMouseOver = false;
         }
         //if (clicked % 2 == 1)

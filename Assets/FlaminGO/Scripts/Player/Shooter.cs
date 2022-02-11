@@ -97,6 +97,19 @@ public class Shooter : MonoBehaviour
     {
         if (shooted)
             yield break;
+
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Debug.Log(hit.point);
+            mainCamera.transform.parent.DOPause();
+            mainCamera.transform.parent.DOLookAt(hit.point, .4f);
+        }
+
+
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
         {
             soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .4f);
@@ -126,6 +139,8 @@ public class Shooter : MonoBehaviour
         StopCoroutine(swayingCoroutine);
         mainCamera.transform.DOPause();
         mainCamera.transform.DOLocalMove(Vector3.zero, .5f);
+
+
         yield return mainCamera.transform.DOLocalRotate(Vector3.left * 2.4f, .21f).WaitForCompletion();
         mainCamera.transform.DOLocalRotate(Vector3.zero, 2f).WaitForCompletion();
         swayingCoroutine = null;
@@ -141,6 +156,7 @@ public class Shooter : MonoBehaviour
         mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
         mainCamera.DOFieldOfView(80, .1f);
 
+        mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
         animator.SetTrigger("Reload");
         scopeZoomOut = null;
         yield return new WaitForSeconds(2f);
@@ -198,15 +214,16 @@ public class Shooter : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    RaycastHit hit;
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    //RaycastHit hit;
+                    //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                    {
-                        //Debug.Log(hit.point);
-                        Camera.main.transform.parent.DOPause();
-                        Camera.main.transform.parent.DOLookAt(hit.point, .4f);
-                    }
+                    //Debug.Log("downs");
+                    //if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                    //{
+                    //    Debug.Log(hit.point);
+                    //    mainCamera.transform.parent.DOPause();
+                    //    mainCamera.transform.parent.DOLookAt(hit.point, .4f);
+                    //}
                 }
                 if (Input.GetMouseButton(0) && !IsMouseOverUIWithIgnores() /*&& IsMouseOverUi()*//*&& !shoot*/)
                 {
