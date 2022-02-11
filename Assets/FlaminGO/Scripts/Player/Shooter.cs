@@ -71,7 +71,7 @@ public class Shooter : MonoBehaviour
         EventSystem.current.RaycastAll(_pointerEventData, raycastResults);
         for (int i = 0; i < raycastResults.Count; i++)
         {
-            if (raycastResults[i].gameObject.GetComponent<OnClickButton>() != null) 
+            if (raycastResults[i].gameObject.GetComponent<OnClickButton>() != null)
             {
                 raycastResults.RemoveAt(i);
                 i--;
@@ -196,6 +196,18 @@ public class Shooter : MonoBehaviour
 
             if (shootTime > shootDelay)
             {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                    {
+                        //Debug.Log(hit.point);
+                        Camera.main.transform.parent.DOPause();
+                        Camera.main.transform.parent.DOLookAt(hit.point, .4f);
+                    }
+                }
                 if (Input.GetMouseButton(0) && !IsMouseOverUIWithIgnores() /*&& IsMouseOverUi()*//*&& !shoot*/)
                 {
                     if (!EventSystem.current.IsPointerOverGameObject())
