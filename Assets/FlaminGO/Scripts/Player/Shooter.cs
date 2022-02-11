@@ -109,7 +109,6 @@ public class Shooter : MonoBehaviour
             mainCamera.transform.parent.DOLookAt(hit.point, .4f);
         }
 
-
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
         {
             soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .4f);
@@ -139,7 +138,6 @@ public class Shooter : MonoBehaviour
         StopCoroutine(swayingCoroutine);
         mainCamera.transform.DOPause();
         mainCamera.transform.DOLocalMove(Vector3.zero, .5f);
-
 
         yield return mainCamera.transform.DOLocalRotate(Vector3.left * 2.4f, .21f).WaitForCompletion();
         mainCamera.transform.DOLocalRotate(Vector3.zero, 2f).WaitForCompletion();
@@ -237,7 +235,6 @@ public class Shooter : MonoBehaviour
                             }
                         }
                     }
-
                 }
             }
             if (Input.GetMouseButtonUp(0))
