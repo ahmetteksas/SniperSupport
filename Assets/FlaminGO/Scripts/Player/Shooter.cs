@@ -35,6 +35,7 @@ public class Shooter : MonoBehaviour
 
     //private bool scopeZ
     private Coroutine scopeZoomOut;
+    private Coroutine scopeZoomIn;
 
     public GameObject sniper;
     public Transform firstSniperPos;
@@ -130,7 +131,27 @@ public class Shooter : MonoBehaviour
     IEnumerator ScopeZoomOut()
     {
         if (!cross.activeInHierarchy)
+        {
+
+            swayingCoroutine = null;
+            foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
+            {
+                soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
+            }
+
+            shooted = false;
+            sniper.transform.DOPause();
+            sniper.transform.SetParent(firstSniperPos);
+            yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
+            cross.SetActive(false);
+            mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
+            mainCamera.DOFieldOfView(80, .1f);
+
+            mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
+            //animator.SetTrigger("Reload");
+            scopeZoomOut = null;
             yield break;
+        }
         sniper.transform.DOPause();
         sniper.transform.SetParent(firstSniperPos);
         sniper.transform.DOLocalRotate(Vector3.zero, 0f);
@@ -157,7 +178,6 @@ public class Shooter : MonoBehaviour
         mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
         animator.SetTrigger("Reload");
         scopeZoomOut = null;
-        yield return new WaitForSeconds(2f);
     }
     bool stopped;
     void Update()
@@ -231,7 +251,7 @@ public class Shooter : MonoBehaviour
                         {
                             if (LevelManager.instance.isGameRunning)
                             {
-                                StartCoroutine(ScopeZoomIn());
+                                scopeZoomIn = StartCoroutine(ScopeZoomIn());
                             }
                         }
                     }
@@ -241,6 +261,9 @@ public class Shooter : MonoBehaviour
             {
                 if (scopeZoomOut == null)
                 {
+                    Debug.Log("out");
+                    if (scopeZoomIn != null)
+                        StopCoroutine(scopeZoomIn);
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
                 if (cross.activeSelf)
