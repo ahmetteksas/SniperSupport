@@ -187,7 +187,10 @@ public class Shooter : MonoBehaviour
         mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
 
         if (isShooted)
+        {
             animator.SetTrigger("Reload");
+            isShooted = false;
+        }
 
         scopeZoomOut = null;
     }
