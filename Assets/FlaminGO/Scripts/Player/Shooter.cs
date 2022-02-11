@@ -130,33 +130,36 @@ public class Shooter : MonoBehaviour
 
     IEnumerator ScopeZoomOut()
     {
-        if (!cross.activeInHierarchy)
-        {
+        //if (!cross.activeInHierarchy)
+        //{
 
-            swayingCoroutine = null;
-            foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
-            {
-                soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
-            }
+        //    swayingCoroutine = null;
+        //    foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
+        //    {
+        //        soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
+        //    }
 
-            shooted = false;
-            sniper.transform.DOPause();
-            sniper.transform.SetParent(firstSniperPos);
-            yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
-            cross.SetActive(false);
-            mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
-            mainCamera.DOFieldOfView(80, .1f);
+        //    shooted = false;
+        //    sniper.transform.DOPause();
+        //    sniper.transform.SetParent(firstSniperPos);
+        //    yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
+        //    cross.SetActive(false);
+        //    mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
+        //    mainCamera.DOFieldOfView(80, .1f);
 
-            mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
-            //animator.SetTrigger("Reload");
-            scopeZoomOut = null;
-            yield break;
-        }
+        //    mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
+        //    //animator.SetTrigger("Reload");
+        //    scopeZoomOut = null;
+        //    yield break;
+        //}
         sniper.transform.DOPause();
         sniper.transform.SetParent(firstSniperPos);
         sniper.transform.DOLocalRotate(Vector3.zero, 0f);
         sniper.transform.DOLocalMove(Vector3.zero, 0f);
-        StopCoroutine(swayingCoroutine);
+
+        if (swayingCoroutine != null)
+            StopCoroutine(swayingCoroutine);
+
         mainCamera.transform.DOPause();
         mainCamera.transform.DOLocalMove(Vector3.zero, .5f);
 
@@ -256,20 +259,26 @@ public class Shooter : MonoBehaviour
                         }
                     }
                 }
+
             }
             if (Input.GetMouseButtonUp(0))
             {
+
+                if (cross.activeSelf && shootTime > shootDelay)
+                {
+                    Shoot();
+                }
+
                 if (scopeZoomOut == null)
                 {
+
+                    shootTime = 0f;
                     Debug.Log("out");
                     if (scopeZoomIn != null)
                         StopCoroutine(scopeZoomIn);
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
-                if (cross.activeSelf)
-                {
-                    Shoot();
-                }
+
             }
         }
     }
