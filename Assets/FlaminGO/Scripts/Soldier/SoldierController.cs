@@ -217,7 +217,9 @@ public class SoldierController : MonoBehaviour
                 {
                     Debug.Log("Looking the target enemy");
                     transform.DOPause();
-                    yield return transform.DOLookAt(targetEnemy.transform.parent.position, lookAtDelay).WaitForCompletion();
+                    yield return transform.DOLookAt(
+                        new Vector3(targetEnemy.transform.parent.position.x, transform.position.y, targetEnemy.transform.parent.position.z)
+                        , lookAtDelay).WaitForCompletion();
                 }
                 tempEnemySoldier = targetEnemy;
             }
