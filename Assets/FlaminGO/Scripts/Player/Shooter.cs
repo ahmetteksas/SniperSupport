@@ -107,7 +107,7 @@ public class Shooter : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            Debug.Log(hit.point);
+            //Debug.Log(hit.point);
             mainCamera.transform.parent.DOPause();
             mainCamera.transform.parent.DOLookAt(hit.point, .3f);
         }
