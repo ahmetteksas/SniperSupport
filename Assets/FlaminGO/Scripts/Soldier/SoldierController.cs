@@ -213,13 +213,14 @@ public class SoldierController : MonoBehaviour
                 ReloadBullet();
                 transform.DOPause();
 
-                if (targetEnemy)
+                if (targetEnemy && navMeshAgent.isStopped)
                 {
+                    Debug.Log("Looking the target enemy");
                     transform.DOPause();
                     yield return transform.DOLookAt(targetEnemy.transform.parent.position, lookAtDelay).WaitForCompletion();
                 }
+                tempEnemySoldier = targetEnemy;
             }
-            tempEnemySoldier = targetEnemy;
             yield return new WaitForSeconds(1f);
         }
     }
@@ -303,8 +304,8 @@ public class SoldierController : MonoBehaviour
                 navMeshAgent.enabled = false;
             }
         }
-        PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
-        _puppetMaster.state = PuppetMaster.State.Dead;
+        //PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
+        //_puppetMaster.state = PuppetMaster.State.Dead;
         if (lastHittedBullet != null)
         {
             //Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
