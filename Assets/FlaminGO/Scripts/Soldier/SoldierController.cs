@@ -140,6 +140,9 @@ public class SoldierController : MonoBehaviour
                 if (Vector3.Distance(navMeshAgent.destination, transform.position) < .2f)
                 {
                     //Debug.Log("Stopped");
+                    if (!navMeshAgent.isStopped)
+                        animator.SetTrigger("Aim");
+
                     navMeshAgent.isStopped = true;
                 }
                 else
