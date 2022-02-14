@@ -212,15 +212,18 @@ public class SoldierController : MonoBehaviour
                 shootCount = magSize - 1;
                 ReloadBullet();
                 transform.DOPause();
-
-                if (targetEnemy && navMeshAgent.isStopped)
+                if (navMeshAgent)
                 {
-                    Debug.Log("Looking the target enemy");
-                    transform.DOPause();
-                    yield return transform.DOLookAt(
-                        new Vector3(targetEnemy.transform.parent.position.x, transform.position.y, targetEnemy.transform.parent.position.z)
-                        , lookAtDelay).WaitForCompletion();
+                    if (targetEnemy && navMeshAgent.isStopped)
+                    {
+                        Debug.Log("Looking the target enemy");
+                        transform.DOPause();
+                        yield return transform.DOLookAt(
+                            new Vector3(targetEnemy.transform.parent.position.x, transform.position.y, targetEnemy.transform.parent.position.z)
+                            , lookAtDelay).WaitForCompletion();
+                    }
                 }
+               
                 tempEnemySoldier = targetEnemy;
             }
             yield return new WaitForSeconds(1f);
@@ -306,26 +309,32 @@ public class SoldierController : MonoBehaviour
                 navMeshAgent.enabled = false;
             }
         }
+    
         //PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
         //_puppetMaster.state = PuppetMaster.State.Dead;
         if (lastHittedBullet != null)
         {
-            //Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
+            Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
             Vector3 forceVector = (new Vector3((transform.position - lastHittedBullet.transform.position).x,
                 (transform.position - lastHittedBullet.transform.position).y * .2f,
-                (transform.position - lastHittedBullet.transform.position).z) * 10f/* + Vector3.up * 4.5f*/);
+                (transform.position - lastHittedBullet.transform.position).z) * 10f + Vector3.up * 4.5f);
 
             foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
             {
+                _rigidbody.isKinematic = false;
                 if (!turretSoldier)
                 {
-                    _rigidbody.AddForce(forceVector * deadForce / 5f);
+                    _rigidbody.AddForce(-forceVector * deadForce / 5f);
                 }
             }
-            if (!turretSoldier)
-            {
-                GetComponentInChildren<Rigidbody>().AddForce(forceVector * deadForce);
-            }
+            //if (!turretSoldier)
+            //{
+            //    GetComponentInChildren<Rigidbody>().isKinematic = false;
+
+            //    GetComponentInChildren<Rigidbody>().AddForce(forceVector * deadForce);
+            //}
+
+            Destroy(gameObject, 2f);
         }
     }
 

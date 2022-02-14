@@ -4652,7 +4652,7 @@ MonoBehaviour:
   isDead: 0
   bulletSpawnPos: {fileID: 6912270640314495319}
   bulletForce: 3000
-  deathForce: 1
+  deathForce: 5000
   shootDelay: 2.5
   setPositionDelay: 2
   healthBar: {fileID: 5656070142325041215}
@@ -6988,6 +6988,18 @@ PrefabInstance:
     - target: {fileID: 3582330026323355650, guid: 4d30d6f0491b34e488c4c3bbdebfe399, type: 3}
       propertyPath: m_Name
       value: Enemy01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584350919374095512, guid: 4d30d6f0491b34e488c4c3bbdebfe399, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584350919374095512, guid: 4d30d6f0491b34e488c4c3bbdebfe399, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584350919374095512, guid: 4d30d6f0491b34e488c4c3bbdebfe399, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 278.59283
       objectReference: {fileID: 0}
     - target: {fileID: 4086861464745841864, guid: 4d30d6f0491b34e488c4c3bbdebfe399, type: 3}
       propertyPath: m_ConnectedAnchor.y
