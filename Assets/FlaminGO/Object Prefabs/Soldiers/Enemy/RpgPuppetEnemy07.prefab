@@ -442,9 +442,9 @@ MonoBehaviour:
   lookAtDelay: 0.5
   targetEnemy: {fileID: 0}
   isDead: 0
-  bulletSpawnPos: {fileID: 6568885953230554494}
+  bulletSpawnPos: {fileID: 164161844470044848}
   bulletForce: 1500
-  deathForce: 1000
+  deathForce: 10
   shootDelay: 2.5
   setPositionDelay: 2
   healthBar: {fileID: 3942177365996734322}
@@ -456,7 +456,7 @@ MonoBehaviour:
   health: 1
   maxHealth: 1
   lastHittedBullet: {fileID: 0}
-  deadForce: 1250
+  deadForce: 250
 --- !u!195 &-627254828910153666
 NavMeshAgent:
   m_ObjectHideFlags: 0

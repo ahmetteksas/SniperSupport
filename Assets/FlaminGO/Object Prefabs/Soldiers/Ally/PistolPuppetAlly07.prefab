@@ -12695,9 +12695,9 @@ MonoBehaviour:
   lookAtDelay: 0.8
   targetEnemy: {fileID: 0}
   isDead: 0
-  bulletSpawnPos: {fileID: 731894365419788051}
+  bulletSpawnPos: {fileID: 358709061040025532}
   bulletForce: 3000
-  deathForce: 1000
+  deathForce: 10
   shootDelay: 2.5
   setPositionDelay: 2
   healthBar: {fileID: 5672335010109742169}
@@ -12709,7 +12709,7 @@ MonoBehaviour:
   health: 1
   maxHealth: 1
   lastHittedBullet: {fileID: 0}
-  deadForce: 900
+  deadForce: 250
 --- !u!195 &-8389417474748342771
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14739,6 +14739,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ally03
       objectReference: {fileID: 0}
+    - target: {fileID: 5131913450021745945, guid: c740e25bc8615484c846d5826eb31830, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -2.0575376e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131913450021745945, guid: c740e25bc8615484c846d5826eb31830, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131913450021745945, guid: c740e25bc8615484c846d5826eb31830, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 191.24835
+      objectReference: {fileID: 0}
     - target: {fileID: 5131977535299347773, guid: c740e25bc8615484c846d5826eb31830, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -14782,6 +14794,18 @@ PrefabInstance:
     - target: {fileID: 5131977535299347773, guid: c740e25bc8615484c846d5826eb31830, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132306387071003479, guid: c740e25bc8615484c846d5826eb31830, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.34273893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132306387071003479, guid: c740e25bc8615484c846d5826eb31830, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 27.432533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132306387071003479, guid: c740e25bc8615484c846d5826eb31830, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 4.072139
       objectReference: {fileID: 0}
     - target: {fileID: 5963773876779092791, guid: c740e25bc8615484c846d5826eb31830, type: 3}
       propertyPath: m_ConnectedAnchor.y

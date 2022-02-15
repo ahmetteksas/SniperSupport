@@ -5520,9 +5520,9 @@ MonoBehaviour:
   lookAtDelay: 0.8
   targetEnemy: {fileID: 0}
   isDead: 0
-  bulletSpawnPos: {fileID: 4195231814111913690}
+  bulletSpawnPos: {fileID: 4281785627487061619}
   bulletForce: 3000
-  deathForce: 1000
+  deathForce: 10
   shootDelay: 2.5
   setPositionDelay: 2
   healthBar: {fileID: 2825358091931579996}
@@ -5534,7 +5534,7 @@ MonoBehaviour:
   health: 1
   maxHealth: 1
   lastHittedBullet: {fileID: 0}
-  deadForce: 900
+  deadForce: 250
 --- !u!114 &4119275118580800103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15180,6 +15180,18 @@ PrefabInstance:
     - target: {fileID: 8912535632727266726, guid: 8f7d0963370249f4bba188b85d1c4259, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.2113441e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8912686032943060150, guid: 8f7d0963370249f4bba188b85d1c4259, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 298.3123
+      objectReference: {fileID: 0}
+    - target: {fileID: 8912686032943060150, guid: 8f7d0963370249f4bba188b85d1c4259, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 171.8704
+      objectReference: {fileID: 0}
+    - target: {fileID: 8912686032943060150, guid: 8f7d0963370249f4bba188b85d1c4259, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 99.96031
       objectReference: {fileID: 0}
     - target: {fileID: 8914896070871769716, guid: 8f7d0963370249f4bba188b85d1c4259, type: 3}
       propertyPath: m_Name
