@@ -134,6 +134,7 @@ public class BulletController : MonoBehaviour
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)
             {
+                _soldierController.gameObject.transform.SetParent(null, true);
                 _soldierController.lastHittedBullet = gameObject;
                 _soldierController.TakeHit(damage);
             }
@@ -149,6 +150,7 @@ public class BulletController : MonoBehaviour
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController)
             {
+                _soldierController.gameObject.transform.SetParent(null, true);
                 _soldierController.lastHittedBullet = gameObject;
                 _soldierController.TakeHit(damage * 20000f);
             }

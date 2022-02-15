@@ -319,12 +319,13 @@ public class SoldierController : MonoBehaviour
                 (transform.position - lastHittedBullet.transform.position).y * .2f,
                 (transform.position - lastHittedBullet.transform.position).z) * 10f + Vector3.up * 4.5f);
 
+            animator.enabled = false;
             foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
             {
                 _rigidbody.isKinematic = false;
                 if (!turretSoldier)
                 {
-                    _rigidbody.AddForce(-forceVector * deadForce / 5f);
+                    _rigidbody.AddForce(forceVector * deadForce / 5f);
                 }
             }
             //if (!turretSoldier)
