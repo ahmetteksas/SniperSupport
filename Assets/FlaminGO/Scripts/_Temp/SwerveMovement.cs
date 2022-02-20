@@ -44,7 +44,7 @@ public class SwerveMovement : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X") * 2, Input.GetAxis("Mouse Y")) * Time.deltaTime;
+            transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y") * 2, Input.GetAxis("Mouse Y") *2f) * Time.deltaTime;
         }
     }
 }
