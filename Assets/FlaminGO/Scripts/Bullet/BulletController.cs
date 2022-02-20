@@ -53,7 +53,7 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.localRotation = Quaternion.Euler(0, 320, 270);
+        //transform.localRotation = Quaternion.Euler(0, 320, 270);
 
         //if (target != null)
         //{
@@ -80,11 +80,12 @@ public class BulletController : MonoBehaviour
                 //}
                 if (target != null && !isRpg)
                 {
-                    transform.DOMove(target.position + Vector3.up, .2f).SetEase(Ease.Linear);
+                    transform.DOMove(/*target.position*/target.transform/*.parent.transform*/.position + Vector3.up / 2, .2f).SetEase(Ease.Linear);
                 }
                 if (target != null && isRpg)
                 {
-                    transform.DOMove(target.transform.parent.transform.position + Vector3.up, .2f).SetEase(Ease.Linear);
+                    //transform.DOMove(target.transform.parent.transform.position + Vector3.up /*- target.transform.parent.transform.forward*/, .2f).SetEase(Ease.Linear);
+                    GetComponent<Rigidbody>().AddForce(-(transform.position - target.transform/*.parent.transform*/.position - new Vector3(0, 1f, 0)).normalized * 2000f);
                 }
 
                 //if (target != null && isRpg)
@@ -115,6 +116,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log(other.gameObject.name);
         if (impactParticle)
         {
             impactParticle.SetActive(true);

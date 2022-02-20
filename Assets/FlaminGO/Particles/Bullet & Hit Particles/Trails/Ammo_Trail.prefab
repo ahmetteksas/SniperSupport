@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 4734982651294107089}
   - component: {fileID: 4861756617416387053}
   - component: {fileID: 4862672995514338747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_Gunshot_Heavy_Flash_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4734982651294107089
 Transform:
   m_ObjectHideFlags: 0
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 4731479738529841313}
   - component: {fileID: 4861847462759640767}
   - component: {fileID: 4862543755295570437}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_Gunshot_Tracer_Single_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4853,7 +4853,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4736784558227288353}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -4920,7 +4920,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -4928,8 +4928,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.8
-      minScalar: 0.6
+      scalar: 0.9
+      minScalar: 0.7
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4981,7 +4981,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9733,7 +9733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4731406868951922163}
   - component: {fileID: 4627453102202976115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_Gunshot_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9827,7 +9827,7 @@ GameObject:
   - component: {fileID: 4731549939664353343}
   - component: {fileID: 4862044777467848519}
   - component: {fileID: 4863234754564641953}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_Gunshot_Tracer_Single_Smoke_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9841,8 +9841,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4737237124256910287}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.658, y: -7.223, z: 25.059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4731479738529841313}
@@ -9856,7 +9856,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4737237124256910287}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -9921,9 +9921,9 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -14703,7 +14703,7 @@ GameObject:
   - component: {fileID: 4862787480722565569}
   - component: {fileID: 4323622525857382338}
   - component: {fileID: 5292764605915709550}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ammo_Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14718,7 +14718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4737467341440430879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.89, y: 1.24, z: -5.58}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4731479738529841313}
@@ -14734,7 +14734,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4737467341440430879}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 3
   stopAction: 0
   cullingMode: 3
@@ -14799,7 +14799,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
   randomSeed: 0
@@ -14844,8 +14844,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 100000
-      minScalar: 0
+      scalar: 20
+      minScalar: 15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15210,7 +15210,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 3
-      scalar: -1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -15840,7 +15840,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   RotationModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 3
@@ -16669,8 +16669,8 @@ ParticleSystem:
         m_RotationOrder: 4
     inWorldSpace: 1
   InheritVelocityModule:
-    enabled: 1
-    m_Mode: 0
+    enabled: 0
+    m_Mode: 1
     m_Curve:
       serializedVersion: 2
       minMaxState: 0

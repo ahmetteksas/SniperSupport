@@ -109,12 +109,12 @@ public class Shooter : MonoBehaviour
         {
             //Debug.Log(hit.point);
             mainCamera.transform.parent.DOPause();
-            mainCamera.transform.parent.DOLookAt(hit.point, .3f);
+            mainCamera.transform.parent.DOLookAt(hit.point, .1f);
         }
 
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
         {
-            soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .3f);
+            soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.008f, .1f);
         }
 
         shooted = true;

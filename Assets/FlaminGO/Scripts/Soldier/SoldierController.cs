@@ -334,8 +334,8 @@ public class SoldierController : MonoBehaviour
 
             //    GetComponentInChildren<Rigidbody>().AddForce(forceVector * deadForce);
             //}
-
-            Destroy(gameObject, 2f);
+            canvas.enabled = false;
+            //Destroy(gameObject, 2f);
         }
     }
 
