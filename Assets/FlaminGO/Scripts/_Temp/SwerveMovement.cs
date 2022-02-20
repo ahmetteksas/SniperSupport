@@ -7,24 +7,27 @@ public class SwerveMovement : MonoBehaviour
 {
     public float rotSpeed = 3f;
 
-
-    public float xClampMin = 0f;
-    public float xClampMax = 38f;
-    public float yClampMin = 230f;
-    public float yClampMax = 267f;
-    public float zClampMin = 230f;
-    public float zClampMax = 267f;
-
     Shooter shooter;
     float defaultScopeZoom;
+
     private void Start()
     {
         shooter = GetComponentInChildren<Shooter>();
         defaultScopeZoom = shooter.scopeZoom;
+
+
     }
 
     void Update()
     {
+        if (transform.parent == null)
+        {
+            GameObject go = GameObject.FindWithTag("Player");
+            transform.SetParent(go.transform);
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+        }
+
         Shoot();
         //Vector3 rotation = transform.eulerAngles;
         //rotation.x = Mathf.Clamp(transform.eulerAngles.x, xClampMin, xClampMax);
@@ -36,9 +39,12 @@ public class SwerveMovement : MonoBehaviour
 
     public void Shoot()
     {
+        if (!shooter.cross.activeInHierarchy)
+            return;
+
         if (Input.GetMouseButton(0))
         {
-            transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")*2, Input.GetAxis("Mouse Y"))*Time.deltaTime;
+            transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X") * 2, Input.GetAxis("Mouse Y")) * Time.deltaTime;
         }
     }
 }
