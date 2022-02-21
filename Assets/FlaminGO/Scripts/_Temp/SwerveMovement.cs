@@ -16,6 +16,7 @@ public class SwerveMovement : MonoBehaviour
         defaultScopeZoom = shooter.scopeZoom;
 
 
+
     }
 
     void Update()
@@ -23,6 +24,10 @@ public class SwerveMovement : MonoBehaviour
         if (transform.parent == null)
         {
             GameObject go = GameObject.FindWithTag("Player");
+
+            if (!go)
+                return;
+
             transform.SetParent(go.transform);
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
@@ -39,12 +44,12 @@ public class SwerveMovement : MonoBehaviour
 
     public void Shoot()
     {
-        if (!shooter.cross.activeInHierarchy)
-            return;
+        //if (!shooter.cross.activeInHierarchy)
+        //    return;
 
         if (Input.GetMouseButton(0))
         {
-            transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y") * 2, Input.GetAxis("Mouse Y") *2f) * Time.deltaTime;
+            transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y") * 2, Input.GetAxis("Mouse Y") * 2f) * Time.deltaTime;
         }
     }
 }
