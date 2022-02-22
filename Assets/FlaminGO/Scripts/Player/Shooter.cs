@@ -101,7 +101,6 @@ public class Shooter : MonoBehaviour
         if (shooted)
             yield break;
 
-
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -264,7 +263,7 @@ public class Shooter : MonoBehaviour
                 if (scopeZoomOut == null)
                 {
                     shootTime = 0f;
-                    Debug.Log("out");
+                    //Debug.Log("out");
                     if (scopeZoomIn != null)
                         StopCoroutine(scopeZoomIn);
                     scopeZoomOut = StartCoroutine(ScopeZoomOut());
@@ -316,7 +315,7 @@ public class Shooter : MonoBehaviour
             }
             else if (hit.collider.name == "Ground")
             {
-                _groundImpact = ObjectPool.instance.SpawnFromPool("GroundImpact", /*hit.collider*/hit.transform.position, Quaternion.identity);
+                _groundImpact = ObjectPool.instance.SpawnFromPool("GroundImpact", /*hit.collider*/hit.point, Quaternion.identity);
                 _groundImpact.SetActive(true);
             }
             if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))
@@ -333,13 +332,10 @@ public class Shooter : MonoBehaviour
         shootTime = 0f;
     }
 
-
     public void FinishGame()
     {
         cross.SetActive(false);
     }
-
-
 }
 
 

@@ -970,8 +970,8 @@ MonoBehaviour:
     prefab: {fileID: 7383308283317566895, guid: ebfb8be38774bec48a8f29e55abd668f, type: 3}
     size: 50
   - tag: GroundImpact
-    prefab: {fileID: 7383308283317566895, guid: c1763e8196ddbaa49ad7bbb55caeedab, type: 3}
-    size: 50
+    prefab: {fileID: 3449753191246046854, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
+    size: 15
   isGameRunning: 0
 --- !u!1001 &937387159
 PrefabInstance:
@@ -2123,6 +2123,10 @@ PrefabInstance:
       propertyPath: headShot
       value: 
       objectReference: {fileID: 493286393191685900}
+    - target: {fileID: 1743468145071359254, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: bulletForce
+      value: 550
+      objectReference: {fileID: 0}
     - target: {fileID: 5822464870645936591, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
       propertyPath: m_RootOrder
       value: 7
