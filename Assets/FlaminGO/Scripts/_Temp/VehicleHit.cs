@@ -15,7 +15,7 @@ public class VehicleHit : MonoBehaviour, IHitable
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -32,11 +32,17 @@ public class VehicleHit : MonoBehaviour, IHitable
     {
         Gizmos.DrawWireSphere(transform.position, radius);
     }
-    void ExplosionDamage(Vector3 center, float radius)
+    IEnumerator ExplosionDamage(Vector3 center, float radius)
     {
+        yield return new WaitForSeconds(.3f);
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
+            if (hitCollider.TryGetComponent(out VehicleHit _vehicleHit))
+            {
+                _vehicleHit.TakeDamage(1f);
+            }
+
             SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
             if (_soldierController && hitCollider.gameObject.tag == "Head")
             {
@@ -62,7 +68,7 @@ public class VehicleHit : MonoBehaviour, IHitable
         destroyedState.transform.parent = null;
         yield return new WaitForSeconds(2.5f);
     }
-    
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -86,8 +92,12 @@ public class VehicleHit : MonoBehaviour, IHitable
     public void TakeDamage(float _damage)
     {
         Debug.Log("Vechile Hitted");
-        ExplosionDamage(transform.position, radius);
+        StartCoroutine(ExplosionDamage(transform.position, radius * 1.3f));
         health -= 50f;
+        foreach (Weapon _weapon in GetComponentsInChildren<Weapon>())
+        {
+            _weapon.Throw(.3f);
+        }
     }
 
     public void TakeDamage()

@@ -307,9 +307,15 @@ public class Shooter : MonoBehaviour
             if (hit.collider.CompareTag("Head"))
             {
                 IHitable _iHitable = objectHit.transform.GetComponentInParent<IHitable>();
-                if (_iHitable != null)
+                if (selectedBulletIndex == 0)
                 {
-                    StartCoroutine(HitableHit(_iHitable, 1f));
+                    if (_iHitable != null)
+                        StartCoroutine(HitableHit(_iHitable, 1f));
+                }
+                else
+                {
+                    if (_iHitable != null)
+                        StartCoroutine(HitableHit(_iHitable, -1f));
                 }
 
                 _hsImpact = ObjectPool.instance.SpawnFromPool("HSImpact", hit.collider.gameObject.transform.position, Quaternion.identity);
@@ -320,9 +326,15 @@ public class Shooter : MonoBehaviour
             else if (hit.collider.name != "Ground")
             {
                 IHitable _iHitable = objectHit.transform.GetComponentInParent<IHitable>();
-                if (_iHitable != null)
+                if (selectedBulletIndex == 0)
                 {
-                    StartCoroutine(HitableHit(_iHitable, .5f));
+                    if (_iHitable != null)
+                        StartCoroutine(HitableHit(_iHitable, 1f));
+                }
+                else
+                {
+                    if (_iHitable != null)
+                        StartCoroutine(HitableHit(_iHitable, -1f));
                 }
 
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;

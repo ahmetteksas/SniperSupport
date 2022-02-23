@@ -56,6 +56,8 @@ public class SoldierController : MonoBehaviour, IHitable
     public float health = 1f;
     public float maxHealth = 1f;
 
+    public GameObject trailParticle;
+
     private void Awake()
     {
         if (!turretSoldier)
@@ -269,7 +271,15 @@ public class SoldierController : MonoBehaviour, IHitable
 
         if (!rpgSoldier)
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
+            if (trailParticle)
+            {
+                trailParticle.SetActive(true);
+                _smallBullet = trailParticle;//ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
+            }
+            else
+            {
+                _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
+            }
 
             if (_smallBullet.TryGetComponent(out BulletController bulletController))
                 if (targetEnemy && !rpgSoldier)
@@ -338,7 +348,7 @@ public class SoldierController : MonoBehaviour, IHitable
         Weapon _weapon = GetComponentInChildren<Weapon>();
         if (_weapon)
         {
-            _weapon.Throw();
+            _weapon.Throw(.1f);
         }
         //if (!turretSoldier)
         //{

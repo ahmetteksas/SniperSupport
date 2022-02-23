@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public void Throw()
+    public void Throw(float _delay)
     {
 
-        StartCoroutine(ThrowEnum());
+        StartCoroutine(ThrowEnum(_delay));
     }
 
-    IEnumerator ThrowEnum()
+    IEnumerator ThrowEnum(float _delay)
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(_delay);
         transform.SetParent(null);
         Rigidbody _rigidbody = gameObject.AddComponent<Rigidbody>();
         _rigidbody.AddForce(transform.forward * 10f);
