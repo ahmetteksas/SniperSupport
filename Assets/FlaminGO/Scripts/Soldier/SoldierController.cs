@@ -334,6 +334,12 @@ public class SoldierController : MonoBehaviour, IHitable
                 _rigidbody.AddForce(_direction * deadForce / 5f);
             }
         }
+
+        Weapon _weapon = GetComponentInChildren<Weapon>();
+        if (_weapon)
+        {
+            _weapon.Throw();
+        }
         //if (!turretSoldier)
         //{
         //    GetComponentInChildren<Rigidbody>().isKinematic = false;
