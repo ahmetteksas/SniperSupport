@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VehicleHit : MonoBehaviour
+public class VehicleHit : MonoBehaviour, IHitable
 {
     public float health;
     public GameObject explodeCar;
@@ -11,9 +11,11 @@ public class VehicleHit : MonoBehaviour
     public GameObject destroyedState;
     public float radius;
     public float damage = .4f;
+
+
     void Start()
     {
-
+        
     }
 
     void Update()
@@ -25,6 +27,10 @@ public class VehicleHit : MonoBehaviour
                 explode = true;
             }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
     void ExplosionDamage(Vector3 center, float radius)
     {
@@ -38,10 +44,6 @@ public class VehicleHit : MonoBehaviour
             }
         }
         StartCoroutine(ExplodeCar());
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
     public void Explode()
@@ -60,6 +62,8 @@ public class VehicleHit : MonoBehaviour
         destroyedState.transform.parent = null;
         yield return new WaitForSeconds(2.5f);
     }
+    
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
@@ -77,5 +81,17 @@ public class VehicleHit : MonoBehaviour
             ExplosionDamage(transform.position, 5f);
             health -= 50f;
         }
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        Debug.Log("Vechile Hitted");
+        ExplosionDamage(transform.position, radius);
+        health -= 50f;
+    }
+
+    public void TakeDamage()
+    {
+
     }
 }

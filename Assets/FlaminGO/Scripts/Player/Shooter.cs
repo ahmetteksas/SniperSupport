@@ -300,9 +300,18 @@ public class Shooter : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             Transform objectHit = hit.transform;
+
+
+
             Debug.Log(objectHit.name);
             if (hit.collider.CompareTag("Head"))
             {
+                IHitable _iHitable = objectHit.transform.GetComponentInParent<IHitable>();
+                if (_iHitable != null)
+                {
+                    StartCoroutine(HitableHit(_iHitable, 1f));
+                }
+
                 _hsImpact = ObjectPool.instance.SpawnFromPool("HSImpact", hit.collider.gameObject.transform.position, Quaternion.identity);
                 _hsImpact.SetActive(true);
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
@@ -310,6 +319,12 @@ public class Shooter : MonoBehaviour
             }
             else if (hit.collider.name != "Ground")
             {
+                IHitable _iHitable = objectHit.transform.GetComponentInParent<IHitable>();
+                if (_iHitable != null)
+                {
+                    StartCoroutine(HitableHit(_iHitable, .5f));
+                }
+
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
                 headShot.SetActive(true);
             }
@@ -335,6 +350,12 @@ public class Shooter : MonoBehaviour
     public void FinishGame()
     {
         cross.SetActive(false);
+    }
+
+    public IEnumerator HitableHit(IHitable _hittedObject, float _damage)
+    {
+        yield return new WaitForSeconds(.2f);
+        _hittedObject.TakeDamage(_damage);
     }
 }
 

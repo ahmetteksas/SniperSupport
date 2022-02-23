@@ -17,6 +17,7 @@ public class SwerveMovement : MonoBehaviour
 
 
 
+
     }
 
     void Update()
@@ -33,7 +34,8 @@ public class SwerveMovement : MonoBehaviour
             transform.localRotation = Quaternion.identity;
         }
 
-        Shoot();
+        if (ObjectPool.instance.isGameRunning)
+            Shoot();
         //Vector3 rotation = transform.eulerAngles;
         //rotation.x = Mathf.Clamp(transform.eulerAngles.x, xClampMin, xClampMax);
         //rotation.y = Mathf.Clamp(transform.eulerAngles.y, yClampMin, yClampMax);
@@ -46,7 +48,7 @@ public class SwerveMovement : MonoBehaviour
     {
         //if (!shooter.cross.activeInHierarchy)
         //    return;
-
+        //return;
         if (Input.GetMouseButton(0))
         {
             transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y") * 2, Input.GetAxis("Mouse Y") * 2f) * Time.deltaTime;
