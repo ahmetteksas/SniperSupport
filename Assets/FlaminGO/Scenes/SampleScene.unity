@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.2
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.55651474, g: 0.59658974, b: 0.6981132, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: d0523d8917957bb429a32997cb0e52b2, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2459024c3a4db5043be35787edddf1eb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -498,7 +498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4126444497070929351, guid: 1b914e8c10eeeb9459eda7d552e29229, type: 3}
       propertyPath: fogIntensity
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4126444497070929351, guid: 1b914e8c10eeeb9459eda7d552e29229, type: 3}
       propertyPath: fogColorEnd.b
@@ -602,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 1935825946}
     - target: {fileID: 4126444497070929370, guid: 1b914e8c10eeeb9459eda7d552e29229, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4126444497070929370, guid: 1b914e8c10eeeb9459eda7d552e29229, type: 3}
       propertyPath: m_LocalPosition.x
@@ -967,7 +967,7 @@ MonoBehaviour:
     prefab: {fileID: 4737467341440430879, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
     size: 100
   - tag: HSImpact
-    prefab: {fileID: 7383308283317566895, guid: ebfb8be38774bec48a8f29e55abd668f, type: 3}
+    prefab: {fileID: 167524, guid: fdac75e990da47649b31f10049c400b0, type: 3}
     size: 50
   - tag: GroundImpact
     prefab: {fileID: 3449753191246046854, guid: 0e1ff395679b6884491b9503e85a0cfd, type: 3}
@@ -1195,7 +1195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4126444497070929351, guid: 1b914e8c10eeeb9459eda7d552e29229, type: 3}
       propertyPath: fogIntensity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4126444497070929351, guid: 1b914e8c10eeeb9459eda7d552e29229, type: 3}
       propertyPath: fogColorEnd.b
@@ -2187,6 +2187,10 @@ PrefabInstance:
       propertyPath: zClampMax
       value: 263
       objectReference: {fileID: 0}
+    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: sensitivity
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
 --- !u!1001 &3322505401160849979
@@ -2198,7 +2202,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2188860827506338658, guid: d779b3c88628f1540af3789f240e807b, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2188860827506338658, guid: d779b3c88628f1540af3789f240e807b, type: 3}
       propertyPath: m_LocalPosition.x

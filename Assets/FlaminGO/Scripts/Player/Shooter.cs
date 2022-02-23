@@ -343,6 +343,7 @@ public class Shooter : MonoBehaviour
             else if (hit.collider.name == "Ground")
             {
                 _groundImpact = ObjectPool.instance.SpawnFromPool("GroundImpact", /*hit.collider*/hit.point, Quaternion.identity);
+                _groundImpact.transform.LookAt(mainCamera.transform);
                 _groundImpact.SetActive(true);
             }
             if (_smallBullet.TryGetComponent(out HealthBulletController healBullet))

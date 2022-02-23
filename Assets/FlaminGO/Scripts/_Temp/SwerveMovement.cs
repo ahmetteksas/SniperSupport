@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SwerveMovement : MonoBehaviour
 {
-    public float rotSpeed = 3f;
+    public float sensitivity = 3f;
 
     Shooter shooter;
     float defaultScopeZoom;
@@ -35,7 +35,7 @@ public class SwerveMovement : MonoBehaviour
         }
 
         if (ObjectPool.instance.isGameRunning)
-            Shoot();
+            Swerve();
         //Vector3 rotation = transform.eulerAngles;
         //rotation.x = Mathf.Clamp(transform.eulerAngles.x, xClampMin, xClampMax);
         //rotation.y = Mathf.Clamp(transform.eulerAngles.y, yClampMin, yClampMax);
@@ -44,14 +44,29 @@ public class SwerveMovement : MonoBehaviour
         //transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
     }
 
-    public void Shoot()
+
+    Vector3 firstMousePosition;
+    Vector3 tempMousePosition;
+    Vector3 lastMousePosition;
+    Vector3 mouseDelta;
+    public void Swerve()
     {
         //if (!shooter.cross.activeInHierarchy)
         //    return;
-        //return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            firstMousePosition = Input.mousePosition;
+        }
+
         if (Input.GetMouseButton(0))
         {
-            transform.localEulerAngles += rotSpeed * new Vector3(-Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y") * 2, Input.GetAxis("Mouse Y") * 2f) * Time.deltaTime;
+            tempMousePosition = Input.mousePosition;
+            mouseDelta = tempMousePosition - firstMousePosition;
+
+            transform.localEulerAngles += sensitivity * new Vector3(-mouseDelta.x, -mouseDelta.y * 2, mouseDelta.y * 2f) * Time.deltaTime;
+
+            firstMousePosition = tempMousePosition;
         }
     }
 }
