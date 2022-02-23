@@ -23,7 +23,7 @@ namespace ToonyColorsPro
 		{
 			public static bool DebugMode = false;
 
-			internal const string TCP2_VERSION = "2.8.0";
+			internal const string TCP2_VERSION = "2.8.1";
 			internal const string DOCUMENTATION_URL = "https://jeanmoreno.com/unity/toonycolorspro/doc/shader_generator_2";
 			internal const string OUTPUT_PATH = "/JMO Assets/Toony Colors Pro/Shaders Generated/";
 
@@ -662,7 +662,7 @@ namespace ToonyColorsPro
 				{
 					EditorGUILayout.BeginHorizontal();
 					currentConfig.Filename = EditorGUILayout.TextField(TCP2_GUI.TempContent("Filename", "The filename for the generated shader." + (ProjectOptions.data.AutoNames ? "" : "\nYou can input your own by disabling the auto-filename option in the options below.")), currentConfig.Filename);
-					currentConfig.Filename = Regex.Replace(currentConfig.Filename, @"[^a-zA-Z0-9 _!/]", "");
+					currentConfig.Filename = Regex.Replace(currentConfig.Filename, "[/?<>\\:*|\"]", "");
 					GUILayout.Label(".shader", GUILayout.Width(50f));
 					EditorGUILayout.EndHorizontal();
 				}
@@ -3293,11 +3293,14 @@ namespace ToonyColorsPro
 				stringBuilder.Replace("shader_feature_local_vertex", "shader_feature");
 				
 				stringBuilder.Replace("multi_compile_fragment", "multi_compile");
-				// stringBuilder.Replace("multi_compile_vertex", "multi_compile");
+				stringBuilder.Replace("multi_compile_vertex", "multi_compile");
+				stringBuilder.Replace("multi_compile_local_fragment", "multi_compile");
+				stringBuilder.Replace("multi_compile_local_vertex", "multi_compile");
 #elif !UNITY_2020_3_OR_NEWER
 				// program keyword suffix not supported before Unity 2020.3
 				stringBuilder.Replace("shader_feature_local_fragment", "shader_feature_local");
 				stringBuilder.Replace("shader_feature_local_vertex", "shader_feature_local");
+				stringBuilder.Replace("multi_compile_local_fragment", "multi_compile_local");
 				stringBuilder.Replace("multi_compile_fragment", "multi_compile");
 #endif
 

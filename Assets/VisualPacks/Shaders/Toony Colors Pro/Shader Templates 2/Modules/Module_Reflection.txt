@@ -109,10 +109,20 @@ sngl	lbl="Fresnel Reflections"		kw=REFLECTION_FRESNEL		needsOr=PLANAR_REFLECTION
 ///
 /// IF PLANAR_REFLECTION
 	/// IF BUMP
+		/// IF BUMP_SHADER_FEATURE
+		#if defined(_NORMALMAP)
+		///
 		float2 planarReflectionCoords = (screenPosition.xy + (normalTangentSpace.xy * [[VALUE:Planar Normals Influence]])) / screenPosition.w;
 		reflectionColor.rgb += tex2D(_ReflectionTex, planarReflectionCoords).rgb;
-	/// ELSE
+		/// IF BUMP_SHADER_FEATURE
+		#else
+		///
+	///
+	/// IF !BUMP || (BUMP && BUMP_SHADER_FEATURE)
 		reflectionColor.rgb += tex2D(_ReflectionTex, screenPosition.xy / screenPosition.w).rgb;
+		/// IF BUMP_SHADER_FEATURE
+		#endif
+		///
 	///
 ///
 /// IF (REFLECTION_CUBEMAP || PLANAR_REFLECTION) && REFLECTION_SHADER_FEATURE

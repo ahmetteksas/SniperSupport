@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TakeHit : MonoBehaviour
+public class TakeHit : MonoBehaviour, IHitable
 {
     //public GameObject explosionBarrel;
     public float effectRadius;
@@ -17,7 +17,6 @@ public class TakeHit : MonoBehaviour
         {
             Debug.Log("Barrel Hitted");
             other.gameObject.SetActive(false);
-            ExplosionDamage(transform.position, 2f);
             //explosionBarrel.SetActive(true);
             //vehicle.SetActive(false);
             //gameObject.SetActive(false);
@@ -25,7 +24,7 @@ public class TakeHit : MonoBehaviour
         }
     }
 
-    public void StartExplosion ()
+    public void StartExplosion()
     {
         StartCoroutine(ExplosionStart());
     }
@@ -102,5 +101,15 @@ public class TakeHit : MonoBehaviour
         yield return new WaitForSeconds(2f);
         //vehicle.SetActive(false);
         //otherBarrel.SetActive(false);
+    }
+
+    public void TakeDamage()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        ExplosionDamage(transform.position, 4f);
     }
 }

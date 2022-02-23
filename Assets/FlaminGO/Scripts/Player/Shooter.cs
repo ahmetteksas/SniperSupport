@@ -329,7 +329,7 @@ public class Shooter : MonoBehaviour
                 if (selectedBulletIndex == 0)
                 {
                     if (_iHitable != null)
-                        StartCoroutine(HitableHit(_iHitable, 1f));
+                        StartCoroutine(HitableHit(_iHitable, .5f));
                 }
                 else
                 {

@@ -2157,6 +2157,7 @@ Shader "@%SHADER_NAME%@"
 
 				[[MODULE:FRAGMENT:Reflection(reflections, normalWS, viewDirWS, ndvRaw, input.[[INPUT_VALUE:screenPosition]], normalTS)]]
 
+				reflections *= [[VALUE:Reflection Color]];
 				color.rgb += reflections;
 	/// IF REFLECTION_SHADER_FEATURE
 				#endif

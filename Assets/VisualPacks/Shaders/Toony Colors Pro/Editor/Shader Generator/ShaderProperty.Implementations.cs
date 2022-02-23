@@ -1007,8 +1007,10 @@ namespace ToonyColorsPro
 				// Only works with Unity 2019.4+ due to bugs with Surface Shaders prior to that version
 #if UNITY_2019_4_OR_NEWER
 				[Serialization.SerializeAs("sep_sampler")] public string SeparateSamplerName;
+				internal int SamplerGroup;
 				bool InvalidSampler;
-				bool UseSeparateSampler { get { return SeparateSamplerName != null && CanUseSeparateSampler; } }
+				bool UseSeparateSampler { get { return SeparateSamplerName != null && CanUseSeparateSampler && !UseOldSampler2DSyntax; } }
+				bool UseOldSampler2DSyntax { get { return !ShaderGenerator2.IsURP && (NoTile || UvSource == UvSourceType.Triplanar); }}
 				bool CanUseSeparateSampler { get { return ShaderGenerator2.IsURP | !(NoTile || UvSource == UvSourceType.Triplanar); } }
 #else
 				bool InvalidSampler
@@ -1479,7 +1481,6 @@ namespace ToonyColorsPro
 						if (!availableSamplers.Exists(val => val.value == this.SeparateSamplerName))
 						{
 							InvalidSampler = true;
-							InvalidSampler = true;
 						}
 					}
 				}
@@ -1570,7 +1571,7 @@ namespace ToonyColorsPro
 				List<AvailableValue> FetchValidSamplerValues()
 				{
 					return FetchValidValuesGeneric(
-						imp => imp.HasValidSamplerVariable() && imp.ParentShaderProperty.passBitmask == this.ParentShaderProperty.passBitmask,
+						imp => this.SamplerGroup == imp.SamplerGroup && imp.HasValidSamplerVariable() && imp.ParentShaderProperty.passBitmask == this.ParentShaderProperty.passBitmask,
 						imp => { return imp.PropertyName; }, 
 						imp => imp.GetSamplerVariableName());
 				}
@@ -1655,10 +1656,14 @@ namespace ToonyColorsPro
 				}
 				internal override string PrintVariableDeclareOutsideCBuffer(string indent)
 				{
-#if !UNITY_2019_4_OR_NEWER
-					return string.Format("{0}sampler2D {1};", indent, PropertyName);
-#else
+#if UNITY_2019_4_OR_NEWER
+					if (UseOldSampler2DSyntax)
+					{
+						return string.Format("{0}sampler2D {1};", indent, PropertyName);
+					}
 					return string.Format(UseSeparateSampler ? "{0}TCP2_TEX2D_NO_SAMPLER({1});" : "{0}TCP2_TEX2D_WITH_SAMPLER({1});", indent, PropertyName);
+#else
+					return string.Format("{0}sampler2D {1};", indent, PropertyName);
 #endif
 				}
 				internal override string PrintVariableDeclare(string indent)
@@ -1747,10 +1752,11 @@ namespace ToonyColorsPro
 					if (UvSource == UvSourceType.Triplanar)
 					{
 #if UNITY_2019_4_OR_NEWER
-						function = NoTile ? "TCP2_TEX2D_SAMPLE_TRIPLANAR_NOTILE" : "TCP2_TEX2D_SAMPLE_TRIPLANAR";
-#else
-						function = NoTile ? "tex2D_triplanar_noTile" : "tex2D_triplanar";
+						if (!UseOldSampler2DSyntax)
+							function = NoTile ? "TCP2_TEX2D_SAMPLE_TRIPLANAR_NOTILE" : "TCP2_TEX2D_SAMPLE_TRIPLANAR";
+						else
 #endif
+						function = NoTile ? "tex2D_triplanar_noTile" : "tex2D_triplanar";
 
 						bool useTilingOffset = UseTilingOffset && (!GlobalTilingOffset || UvSource != UvSourceType.Texcoord);
 						string texelScaling = ScaleByTexelSize ? string.Format(" * {0}_TexelSize.xy", PropertyName) : "";
@@ -1788,10 +1794,11 @@ namespace ToonyColorsPro
 						}
 						
 #if UNITY_2019_4_OR_NEWER
-						return string.Format("{0}({1}, {2}, {3}, {4}, {5}){6}", function, PropertyName, sampler, triplanarTilingOffset, worldPositionInput, worldNormalInput, channels);
-#else
-						return string.Format("{0}({1}, {2}, {3}, {4})", function, PropertyName, triplanarTilingOffset, worldPositionInput, worldNormalInput);
+						if (!UseOldSampler2DSyntax)
+							return string.Format("{0}({1}, {2}, {3}, {4}, {5}){6}", function, PropertyName, sampler, triplanarTilingOffset, worldPositionInput, worldNormalInput, channels);
+						else
 #endif
+						return string.Format("{0}({1}, {2}, {3}, {4})", function, PropertyName, triplanarTilingOffset, worldPositionInput, worldNormalInput);
 					}
 
 #if UNITY_2019_4_OR_NEWER
@@ -1863,10 +1870,11 @@ namespace ToonyColorsPro
 					if (UvSource == UvSourceType.Triplanar)
 					{
 #if UNITY_2019_4_OR_NEWER
-						function = NoTile ? "TCP2_TEX2D_SAMPLE_LOD_TRIPLANAR_NOTILE" : "TCP2_TEX2D_SAMPLE_LOD_TRIPLANAR";
-#else
-						function = NoTile ? "tex2Dlod_triplanar_noTile" : "tex2Dlod_triplanar";
+						if (!UseOldSampler2DSyntax)
+							function = NoTile ? "TCP2_TEX2D_SAMPLE_LOD_TRIPLANAR_NOTILE" : "TCP2_TEX2D_SAMPLE_LOD_TRIPLANAR";
+						else
 #endif
+						function = NoTile ? "tex2Dlod_triplanar_noTile" : "tex2Dlod_triplanar";
 
 						bool useTilingOffset = UseTilingOffset && !GlobalTilingOffset;
 						string triplanarTiling = string.Format(CultureInfo.InvariantCulture, "float2({0}, {0})", UVTriplanarScale);
@@ -1892,10 +1900,11 @@ namespace ToonyColorsPro
 						string worldNormalInput = LocalSpaceTriplanar ? "v.normal.xyz" : "worldNormalUv";
 
 #if UNITY_2019_4_OR_NEWER
-						return string.Format("{0}({1}, {2}, {3}, {4}, {5}, {6})", function, PropertyName, sampler, triplanarTilingOffset, GetMipValue(), worldPositionInput, worldNormalInput);
-#else
-						return string.Format("{0}({1}, {2}, {3}, {4}, {5})", function, PropertyName, triplanarTilingOffset, GetMipValue(), worldPositionInput, worldNormalInput);
+						if (!UseOldSampler2DSyntax)
+							return string.Format("{0}({1}, {2}, {3}, {4}, {5}, {6})", function, PropertyName, sampler, triplanarTilingOffset, GetMipValue(), worldPositionInput, worldNormalInput);
+						else
 #endif
+						return string.Format("{0}({1}, {2}, {3}, {4}, {5})", function, PropertyName, triplanarTilingOffset, GetMipValue(), worldPositionInput, worldNormalInput);
 					}
 
 #if UNITY_2019_4_OR_NEWER
@@ -4981,8 +4990,8 @@ namespace ToonyColorsPro
 					replacementParts.Clear();
 					usedImplementations.Clear();
 					tagError = null;
-					int customCodeIndex = ParentShaderProperty.implementations.IndexOf(this);
-					int maxIndex = ParentShaderProperty.implementations.Count - 1;
+					int customCodeIndex = ParentShaderProperty.implementations == null ? -1 : ParentShaderProperty.implementations.IndexOf(this);
+					int maxIndex = ParentShaderProperty.implementations == null ? 0 : ParentShaderProperty.implementations.Count - 1;
 
 					// parse code
 					var codeReplacements = ReplaceNNotationWithReplacementTags(code, customCodeIndex, maxIndex);

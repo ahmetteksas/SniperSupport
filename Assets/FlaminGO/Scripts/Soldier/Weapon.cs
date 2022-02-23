@@ -14,7 +14,10 @@ public class Weapon : MonoBehaviour
     {
         yield return new WaitForSeconds(_delay);
         transform.SetParent(null);
-        Rigidbody _rigidbody = gameObject.AddComponent<Rigidbody>();
+
+        if (!TryGetComponent(out Rigidbody _rigidbody))
+            _rigidbody = gameObject.AddComponent<Rigidbody>();
+
         _rigidbody.AddForce(transform.forward * 10f);
         MeshCollider _meshCollider = gameObject.AddComponent<MeshCollider>();
         _meshCollider.convex = true;

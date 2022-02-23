@@ -1,5 +1,5 @@
 Toony Colors Pro, version 2.8
-2021/09/28
+2021/11/19
 © 2021 - Jean Moreno
 =============================
 
@@ -37,6 +37,15 @@ UPDATE NOTES
 ------------
 
 See full and formatted changelog here: https://jeanmoreno.com/unity/toonycolorspro/doc/changelog
+
+2.8.1
+#### Fixed
+- [Shader Generator 2] (Default) (URP) Holes should now work in Terrain shaders
+- [Shader Generator 2] (Default) Fixed triplanar and no-tile texture sampling
+- [Shader Generator 2] (URP) Fixed reflection color not working with reflection probes
+- [Shader Generator 2] (Default) Prevent selecting invalid texture samplers (e.g. when they use triplanar or no-tile UVs)
+- [Shader Generator 2] (Default) (URP) Fixed some possible compilation errors when using Material Layers
+- Prevent possible asmdef conflict with Cartoon FX Remaster
 
 2.8
 #### Added

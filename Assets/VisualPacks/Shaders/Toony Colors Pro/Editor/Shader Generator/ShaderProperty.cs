@@ -350,7 +350,7 @@ namespace ToonyColorsPro
 			public VariableType Type { get; private set; }
 			public ProgramType Program = ProgramType.Undefined;
 			public bool IsUsedInLightingFunction = false;   //TODO same process for IsUsedInVertexFunction for vert/frag shaders and automatic float4 texcoordN packing
-			public List<int> usedImplementationsForCustomCode = new List<int>();
+			readonly List<int> usedImplementationsForCustomCode = new List<int>();
 
 			// Material Layers
 			[Serialization.SerializeAs("isClone")] internal bool isLayerClone = false;
@@ -362,7 +362,7 @@ namespace ToonyColorsPro
 			int passBitmask;    //bitmask that determines in which passes the shader property is used
 			Implementation[] defaultImplementations;
 			public bool expanded;
-			public List<int> implementationsExpandedStates = new List<int>();
+			readonly List<int> implementationsExpandedStates = new List<int>();
 			string helpMessage;
 			string displayName = null;
 			public string DisplayName
@@ -912,6 +912,14 @@ namespace ToonyColorsPro
 						features.AddRange(GetNeededFeatures(nf, Program));
 					}
 					features.AddRange(imp.NeededFeaturesExtra());
+				}
+
+				if (clonedShaderProperties.Count > 0)
+				{
+					foreach (ShaderProperty clonedShaderProperty in clonedShaderProperties.Values)
+					{
+						features.AddRange(clonedShaderProperty.NeededFeatures());
+					}
 				}
 
 				return features.ToArray();
@@ -2559,6 +2567,10 @@ namespace ToonyColorsPro
 						{
 							imp_mp_texture.TilingOffsetVariableLabel = imp_mp_texture.TilingOffsetVariable;
 						}
+
+#if UNITY_2019_4_OR_NEWER
+						imp_mp_texture.SamplerGroup = GetAssociatedDataInt(associatedData, "sampler_group", 0);
+#endif
 					}
 
 					var imp_mp = imp as Imp_MaterialProperty;
