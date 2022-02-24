@@ -2127,6 +2127,10 @@ PrefabInstance:
       propertyPath: bulletForce
       value: 550
       objectReference: {fileID: 0}
+    - target: {fileID: 2706603564311628523, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5822464870645936591, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2590,6 +2594,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2129185100950327930, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129185100950327930, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1920
+      objectReference: {fileID: 0}
     - target: {fileID: 2129185101365403092, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
       propertyPath: m_Controller
       value: 
@@ -2643,12 +2655,36 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1595519306}
+    - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1595519306}
     - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TapToPlayButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: TapToPlayButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CanvasManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217372209613129772, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2311916892792271961, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
       propertyPath: m_AnchoredPosition.y
