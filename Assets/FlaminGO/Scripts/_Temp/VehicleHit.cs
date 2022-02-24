@@ -64,8 +64,12 @@ public class VehicleHit : MonoBehaviour, IHitable
         explodeCar.SetActive(true);
         yield return new WaitForFixedUpdate();
         gameObject.SetActive(false);
-        destroyedState.SetActive(true);
-        destroyedState.transform.parent = null;
+
+        if (destroyedState)
+        {
+            destroyedState.SetActive(true);
+            destroyedState.transform.parent = null;
+        }
         yield return new WaitForSeconds(2.5f);
     }
 
@@ -96,7 +100,7 @@ public class VehicleHit : MonoBehaviour, IHitable
         health -= 50f;
         foreach (Weapon _weapon in GetComponentsInChildren<Weapon>())
         {
-            _weapon.Throw(.3f);
+            _weapon.Throw(.65f);
         }
     }
 
