@@ -318,8 +318,11 @@ public class Shooter : MonoBehaviour
                         StartCoroutine(HitableHit(_iHitable, -1f));
                 }
 
-                _hsImpact = ObjectPool.instance.SpawnFromPool("HSImpact", hit.collider.gameObject.transform.position, Quaternion.identity);
-                _hsImpact.SetActive(true);
+                if (selectedBulletIndex == 0)
+                {
+                    _hsImpact = ObjectPool.instance.SpawnFromPool("HSImpact", hit.collider.gameObject.transform.position, Quaternion.identity);
+                    _hsImpact.SetActive(true);
+                }
                 headShot.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
                 headShot.SetActive(true);
             }

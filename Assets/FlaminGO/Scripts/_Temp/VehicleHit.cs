@@ -79,8 +79,8 @@ public class VehicleHit : MonoBehaviour, IHitable
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
             Debug.Log("Vechile Hitted");
-            ExplosionDamage(transform.position, radius);
-            health -= 50f;
+            //ExplosionDamage(transform.position, radius);
+            //health -= 50f;
         }
     }
     private void OnCollisionStay(Collision other)
@@ -96,11 +96,14 @@ public class VehicleHit : MonoBehaviour, IHitable
     public void TakeDamage(float _damage)
     {
         Debug.Log("Vechile Hitted");
-        StartCoroutine(ExplosionDamage(transform.position, radius * 1.3f));
-        health -= 50f;
-        foreach (Weapon _weapon in GetComponentsInChildren<Weapon>())
+        health -= _damage;
+        if (health <= 0)
         {
-            _weapon.Throw(.65f);
+            StartCoroutine(ExplosionDamage(transform.position, radius * 1.3f));
+            foreach (Weapon _weapon in GetComponentsInChildren<Weapon>())
+            {
+                _weapon.Throw(.65f);
+            }
         }
     }
 
