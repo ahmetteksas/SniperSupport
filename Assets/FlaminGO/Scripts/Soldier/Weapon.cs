@@ -9,8 +9,8 @@ public class Weapon : MonoBehaviour
         if (!TryGetComponent(out MeshCollider _meshCollider))
         {
             _meshCollider = gameObject.AddComponent<MeshCollider>();
-            _meshCollider.convex = true;
         }
+        _meshCollider.convex = true;
     }
     public void Throw(float _delay)
     {
