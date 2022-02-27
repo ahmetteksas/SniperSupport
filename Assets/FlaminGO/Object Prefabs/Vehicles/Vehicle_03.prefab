@@ -195,9 +195,9 @@ MeshCollider:
   m_GameObject: {fileID: 6034863375628706873}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43304052458354522, guid: 0cb8868acf11efa4fa9a270905e25231, type: 2}
 --- !u!114 &5950958756780619137
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9211dbec6f127d541ba7394a1992b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 0.5
   explodeCar: {fileID: 1268416041134961283}
   destroyedState: {fileID: 7590396928509185577}
   radius: 5
@@ -225,7 +225,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6034863375628706873}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 1.5, z: 5}
@@ -262,7 +262,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6040913024584030093}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 25.028866, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!33 &6030895458529622667
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -638,7 +638,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6040913024584030093}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25.028866, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!33 &6030699289208001365
 MeshFilter:
   m_ObjectHideFlags: 0

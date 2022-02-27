@@ -8,6 +8,11 @@ public class MainCameraDisplay : MonoBehaviour
     [SerializeField] float sensitivity;
     public float movementTime;
 
+    [SerializeField]
+    float xClampMin, xClampMax,
+           yClampMin, yClampMax,
+           zClampMin, zClampMax;
+
     void Start()
     {
         transform.DOLocalMove(Vector3.zero, 0f);
