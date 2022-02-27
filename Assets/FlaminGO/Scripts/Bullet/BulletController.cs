@@ -17,7 +17,12 @@ public class BulletController : MonoBehaviour
     public Transform target;
     bool isFirstPositionSetted;
 
+    Vector3 defaultScale;
 
+    private void Start()
+    {
+        transform.localScale = Vector3.zero;
+    }
     private void FixedUpdate()
     {
         if (!target || isFirstPositionSetted)
@@ -33,28 +38,31 @@ public class BulletController : MonoBehaviour
 
     void Shoot()
     {
-        transform.LookAt(target.transform.position);
+
+        float _random = Random.Range(1.25f, 1.65f);
+
+        transform.LookAt(target.transform.position + Vector3.up * _random);
+
+        transform.DOScale(Vector3.one, .2f);
 
         if (!isRpg)
         {
-            transform.DOMove(target.transform.position + Vector3.up * 1.4f, .1f).SetEase(Ease.Linear);
+            transform.DOMove(target.transform.position + Vector3.up * _random, .1f).SetEase(Ease.Linear);
         }
         else
         {
-            transform.DOLookAt(target.transform.position, 0f);
-            transform.DOMove(target.transform.position + Vector3.up * 1.4f, .1f).SetEase(Ease.Linear);
+            //transform.DOLookAt(target.transform.position + Vector3.up * _random, 0f);
+            transform.DOMove(target.transform.position + Vector3.up * _random, 1f).SetEase(Ease.Linear);
         }
         transform.SetParent(null);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.name);
-        if (impactParticle)
-        {
-            impactParticle.SetActive(true);
-            impactParticle.GetComponent<ParticleSystem>().Play();
-        }
+
+        if (isRpg)
+            ObjectPool.instance.SpawnFromPool("RPGExplode", other.transform.position, Quaternion.identity);
+
         if (other.gameObject.CompareTag("Enemy") && !playerBullet)
         {
             SoldierController _soldierController = other.gameObject.GetComponentInParent<SoldierController>();
@@ -90,6 +98,6 @@ public class BulletController : MonoBehaviour
                 _soldierController.TakeHit(damage * 20000f);
             }
         }
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

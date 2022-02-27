@@ -246,7 +246,6 @@ public class SoldierController : MonoBehaviour, IHitable
         if (_smallBullet.TryGetComponent(out BulletController bulletController))
             if (targetEnemy)
                 bulletController.target = targetEnemy.transform;
-
         _smallBullet.transform.SetParent(bulletSpawnPos);
         //Debug.Log(targetEnemy);
     }
