@@ -825,6 +825,39 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43885629104622734, guid: 34142c49137a78a4dacb1abb8ca8f264, type: 2}
+--- !u!1 &7390941625837192859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3905520476787348709}
+  m_Layer: 0
+  m_Name: Ally MachineGun Move Position (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3905520476787348709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7390941625837192859}
+  m_LocalRotation: {x: -0, y: -0.30262256, z: -0, w: 0.9531105}
+  m_LocalPosition: {x: -25.25, y: 0.48362446, z: 37.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8166198724749974915}
+  - {fileID: 6898827275160988628}
+  - {fileID: 647724775302245628}
+  m_Father: {fileID: 3265669297023640125}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -35.23, z: 0}
 --- !u!114 &6641672689430078133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,39 +893,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!1 &7390941625837192859
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3905520476787348709}
-  m_Layer: 0
-  m_Name: Ally MachineGun Move Position (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3905520476787348709
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7390941625837192859}
-  m_LocalRotation: {x: -0, y: -0.30262256, z: -0, w: 0.9531105}
-  m_LocalPosition: {x: -25.25, y: 0.48362446, z: 37.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8166198724749974915}
-  - {fileID: 6898827275160988628}
-  - {fileID: 647724775302245628}
-  m_Father: {fileID: 3265669297023640125}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -35.23, z: 0}
 --- !u!1 &8262301606463758676
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &823701852312997108
 Transform:
   m_ObjectHideFlags: 0
