@@ -59,11 +59,6 @@ public class Shooter : MonoBehaviour
         enemyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 1).ToList();
     }
 
-    private bool IsMouseOverUI()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
-    }
-
     private bool IsMouseOverUIWithIgnores()
     {
         PointerEventData _pointerEventData = new PointerEventData(EventSystem.current);
@@ -183,6 +178,7 @@ public class Shooter : MonoBehaviour
 
         shootTime += Time.deltaTime;
 
+        GameEndCheck();
 
         if (shootTime > shootDelay)
         {

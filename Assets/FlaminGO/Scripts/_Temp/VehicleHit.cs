@@ -31,11 +31,11 @@ public class VehicleHit : MonoBehaviour, IHitable
 
     IEnumerator ExplosionDamage(Vector3 center, float radius)
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.65f);
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.TryGetComponent(out VehicleHit _vehicleHit))
+            if (hitCollider.TryGetComponent(out IHitable _vehicleHit))
             {
                 _vehicleHit.TakeDamage(1f);
             }
