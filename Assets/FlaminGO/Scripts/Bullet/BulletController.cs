@@ -11,104 +11,32 @@ public class BulletController : MonoBehaviour
 {
     public bool isRpg;
 
-    private ParticleSystem trail;
     public float damage;
     public GameObject impactParticle;
     public bool playerBullet;
-    //public GameObject headShot;
     public float hsDelay = 1f;
-    //public GameObject trail;
 
     public Transform target;
 
     bool isFirstPositionSetted;
-    private void Awake()
-    {
 
-    }
-    void Start()
-    {
-        //StartCoroutine(DestroyObject());
-        //if (TryGetComponent(out ParticleSystem particleSystem))
-        //{
-        //    trail = particleSystem;
-        //    trail.Stop();
-        //}
-    }
-    //private void OnEnable()
-    //{
-    //    //target.transform
-    //    if (trail)
-    //    {
-    //        trail.SetActive(true);
-    //    }
-    //}
-    //private void OnDisable()
-    //{
-    //    if (trail)
-    //    {
-    //        trail.SetActive(false);
-    //    }
-    //}
 
     private void FixedUpdate()
     {
-        //transform.localRotation = Quaternion.Euler(0, 320, 270);
-
-        //if (target != null)
-        //{
-        //    transform.position = target.position;//.DOMove(target.position, .5f);// = target.transform.position;
-        //}
         if (!isFirstPositionSetted)
         {
             if (transform.parent != null)
             {
                 isFirstPositionSetted = true;
-                //return;
-                //if (isRpg)
-                //{
-                //    transform.localPosition = Vector3.forward * 2f;
-                //}
-                //else
-                //{
-                //    transform.localPosition = Vector3.zero;
-                //}
-                //if (!isRpg)
-                //{
-                //    transform.localPosition = Vector3.zero;
-                //    transform.localRotation = Quaternion.identity;
-                //}
                 if (target != null && !isRpg)
                 {
-                    transform.DOMove(/*target.position*/target.transform/*.parent.transform*/.position + Vector3.up / 2, .2f).SetEase(Ease.Linear);
+                    transform.DOMove(target.transform.position + Vector3.up / 2, .2f).SetEase(Ease.Linear);
                 }
                 if (target != null && isRpg)
                 {
-                    //transform.DOMove(target.transform.parent.transform.position + Vector3.up /*- target.transform.parent.transform.forward*/, .2f).SetEase(Ease.Linear);
-                    GetComponent<Rigidbody>().AddForce(-(transform.position - target.transform/*.parent.transform*/.position - new Vector3(0, 1f, 0)).normalized * 2000f);
+                    GetComponent<Rigidbody>().AddForce(-(transform.position - target.transform.position - new Vector3(0, 1f, 0)).normalized * 2000f);
                 }
-
-                //if (target != null && isRpg)
-                //{
-                //    transform.SetParent(null, true);
-                //    transform.position = Vector3.Lerp(transform.position, target.position, 5f);
-                //}
-
-                //trail.Play();
-
-                //if (isRpg)
-                //{
-                //    //target.position += Vector3.up * 4f;
-                //}
-                //else if (target && !isRpg)
-                //{
-                //    target.position += Vector3.up * 1.12f;
-                //}
-
                 transform.SetParent(null);
-                //transform.Translate(Vector3.right * 13f);
-                //transform.Rotate(Vector3.up * 20f);
-                //transform.LookAt(target);
             }
         }
     }
@@ -157,12 +85,6 @@ public class BulletController : MonoBehaviour
                 _soldierController.TakeHit(damage * 20000f);
             }
         }
-        gameObject.SetActive(false);
-    }
-
-    IEnumerator DestroyObject()
-    {
-        yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }
 }
