@@ -6,6 +6,7 @@ using DG.Tweening;
 public class MainCameraDisplay : MonoBehaviour
 {
 
+    [SerializeField] float sensitivity;
     Transform defaultParent;
     public float movementTime;
 
@@ -20,17 +21,33 @@ public class MainCameraDisplay : MonoBehaviour
         transform.DOLocalRotate(Vector3.zero, 0f);
     }
 
-    //public void SetParentDefault()
-    //{
-    //    transform.SetParent(null);
-    //    transform.SetParent(defaultParent);
-    //    transform.localPosition = Vector3.zero;
-    //    transform.localRotation = Quaternion.identity;
-    //}
-    //public void SetParentNull()
-    //{
-    //    transform.SetParent(transform.parent.parent);
-    //    //transform.localPosition = Vector3.zero;
-    //    //transform.localRotation = Quaternion.identity;
-    //}
+    Vector3 firstMousePosition;
+    Vector3 tempMousePosition;
+    Vector3 mouseDelta;
+
+    void Update()
+    {
+        if (LevelManager.instance.isGameRunning)
+            Swerve();
+    }
+    Vector3 targetEulerAngles;
+    public void Swerve()
+    {
+        if (Input.GetMouseButtonDown(0))
+            firstMousePosition = Input.mousePosition;
+
+        if (Input.GetMouseButton(0))
+        {
+
+            tempMousePosition = Input.mousePosition;
+            mouseDelta = tempMousePosition - firstMousePosition;
+            transform.parent.Rotate(sensitivity * new Vector3(-mouseDelta.y * 2f, mouseDelta.x, 0f) * Time.deltaTime);
+
+            //targetEulerAngles = transform.eulerAngles;
+            //targetEulerAngles += sensitivity * new Vector3(-mouseDelta.y * 2, mouseDelta.x, -mouseDelta.y) * Time.deltaTime;
+            //transform.rotation = Quaternion.Euler(targetEulerAngles);// Quaternion.Lerp(transform.localRotation, Quaternion.Euler(targetEulerAngles), lerpSensitivity);
+
+            firstMousePosition = tempMousePosition;
+        }
+    }
 }
