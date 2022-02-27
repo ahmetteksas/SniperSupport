@@ -17,7 +17,7 @@ public class BulletController : MonoBehaviour
     public Transform target;
     bool isFirstPositionSetted;
 
-    Vector3 defaultScale;
+    [SerializeField] float explosionRadius;
 
     private void Start()
     {
@@ -39,11 +39,10 @@ public class BulletController : MonoBehaviour
     void Shoot()
     {
 
-        float _random = Random.Range(1.25f, 1.65f);
+        float _random = Random.Range(1.25f, 1.55f);
 
         transform.LookAt(target.transform.position + Vector3.up * _random);
 
-        transform.DOScale(Vector3.one, .2f);
 
         if (!isRpg)
         {
@@ -51,8 +50,9 @@ public class BulletController : MonoBehaviour
         }
         else
         {
+            transform.DOScale(Vector3.one * 2f, .1f);
             //transform.DOLookAt(target.transform.position + Vector3.up * _random, 0f);
-            transform.DOMove(target.transform.position + Vector3.up * _random, 1f).SetEase(Ease.Linear);
+            transform.DOMove(target.transform.position + Vector3.up * (_random - .12f), 1f).SetEase(Ease.Linear);
         }
         transform.SetParent(null);
     }
@@ -61,7 +61,31 @@ public class BulletController : MonoBehaviour
     {
 
         if (isRpg)
+        {
             ObjectPool.instance.SpawnFromPool("RPGExplode", other.transform.position, Quaternion.identity);
+            Collider[] hitColliders = Physics.OverlapSphere(other.transform.position, explosionRadius);
+            foreach (var hitCollider in hitColliders)
+            {
+                SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
+                if (_soldierController && hitCollider.gameObject.tag == "Head")
+                {
+                    _soldierController.TakeHit(damage * 999f);
+                }
+
+                Vehicle _vehicleHit = hitCollider.gameObject.GetComponent<Vehicle>();
+
+                if (_vehicleHit)
+                {
+                    _vehicleHit.Explode();
+                }
+                TakeHit _takeHit = hitCollider.gameObject.GetComponent<TakeHit>();
+
+                if (_takeHit)
+                {
+                    _takeHit.StartExplosion();
+                }
+            }
+        }
 
         if (other.gameObject.CompareTag("Enemy") && !playerBullet)
         {
@@ -98,6 +122,8 @@ public class BulletController : MonoBehaviour
                 _soldierController.TakeHit(damage * 20000f);
             }
         }
-        gameObject.SetActive(false);
+
+        if (isRpg)
+            gameObject.SetActive(false);
     }
 }

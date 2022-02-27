@@ -120,6 +120,7 @@ MonoBehaviour:
   playerBullet: 0
   hsDelay: 1
   target: {fileID: 0}
+  explosionRadius: 2
 --- !u!54 &3647575109372550
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,6 +177,10 @@ PrefabInstance:
     - target: {fileID: 6931589591478257270, guid: a4f955e6741325b4da942e5c9181102f, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931793573684801090, guid: a4f955e6741325b4da942e5c9181102f, type: 3}
+      propertyPath: looping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6931793573684801090, guid: a4f955e6741325b4da942e5c9181102f, type: 3}
       propertyPath: InitialModule.startSize.scalar
