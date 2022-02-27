@@ -7,7 +7,13 @@ public class SwerveMovement : MonoBehaviour
 {
     public float sensitivity = 3f;
 
+    [SerializeField]
+    float xClampMin, xClampMax,
+           yClampMin, yClampMax,
+           zClampMin, zClampMax;
+
     Shooter shooter;
+
     float defaultScopeZoom;
 
     private void Start()
@@ -36,12 +42,12 @@ public class SwerveMovement : MonoBehaviour
 
         if (ObjectPool.instance.isGameRunning)
             Swerve();
-        //Vector3 rotation = transform.eulerAngles;
-        //rotation.x = Mathf.Clamp(transform.eulerAngles.x, xClampMin, xClampMax);
-        //rotation.y = Mathf.Clamp(transform.eulerAngles.y, yClampMin, yClampMax);
-        //rotation.z = Mathf.Clamp(transform.eulerAngles.z, zClampMin, zClampMax);
+        Vector3 rotation = transform.eulerAngles;
+        rotation.x = Mathf.Clamp(transform.eulerAngles.x, xClampMin, xClampMax);
+        rotation.y = Mathf.Clamp(transform.eulerAngles.y, yClampMin, yClampMax);
+        rotation.z = Mathf.Clamp(transform.eulerAngles.z, zClampMin, zClampMax);
 
-        //transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+        transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
     }
 
 
