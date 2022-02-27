@@ -5,14 +5,6 @@ using UnityEngine;
 
 public class SwerveMovement : MonoBehaviour
 {
-    public float sensitivity = 3f;
-
-    [SerializeField] float lerpSensitivity;
-
-    [SerializeField]
-    float xClampMin, xClampMax,
-           yClampMin, yClampMax,
-           zClampMin, zClampMax;
 
     private IEnumerator Start()
     {

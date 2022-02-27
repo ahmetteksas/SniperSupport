@@ -26,6 +26,7 @@ public class Shooter : MonoBehaviour
     private float shootTime = 0f;
     public float scopeZoom = 35;
     public float scopeOffset = 3f;
+    public float zoomModifier;
     [SerializeField] float minScoopDistance;
     [SerializeField] float maxScoopDistance;
 
@@ -56,11 +57,6 @@ public class Shooter : MonoBehaviour
     {
         allyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 0).ToList();
         enemyList = FindObjectsOfType<SoldierController>().Where(x => x.teamIndex == 1).ToList();
-    }
-
-    private bool IsMouseOverUI()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
     }
 
     private bool IsMouseOverUIWithIgnores()
@@ -125,9 +121,8 @@ public class Shooter : MonoBehaviour
         mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, 0.1f)/*.SetEase(Ease.Linear)*/;
         mainCamera.DOPause();
 
-        Debug.Log(raycastDistance);
         raycastDistance = Mathf.Clamp(raycastDistance, minScoopDistance, maxScoopDistance);
-        mainCamera.DOFieldOfView(raycastDistance / scopeZoom, 0.3f);
+        mainCamera.DOFieldOfView(scopeZoom - (raycastDistance * zoomModifier), 0.3f);
         cross.SetActive(true);
 
         canShoot = true;
@@ -183,6 +178,7 @@ public class Shooter : MonoBehaviour
 
         shootTime += Time.deltaTime;
 
+        GameEndCheck();
 
         if (shootTime > shootDelay)
         {

@@ -549,10 +549,10 @@ GameObject:
   - component: {fileID: 4248259126752460}
   - component: {fileID: 33635318699368460}
   - component: {fileID: 23822985737555252}
-  - component: {fileID: 64305065773973120}
   - component: {fileID: 2008003257931937334}
   - component: {fileID: 4817881311085913585}
-  m_Layer: 0
+  - component: {fileID: 1180788540252077794}
+  m_Layer: 9
   m_Name: Vehicle_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,20 +634,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64305065773973120
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617582806024772}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43496450862262114, guid: bb97612e185e2044699dfabc1f887c7f, type: 2}
 --- !u!114 &2008003257931937334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9211dbec6f127d541ba7394a1992b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 0.5
   explodeCar: {fileID: 8989516265017052276}
   destroyedState: {fileID: 2155798952757870013}
   radius: 5
@@ -673,11 +659,24 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617582806024772}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.5, z: 5}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 3, y: 0.9232396, z: 4.85581}
+  m_Center: {x: 0, y: 0.7116197, z: 0.07209492}
+--- !u!65 &1180788540252077794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617582806024772}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2866566, y: 0.8730285, z: 1.7636452}
+  m_Center: {x: 0, y: 1.6551899, z: 1.4327035}
 --- !u!1 &1643414362656330
 GameObject:
   m_ObjectHideFlags: 0
