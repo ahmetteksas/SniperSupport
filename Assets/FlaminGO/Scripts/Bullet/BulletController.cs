@@ -33,16 +33,16 @@ public class BulletController : MonoBehaviour
 
     void Shoot()
     {
-        //return;
         transform.LookAt(target.transform.position);
 
         if (!isRpg)
         {
-            transform.DOMove(target.transform.position + Vector3.up / 2, .2f).SetEase(Ease.Linear);
+            transform.DOMove(target.transform.position + Vector3.up * 1.4f, .1f).SetEase(Ease.Linear);
         }
         else
         {
-            GetComponent<Rigidbody>().AddForce(-(transform.position - target.transform.position - new Vector3(0, 1f, 0)).normalized * 2000f);
+            transform.DOLookAt(target.transform.position, 0f);
+            transform.DOMove(target.transform.position + Vector3.up * 1.4f, .1f).SetEase(Ease.Linear);
         }
         transform.SetParent(null);
     }
@@ -90,6 +90,6 @@ public class BulletController : MonoBehaviour
                 _soldierController.TakeHit(damage * 20000f);
             }
         }
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

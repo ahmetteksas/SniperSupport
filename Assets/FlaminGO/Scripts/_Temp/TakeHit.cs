@@ -30,7 +30,7 @@ public class TakeHit : MonoBehaviour, IHitable
                 _soldierController.TakeHit(damage * 999f);
             }
 
-            VehicleHit _vehicleHit = hitCollider.gameObject.GetComponent<VehicleHit>();
+            Vehicle _vehicleHit = hitCollider.gameObject.GetComponent<Vehicle>();
 
             if (_vehicleHit)
             {

@@ -8,6 +8,8 @@ public class MainCameraDisplay : MonoBehaviour
     [SerializeField] float sensitivity;
     public float movementTime;
 
+    Vector3 angleVector;
+
     [SerializeField]
     float xClampMin, xClampMax,
            yClampMin, yClampMax,
@@ -38,6 +40,18 @@ public class MainCameraDisplay : MonoBehaviour
         {
             tempMousePosition = Input.mousePosition;
             mouseDelta = tempMousePosition - firstMousePosition;
+
+            //angleVector += sensitivity * new Vector3(-mouseDelta.y * 2f, mouseDelta.x, 0f) * Time.deltaTime;
+
+            //if (angleVector.x > xClampMax || angleVector.x < xClampMin)
+            //{
+            //    mouseDelta.y = 0f;
+            //}
+
+            //if (angleVector.y > yClampMax || angleVector.y < yClampMin)
+            //{
+            //    mouseDelta.x = 0f;
+            //}
 
             transform.parent.Rotate(sensitivity * new Vector3(-mouseDelta.y * 2f, mouseDelta.x, 0f) * Time.deltaTime);
 

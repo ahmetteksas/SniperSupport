@@ -80,27 +80,12 @@ public class SoldierController : MonoBehaviour, IHitable
                 navMeshAgent.destination = targetTransform.position;
             }
         }
-        StartCoroutine(CanvasInd());
         if (!turretSoldier)
         {
             StartCoroutine(GoToNewPosition());
         }
     }
 
-    IEnumerator CanvasInd()
-    {
-        yield return new WaitForSeconds(3f);
-        while (true)
-        {
-            if (canvas)
-                canvas.transform.LookAt(Camera.main.transform);
-            if (isDead)
-            {
-                canvas.enabled = false;
-            }
-            yield return null;
-        }
-    }
     public GameObject lastHittedBullet;
     private void OnCollisionEnter(Collision other)
     {
@@ -136,6 +121,10 @@ public class SoldierController : MonoBehaviour, IHitable
                     if (!navMeshAgent.isStopped)
                         animator.SetTrigger("Aim");
                     navMeshAgent.isStopped = true;
+                    
+                    transform.DOLookAt(
+                             new Vector3(targetEnemy.transform.parent.position.x, transform.position.y, targetEnemy.transform.parent.position.z)
+                             , lookAtDelay).WaitForCompletion();
                 }
                 else
                 {

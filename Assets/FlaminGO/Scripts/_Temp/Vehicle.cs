@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VehicleHit : MonoBehaviour, IHitable
+public class Vehicle : MonoBehaviour, IHitable
 {
     public float health;
     public GameObject explodeCar;
