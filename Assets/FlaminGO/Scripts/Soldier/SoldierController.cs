@@ -50,8 +50,6 @@ public class SoldierController : MonoBehaviour, IHitable
     public float health = 1f;
     public float maxHealth = 1f;
 
-    public GameObject trailParticle;
-
     private void Awake()
     {
         if (!turretSoldier)
@@ -124,21 +122,19 @@ public class SoldierController : MonoBehaviour, IHitable
         }
         if (!turretSoldier)
         {
-            if (navMeshAgent.enabled == true)
+            if (navMeshAgent)
                 if (navMeshAgent.isStopped)
                 {
                     animator.SetLayerWeight(1, 0);
                     return;
                 }
 
-            if (navMeshAgent.enabled == true)
+            if (navMeshAgent)
             {
                 if (Vector3.Distance(navMeshAgent.destination, transform.position) < .2f)
                 {
-                    //Debug.Log("Stopped");
                     if (!navMeshAgent.isStopped)
                         animator.SetTrigger("Aim");
-
                     navMeshAgent.isStopped = true;
                 }
                 else
@@ -146,20 +142,6 @@ public class SoldierController : MonoBehaviour, IHitable
                     //Debug.Log(Vector3.Distance(navMeshAgent.destination, transform.position));
                 }
             }
-        }
-    }
-
-    IEnumerator HealField()
-    {
-        if (teamIndex == 0)
-        {
-            healField.SetActive(true);
-            healField.GetComponent<ParticleSystem>().Play();
-        }
-        yield return new WaitForSeconds(healFieldDelay);
-        if (teamIndex == 0)
-        {
-            healField.SetActive(false);
         }
     }
 
@@ -265,39 +247,18 @@ public class SoldierController : MonoBehaviour, IHitable
 
         if (!rpgSoldier)
         {
-            if (trailParticle)
-            {
-                trailParticle.SetActive(true);
-                _smallBullet = trailParticle;//ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
-            }
-            else
-            {
-                _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
-            }
-
-            if (_smallBullet.TryGetComponent(out BulletController bulletController))
-                if (targetEnemy && !rpgSoldier)
-                    bulletController.target = targetEnemy.transform;
-
-            _smallBullet.transform.SetParent(bulletSpawnPos);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("AmmoTrail", bulletSpawnPos.position, bulletSpawnPos.rotation);
         }
         else
         {
-            _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", bulletSpawnPos.transform.position, bulletSpawnPos.transform.rotation);
-
-            if (_smallBullet.TryGetComponent(out BulletController bulletController))
-                if (targetEnemy && rpgSoldier)
-                {
-                    //GetComponent<SplineComputer>().GetPoint(2).SetPosition(targetEnemy.transform.position);
-                    //= targetEnemy.transform.position;
-                    bulletController.target = targetEnemy.transform;
-                    //_smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
-                    //_smallBullet.GetComponent<SplineFollower>().spline = GetComponent<SplineComputer>();
-                    //_smallBullet.GetComponent<SplineFollower>().followSpeed = 1f;
-                    //_smallBullet.transform.position = Vector3.MoveTowards(_smallBullet.transform.position, targetEnemy.transform.parent.position, 20f * Time.deltaTime);
-                }
-            _smallBullet.transform.SetParent(bulletSpawnPos);
+            _smallBullet = ObjectPool.instance.SpawnFromPool("RocketTrail", bulletSpawnPos.position, bulletSpawnPos.rotation);
         }
+
+        if (_smallBullet.TryGetComponent(out BulletController bulletController))
+            if (targetEnemy)
+                bulletController.target = targetEnemy.transform;
+
+        _smallBullet.transform.SetParent(bulletSpawnPos);
         //Debug.Log(targetEnemy);
     }
 
@@ -305,20 +266,16 @@ public class SoldierController : MonoBehaviour, IHitable
     void DeathEvent()
     {
         isDead = true;
-        //colBase.enabled = false;
-        if (!turretSoldier)
-        {
-            if (navMeshAgent != null)
-            {
-                navMeshAgent.enabled = false;
-            }
-        }
+
+        if (navMeshAgent)
+            Destroy(navMeshAgent);
 
         GameObject go = FindObjectOfType<Shooter>().gameObject;
 
         Vector3 _direction = (go.transform.position - transform.position).normalized;
 
         animator.enabled = false;
+
         foreach (Rigidbody _rigidbody in GetComponentsInChildren<Rigidbody>())
         {
             _rigidbody.isKinematic = false;
@@ -339,7 +296,6 @@ public class SoldierController : MonoBehaviour, IHitable
     bool isWalk;
     IEnumerator GoToNewPosition()
     {
-        yield break;
         if (turretSoldier)
         {
             while (true)

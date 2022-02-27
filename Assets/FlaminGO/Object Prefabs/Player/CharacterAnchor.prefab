@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3054440450b81f44390ad2e8d45b2d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivity: 0.2
   movementTime: 3
 --- !u!1 &2067050121904269310
 GameObject:
@@ -726,7 +727,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e631d47586eab564fa0317b532a80090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0.5
+  sensitivity: 1
+  lerpSensitivity: 0.02
+  xClampMin: -360
+  xClampMax: 360
+  yClampMin: -360
+  yClampMax: 360
+  zClampMin: -360
+  zClampMax: 360
 --- !u!114 &1168399188893401235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,6 +1858,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 3
+  lerpSensitivity: 0
+  xClampMin: 0
+  xClampMax: 0
+  yClampMin: 0
+  yClampMax: 0
+  zClampMin: 0
+  zClampMax: 0
 --- !u!1 &5826444974914572833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,14 +2445,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68dbd11e592c6045b1842bf05347640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAI: 0
   bulletSpawnPos: {fileID: 5971096018137123851}
   bulletDir: {fileID: 5824237862209145061}
   character: {fileID: 5824237862209145061}
-  bulletForce: 550
   shootDelay: 1.7
-  scopeZoom: 17
+  scopeZoom: 3
   scopeOffset: 2
+  minScoopDistance: 20
+  maxScoopDistance: 150
   scopeZoomOutDelay: 0.75
   cross: {fileID: 2706603564311628523}
   headShot: {fileID: 0}

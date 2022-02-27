@@ -964,7 +964,7 @@ MonoBehaviour:
     prefab: {fileID: 1468948206877542651, guid: b81d17de4e57abb47b3fbbacea60d17a, type: 3}
     size: 50
   - tag: AmmoTrail
-    prefab: {fileID: 4737467341440430879, guid: 223912db4a03edf4299f86fbd1416b12, type: 3}
+    prefab: {fileID: 1613784492385749901, guid: c70f798943996e849b63561df45bb2c4, type: 3}
     size: 100
   - tag: HSImpact
     prefab: {fileID: 167524, guid: fdac75e990da47649b31f10049c400b0, type: 3}
@@ -2123,13 +2123,9 @@ PrefabInstance:
       propertyPath: headShot
       value: 
       objectReference: {fileID: 493286393191685900}
-    - target: {fileID: 2706603562568353624, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706603562568353624, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: sensitivity
-      value: 0.2
+    - target: {fileID: 1743468145071359254, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: scopeZoom
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5822464870645936591, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
       propertyPath: m_RootOrder
@@ -2178,38 +2174,6 @@ PrefabInstance:
     - target: {fileID: 5825504876283336425, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
       propertyPath: m_Name
       value: CharacterAnchor
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: xClampMax
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: xClampMin
-      value: -360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: yClampMax
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: yClampMin
-      value: -360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: zClampMax
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: zClampMin
-      value: -360
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: sensitivity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: lerpSensitivity
-      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}

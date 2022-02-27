@@ -19,13 +19,15 @@ public class Shooter : MonoBehaviour
     public Transform character;
 
     int selectedBulletIndex;
-    public float bulletForce;
+    //public float bulletForce;
     private bool shooted;
 
     [SerializeField] float shootDelay = 2f;
     private float shootTime = 0f;
     public float scopeZoom = 35;
     public float scopeOffset = 3f;
+    [SerializeField] float minScoopDistance;
+    [SerializeField] float maxScoopDistance;
 
     public float scopeZoomOutDelay = .7f;
 
@@ -97,11 +99,14 @@ public class Shooter : MonoBehaviour
         if (shooted)
             yield break;
 
+        float raycastDistance = 0;
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
+            raycastDistance = hit.distance;
             //Debug.Log(hit.point);
             mainCamera.transform.parent.DOPause();
             mainCamera.transform.parent.DOLookAt(hit.point, .1f);
@@ -119,7 +124,10 @@ public class Shooter : MonoBehaviour
         yield return sniper.transform.DOLocalMove(Vector3.zero, 0.2f).WaitForCompletion();
         mainCamera.transform.DOLocalMove(Vector3.forward * scopeOffset, 0.1f)/*.SetEase(Ease.Linear)*/;
         mainCamera.DOPause();
-        mainCamera.DOFieldOfView(scopeZoom, 0.3f);
+
+        Debug.Log(raycastDistance);
+        raycastDistance = Mathf.Clamp(raycastDistance, minScoopDistance, maxScoopDistance);
+        mainCamera.DOFieldOfView(raycastDistance / scopeZoom, 0.3f);
         cross.SetActive(true);
 
         canShoot = true;
@@ -264,8 +272,6 @@ public class Shooter : MonoBehaviour
         {
             Transform objectHit = hit.transform;
 
-
-
             Debug.Log(objectHit.name);
             if (hit.collider.CompareTag("Head"))
             {
@@ -320,8 +326,6 @@ public class Shooter : MonoBehaviour
             {
                 bullet.target = objectHit;
             }
-            _smallBullet.gameObject.GetComponent<Rigidbody>().AddForce((objectHit.transform.position - _smallBullet.transform.position).normalized * bulletForce);
-
         }
         shootTime = 0f;
     }

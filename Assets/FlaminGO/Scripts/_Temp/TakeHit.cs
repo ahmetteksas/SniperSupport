@@ -52,7 +52,6 @@ public class TakeHit : MonoBehaviour, IHitable
         ObjectPool.instance.SpawnFromPool("CarExplode", transform.position, Quaternion.identity);
         yield return new WaitForFixedUpdate();
         gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
     }
 
     public void TakeDamage()

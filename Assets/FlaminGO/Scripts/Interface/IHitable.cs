@@ -5,5 +5,6 @@ using UnityEngine;
 public interface IHitable
 {
     void TakeDamage();
+
     void TakeDamage(float _damage);
 }

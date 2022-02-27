@@ -20,22 +20,31 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isFirstPositionSetted)
+        if (!target || isFirstPositionSetted)
+            return;
+
+        if (transform.parent != null)
         {
-            if (transform.parent != null)
-            {
-                isFirstPositionSetted = true;
-                if (target != null && !isRpg)
-                {
-                    transform.DOMove(target.transform.position + Vector3.up / 2, .2f).SetEase(Ease.Linear);
-                }
-                if (target != null && isRpg)
-                {
-                    GetComponent<Rigidbody>().AddForce(-(transform.position - target.transform.position - new Vector3(0, 1f, 0)).normalized * 2000f);
-                }
-                transform.SetParent(null);
-            }
+            isFirstPositionSetted = true;
+
+            Shoot();
         }
+    }
+
+    void Shoot()
+    {
+        //return;
+        transform.LookAt(target.transform.position);
+
+        if (!isRpg)
+        {
+            transform.DOMove(target.transform.position + Vector3.up / 2, .2f).SetEase(Ease.Linear);
+        }
+        else
+        {
+            GetComponent<Rigidbody>().AddForce(-(transform.position - target.transform.position - new Vector3(0, 1f, 0)).normalized * 2000f);
+        }
+        transform.SetParent(null);
     }
 
     private void OnCollisionEnter(Collision other)
