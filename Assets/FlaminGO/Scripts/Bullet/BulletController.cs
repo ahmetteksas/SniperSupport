@@ -10,22 +10,18 @@ using Dreamteck.Splines;
 public class BulletController : MonoBehaviour
 {
     public bool isRpg;
-
-    private ParticleSystem trail;
     public float damage;
     public GameObject impactParticle;
     public bool playerBullet;
-    //public GameObject headShot;
     public float hsDelay = 1f;
-    //public GameObject trail;
-
     public Transform target;
-
     bool isFirstPositionSetted;
+
     private void Awake()
     {
 
     }
+
     void Start()
     {
         //StartCoroutine(DestroyObject());
@@ -35,21 +31,6 @@ public class BulletController : MonoBehaviour
         //    trail.Stop();
         //}
     }
-    //private void OnEnable()
-    //{
-    //    //target.transform
-    //    if (trail)
-    //    {
-    //        trail.SetActive(true);
-    //    }
-    //}
-    //private void OnDisable()
-    //{
-    //    if (trail)
-    //    {
-    //        trail.SetActive(false);
-    //    }
-    //}
 
     private void FixedUpdate()
     {
@@ -113,7 +94,6 @@ public class BulletController : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log(other.gameObject.name);
@@ -157,12 +137,6 @@ public class BulletController : MonoBehaviour
                 _soldierController.TakeHit(damage * 20000f);
             }
         }
-        gameObject.SetActive(false);
-    }
-
-    IEnumerator DestroyObject()
-    {
-        yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }
 }

@@ -28,10 +28,12 @@ public class VehicleHit : MonoBehaviour, IHitable
             }
         }
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, radius);
     }
+
     IEnumerator ExplosionDamage(Vector3 center, float radius)
     {
         yield return new WaitForSeconds(.3f);
@@ -57,6 +59,7 @@ public class VehicleHit : MonoBehaviour, IHitable
         ExplosionDamage(transform.position, radius);
         StartCoroutine(ExplodeCar());
     }
+
     public IEnumerator ExplodeCar()
     {
         yield return new WaitForSeconds(.4f);
@@ -73,7 +76,6 @@ public class VehicleHit : MonoBehaviour, IHitable
         yield return new WaitForSeconds(2.5f);
     }
 
-
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
@@ -83,6 +85,7 @@ public class VehicleHit : MonoBehaviour, IHitable
             //health -= 50f;
         }
     }
+
     private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("BulletPlayer"))

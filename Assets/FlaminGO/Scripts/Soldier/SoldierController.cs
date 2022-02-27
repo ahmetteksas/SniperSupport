@@ -36,8 +36,6 @@ public class SoldierController : MonoBehaviour, IHitable
     private Animator animator;
     private bool animWalk;
 
-    //public ParticleSystem explosion;
-
     private Transform targetTransform;
 
     public GameObject healField;
@@ -45,13 +43,9 @@ public class SoldierController : MonoBehaviour, IHitable
     public bool rpgSoldier;
     public bool turretSoldier;
 
-
     public float healBullet = .2f;
 
     private NavMeshAgent navMeshAgent;
-    private Collider colBase;
-
-    //public ParticleSystem shootEffect;
 
     public float health = 1f;
     public float maxHealth = 1f;
@@ -64,7 +58,7 @@ public class SoldierController : MonoBehaviour, IHitable
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
-        colBase = GetComponent<Collider>();
+        //colBase = GetComponent<Collider>();
         targetTransform = transform.parent;
         List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
         animator = GetComponentInChildren<Animator>();
@@ -320,18 +314,7 @@ public class SoldierController : MonoBehaviour, IHitable
             }
         }
 
-        //PuppetMaster _puppetMaster = GetComponentInChildren<PuppetMaster>();
-        //_puppetMaster.state = PuppetMaster.State.Dead;
-        //if (lastHittedBullet != null)
-        //{
-        //Debug.Log(name + " soldier dead." + (transform.position - lastHittedBullet.transform.position));
-
         GameObject go = FindObjectOfType<Shooter>().gameObject;
-
-        //Vector3 forceVector = (new Vector3((transform.position - lastHittedBullet.transform.position).x,
-        //    (transform.position - lastHittedBullet.transform.position).y * .2f,
-        //    (transform.position - lastHittedBullet.transform.position).z) * 10f + Vector3.up * 4.5f);
-
 
         Vector3 _direction = (go.transform.position - transform.position).normalized;
 
@@ -350,15 +333,7 @@ public class SoldierController : MonoBehaviour, IHitable
         {
             _weapon.Throw(.1f);
         }
-        //if (!turretSoldier)
-        //{
-        //    GetComponentInChildren<Rigidbody>().isKinematic = false;
-
-        //    GetComponentInChildren<Rigidbody>().AddForce(forceVector * deadForce);
-        //}
         canvas.enabled = false;
-        //Destroy(gameObject, 2f);
-        //}
     }
 
     bool isWalk;
