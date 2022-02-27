@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class TakeHit : MonoBehaviour, IHitable
 {
-    //public GameObject explosionBarrel;
     public float effectRadius;
-    //public GameObject vehicle;
     public float damage = .6f;
-    //public GameObject explosionOtherBarrel;
-    //public GameObject otherBarrel;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -17,22 +13,15 @@ public class TakeHit : MonoBehaviour, IHitable
         {
             Debug.Log("Barrel Hitted");
             other.gameObject.SetActive(false);
-            //explosionBarrel.SetActive(true);
-            //vehicle.SetActive(false);
-            //gameObject.SetActive(false);
-            //StartCoroutine(ExplosionStart());
         }
     }
 
-    public void StartExplosion()
-    {
-        StartCoroutine(ExplosionStart());
-    }
+    public void StartExplosion() => StartCoroutine(ExplosionStart());
 
     void ExplosionDamage(Vector3 center, float radius)
     {
         StartExplosion();
-        //StartCoroutine(ExplosionStart());
+
         Collider[] hitColliders = Physics.OverlapSphere(center, effectRadius);
         foreach (var hitCollider in hitColliders)
         {
@@ -54,39 +43,10 @@ public class TakeHit : MonoBehaviour, IHitable
             {
                 _takeHit.StartExplosion();
             }
-
-
-            //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
         }
-
-
-        //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
-
-        //Collider[] hitColliders = Physics.OverlapSphere(center, effectRadius);
-        //foreach (var hitCollider in hitColliders)
-        //{
-        //    SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
-        //    if (_soldierController)
-        //    {
-        //        _soldierController.TakeHit(damage);
-        //    }
-
-        //    VehicleHit _vehicleHit = hitCollider.gameObject.GetComponent<VehicleHit>();
-
-        //    if (_vehicleHit)
-        //    {
-        //        _vehicleHit.Explode();
-        //    }
-
-        //    //hitCollider.gameObject.GetComponent<SoldierController>().healthBar.fillAmount -= .2f;
-        //}
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, effectRadius);
-        //Gizmos.color = Color.white;
-    }
+    private void OnDrawGizmos() => Gizmos.DrawWireSphere(transform.position, effectRadius);
 
     IEnumerator ExplosionStart()
     {

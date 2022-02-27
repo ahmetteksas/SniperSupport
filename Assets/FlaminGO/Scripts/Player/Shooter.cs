@@ -11,29 +11,27 @@ using TMPro;
 public class Shooter : MonoBehaviour
 {
     Camera mainCamera;
+
     Animator animator;
 
-    public bool isAI;
     public Transform bulletSpawnPos;
     public Transform bulletDir;
     public Transform character;
-    //public GameObjectCollection allyList;
-    private Transform targetAlly;
-    public float bulletForce;
-    [SerializeField] float shootDelay = 2f;
-    private float shootDelayAi = 1f;
-    private float shootTime = 0f;
+
     int selectedBulletIndex;
-    public float scopeZoom = 35;
-    public float scopeOffset = 3f;
+    public float bulletForce;
     private bool shooted;
 
+    [SerializeField] float shootDelay = 2f;
+    private float shootTime = 0f;
+    public float scopeZoom = 35;
+    public float scopeOffset = 3f;
+
     public float scopeZoomOutDelay = .7f;
+
     public GameObject cross;
     public GameObject headShot;
 
-
-    //private bool scopeZ
     private Coroutine scopeZoomOut;
     private Coroutine scopeZoomIn;
 
@@ -43,11 +41,9 @@ public class Shooter : MonoBehaviour
     bool isShooted;
     bool canShoot;
 
-
     public List<SoldierController> allyList = new List<SoldierController>();
     public List<SoldierController> enemyList = new List<SoldierController>();
 
-    //private Animator animBase;
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -171,102 +167,69 @@ public class Shooter : MonoBehaviour
 
         scopeZoomOut = null;
     }
-    bool stopped;
+
     void Update()
     {
         if (!LevelManager.instance.isGameRunning)
-        {
             return;
-        }
+
         shootTime += Time.deltaTime;
-        if (isAI)
+
+
+        if (shootTime > shootDelay)
         {
-            List<SoldierController> allSoldiers = FindObjectsOfType<SoldierController>().ToList();
-            targetAlly = allSoldiers.LastOrDefault().transform;
-            if (shootTime > shootDelayAi)
+            if (Input.GetMouseButton(0) && !IsMouseOverUIWithIgnores())
             {
-                if (targetAlly)
+                if (!cross.activeSelf)
                 {
-                    //AiShoot();
+                    scopeZoomIn = StartCoroutine(ScopeZoomIn());
                 }
+            }
+
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (!cross.activeInHierarchy)
+                return;
+
+            if (canShoot)
+            {
+                Shoot();
+            }
+
+            if (scopeZoomOut == null)
+            {
+                shootTime = 0f;
+                //Debug.Log("out");
+                if (scopeZoomIn != null)
+                    StopCoroutine(scopeZoomIn);
+                scopeZoomOut = StartCoroutine(ScopeZoomOut());
             }
         }
-        else
+    }
+
+    void GameEndCheck()
+    {
+        if (enemyList.Count != 0)
         {
-            #region GameEndCheck
-
-            if (enemyList.Count != 0)
+            if (enemyList.Where(x => !x.isDead).Count() == 0)
             {
-                if (enemyList.Where(x => !x.isDead).Count() == 0)
+                if (CanvasManager.instance.retryLevelButton != null)
                 {
-                    if (CanvasManager.instance.retryLevelButton != null)
-                    {
 
-                        Debug.Log("win the game");
-                        GameEventManager.Instance.complateGame.Raise();
-                    }
-                }
-
-                if (allyList.Where(x => !x.isDead).Count() == 0)
-                {
-                    if (CanvasManager.instance.nextLevelButton != null)
-                    {
-                        Debug.Log("lost the game");
-
-                        GameEventManager.Instance.failGame.Raise();
-
-                    }
+                    Debug.Log("win the game");
+                    GameEventManager.Instance.complateGame.Raise();
                 }
             }
-            #endregion
 
-            if (shootTime > shootDelay)
+            if (allyList.Where(x => !x.isDead).Count() == 0)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (CanvasManager.instance.nextLevelButton != null)
                 {
-                    //RaycastHit hit;
-                    //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    Debug.Log("lost the game");
 
-                    //Debug.Log("downs");
-                    //if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                    //{
-                    //    Debug.Log(hit.point);
-                    //    mainCamera.transform.parent.DOPause();
-                    //    mainCamera.transform.parent.DOLookAt(hit.point, .4f);
-                    //}
-                }
-                if (Input.GetMouseButton(0) && !IsMouseOverUIWithIgnores() /*&& IsMouseOverUi()*//*&& !shoot*/)
-                {
-                    if (!EventSystem.current.IsPointerOverGameObject())
-                    {
-                        if (!cross.activeSelf)
-                        {
-                            if (LevelManager.instance.isGameRunning)
-                            {
-                                scopeZoomIn = StartCoroutine(ScopeZoomIn());
-                            }
-                        }
-                    }
-                }
+                    GameEventManager.Instance.failGame.Raise();
 
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (!cross.activeInHierarchy)
-                    return;
-
-                if (canShoot)
-                {
-                    Shoot();
-                }
-
-                if (scopeZoomOut == null)
-                {
-                    shootTime = 0f;
-                    //Debug.Log("out");
-                    if (scopeZoomIn != null)
-                        StopCoroutine(scopeZoomIn);
-                    scopeZoomOut = StartCoroutine(ScopeZoomOut());
                 }
             }
         }
@@ -285,6 +248,7 @@ public class Shooter : MonoBehaviour
         GameObject _smallBullet;
         GameObject _hsImpact;
         GameObject _groundImpact;
+
         if (selectedBulletIndex == 0)
         {
             _smallBullet = ObjectPool.instance.SpawnFromPool("PlayerBullet", bulletSpawnPos.position, Quaternion.identity);
@@ -374,31 +338,3 @@ public class Shooter : MonoBehaviour
         _hittedObject.TakeDamage(_damage);
     }
 }
-
-
-/* 
-
-
-        //if (!cross.activeInHierarchy)
-        //{
-
-        //    swayingCoroutine = null;
-        //    foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
-        //    {
-        //        soldier.GetComponentInChildren<Canvas>().transform.DOScale(Vector3.one * 0.01f, .4f);
-        //    }
-
-        //    shooted = false;
-        //    sniper.transform.DOPause();
-        //    sniper.transform.SetParent(firstSniperPos);
-        //    yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
-        //    cross.SetActive(false);
-        //    mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
-        //    mainCamera.DOFieldOfView(80, .1f);
-
-        //    mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
-        //    //animator.SetTrigger("Reload");
-        //    scopeZoomOut = null;
-        //    yield break;
-        //}
-*/

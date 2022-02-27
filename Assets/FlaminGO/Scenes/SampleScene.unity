@@ -1587,8 +1587,8 @@ MonoBehaviour:
   isGameRunning: 0
   currentLevel: {fileID: 0}
   levelPrefabsList:
-  - {fileID: 2188860827506338659, guid: d779b3c88628f1540af3789f240e807b, type: 3}
   - {fileID: 3359021404491633808, guid: 601c69f7e373d3047bb3dd34ffa34a7a, type: 3}
+  - {fileID: 2188860827506338659, guid: d779b3c88628f1540af3789f240e807b, type: 3}
   - {fileID: 1974700410459053634, guid: 78e62d1430ec1514abcc0744404b52e6, type: 3}
   - {fileID: 2591350494890192912, guid: 9e3b444b04542574ead1ec922309c841, type: 3}
   - {fileID: 2620057599963195186, guid: 3681668d61475bd4c9f90ff9bcb02d4a, type: 3}
@@ -2123,14 +2123,6 @@ PrefabInstance:
       propertyPath: headShot
       value: 
       objectReference: {fileID: 493286393191685900}
-    - target: {fileID: 1743468145071359254, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: bulletForce
-      value: 550
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706603564311628523, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5822464870645936591, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2179,21 +2171,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterAnchor
       objectReference: {fileID: 0}
-    - target: {fileID: 5825504876283336425, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
+    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: xClampMax
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
-      propertyPath: rotSpeed
-      value: 30
+      propertyPath: xClampMin
+      value: -360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: yClampMax
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: yClampMin
+      value: -360
       objectReference: {fileID: 0}
     - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
       propertyPath: zClampMax
-      value: 263
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: zClampMin
+      value: -360
       objectReference: {fileID: 0}
     - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
       propertyPath: sensitivity
-      value: 0.25
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855899812365311199, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
+      propertyPath: lerpSensitivity
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 554fa3f03db40b94693cc28117a44ff2, type: 3}
@@ -2488,7 +2496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1647473691507840782, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1691982003207760387, guid: 34358151ddf164f43bc9f0cab02c89e8, type: 3}
       propertyPath: m_Layer

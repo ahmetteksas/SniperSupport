@@ -7,18 +7,16 @@ public class SwerveMovement : MonoBehaviour
 {
     public float sensitivity = 3f;
 
-    Shooter shooter;
-    float defaultScopeZoom;
+    [SerializeField] float lerpSensitivity;
 
-    private void Start()
-    {
-        shooter = GetComponentInChildren<Shooter>();
-        defaultScopeZoom = shooter.scopeZoom;
+    [SerializeField]
+    float xClampMin, xClampMax,
+           yClampMin, yClampMax,
+           zClampMin, zClampMax;
 
-
-
-
-    }
+    Vector3 firstMousePosition;
+    Vector3 tempMousePosition;
+    Vector3 mouseDelta;
 
     void Update()
     {
@@ -34,37 +32,26 @@ public class SwerveMovement : MonoBehaviour
             transform.localRotation = Quaternion.identity;
         }
 
-        if (ObjectPool.instance.isGameRunning)
+
+        if (LevelManager.instance.isGameRunning)
             Swerve();
-        //Vector3 rotation = transform.eulerAngles;
-        //rotation.x = Mathf.Clamp(transform.eulerAngles.x, xClampMin, xClampMax);
-        //rotation.y = Mathf.Clamp(transform.eulerAngles.y, yClampMin, yClampMax);
-        //rotation.z = Mathf.Clamp(transform.eulerAngles.z, zClampMin, zClampMax);
-
-        //transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
     }
-
-
-    Vector3 firstMousePosition;
-    Vector3 tempMousePosition;
-    Vector3 lastMousePosition;
-    Vector3 mouseDelta;
+    Vector3 targetEulerAngles;
     public void Swerve()
     {
-        //if (!shooter.cross.activeInHierarchy)
-        //    return;
-
         if (Input.GetMouseButtonDown(0))
-        {
             firstMousePosition = Input.mousePosition;
-        }
 
         if (Input.GetMouseButton(0))
         {
+            transform.localRotation = Quaternion.Euler(targetEulerAngles);// Quaternion.Lerp(transform.localRotation, Quaternion.Euler(targetEulerAngles), lerpSensitivity);
+
             tempMousePosition = Input.mousePosition;
             mouseDelta = tempMousePosition - firstMousePosition;
 
-            transform.localEulerAngles += sensitivity * new Vector3(-mouseDelta.x, -mouseDelta.y * 2, mouseDelta.y * 2f) * Time.deltaTime;
+            targetEulerAngles = transform.localEulerAngles;
+
+            targetEulerAngles += sensitivity * new Vector3(-mouseDelta.x, -mouseDelta.y * 2, mouseDelta.y * 4.5f / sensitivity) * Time.deltaTime;
 
             firstMousePosition = tempMousePosition;
         }
