@@ -88,7 +88,7 @@ public class Shooter : MonoBehaviour
         while (true)
         {
             yield return mainCamera.transform.DOLocalRotate(Vector3.up * Random.Range(-.7f, .7f) + Vector3.right * Random.Range(-.5f, .5f), swayingDelay)
-                /*.SetLoops(0, LoopType.Yoyo)*/.SetEase(Ease.Linear).WaitForCompletion();
+                .SetEase(Ease.Linear).WaitForCompletion();
         }
     }
 
@@ -200,7 +200,6 @@ public class Shooter : MonoBehaviour
             if (scopeZoomOut == null)
             {
                 shootTime = 0f;
-                //Debug.Log("out");
                 if (scopeZoomIn != null)
                     StopCoroutine(scopeZoomIn);
                 scopeZoomOut = StartCoroutine(ScopeZoomOut());
@@ -309,7 +308,7 @@ public class Shooter : MonoBehaviour
             }
             else if (hit.collider.name == "Ground")
             {
-                _groundImpact = ObjectPool.instance.SpawnFromPool("GroundImpact", /*hit.collider*/hit.point, Quaternion.identity);
+                _groundImpact = ObjectPool.instance.SpawnFromPool("GroundImpact", hit.point, Quaternion.identity);
                 _groundImpact.transform.LookAt(mainCamera.transform);
                 _groundImpact.SetActive(true);
             }

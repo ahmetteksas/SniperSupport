@@ -13,7 +13,6 @@ public class ShootParticleOpen : MonoBehaviour
         {
             GetComponentInParent<SoldierController>().ShootBullet();
         }
-        //GameObject shootParticle = ObjectPool.instance.SpawnFromPool(particleTag, shootParticleSpawnPos.position, shootParticleSpawnPos.rotation);
     }
     public void Reload()
     {

@@ -13,8 +13,4 @@ public class HSDisable : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         gameObject.SetActive(false);
     }
-    void Update()
-    {
-        
-    }
 }

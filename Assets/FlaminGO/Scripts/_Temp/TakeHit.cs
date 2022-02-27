@@ -11,7 +11,6 @@ public class TakeHit : MonoBehaviour, IHitable
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
-            Debug.Log("Barrel Hitted");
             other.gameObject.SetActive(false);
         }
     }
@@ -51,16 +50,9 @@ public class TakeHit : MonoBehaviour, IHitable
     IEnumerator ExplosionStart()
     {
         ObjectPool.instance.SpawnFromPool("CarExplode", transform.position, Quaternion.identity);
-        //if (explosionBarrel)
-        //{
-        //    explosionBarrel.SetActive(true);
-        //}
-        //explosionOtherBarrel.SetActive(true);
         yield return new WaitForFixedUpdate();
         gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
-        //vehicle.SetActive(false);
-        //otherBarrel.SetActive(false);
     }
 
     public void TakeDamage()

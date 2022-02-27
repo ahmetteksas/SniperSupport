@@ -13,11 +13,6 @@ public class VehicleHit : MonoBehaviour, IHitable
     public float damage = .4f;
 
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (health == 0)
@@ -76,21 +71,10 @@ public class VehicleHit : MonoBehaviour, IHitable
         yield return new WaitForSeconds(2.5f);
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("BulletPlayer"))
-        {
-            Debug.Log("Vechile Hitted");
-            //ExplosionDamage(transform.position, radius);
-            //health -= 50f;
-        }
-    }
-
     private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("BulletPlayer"))
         {
-            Debug.Log("Vechile Hitted");
             ExplosionDamage(transform.position, 5f);
             health -= 50f;
         }
@@ -98,7 +82,6 @@ public class VehicleHit : MonoBehaviour, IHitable
 
     public void TakeDamage(float _damage)
     {
-        Debug.Log("Vechile Hitted");
         health -= _damage;
         if (health <= 0)
         {
