@@ -8,6 +8,7 @@ using System.Linq;
 using DG.Tweening;
 using RootMotion.Dynamics;
 using Dreamteck.Splines;
+using MoreMountains.NiceVibrations;
 
 public class SoldierController : MonoBehaviour, IHitable
 {
@@ -254,7 +255,7 @@ public class SoldierController : MonoBehaviour, IHitable
     void DeathEvent()
     {
         isDead = true;
-
+        MMVibrationManager.Haptic(HapticTypes.Success);
         IndicatorItem _indicator = GetComponentInChildren<IndicatorItem>();
 
         if (_indicator)

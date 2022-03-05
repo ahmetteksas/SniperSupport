@@ -1,3 +1,4 @@
+using MoreMountains.NiceVibrations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,8 @@ public class Vehicle : MonoBehaviour, IHitable
     IEnumerator ExplosionDamage(Vector3 center, float radius)
     {
         yield return new WaitForSeconds(.65f);
+        MMVibrationManager.Haptic(HapticTypes.MediumImpact);
+
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {

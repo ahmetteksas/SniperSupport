@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 using TMPro;
+using MoreMountains.NiceVibrations;
 
 public class Shooter : MonoBehaviour
 {
@@ -339,6 +340,7 @@ public class Shooter : MonoBehaviour
     public IEnumerator HitableHit(IHitable _hittedObject, float _damage)
     {
         yield return new WaitForSeconds(.2f);
+        MMVibrationManager.Haptic(HapticTypes.Success);
         _hittedObject.TakeDamage(_damage);
     }
 }
