@@ -22,8 +22,9 @@ public class Shooter : MonoBehaviour
     //public float bulletForce;
     private bool shooted;
 
+    [SerializeField] float defaultFov;
     [SerializeField] float shootDelay = 2f;
-    private float shootTime = 0f;
+    private float shootTime = 3f;
     public float scopeZoom = 35;
     public float scopeOffset = 3f;
     public float zoomModifier;
@@ -51,6 +52,8 @@ public class Shooter : MonoBehaviour
     {
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
+
+        mainCamera.DOFieldOfView(defaultFov, .1f);
     }
 
     void Start()
@@ -158,7 +161,7 @@ public class Shooter : MonoBehaviour
         yield return sniper.transform.DOLocalMove(Vector3.zero, scopeZoomOutDelay).WaitForCompletion();
         cross.SetActive(false);
         mainCamera.transform.DOLocalMove(Vector3.zero, .1f);
-        mainCamera.DOFieldOfView(80, .1f);
+        mainCamera.DOFieldOfView(defaultFov, .1f);
 
         mainCamera.transform.parent.DOLocalRotate(Vector3.zero, .5f);
 

@@ -191,12 +191,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3054440450b81f44390ad2e8d45b2d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 2.5
+  sensitivity: 2
   movementTime: 3
-  xClampMin: 0
-  xClampMax: 0
-  yClampMin: 0
-  yClampMax: 0
+  xClampMin: -50
+  xClampMax: 50
+  yClampMin: -100
+  yClampMax: 100
   zClampMin: 0
   zClampMax: 0
 --- !u!1 &2067050121904269310
@@ -2438,7 +2438,8 @@ MonoBehaviour:
   bulletSpawnPos: {fileID: 5971096018137123851}
   bulletDir: {fileID: 5824237862209145061}
   character: {fileID: 5824237862209145061}
-  shootDelay: 1.7
+  defaultFov: 90
+  shootDelay: 1.8
   scopeZoom: 50
   scopeOffset: 2
   zoomModifier: 1.35
@@ -2455,7 +2456,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enemyList: []
-  swayingDelay: 1.4
+  swayingDelay: 1.6
 --- !u!54 &1168399188598259285
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2923,6 +2924,10 @@ PrefabInstance:
     - target: {fileID: 4538609974757023448, guid: f7de30a061d39c64b89b8a2ea09bbdaa, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690323314229020156, guid: f7de30a061d39c64b89b8a2ea09bbdaa, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5255982494656427458, guid: f7de30a061d39c64b89b8a2ea09bbdaa, type: 3}
       propertyPath: m_IsActive
