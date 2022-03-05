@@ -52,7 +52,7 @@ public class BulletController : MonoBehaviour
         {
             transform.DOScale(Vector3.one * 2f, .1f);
             //transform.DOLookAt(target.transform.position + Vector3.up * _random, 0f);
-            transform.DOMove(target.transform.position + Vector3.up * (_random - .12f) + Vector3.right * _random * 2f, 1f).SetEase(Ease.Linear);
+            transform.DOMove(target.transform.position + Vector3.up * (_random - 1.24f) + Vector3.right * _random * 2f, 1f).SetEase(Ease.Linear);
         }
         transform.SetParent(null);
     }

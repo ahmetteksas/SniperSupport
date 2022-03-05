@@ -255,7 +255,12 @@ public class SoldierController : MonoBehaviour, IHitable
     {
         isDead = true;
 
-        GetComponentInChildren<IndicatorItem>().gameObject.SetActive(false);
+        IndicatorItem _indicator = GetComponentInChildren<IndicatorItem>();
+
+        if (_indicator)
+        {
+            _indicator.gameObject.SetActive(false);
+        }
 
         if (navMeshAgent)
             Destroy(navMeshAgent);
