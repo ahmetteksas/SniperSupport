@@ -20,6 +20,11 @@ public class IndicatorItem : MonoBehaviour
         mainCamera = Camera.main;
         screenCentre = new Vector3(Screen.width, Screen.height, 0) / 2;
         screenBounds = screenCentre * screenBoundOffset;
+        if (targetTransform == null)
+        {
+            Animator _animator = transform.parent.parent.GetComponentInChildren<Animator>();
+            targetTransform = _animator.transform;
+        }
     }
 
     void Update()

@@ -121,7 +121,7 @@ public class SoldierController : MonoBehaviour, IHitable
                     if (!navMeshAgent.isStopped)
                         animator.SetTrigger("Aim");
                     navMeshAgent.isStopped = true;
-                    
+
                     transform.DOLookAt(
                              new Vector3(targetEnemy.transform.parent.position.x, transform.position.y, targetEnemy.transform.parent.position.z)
                              , lookAtDelay).WaitForCompletion();
@@ -254,6 +254,8 @@ public class SoldierController : MonoBehaviour, IHitable
     void DeathEvent()
     {
         isDead = true;
+
+        GetComponentInChildren<IndicatorItem>().gameObject.SetActive(false);
 
         if (navMeshAgent)
             Destroy(navMeshAgent);
