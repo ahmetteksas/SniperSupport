@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
             yellowFog.SetActive(true);
         }
         level = PlayerPrefs.GetInt("LEVEL");
-     
+
         //isGameRunning = true;
     }
     private void Start()
@@ -53,11 +53,12 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(StartGameTrue());
     }
 
-    IEnumerator StartGameTrue ()
+    IEnumerator StartGameTrue()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.8f);
         isGameRunning = true;
         Time.timeScale = 1;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 
     public void SetLevel()

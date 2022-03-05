@@ -31,7 +31,7 @@ public class BulletController : MonoBehaviour
         if (transform.parent != null)
         {
             isFirstPositionSetted = true;
-
+            //target = target.GetComponentInChildren<SoldierController>().transform;
             Shoot();
         }
     }
@@ -52,7 +52,7 @@ public class BulletController : MonoBehaviour
         {
             transform.DOScale(Vector3.one * 2f, .1f);
             //transform.DOLookAt(target.transform.position + Vector3.up * _random, 0f);
-            transform.DOMove(target.transform.position + Vector3.up * (_random - 1.24f) + Vector3.right * _random * 2f, 1f).SetEase(Ease.Linear);
+            transform.DOMove(target.transform.position + Vector3.up * (/*_random - 1.24f*//*-.3f*/0.3f ) /*+ Vector3.right * _random * 2f*/+ transform.forward * .3f, 1f).SetEase(Ease.Linear);
         }
         transform.SetParent(null);
     }
@@ -62,6 +62,9 @@ public class BulletController : MonoBehaviour
 
         if (isRpg)
         {
+            if (other.transform.CompareTag("Untagged"))
+                return;
+
             ObjectPool.instance.SpawnFromPool("RPGExplode", other.transform.position, Quaternion.identity);
             Collider[] hitColliders = Physics.OverlapSphere(other.transform.position, explosionRadius);
             foreach (var hitCollider in hitColliders)

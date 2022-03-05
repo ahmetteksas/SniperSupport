@@ -186,6 +186,8 @@ public class Shooter : MonoBehaviour
             {
                 if (!cross.activeSelf)
                 {
+                    //if (scopeZoomIn != null)
+                    //    StopCoroutine(scopeZoomIn);
                     scopeZoomIn = StartCoroutine(ScopeZoomIn());
                 }
             }
