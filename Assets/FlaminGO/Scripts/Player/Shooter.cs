@@ -130,7 +130,7 @@ public class Shooter : MonoBehaviour
         cross.SetActive(true);
 
         canShoot = true;
-
+        mainCamera.GetComponent<MainCameraDisplay>().canSwerve = true;
         if (swayingCoroutine == null)
             swayingCoroutine = StartCoroutine(Swaying());
     }
@@ -173,6 +173,7 @@ public class Shooter : MonoBehaviour
         }
 
         scopeZoomOut = null;
+        mainCamera.GetComponent<MainCameraDisplay>().canSwerve = false;
     }
 
     void Update()

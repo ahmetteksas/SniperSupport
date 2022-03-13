@@ -8,6 +8,8 @@ public class MainCameraDisplay : MonoBehaviour
     [SerializeField] float sensitivity;
     public float movementTime;
 
+    public bool canSwerve;
+
     Vector3 angleVector;
 
     [SerializeField]
@@ -38,22 +40,14 @@ public class MainCameraDisplay : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            if (!canSwerve)
+                return;
+
             tempMousePosition = Input.mousePosition;
             mouseDelta = tempMousePosition - firstMousePosition;
 
-            //angleVector += sensitivity * new Vector3(-mouseDelta.y * 2f, mouseDelta.x, 0f) * Time.deltaTime;
-
-            //if (angleVector.x > xClampMax || angleVector.x < xClampMin)
-            //{
-            //    mouseDelta.y = 0f;
-            //}
-
-            //if (angleVector.y > yClampMax || angleVector.y < yClampMin)
-            //{
-            //    mouseDelta.x = 0f;
-            //}
-
-            transform.parent.Rotate(sensitivity * new Vector3(-mouseDelta.y * 2f, mouseDelta.x, 0f) * Time.deltaTime);
+            Quaternion targetRot = Quaternion.Euler(transform.parent.eulerAngles + sensitivity * new Vector3(-mouseDelta.y * 2f, mouseDelta.x, 0f) * Time.deltaTime);
+            transform.parent.DORotateQuaternion(targetRot, 1f);
 
             firstMousePosition = tempMousePosition;
         }
