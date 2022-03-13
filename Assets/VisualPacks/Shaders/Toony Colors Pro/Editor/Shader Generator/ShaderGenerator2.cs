@@ -23,7 +23,7 @@ namespace ToonyColorsPro
 		{
 			public static bool DebugMode = false;
 
-			internal const string TCP2_VERSION = "2.8.1";
+			internal const string TCP2_VERSION = "2.9.0";
 			internal const string DOCUMENTATION_URL = "https://jeanmoreno.com/unity/toonycolorspro/doc/shader_generator_2";
 			internal const string OUTPUT_PATH = "/JMO Assets/Toony Colors Pro/Shaders Generated/";
 
@@ -555,9 +555,16 @@ namespace ToonyColorsPro
 
 				if (GUILayout.Button(TCP2_GUI.TempContent("Reload"), EditorStyles.miniButton, GUILayout.ExpandWidth(false)))
 				{
-					//Twice to prevent bug with used variable names
-					LoadNewTemplate(template.textAsset);
-					LoadNewTemplate(template.textAsset);
+					if (currentShader != null)
+					{
+						LoadCurrentConfigFromShader(currentShader);
+					}
+					else
+					{
+						//Twice to prevent bug with used variable names
+						LoadNewTemplate(template.textAsset);
+						LoadNewTemplate(template.textAsset);
+					}
 				}
 
 				EditorGUILayout.EndHorizontal();
@@ -2298,7 +2305,7 @@ namespace ToonyColorsPro
 							}
 							else
 							{
-								Debug.LogError(ErrorMsg("No match for '<b>PROP:" + propName + "'</b>"));
+								Debug.LogError(ErrorMsg("No match for '<b>PROP:" + propName + "'</b>\nLine " + templateLines[i].lineNumber + ": " + line));
 							}
 						}
 						//output code to declare texture coordinates and necessary vertex-to-fragment variables, packed as float4 (for v2f struct)

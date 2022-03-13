@@ -68,8 +68,8 @@ namespace ToonyColorsPro
 				public List<string> OpenedFoldouts = new List<string>();
 				public bool UseCustomFont = false;
 				public Font CustomFont = null;
-
 				public bool CustomFontInitialized = false;
+				public bool Upgrade_Hybrid1toHybrid2_Done = false;
 			}
 			static Data _data;
 			public static Data data

@@ -421,6 +421,7 @@ namespace ToonyColorsPro
 				clone.isLayerClone = true;
 				clone.Name = this.Name + "_" + materialLayer.uid;
 				clone.Type = this.Type;
+				clone.passBitmask = this.passBitmask;
 				clone.implementations = new List<Implementation>();
 				clone.SetDefaultImplementations(this.defaultImplementations);
 				clone.implementations.Clear();

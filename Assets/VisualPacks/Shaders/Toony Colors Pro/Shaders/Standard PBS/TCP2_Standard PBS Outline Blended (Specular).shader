@@ -390,6 +390,9 @@ Shader "Hidden/Toony Colors Pro 2/Standard PBS Outline Blended (Specular)"
 			#pragma shader_feature _ _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 			#pragma shader_feature ___ _DETAIL_MULX2
 
+			#ifndef UNITY_PASS_META
+				#define UNITY_PASS_META
+			#endif
 			#include "UnityStandardMeta.cginc"
 			ENDCG
 		}

@@ -16,6 +16,7 @@ Triplanar Sampling
 HSV
 Screen Space UV
 Hash Functions
+Dithering
 
 # lighting:
 Ramp Shading LWRP
@@ -146,6 +147,7 @@ sngl	lbl="Alpha Testing (Cutout)"	kw=ALPHA_TESTING			help="featuresreference/tra
 sngl	lbl="Alpha to Coverage"			kw=ALPHA_TO_COVERAGE		needs=ALPHA_TESTING							indent		tt="Enables Alpha to Coverage, which allows MSAA anti-aliasing to be used with alpha testing"
 sngl	lbl="Disable alpha sharpening"	kw=ALPHA_TO_COVERAGE_RAW	needs=ALPHA_TESTING,ALPHA_TO_COVERAGE		indent=2	tt="Disables screen-space alpha sharpening, which is used to get proper anti-aliasing with Alpha to Coverage"
 sngl	lbl="Transparency Dithering"	kw=ALPHA_TESTING_DITHERING	needs=ALPHA_TESTING							indent		tt="Enables dithering for alpha testing, i.e. making the transparency transition pixel by pixel in screen space"
+mult	lbl="Dithering Pattern"			kw=Procedural 4x4 Pixels|,Procedural 8x8 Pixels|ALPHA_DITHER_8x8,Lookup Texture|ALPHA_DITHER_TEXTURE	indent=2	needs=ALPHA_TESTING,ALPHA_TESTING_DITHERING	tt="The dithering pattern to use, either calculated with maths or using a lookup texture."
 dd_end
 dd_start	lbl="SHADER STATES"
 ---
@@ -172,6 +174,8 @@ sngl		lbl="Disable Additional Lights"			kw=DISABLE_ADDITIONAL_LIGHTS
 sngl		lbl="Enable SSAO"						kw=SSAO
 sngl		lbl="Enable Fog"						kw=FOG
 sngl		lbl="Enable Lightmaps"					kw=ENABLE_LIGHTMAP
+sngl		lbl="Enable LOD Dither Crossfade"		kw=ENABLE_DITHER_LOD
+mult		lbl="Dithering Pattern"					kw=4x4 Pixels|,8x8 Pixels|DITHER_LOD_8x8	indent	tt="The size of the dithering pattern to use, 8x8 looks more progressive than 4x4."
 sngl		lbl="Disable Dynamic Batching"			kw=DISABLE_BATCHING				tt="Disable dynamic batching support for this shader"
 sngl		lbl="Enable Depth Normals Pass"			kw=ENABLE_DEPTH_NORMALS_PASS
 sngl		lbl="Enable Meta Pass"					kw=ENABLE_META_PASS				tt="Enable meta pass: it is needed to be able to bake lighting but can prevent SRP Batcher compatibility."
@@ -198,7 +202,7 @@ dd_end
 #PROPERTIES_NEW
 header		Main Properties
 /// IF !CUSTOM_ALBEDO
-color_rgba	Albedo				fragment, imp(texture, label = "Albedo", variable = "_BaseMap", default = white, tiling_offset = true, global = true)
+color_rgba	Albedo				fragment, imp(texture, label = "Albedo", variable = "_BaseMap", drawer = "[MainTexture]", default = white, tiling_offset = true, global = true)
 ///
 [[MODULE:PROPERTIES_NEW:AlbedoHSV]]
 color_rgba	Main Color			fragment, imp(color, label = "Color", variable = "_BaseColor", default = (1,1,1,1)), help = "An adjustable color multiplied with the final albedo color.  Set it to a white color constant if you don't plan on using it, to improve the shader performance."
@@ -207,7 +211,9 @@ float		Alpha				fragment, imp(shader_property_ref, reference = Albedo, swizzle =
 ///
 /// IF ALPHA_TESTING
 	/// IF ALPHA_TESTING_DITHERING
+		/// IF ALPHA_DITHER_TEXTURE
 float		Dithering Texture	fragment, imp(texture, label = "Alpha Dithering", variable = "_DitherTex", default = gray, uv_screenspace = true, scale_texel = true)
+		///
 	/// ELSE
 float		Cutoff				fragment, imp(range, label = "Alpha Cutoff", default = 0.5, min = 0, max = 1), help = "The threshold value at which point pixels are discarded when using alpha testing (cutout)"
 	///
@@ -357,6 +363,10 @@ feature_on		URP
 	feature_on		USE_VIEW_DIRECTION_FRAGMENT
 ///
 
+/// IF ENABLE_DITHER_LOD || (ALPHA_TESTING && ALPHA_TESTING_DITHERING && !ALPHA_DITHER_TEXTURE)
+	feature_on		USE_DITHERING_FUNCTION
+///
+
 /// IF USE_NDV_VERTEX
 	feature_on		USE_WORLD_NORMAL_VERTEX
 	feature_on		USE_VIEW_DIRECTION_VERTEX
@@ -476,11 +486,14 @@ Shader "@%SHADER_NAME%@"
 		[[MODULE:PROPERTIES_BLOCK:AlbedoHSV]]
 /// IF ALPHA_TESTING
 	/// IF ALPHA_TESTING_DITHERING
+		/// IF ALPHA_DITHER_TEXTURE
 		[[PROP:Dithering Texture]]
+		///
 	/// ELSE
 		[[PROP:Cutoff]]
 	///
-////// IF OCCLUSION
+///
+/// IF OCCLUSION
 		[[PROP:Occlusion]]
 ///
 		[TCP2Separator]
@@ -707,6 +720,13 @@ Shader "@%SHADER_NAME%@"
 
 		[[INJECTION_POINT:Functions]]
 
+	#if_not_empty
+		// Curved World 2020
+	#start_not_empty_block
+		[[MODULE:SHADER_FEATURES_BLOCK:CurvedWorld]]
+	#end_not_empty_block
+	#end_not_empty
+
 		ENDHLSL
 
 #PASS
@@ -718,6 +738,10 @@ Shader "@%SHADER_NAME%@"
 /// IF FOG
 		#pragma multi_compile_fog
 ///
+/// IF ENABLE_DITHER_LOD
+		#pragma multi_compile _ LOD_FADE_CROSSFADE
+///
+
 		[[INJECTION_POINT:Outline Pass/Pragma]]
 
 		struct appdata_outline
@@ -1350,6 +1374,9 @@ Shader "@%SHADER_NAME%@"
 /// IF FOG
 			#pragma multi_compile_fog
 ///
+/// IF ENABLE_DITHER_LOD
+			#pragma multi_compile _ LOD_FADE_CROSSFADE
+///
 
 			//--------------------------------------
 			// GPU Instancing
@@ -1683,6 +1710,18 @@ Shader "@%SHADER_NAME%@"
 
 				[[FRAGMENT_TEXCOORDS]]
 
+/// IF ENABLE_DITHER_LOD
+				#if defined(LOD_FADE_CROSSFADE)
+	/// IF DITHER_LOD_8x8
+					const float dither = Dither8x8(input.positionCS.xy);
+	/// ELSE
+					const float dither = Dither4x4(input.positionCS.xy);
+	///
+					const float ditherThreshold = unity_LODFade.x - CopySign(dither, unity_LODFade.x);
+					clip(ditherThreshold);
+				#endif
+///
+
 #ENABLE_IMPL: float vFace, lbl = "Special/VFACE (Face direction)", help = "Indicates if the current face is back or front-facing. Should be used with custom Face Culling.", toggles = "USE_VFACE", custom_code_compatible = true
 				float3 positionWS = input.worldPosAndFog.xyz;
 				float3 normalWS = normalize(input.normal);
@@ -1796,7 +1835,13 @@ Shader "@%SHADER_NAME%@"
 /// IF ALPHA_TESTING
 				// Alpha Testing
 	/// IF ALPHA_TESTING_DITHERING
+		/// IF ALPHA_DITHER_TEXTURE
 				half cutoffValue = [[VALUE:Dithering Texture]];
+		/// ELIF ALPHA_DITHER_8x8
+				half cutoffValue = Dither8x8(input.positionCS.xy);
+		/// ELSE
+				half cutoffValue = Dither4x4(input.positionCS.xy);
+		///
 	/// ELSE
 				half cutoffValue = [[VALUE:Cutoff]];
 	///
@@ -2234,13 +2279,26 @@ Shader "@%SHADER_NAME%@"
 	///
 
 			HLSLPROGRAM
+
 			#pragma vertex vertex_outline
 			#pragma fragment fragment_outline
+
 			#pragma target @%SHADER_TARGET%@
+
 			#pragma multi_compile _ TCP2_COLORS_AS_NORMALS TCP2_TANGENT_AS_NORMALS TCP2_UV1_AS_NORMALS TCP2_UV2_AS_NORMALS TCP2_UV3_AS_NORMALS TCP2_UV4_AS_NORMALS
 			#pragma multi_compile _ TCP2_UV_NORMALS_FULL TCP2_UV_NORMALS_ZW
 			#pragma multi_compile_instancing
 			[[GPU_INSTANCING_OPTIONS]]
+			
+	#if_not_empty
+			//--------------------------------------
+			// Toony Colors Pro 2 keywords
+	#start_not_empty_block
+			[[MODULE:SHADER_FEATURES_BLOCK:Wind]]
+			[[MODULE:SHADER_FEATURES_BLOCK:Dissolve]]
+	#end_not_empty_block
+	#end_not_empty
+
 			ENDHLSL
 		}
 ///
@@ -2248,13 +2306,6 @@ Shader "@%SHADER_NAME%@"
 /// IF !(TERRAIN_SHADER && TERRAIN_BASEGEN && TERRAIN_BASEGEN_SAME_SHADER)
 		// Depth & Shadow Caster Passes
 		HLSLINCLUDE
-
-	#if_not_empty
-		// Curved World 2020
-	#start_not_empty_block
-		[[MODULE:SHADER_FEATURES_BLOCK:CurvedWorld]]
-	#end_not_empty_block
-	#end_not_empty
 
 		#if defined(SHADOW_CASTER_PASS) || defined(DEPTH_ONLY_PASS)
 
@@ -2517,7 +2568,13 @@ Shader "@%SHADER_NAME%@"
 /// IF ALPHA_TESTING
 				// Alpha Testing
 	/// IF ALPHA_TESTING_DITHERING
+		/// IF ALPHA_DITHER_TEXTURE
 				half cutoffValue = [[VALUE:Dithering Texture]];
+		/// ELIF ALPHA_DITHER_8x8
+				half cutoffValue = Dither8x8(input.positionCS.xy);
+		/// ELSE
+				half cutoffValue = Dither4x4(input.positionCS.xy);
+		///
 	/// ELSE
 				half cutoffValue = [[VALUE:Cutoff]];
 	///

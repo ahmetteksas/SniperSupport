@@ -20,7 +20,7 @@ namespace ToonyColorsPro
 		{
 			//--------------------------------------------------------------------------------------------------
 
-			[MenuItem(Menu.MENU_PATH + "Shader Generator 1 (legacy)", false, 500)]
+			[MenuItem(Menu.MENU_PATH + "Shader Generator 1 (legacy)", false, 501)]
 			static void OpenTool()
 			{
 				GetWindowTCP2();

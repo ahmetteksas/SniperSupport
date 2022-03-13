@@ -5707,6 +5707,18 @@ namespace ToonyColorsPro
 				/// <returns>null if the reference is allowed, an error message if not, an empty string if the reference should be hidden in the menus</returns>
 				public static string IsReferencePossible(ShaderProperty parent, ShaderProperty reference)
 				{
+					// Clones now copy the passBitmask, but for backward compatibility we need
+					// to retrieve the source of the clone and fetch its passBitmask directly
+					if (parent.isLayerClone)
+					{
+						string sourceName = parent.Name.Substring(0, parent.Name.LastIndexOf('_'));
+						var sourceSp = ShaderGenerator2.CurrentConfig.GetShaderPropertyByName(sourceName);
+						if (sourceSp != null)
+						{
+							parent.passBitmask = sourceSp.passBitmask;
+						}
+					}
+					
 					//can't reference (from) a hook
 					if (parent.isHook || reference.isHook)
 						return "";
