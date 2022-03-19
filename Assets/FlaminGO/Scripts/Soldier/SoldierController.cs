@@ -175,6 +175,7 @@ public class SoldierController : MonoBehaviour, IHitable
             {
                 targetEnemy = shooter.allyList.Where(x => !x.isDead).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).FirstOrDefault();
             }
+
             if (tempEnemySoldier != targetEnemy)
             {
                 shootCount = magSize - 1;
@@ -187,7 +188,7 @@ public class SoldierController : MonoBehaviour, IHitable
                         Debug.Log("Looking the target enemy");
                         transform.DOPause();
                         yield return transform.DOLookAt(
-                            new Vector3(targetEnemy.transform.parent.position.x, transform.position.y, targetEnemy.transform.parent.position.z)
+                            new Vector3(targetEnemy.transform.position.x, transform.position.y, targetEnemy.transform.position.z)
                             , lookAtDelay).WaitForCompletion();
                     }
                 }

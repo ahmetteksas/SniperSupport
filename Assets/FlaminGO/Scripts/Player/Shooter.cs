@@ -94,6 +94,7 @@ public class Shooter : MonoBehaviour
         }
     }
 
+    List<GameObject> aimHelpList = new List<GameObject>();
     IEnumerator ScopeZoomIn()
     {
         if (shooted)
@@ -103,13 +104,49 @@ public class Shooter : MonoBehaviour
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        aimHelpList.Clear();
+
+        foreach (var ally in allyList.Where(x => !x.isDead))
+        {
+            aimHelpList.Add(ally.gameObject);
+        }
+        foreach (var enemy in enemyList.Where(x => !x.isDead))
+        {
+            aimHelpList.Add(enemy.gameObject);
+        }
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            raycastDistance = hit.distance;
-            //Debug.Log(hit.point);
-            mainCamera.transform.parent.DOPause();
-            mainCamera.transform.parent.DOLookAt(hit.point, .1f);
+            if (hit.collider.CompareTag("Respawn"))
+            {
+                raycastDistance = hit.distance;
+                //Debug.Log(hit.point);
+                mainCamera.transform.parent.DOPause();
+                mainCamera.transform.parent.DOLookAt(hit.point, .1f);
+            }
+            else
+            {
+                Vector3 aimHelpTarget = aimHelpList.OrderBy(x => Vector3.Distance(x.transform.position, hit.point)).FirstOrDefault().transform.position;
+                aimHelpTarget += Vector3.up * 1.3f;
+
+                RaycastHit hit2;
+                Vector2 lookTarget;
+
+                if (Input.mousePosition.y < Screen.height / 2f)
+                    lookTarget = new Vector2(Screen.width / 2f, Screen.height * 2f / 3f);
+                else
+                    lookTarget = new Vector2(Screen.width / 2f, Screen.height * 3f / 4f);
+
+                Ray ray2 = Camera.main.ScreenPointToRay(lookTarget);
+
+                if (Physics.Raycast(ray2, out hit2, Mathf.Infinity))
+                {
+                    raycastDistance = hit2.distance;
+                    //Debug.Log(hit.point);
+                    mainCamera.transform.parent.DOPause();
+                    mainCamera.transform.parent.DOLookAt(aimHelpTarget, .1f);
+                }
+            }
         }
 
         foreach (SoldierController soldier in FindObjectsOfType<SoldierController>())
@@ -282,7 +319,7 @@ public class Shooter : MonoBehaviour
                 if (selectedBulletIndex == 0)
                 {
                     if (_iHitable != null)
-                        StartCoroutine(HitableHit(_iHitable, 1f));
+                        StartCoroutine(HitableHit(_iHitable, 3f));
                 }
                 else
                 {

@@ -19,6 +19,8 @@ public class BulletController : MonoBehaviour
 
     [SerializeField] float explosionRadius;
 
+
+
     private void Start()
     {
         transform.localScale = Vector3.zero;
@@ -52,7 +54,7 @@ public class BulletController : MonoBehaviour
         {
             transform.DOScale(Vector3.one * 2f, .1f);
             //transform.DOLookAt(target.transform.position + Vector3.up * _random, 0f);
-            transform.DOMove(target.transform.position + Vector3.up * (/*_random - 1.24f*//*-.3f*/0.3f ) /*+ Vector3.right * _random * 2f*/+ transform.forward * .3f, 1f).SetEase(Ease.Linear);
+            transform.DOMove(target.transform.position + Vector3.up * (/*_random - 1.24f*//*-.3f*/0.3f) /*+ Vector3.right * _random * 2f*/+ transform.forward * .3f, 1f).SetEase(Ease.Linear);
         }
         transform.SetParent(null);
     }
@@ -65,14 +67,19 @@ public class BulletController : MonoBehaviour
             if (other.transform.CompareTag("Untagged"))
                 return;
 
+            bool firstHit = false;
             ObjectPool.instance.SpawnFromPool("RPGExplode", other.transform.position, Quaternion.identity);
             Collider[] hitColliders = Physics.OverlapSphere(other.transform.position, explosionRadius);
             foreach (var hitCollider in hitColliders)
             {
                 SoldierController _soldierController = hitCollider.gameObject.GetComponentInParent<SoldierController>();
-                if (_soldierController && hitCollider.gameObject.tag == "Head")
+                if (_soldierController)
                 {
-                    _soldierController.TakeHit(damage * 999f);
+                    if (!firstHit)
+                    {
+                        _soldierController.TakeHit(damage);
+                        firstHit = true;
+                    }
                 }
 
                 Vehicle _vehicleHit = hitCollider.gameObject.GetComponent<Vehicle>();
