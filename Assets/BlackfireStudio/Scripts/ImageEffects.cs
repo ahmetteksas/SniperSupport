@@ -79,7 +79,7 @@ namespace BlackfireStudio
 		{
 			if (Screen.width != screenwidth || Screen.height != screenHeight)
 			{
-				RenderTexture.Resize(Screen.width, Screen.height, TextureFormat.RGB24, false);
+				RenderTexture.Reinitialize(Screen.width, Screen.height, TextureFormat.RGB24, false);
 				screenwidth		= Screen.width;
 				screenHeight	= Screen.height;
 			}
